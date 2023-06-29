@@ -37,8 +37,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     //collectionview 관련 설정
     func collectionviewSet() {
-        collectionview.frame.size.width = self.view.frame.width
-        collectionview.frame.size.height = self.view.frame.height
         collectionview.backgroundColor = .white
         collectionview.dataSource = self
         collectionview.delegate = self
@@ -49,7 +47,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //collectionview 오토레이아웃
     func collectionviewConstraint() {
         collectionview.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalToSuperview()
+            make.top.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalTo(self.view.frame.width - 20)
         }
     }
     

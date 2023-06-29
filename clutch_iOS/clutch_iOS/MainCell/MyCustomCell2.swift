@@ -15,7 +15,7 @@ class MyCustomCell2: UICollectionViewCell {
         let label = UILabel()
         label.text = "테스트"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .blue
+        label.textColor = .white
        
         return label
     }()
@@ -33,8 +33,8 @@ class MyCustomCell2: UICollectionViewCell {
     //Cell의 View 관련 설정
     func SetView(){
         self.addSubview(testLabel)
-        self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.red.cgColor
+        self.layer.cornerRadius = 10
+        self.backgroundColor = .blue
     }
     
     //Cell의 오토레이아웃
