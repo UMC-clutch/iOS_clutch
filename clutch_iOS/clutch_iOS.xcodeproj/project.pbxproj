@@ -1,0 +1,700 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */; };
+		BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C22A4D6845005106D8 /* AppDelegate.swift */; };
+		BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C42A4D6845005106D8 /* SceneDelegate.swift */; };
+		BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C62A4D6845005106D8 /* MainViewController.swift */; };
+		BED645CA2A4D6845005106D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED645C82A4D6845005106D8 /* Main.storyboard */; };
+		BED645CD2A4D6845005106D8 /* clutch_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BED645CB2A4D6845005106D8 /* clutch_iOS.xcdatamodeld */; };
+		BED645CF2A4D6846005106D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED645CE2A4D6846005106D8 /* Assets.xcassets */; };
+		BED645D22A4D6846005106D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED645D02A4D6846005106D8 /* LaunchScreen.storyboard */; };
+		BED645DD2A4D6846005106D8 /* clutch_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645DC2A4D6846005106D8 /* clutch_iOSTests.swift */; };
+		BED645E72A4D6846005106D8 /* clutch_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645E62A4D6846005106D8 /* clutch_iOSUITests.swift */; };
+		BED645E92A4D6846005106D8 /* clutch_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645E82A4D6846005106D8 /* clutch_iOSUITestsLaunchTests.swift */; };
+		BED645F62A4D6968005106D8 /* MyCustomCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645F52A4D6968005106D8 /* MyCustomCell1.swift */; };
+		BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645F72A4D69CF005106D8 /* MyCustomCell2.swift */; };
+		BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645F92A4D69D7005106D8 /* MyCustomCell3.swift */; };
+		BED645FC2A4D69DE005106D8 /* MyCustomCell4.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645FB2A4D69DE005106D8 /* MyCustomCell4.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BED645D92A4D6846005106D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BED645B72A4D6845005106D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BED645BE2A4D6845005106D8;
+			remoteInfo = clutch_iOS;
+		};
+		BED645E32A4D6846005106D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BED645B72A4D6845005106D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BED645BE2A4D6845005106D8;
+			remoteInfo = clutch_iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.release.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.debug.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BED645BF2A4D6845005106D8 /* clutch_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clutch_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BED645C22A4D6845005106D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BED645C42A4D6845005106D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		BED645C62A4D6845005106D8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		BED645C92A4D6845005106D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BED645CC2A4D6845005106D8 /* clutch_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = clutch_iOS.xcdatamodel; sourceTree = "<group>"; };
+		BED645CE2A4D6846005106D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BED645D12A4D6846005106D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BED645D32A4D6846005106D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BED645D82A4D6846005106D8 /* clutch_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clutch_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BED645DC2A4D6846005106D8 /* clutch_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clutch_iOSTests.swift; sourceTree = "<group>"; };
+		BED645E22A4D6846005106D8 /* clutch_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clutch_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BED645E62A4D6846005106D8 /* clutch_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clutch_iOSUITests.swift; sourceTree = "<group>"; };
+		BED645E82A4D6846005106D8 /* clutch_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clutch_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BED645F52A4D6968005106D8 /* MyCustomCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell1.swift; sourceTree = "<group>"; };
+		BED645F72A4D69CF005106D8 /* MyCustomCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell2.swift; sourceTree = "<group>"; };
+		BED645F92A4D69D7005106D8 /* MyCustomCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell3.swift; sourceTree = "<group>"; };
+		BED645FB2A4D69DE005106D8 /* MyCustomCell4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell4.swift; sourceTree = "<group>"; };
+		C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-clutch_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BED645BC2A4D6845005106D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BED645D52A4D6846005106D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BED645DF2A4D6846005106D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7B09C6DFFDD9C5A6ACA927F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D3CA54FB7BF665EA4332F89 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */,
+				029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BED645B62A4D6845005106D8 = {
+			isa = PBXGroup;
+			children = (
+				BED645C12A4D6845005106D8 /* clutch_iOS */,
+				BED645DB2A4D6846005106D8 /* clutch_iOSTests */,
+				BED645E52A4D6846005106D8 /* clutch_iOSUITests */,
+				BED645C02A4D6845005106D8 /* Products */,
+				9D3CA54FB7BF665EA4332F89 /* Pods */,
+				7B09C6DFFDD9C5A6ACA927F9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BED645C02A4D6845005106D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BED645BF2A4D6845005106D8 /* clutch_iOS.app */,
+				BED645D82A4D6846005106D8 /* clutch_iOSTests.xctest */,
+				BED645E22A4D6846005106D8 /* clutch_iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BED645C12A4D6845005106D8 /* clutch_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				BED645CE2A4D6846005106D8 /* Assets.xcassets */,
+				BED645C22A4D6845005106D8 /* AppDelegate.swift */,
+				BED645C42A4D6845005106D8 /* SceneDelegate.swift */,
+				BED645C62A4D6845005106D8 /* MainViewController.swift */,
+				BED645FD2A4D6BA6005106D8 /* MainCell */,
+				BED645C82A4D6845005106D8 /* Main.storyboard */,
+				BED645D02A4D6846005106D8 /* LaunchScreen.storyboard */,
+				BED645D32A4D6846005106D8 /* Info.plist */,
+				BED645CB2A4D6845005106D8 /* clutch_iOS.xcdatamodeld */,
+			);
+			path = clutch_iOS;
+			sourceTree = "<group>";
+		};
+		BED645DB2A4D6846005106D8 /* clutch_iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				BED645DC2A4D6846005106D8 /* clutch_iOSTests.swift */,
+			);
+			path = clutch_iOSTests;
+			sourceTree = "<group>";
+		};
+		BED645E52A4D6846005106D8 /* clutch_iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BED645E62A4D6846005106D8 /* clutch_iOSUITests.swift */,
+				BED645E82A4D6846005106D8 /* clutch_iOSUITestsLaunchTests.swift */,
+			);
+			path = clutch_iOSUITests;
+			sourceTree = "<group>";
+		};
+		BED645FD2A4D6BA6005106D8 /* MainCell */ = {
+			isa = PBXGroup;
+			children = (
+				BED645F52A4D6968005106D8 /* MyCustomCell1.swift */,
+				BED645F72A4D69CF005106D8 /* MyCustomCell2.swift */,
+				BED645F92A4D69D7005106D8 /* MyCustomCell3.swift */,
+				BED645FB2A4D69DE005106D8 /* MyCustomCell4.swift */,
+			);
+			path = MainCell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BED645BE2A4D6845005106D8 /* clutch_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BED645EC2A4D6846005106D8 /* Build configuration list for PBXNativeTarget "clutch_iOS" */;
+			buildPhases = (
+				93B9C6AD5FA2BB90B8074649 /* [CP] Check Pods Manifest.lock */,
+				BED645BB2A4D6845005106D8 /* Sources */,
+				BED645BC2A4D6845005106D8 /* Frameworks */,
+				BED645BD2A4D6845005106D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = clutch_iOS;
+			productName = clutch_iOS;
+			productReference = BED645BF2A4D6845005106D8 /* clutch_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BED645D72A4D6846005106D8 /* clutch_iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BED645EF2A4D6846005106D8 /* Build configuration list for PBXNativeTarget "clutch_iOSTests" */;
+			buildPhases = (
+				BED645D42A4D6846005106D8 /* Sources */,
+				BED645D52A4D6846005106D8 /* Frameworks */,
+				BED645D62A4D6846005106D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BED645DA2A4D6846005106D8 /* PBXTargetDependency */,
+			);
+			name = clutch_iOSTests;
+			productName = clutch_iOSTests;
+			productReference = BED645D82A4D6846005106D8 /* clutch_iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BED645E12A4D6846005106D8 /* clutch_iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BED645F22A4D6846005106D8 /* Build configuration list for PBXNativeTarget "clutch_iOSUITests" */;
+			buildPhases = (
+				BED645DE2A4D6846005106D8 /* Sources */,
+				BED645DF2A4D6846005106D8 /* Frameworks */,
+				BED645E02A4D6846005106D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BED645E42A4D6846005106D8 /* PBXTargetDependency */,
+			);
+			name = clutch_iOSUITests;
+			productName = clutch_iOSUITests;
+			productReference = BED645E22A4D6846005106D8 /* clutch_iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BED645B72A4D6845005106D8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					BED645BE2A4D6845005106D8 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					BED645D72A4D6846005106D8 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = BED645BE2A4D6845005106D8;
+					};
+					BED645E12A4D6846005106D8 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = BED645BE2A4D6845005106D8;
+					};
+				};
+			};
+			buildConfigurationList = BED645BA2A4D6845005106D8 /* Build configuration list for PBXProject "clutch_iOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BED645B62A4D6845005106D8;
+			productRefGroup = BED645C02A4D6845005106D8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BED645BE2A4D6845005106D8 /* clutch_iOS */,
+				BED645D72A4D6846005106D8 /* clutch_iOSTests */,
+				BED645E12A4D6846005106D8 /* clutch_iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BED645BD2A4D6845005106D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED645D22A4D6846005106D8 /* LaunchScreen.storyboard in Resources */,
+				BED645CF2A4D6846005106D8 /* Assets.xcassets in Resources */,
+				BED645CA2A4D6845005106D8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BED645D62A4D6846005106D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BED645E02A4D6846005106D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		93B9C6AD5FA2BB90B8074649 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-clutch_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BED645BB2A4D6845005106D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED645F62A4D6968005106D8 /* MyCustomCell1.swift in Sources */,
+				BED645CD2A4D6845005106D8 /* clutch_iOS.xcdatamodeld in Sources */,
+				BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */,
+				BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */,
+				BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */,
+				BED645FC2A4D69DE005106D8 /* MyCustomCell4.swift in Sources */,
+				BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */,
+				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BED645D42A4D6846005106D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED645DD2A4D6846005106D8 /* clutch_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BED645DE2A4D6846005106D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED645E72A4D6846005106D8 /* clutch_iOSUITests.swift in Sources */,
+				BED645E92A4D6846005106D8 /* clutch_iOSUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BED645DA2A4D6846005106D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BED645BE2A4D6845005106D8 /* clutch_iOS */;
+			targetProxy = BED645D92A4D6846005106D8 /* PBXContainerItemProxy */;
+		};
+		BED645E42A4D6846005106D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BED645BE2A4D6845005106D8 /* clutch_iOS */;
+			targetProxy = BED645E32A4D6846005106D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BED645C82A4D6845005106D8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BED645C92A4D6845005106D8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BED645D02A4D6846005106D8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BED645D12A4D6846005106D8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BED645EA2A4D6846005106D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BED645EB2A4D6846005106D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BED645ED2A4D6846005106D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7HDHR2SNR7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = clutch_iOS/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "alert.clutch-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BED645EE2A4D6846005106D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7HDHR2SNR7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = clutch_iOS/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "alert.clutch-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BED645F02A4D6846005106D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7HDHR2SNR7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "alert.clutch-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/clutch_iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/clutch_iOS";
+			};
+			name = Debug;
+		};
+		BED645F12A4D6846005106D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7HDHR2SNR7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "alert.clutch-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/clutch_iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/clutch_iOS";
+			};
+			name = Release;
+		};
+		BED645F32A4D6846005106D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7HDHR2SNR7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "alert.clutch-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = clutch_iOS;
+			};
+			name = Debug;
+		};
+		BED645F42A4D6846005106D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7HDHR2SNR7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "alert.clutch-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = clutch_iOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BED645BA2A4D6845005106D8 /* Build configuration list for PBXProject "clutch_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BED645EA2A4D6846005106D8 /* Debug */,
+				BED645EB2A4D6846005106D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BED645EC2A4D6846005106D8 /* Build configuration list for PBXNativeTarget "clutch_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BED645ED2A4D6846005106D8 /* Debug */,
+				BED645EE2A4D6846005106D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BED645EF2A4D6846005106D8 /* Build configuration list for PBXNativeTarget "clutch_iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BED645F02A4D6846005106D8 /* Debug */,
+				BED645F12A4D6846005106D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BED645F22A4D6846005106D8 /* Build configuration list for PBXNativeTarget "clutch_iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BED645F32A4D6846005106D8 /* Debug */,
+				BED645F42A4D6846005106D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BED645CB2A4D6845005106D8 /* clutch_iOS.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BED645CC2A4D6845005106D8 /* clutch_iOS.xcdatamodel */,
+			);
+			currentVersion = BED645CC2A4D6845005106D8 /* clutch_iOS.xcdatamodel */;
+			path = clutch_iOS.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = BED645B72A4D6845005106D8 /* Project object */;
+}

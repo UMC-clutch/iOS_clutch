@@ -1,0 +1,6 @@
+module Pods_clutch_iOS {
+  umbrella header "Pods-clutch_iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
