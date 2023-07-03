@@ -15,7 +15,7 @@ class MyCustomCell1: UICollectionViewCell {
         let label = UILabel()
         label.text = "미리미리 대비하기!"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .white
+        label.textColor = .Clutch.textBlack
        
         return label
     }()
@@ -24,7 +24,7 @@ class MyCustomCell1: UICollectionViewCell {
         let label = UILabel()
         label.text = "계약서 작성시 살펴봐야 할 점들!"
         label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-        label.textColor = .white
+        label.textColor = .Clutch.textBlack
        
         return label
     }()
@@ -44,7 +44,7 @@ class MyCustomCell1: UICollectionViewCell {
         self.addSubview(firstLabel)
         self.addSubview(secondLabel)
         self.layer.cornerRadius = 10
-        self.backgroundColor = .blue
+        self.backgroundColor = .white
     }
     
     //Cell의 오토레이아웃
@@ -56,15 +56,16 @@ class MyCustomCell1: UICollectionViewCell {
     //testLabel의 오토레이아웃
     func firstLabelConstraint() {
         firstLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(3)
+            make.top.equalToSuperview().offset(15)
+            make.leading.equalToSuperview().offset(20)
+            
         }
     }
     
     func secondLabelConstraint() {
         secondLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.top.equalTo(firstLabel.snp.bottom).offset(10)
+            make.top.equalTo(firstLabel.snp.bottom).offset(3)
+            make.leading.equalToSuperview().offset(20)
         }
     }
 }

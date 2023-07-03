@@ -13,9 +13,10 @@ class MyCustomCell4: UICollectionViewCell {
     //UI 테스트 용 텍스트
     lazy var testLabel:UILabel = {
         let label = UILabel()
-        label.text = "테스트"
+        label.text = "전세사기 피해를 \n신고할래요"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .white
+        label.textColor = .Clutch.textBlack
+        label.numberOfLines = 2
        
         return label
     }()
@@ -34,7 +35,7 @@ class MyCustomCell4: UICollectionViewCell {
     func SetView(){
         self.addSubview(testLabel)
         self.layer.cornerRadius = 10
-        self.backgroundColor = .blue
+        self.backgroundColor = .white
     }
     
     //Cell의 오토레이아웃
@@ -45,7 +46,9 @@ class MyCustomCell4: UICollectionViewCell {
     //testLabel의 오토레이아웃
     func testLabelConstraint() {
         testLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.bottom.equalToSuperview().offset(-20)
+
         }
     }
 
