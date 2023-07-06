@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */; };
 		BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */; };
-		BE67E1DD2A4F140E002EB93C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DC2A4F140E002EB93C /* Color.swift */; };
+		BE67E1DD2A4F140E002EB93C /* setColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DC2A4F140E002EB93C /* setColor.swift */; };
 		BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */; };
 		BE744AB22A4F2695005F8F4F /* CalculateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AB12A4F2695005F8F4F /* CalculateViewController.swift */; };
 		BE744AB42A4F26B1005F8F4F /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AB32A4F26B1005F8F4F /* ReportViewController.swift */; };
@@ -51,7 +51,7 @@
 		029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.release.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.debug.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
-		BE67E1DC2A4F140E002EB93C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		BE67E1DC2A4F140E002EB93C /* setColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setColor.swift; sourceTree = "<group>"; };
 		BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClutchIntroViewController.swift; sourceTree = "<group>"; };
 		BE744AB12A4F2695005F8F4F /* CalculateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateViewController.swift; sourceTree = "<group>"; };
 		BE744AB32A4F26B1005F8F4F /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
@@ -120,10 +120,158 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE086A6A2A56F744002E4BF4 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BED645CE2A4D6846005106D8 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		BE086A6B2A56F767002E4BF4 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				BED645C22A4D6845005106D8 /* AppDelegate.swift */,
+				BED645C42A4D6845005106D8 /* SceneDelegate.swift */,
+				BED645C82A4D6845005106D8 /* Main.storyboard */,
+				BED645D02A4D6846005106D8 /* LaunchScreen.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		BE086A6C2A56F781002E4BF4 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BE086A742A56F811002E4BF4 /* Global */,
+				BE086A722A56F79C002E4BF4 /* Main */,
+				BE086A712A56F79B002E4BF4 /* ClutchIntro */,
+				BE086A702A56F799002E4BF4 /* Calculate */,
+				BE086A6D2A56F78E002E4BF4 /* Report */,
+				BE086A732A56F7BF002E4BF4 /* Mypage */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BE086A6D2A56F78E002E4BF4 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				BE744AB32A4F26B1005F8F4F /* ReportViewController.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		BE086A702A56F799002E4BF4 /* Calculate */ = {
+			isa = PBXGroup;
+			children = (
+				BE744AB12A4F2695005F8F4F /* CalculateViewController.swift */,
+			);
+			path = Calculate;
+			sourceTree = "<group>";
+		};
+		BE086A712A56F79B002E4BF4 /* ClutchIntro */ = {
+			isa = PBXGroup;
+			children = (
+				BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */,
+			);
+			path = ClutchIntro;
+			sourceTree = "<group>";
+		};
+		BE086A722A56F79C002E4BF4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				BED645C62A4D6845005106D8 /* MainViewController.swift */,
+				BED645FD2A4D6BA6005106D8 /* MainCell */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		BE086A732A56F7BF002E4BF4 /* Mypage */ = {
+			isa = PBXGroup;
+			children = (
+				BE744AB52A4F2769005F8F4F /* MypageViewController.swift */,
+			);
+			path = Mypage;
+			sourceTree = "<group>";
+		};
+		BE086A742A56F811002E4BF4 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				BE086A782A56F859002E4BF4 /* Transition */,
+				BE086A772A56F850002E4BF4 /* Extension */,
+				BE086A762A56F847002E4BF4 /* SetFont */,
+				BE086A752A56F83A002E4BF4 /* SetColor */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		BE086A752A56F83A002E4BF4 /* SetColor */ = {
+			isa = PBXGroup;
+			children = (
+				BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */,
+				BE67E1DC2A4F140E002EB93C /* setColor.swift */,
+			);
+			path = SetColor;
+			sourceTree = "<group>";
+		};
+		BE086A762A56F847002E4BF4 /* SetFont */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SetFont;
+			sourceTree = "<group>";
+		};
+		BE086A772A56F850002E4BF4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BE086A782A56F859002E4BF4 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
+		BE086A792A56F868002E4BF4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BE086A7B2A56F886002E4BF4 /* Model */,
+				BE086A7A2A56F87E002E4BF4 /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		BE086A7A2A56F87E002E4BF4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BE086A7B2A56F886002E4BF4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BE086A7C2A56FA85002E4BF4 /* clutch_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				BED645D32A4D6846005106D8 /* Info.plist */,
+				BED645CB2A4D6845005106D8 /* clutch_iOS.xcdatamodeld */,
+			);
+			path = clutch_iOS;
+			sourceTree = "<group>";
+		};
 		BED645B62A4D6845005106D8 = {
 			isa = PBXGroup;
 			children = (
-				BED645C12A4D6845005106D8 /* clutch_iOS */,
+				BE086A7C2A56FA85002E4BF4 /* clutch_iOS */,
+				BE086A6A2A56F744002E4BF4 /* Resource */,
+				BED645C12A4D6845005106D8 /* Source */,
 				BED645DB2A4D6846005106D8 /* clutch_iOSTests */,
 				BED645E52A4D6846005106D8 /* clutch_iOSUITests */,
 				BED645C02A4D6845005106D8 /* Products */,
@@ -142,26 +290,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BED645C12A4D6845005106D8 /* clutch_iOS */ = {
+		BED645C12A4D6845005106D8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				BED645CE2A4D6846005106D8 /* Assets.xcassets */,
-				BED645C22A4D6845005106D8 /* AppDelegate.swift */,
-				BED645C42A4D6845005106D8 /* SceneDelegate.swift */,
-				BED645C62A4D6845005106D8 /* MainViewController.swift */,
-				BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */,
-				BE744AB12A4F2695005F8F4F /* CalculateViewController.swift */,
-				BE744AB32A4F26B1005F8F4F /* ReportViewController.swift */,
-				BE744AB52A4F2769005F8F4F /* MypageViewController.swift */,
-				BED645FD2A4D6BA6005106D8 /* MainCell */,
-				BED645C82A4D6845005106D8 /* Main.storyboard */,
-				BED645D02A4D6846005106D8 /* LaunchScreen.storyboard */,
-				BED645D32A4D6846005106D8 /* Info.plist */,
-				BED645CB2A4D6845005106D8 /* clutch_iOS.xcdatamodeld */,
-				BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */,
-				BE67E1DC2A4F140E002EB93C /* Color.swift */,
+				BE086A6B2A56F767002E4BF4 /* Application */,
+				BE086A6C2A56F781002E4BF4 /* Presenter */,
+				BE086A792A56F868002E4BF4 /* Data */,
 			);
-			path = clutch_iOS;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		BED645DB2A4D6846005106D8 /* clutch_iOSTests */ = {
@@ -353,7 +489,7 @@
 				BE744AB42A4F26B1005F8F4F /* ReportViewController.swift in Sources */,
 				BED645CD2A4D6845005106D8 /* clutch_iOS.xcdatamodeld in Sources */,
 				BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */,
-				BE67E1DD2A4F140E002EB93C /* Color.swift in Sources */,
+				BE67E1DD2A4F140E002EB93C /* setColor.swift in Sources */,
 				BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */,
 				BE744AB22A4F2695005F8F4F /* CalculateViewController.swift in Sources */,
 				BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */,

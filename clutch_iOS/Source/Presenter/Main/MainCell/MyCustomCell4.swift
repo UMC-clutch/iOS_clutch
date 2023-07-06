@@ -1,5 +1,5 @@
 //
-//  MyCustomCell3.swift
+//  MyCustomCell14.swift
 //  clutch_iOS
 //
 //  Created by Dongwan Ryoo on 2023/06/29.
@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 
-class MyCustomCell3: UICollectionViewCell {
+class MyCustomCell4: UICollectionViewCell {
     
     //UI 테스트 용 텍스트
     lazy var testLabel:UILabel = {
         let label = UILabel()
-        label.text = "사기 가능성을 \n계산하고 싶어요"
+        label.text = "전세사기 피해를 \n신고할래요"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .Clutch.textBlack
         label.numberOfLines = 2
@@ -33,22 +33,18 @@ class MyCustomCell3: UICollectionViewCell {
     
     //Cell의 View 관련 설정
     func SetView(){
-        self.addSubview(testLabel)
+        [testLabel].forEach { view
+            in self.addSubview(view) }
         self.layer.cornerRadius = 10
         self.backgroundColor = .white
     }
     
     //Cell의 오토레이아웃
     func Constraint(){
-        testLabelConstraint()
-    }
-    
-    //testLabel의 오토레이아웃
-    func testLabelConstraint() {
         testLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.bottom.equalToSuperview().offset(-20)
+
         }
     }
-
 }

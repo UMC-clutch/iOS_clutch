@@ -18,6 +18,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return view
     }()
     
+    
+    //navigationBar 선언
     let navigationBar = UINavigationBar()
     
     override func viewDidLoad() {
@@ -28,20 +30,46 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     //VC의 view 관련 설정
     func setView() {
-        view.backgroundColor = .Clutch.bgGrey
-        view.addSubview(navigationBar)
-        view.addSubview(collectionview)
+        view.backgroundColor = .Clutch.bgGrey //배경색
+        
+        //addsubview
+        [navigationBar, collectionview].forEach { view
+            in self.view.addSubview(view) }
+
         navigationBarSet()
         collectionviewSet()
     }
     
     //VC의 오토레이아웃
     func Constraint() {
-        collectionviewConstraint()
-        navigationBarConstraint()
+        //collectionView 오토레이아웃
+        collectionview.snp.makeConstraints { make in
+            make.top.equalTo(self.navigationBar.snp.bottom).offset(10)
+            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalTo(self.view.frame.width - 20)
+        }
+        //navigationBar 오토레이아웃
+        navigationBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        
+        
     }
     
-    //VC 네비게이션바
+    //collectionview 관련 설정
+    func collectionviewSet() {
+        collectionview.backgroundColor = .Clutch.bgGrey
+        collectionview.dataSource = self
+        collectionview.delegate = self
+        cellRegister()
+        
+    }
+    
+    // 네비게이션바 관련 설정
     func navigationBarSet() {
         let navigationItem = UINavigationItem()
         
@@ -67,43 +95,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @objc func myPageButtonTapped() {
         present(MypageViewController(), animated: true)
     }
-
     
-    //collectionview 관련 설정
-    func collectionviewSet() {
-        collectionview.backgroundColor = .Clutch.bgGrey
-        collectionview.dataSource = self
-        collectionview.delegate = self
-        cellRegister()
-        
-    }
-    
-    //collectionview 오토레이아웃 -> 다시 잡아야함 임의로 잡은 것.
-    func collectionviewConstraint() {
-        collectionview.snp.makeConstraints { make in
-            make.top.equalTo(self.navigationBar.snp.bottom).offset(10)
-            make.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.equalTo(self.view.frame.width - 20)
-        }
-    }
-    
-    //collectionview 오토레이아웃
-    func navigationBarConstraint() {
-        navigationBar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.height.equalTo(50)
-        }
-    }
-    
-    // cell 식별자 등록
+    //cell 등록
     func cellRegister() {
-        collectionview.register(MyCustomCell1.self, forCellWithReuseIdentifier: "CellIdentifier1")
-        collectionview.register(MyCustomCell2.self, forCellWithReuseIdentifier: "CellIdentifier2")
-        collectionview.register(MyCustomCell3.self, forCellWithReuseIdentifier: "CellIdentifier3")
-        collectionview.register(MyCustomCell4.self, forCellWithReuseIdentifier: "CellIdentifier4")
+        let cellIdentifiers = [
+            "CellIdentifier1": MyCustomCell1.self,
+            "CellIdentifier2": MyCustomCell2.self,
+            "CellIdentifier3": MyCustomCell3.self,
+            "CellIdentifier4": MyCustomCell4.self
+        ]
+
+        cellIdentifiers.forEach { identifier, cellClass in
+            collectionview.register(cellClass, forCellWithReuseIdentifier: identifier)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

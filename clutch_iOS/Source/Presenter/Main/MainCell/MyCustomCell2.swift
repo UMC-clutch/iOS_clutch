@@ -51,42 +51,28 @@ class MyCustomCell2: UICollectionViewCell {
     
     //Cell의 View 관련 설정
     func SetView(){
-        self.addSubview(firstLabel)
-        self.addSubview(secondLabel)
-        self.addSubview(thirdLabel)
+        [firstLabel, secondLabel, thirdLabel].forEach { view
+            in self.addSubview(view) }
         self.layer.cornerRadius = 10
         self.backgroundColor = UIColor.Clutch.mainDarkGreen
     }
     
     //Cell의 오토레이아웃
     func Constraint(){
-        firstLabelConstraint()
-        secondLabelConstraint()
-        thirdLabelConstraint()
-    }
-    
-    //testLabel의 오토레이아웃
-    func firstLabelConstraint() {
+       
         firstLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.top.equalToSuperview().offset(20)
         }
-    }
-    
-    func secondLabelConstraint(){
+        
         secondLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.top.equalTo(firstLabel.snp.bottom).offset(20)
         }
-    }
-    
-    
-    func thirdLabelConstraint(){
+        
         thirdLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.top.equalTo(secondLabel.snp.bottom).offset(80)
         }
     }
-    
-
 }
