@@ -19,7 +19,7 @@ class MyCustomCell1: UICollectionViewCell {
        
         return label
     }()
-    
+    //cell 1번 메인 메세지
     lazy var secondLabel:UILabel = {
         let label = UILabel()
         label.text = "계약서 작성시 살펴봐야 할 점들!"
