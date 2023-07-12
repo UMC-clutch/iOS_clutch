@@ -18,6 +18,43 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return view
     }()
     
+    //FAQ, 공식계정 버튼 컨테이너
+    lazy var container:UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 18
+        
+        return view
+    }()
+    
+    //FAQ 버튼
+    lazy var faqButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("자주 묻는 FAQ", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.Clutch.smallMedium
+        
+        return button
+    }()
+    
+    //고객센터 버튼
+    lazy var clientButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("클러치 공식계정", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .Clutch.smallMedium
+        
+        return button
+    }()
+    
+    //center line
+    lazy var centerLine:UIView = {
+        let view = UIView()
+        view.backgroundColor = .Clutch.mainGrey
+        
+        return view
+    }()
+    
     
     //navigationBar 선언
     let navigationBar = UINavigationBar()
@@ -33,7 +70,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         view.backgroundColor = .Clutch.bgGrey //배경색
         
         //addsubview
-        [navigationBar, collectionview].forEach { view
+        [navigationBar, collectionview, container, faqButton, clientButton, centerLine].forEach { view
             in self.view.addSubview(view) }
 
         navigationBarSet()
@@ -56,7 +93,29 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             make.trailing.equalToSuperview()
             make.height.equalTo(50)
         }
-        
+        //container 오토레이아웃
+        container.snp.makeConstraints { make in
+            make.width.equalTo(361)
+            make.height.equalTo(88)
+            make.top.equalTo(716)
+            make.centerX.equalToSuperview()
+        }
+        //faqButton 오토레이아웃
+        faqButton.snp.makeConstraints { make in
+            make.leading.equalTo(container.snp.leading).offset(60)
+            make.centerY.equalTo(container.snp.centerY)
+        }
+        //centerLine 오토레이아웃
+        centerLine.snp.makeConstraints { make in
+            make.width.equalTo(1)
+            make.height.equalTo(56)
+            make.center.equalTo(container.snp.center)
+        }
+        //clientButton 오토레이아웃
+        clientButton.snp.makeConstraints { make in
+            make.leading.equalTo(centerLine.snp.leading).offset(60)
+            make.centerY.equalTo(container.snp.centerY)
+        }
         
     }
     
@@ -154,7 +213,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             //2번 cell에 대한 크기 지정, 가로 세로 동일
         case 1:
             let width = collectionview.frame.width
-            let height: CGFloat = 226
+            let height: CGFloat = 256
             return CGSize(width: width, height: height)
             //3번 cell에 대한 크기 지정, 뷰의 가로 값을 2로 나눈뒤 중간 여백을 뺀 값을 가로, 세로에 할당
         default:
