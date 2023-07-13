@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */; };
 		5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */; };
 		BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */; };
 		BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DC2A4F140E002EB93C /* SetColor.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.release.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
 		A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.debug.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		BE67E1DC2A4F140E002EB93C /* SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColor.swift; sourceTree = "<group>"; };
@@ -115,6 +117,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C16A6B82A5F9ED9003D7013 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		7B09C6DFFDD9C5A6ACA927F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +211,7 @@
 		BE086A732A56F7BF002E4BF4 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
+				2C16A6B82A5F9ED9003D7013 /* Account */,
 				BE744AB52A4F2769005F8F4F /* MypageViewController.swift */,
 			);
 			path = Mypage;
@@ -527,6 +538,7 @@
 				BECEC6A62A5EF51C00A177A0 /* Banner1View.swift in Sources */,
 				BECEC6A32A5EDFDF00A177A0 /* faqViewController.swift in Sources */,
 				BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */,
+				2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */,
 				BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
 				BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */,
