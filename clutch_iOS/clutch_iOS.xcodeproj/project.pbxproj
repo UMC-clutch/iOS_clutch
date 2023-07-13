@@ -345,8 +345,8 @@
 		BED645FD2A4D6BA6005106D8 /* MainCell */ = {
 			isa = PBXGroup;
 			children = (
-				BED645F52A4D6968005106D8 /* MyCustomCell1.swift */,
 				BECEC6A42A5EF4E300A177A0 /* Banner */,
+				BED645F52A4D6968005106D8 /* MyCustomCell1.swift */,
 				BED645F72A4D69CF005106D8 /* MyCustomCell2.swift */,
 				BED645F92A4D69D7005106D8 /* MyCustomCell3.swift */,
 				BED645FB2A4D69DE005106D8 /* MyCustomCell4.swift */,

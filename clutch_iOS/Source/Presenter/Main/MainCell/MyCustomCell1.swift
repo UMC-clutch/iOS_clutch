@@ -38,31 +38,22 @@ class MyCustomCell1: UICollectionViewCell {
     
     var customBannerViews: [UIView] = []
     var currentViewIndex = 0
-
+    
     let view1 = Banner1View()
     let view2 = Banner2View()
     let view3 = Banner3View()
     
     override func layoutSubviews() {
-           super.layoutSubviews()
-           view1.frame = contentView.bounds
+        super.layoutSubviews()
+        view1.frame = contentView.bounds
         view2.frame = contentView.bounds
         view3.frame = contentView.bounds
-       }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         SetView()
-        //        Constraint()
-        
-        
-        customBannerViews = [view1, view2, view3]
-        
-        // 초기 뷰 설정
-        bannerView.addSubview(customBannerViews[currentViewIndex])
-        
-        // 3초마다 배너 변경을 위한 타이머 설정
-        Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(changeBanner), userInfo: nil, repeats: true)
+        Constraint()
     }
     
     @objc func changeBanner() {
@@ -75,9 +66,9 @@ class MyCustomCell1: UICollectionViewCell {
         // 새로운 뷰 추가 (페이드 애니메이션 효과 포함)
         let newBannerView = customBannerViews[currentViewIndex]
         bannerView.addSubview(newBannerView)
-        newBannerView.alpha = 0.8 // 초기에 투명 상태로 설정
+        newBannerView.alpha = 0.5 // 초기에 투명 상태로 설정
         
-        UIView.animate(withDuration: 1.5) {
+        UIView.animate(withDuration: 2.5) {
             newBannerView.alpha = 1 // 페이드 인 애니메이션
         }
     }
@@ -92,6 +83,11 @@ class MyCustomCell1: UICollectionViewCell {
         self.addSubview(bannerView)
         self.layer.cornerRadius = 18
         self.backgroundColor = .Clutch.bgGrey
+        customBannerViews = [view1, view2, view3]
+        // 초기 뷰 설정
+        bannerView.addSubview(customBannerViews[currentViewIndex])
+        // 3초마다 배너 변경을 위한 타이머 설정
+        Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(changeBanner), userInfo: nil, repeats: true)
     }
     
     
@@ -101,7 +97,7 @@ class MyCustomCell1: UICollectionViewCell {
             make.size.equalTo(self.contentView.snp.size)
             make.centerX.equalTo(self.contentView.snp.centerX)
         }
-
+        
     }
     
 }
