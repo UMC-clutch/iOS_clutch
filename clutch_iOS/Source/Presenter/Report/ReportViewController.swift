@@ -8,26 +8,36 @@
 import UIKit
 import SnapKit
 
-// 스크롤 기능까지 추가 코드 정리 해야함.
+
 class ReportViewController: UIViewController, UIScrollViewDelegate {
     
+    //스크롤을 위한 스크롤 뷰
     lazy var scrollview:UIScrollView = {
         let view = UIScrollView()
         
         return view
     }()
     
+    //스크롤 뷰 안에 들어갈 내용을 표시할 뷰
     let contentView: UIView = {
         let view = UIView()
+        
         return view
     }()
     
+    //스크롤 기능을 탑재한 버튼
     lazy var nextButton:UIButton = {
         let button = UIButton()
-        button.setTitle("오오오", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitle("다음", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = .Clutch.subheadMedium
         button.addTarget(self, action: #selector(ButtonTapped), for: .touchUpInside)
-        
+        button.layer.cornerRadius = 11
+        button.backgroundColor = .Clutch.mainDarkGreen
+        // Highlighted 상태일 때 배경색
+        let iamge = image(withColor: .Clutch.mainGreen!)
+        button.setBackgroundImage(iamge, for: .highlighted)
+
         return button
     }()
     
@@ -35,42 +45,57 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(scrollview)
-        scrollview.addSubview(contentView)
-        self.view.addSubview(nextButton)
-        self.view.backgroundColor = .Clutch.mainWhite
-        scrollview.delegate = self
+        setView()
         constraints()
     }
     
+    func setView() {
+        addsubview()
+        setscrollview()
+        self.view.backgroundColor = .Clutch.mainWhite
+    }
+    
+    func addsubview() {
+        [scrollview, nextButton].forEach { view in
+            self.view.addSubview(view)
+        }
+    }
+
+    func setscrollview() {
+        scrollview.delegate = self
+        [contentView].forEach { view in
+            scrollview.addSubview(view)
+        }
+    }
+    
+    func setcontentView() {
+
+    }
+
     func constraints() {
-        //        scrollview.snp.makeConstraints { make in
-        //            make.top.leading.trailing.equalToSuperview()
-        //            make.height.equalTo(scrollview.bounds.size.height * 3)
-        //        }
-        
+        //스크롤 뷰 오토레이아웃
         scrollview.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
+        //contentView 오토레이아웃
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
             make.height.equalTo(view.frame.height * 3)
         }
-        
+        //버튼 오토레이아웃
         nextButton.snp.makeConstraints { make in
-            make.size.equalTo(100)
-            make.center.equalToSuperview()
+            make.width.equalTo(360)
+            make.height.equalTo(50)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
+            make.centerX.equalToSuperview()
         }
     }
     
+    // 버튼 클릭 시 스크롤되도록 하는 메서드
     @objc func ButtonTapped(_ sender: UIButton) {
-        let offset = CGPoint(x: 0, y: scrollview.contentSize.height - scrollview.bounds.size.height)
+        let offset = CGPoint(x: 0, y: scrollview.contentSize.height / 3 )
         scrollview.setContentOffset(offset, animated: true)
     }
-    
-    
-    
-    
+
 }
