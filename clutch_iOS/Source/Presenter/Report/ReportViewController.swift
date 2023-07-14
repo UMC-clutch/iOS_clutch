@@ -37,7 +37,7 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         // Highlighted 상태일 때 배경색
         let iamge = image(withColor: .Clutch.mainGreen!)
         button.setBackgroundImage(iamge, for: .highlighted)
-
+        
         return button
     }()
     
@@ -48,30 +48,32 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         setView()
         constraints()
     }
-    
+    //뷰관련 셋
     func setView() {
         addsubview()
         setscrollview()
         self.view.backgroundColor = .Clutch.mainWhite
     }
-    
+    //addsubview
     func addsubview() {
         [scrollview, nextButton].forEach { view in
             self.view.addSubview(view)
         }
-    }
-
-    func setscrollview() {
-        scrollview.delegate = self
+        
         [contentView].forEach { view in
             scrollview.addSubview(view)
         }
+        
+        [].forEach { view in
+            contentView.addSubview(view)
+        }
+    }
+    //스크롤 뷰관련 셋
+    func setscrollview() {
+        scrollview.delegate = self
+        
     }
     
-    func setcontentView() {
-
-    }
-
     func constraints() {
         //스크롤 뷰 오토레이아웃
         scrollview.snp.makeConstraints { make in
@@ -94,8 +96,9 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
     
     // 버튼 클릭 시 스크롤되도록 하는 메서드
     @objc func ButtonTapped(_ sender: UIButton) {
-        let offset = CGPoint(x: 0, y: scrollview.contentSize.height / 3 )
+        // 다음 버튼 누르면 얼마나 스크롤될 지 offset값 결정
+        let offset = CGPoint(x: 0, y: scrollview.contentSize.height / 3 ) // height의 1/3 만큼 스크롤
         scrollview.setContentOffset(offset, animated: true)
     }
-
+    
 }

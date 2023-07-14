@@ -11,6 +11,8 @@ class loginView: UIView {
     
     
     //MARK: - UI ProPerties
+    
+    //로고
     lazy var logo:UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "AppIcon")
@@ -46,6 +48,7 @@ class loginView: UIView {
     }
     
     func Constraint() {
+        //로고 오토레이아웃
         logo.snp.makeConstraints { make in
             make.size.equalTo(140)
             make.centerX.equalToSuperview()

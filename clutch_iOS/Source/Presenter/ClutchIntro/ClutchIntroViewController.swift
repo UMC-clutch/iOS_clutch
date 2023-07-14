@@ -55,29 +55,35 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLayoutSubviews()
         nextButton.layer.shadowPath = UIBezierPath(roundedRect: nextButton.bounds, cornerRadius: nextButton.layer.cornerRadius).cgPath
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
         constraints()
     }
-    
+    //뷰관련 셋
     func setView() {
         addsubview()
         setscrollview()
         self.view.backgroundColor = .Clutch.mainWhite
     }
-    
+    //addsubview
     func addsubview() {
         [scrollview, nextButton].forEach { view in
             self.view.addSubview(view)
         }
-    }
-    
-    func setscrollview() {
-        scrollview.delegate = self
-        [contentView, clutchGraphic].forEach { view in
+        [contentView].forEach { view in
             scrollview.addSubview(view)
         }
+        [clutchGraphic].forEach { view in
+            contentView.addSubview(view)
+        }
+        
+    }
+    
+    //스크롤 뷰관련 셋
+    func setscrollview() {
+        scrollview.delegate = self
     }
     
     func constraints() {
@@ -110,7 +116,7 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     
     // 버튼 클릭 시 스크롤되도록 하는 메서드
     @objc func ButtonTapped(_ sender: UIButton) {
-        let offset = CGPoint(x: 0, y: scrollview.contentSize.height / 3 )
+        let offset = CGPoint(x: 0, y: scrollview.contentSize.height / 10 )
         scrollview.setContentOffset(offset, animated: true)
     }
 
