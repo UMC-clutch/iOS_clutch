@@ -7,22 +7,15 @@
 
 import UIKit
 
-class BaseViewController: UIView {
+class BaseViewController: UIViewController {
     //MARK: - UI ProPerties
-    
-    
-    //MARK: - Define Method
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    //MARK: - Define Method
+    override func viewDidLoad() {
+        super.viewDidLoad()
         SetView()
         Constraint()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
     //MARK: - Properties
     
@@ -35,5 +28,6 @@ class BaseViewController: UIView {
     func Constraint() {
         
     }
+  
 
 }

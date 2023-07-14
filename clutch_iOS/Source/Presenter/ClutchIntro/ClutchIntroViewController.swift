@@ -42,13 +42,19 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         // Highlighted 상태일 때 배경색
         let iamge = image(withColor: .Clutch.mainGreen!)
         button.setBackgroundImage(iamge, for: .highlighted)
-
+        
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 0)
+        button.layer.shadowRadius = 30
+        button.layer.shadowOpacity = 0.5
+        button.layer.masksToBounds = false
         return button
     }()
-//    let crewJoinView = ClutchIntroView()
-//    override func loadView() {
-//        view = crewJoinView
-//    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        nextButton.layer.shadowPath = UIBezierPath(roundedRect: nextButton.bounds, cornerRadius: nextButton.layer.cornerRadius).cgPath
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
@@ -58,7 +64,6 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     func setView() {
         addsubview()
         setscrollview()
-        setcontentView()
         self.view.backgroundColor = .Clutch.mainWhite
     }
     
@@ -73,10 +78,6 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         [contentView, clutchGraphic].forEach { view in
             scrollview.addSubview(view)
         }
-    }
-    
-    func setcontentView() {
-
     }
     
     func constraints() {

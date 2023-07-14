@@ -62,6 +62,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setView()
         Constraint()
     }
@@ -69,7 +70,6 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     //VC의 view 관련 설정
     func setView() {
         view.backgroundColor = .Clutch.bgGrey //배경색
-        
         //addsubview
         [navigationBar, collectionview, container, faqButton, clientButton, centerLine].forEach { view
             in self.view.addSubview(view) }
