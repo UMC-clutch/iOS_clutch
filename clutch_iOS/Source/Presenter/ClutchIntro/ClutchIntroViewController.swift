@@ -116,8 +116,18 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     
     // 버튼 클릭 시 스크롤되도록 하는 메서드
     @objc func ButtonTapped(_ sender: UIButton) {
-        let offset = CGPoint(x: 0, y: scrollview.contentSize.height / 10 )
-        scrollview.setContentOffset(offset, animated: true)
+        let offsetY = scrollview.contentSize.height / 5
+        let contentOffset = CGPoint(x: 0, y: scrollview.contentOffset.y + offsetY)
+        
+        // Check if the content offset reaches the bottom of the scroll view
+        if contentOffset.y >= scrollview.contentSize.height - scrollview.bounds.height {
+            // Scroll to the top
+            let topOffset = CGPoint(x: 0, y: 0)
+            scrollview.setContentOffset(topOffset, animated: true)
+        } else {
+            // Scroll by 1/5 of the height
+            scrollview.setContentOffset(contentOffset, animated: true)
+        }
     }
 
 }
