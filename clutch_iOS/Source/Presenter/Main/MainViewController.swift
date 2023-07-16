@@ -11,7 +11,7 @@ import SnapKit
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     //UICollectionView 선언
-    var collectionview: UICollectionView = {
+    lazy var collectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
