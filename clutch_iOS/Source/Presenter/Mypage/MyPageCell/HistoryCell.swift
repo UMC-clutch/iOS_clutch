@@ -20,7 +20,7 @@ class HistoryCell: UICollectionViewCell {
         
         return label
     }()
-    
+
     // UILabel 선언(">")
     public lazy var nextpageLabel: UILabel = {
         let label = UILabel()

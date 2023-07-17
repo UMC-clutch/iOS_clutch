@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */; };
+		A223575F2A65279900915DF0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A223575E2A65279900915DF0 /* ProfileViewController.swift */; };
+		A22D5DF22A65678100F8D536 /* InputScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22D5DF12A65678100F8D536 /* InputScreen.swift */; };
 		A248A9982A5FD4C40053E66C /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9972A5FD4C40053E66C /* HistoryCell.swift */; };
 		A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9992A5FD5330053E66C /* InfoCell.swift */; };
 		A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A99B2A5FD5410053E66C /* AccountCell.swift */; };
@@ -54,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.release.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		A223575E2A65279900915DF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A22D5DF12A65678100F8D536 /* InputScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputScreen.swift; sourceTree = "<group>"; };
 		A248A9972A5FD4C40053E66C /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		A248A9992A5FD5330053E66C /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		A248A99B2A5FD5410053E66C /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
@@ -130,6 +134,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A223575D2A65272F00915DF0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A223575E2A65279900915DF0 /* ProfileViewController.swift */,
+				A22D5DF12A65678100F8D536 /* InputScreen.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		A248A9962A5FD44D0053E66C /* MyPageCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +181,7 @@
 				BE086A702A56F799002E4BF4 /* Calculate */,
 				BE086A6D2A56F78E002E4BF4 /* Report */,
 				BE086A732A56F7BF002E4BF4 /* Mypage */,
+				A223575D2A65272F00915DF0 /* Profile */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -510,11 +524,13 @@
 			files = (
 				BED645F62A4D6968005106D8 /* MyCustomCell1.swift in Sources */,
 				BE744AB42A4F26B1005F8F4F /* ReportViewController.swift in Sources */,
+				A223575F2A65279900915DF0 /* ProfileViewController.swift in Sources */,
 				BED645CD2A4D6845005106D8 /* clutch_iOS.xcdatamodeld in Sources */,
 				BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */,
 				BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */,
 				A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */,
 				BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */,
+				A22D5DF22A65678100F8D536 /* InputScreen.swift in Sources */,
 				A248A9982A5FD4C40053E66C /* HistoryCell.swift in Sources */,
 				BE744AB22A4F2695005F8F4F /* CalculateViewController.swift in Sources */,
 				BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */,

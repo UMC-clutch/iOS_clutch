@@ -1,20 +1,24 @@
 PODS:
+  - AloeStackView (1.2.0)
   - Gifu (3.3.1)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - AloeStackView
   - Gifu
   - SnapKit
 
 SPEC REPOS:
   trunk:
+    - AloeStackView
     - Gifu
     - SnapKit
 
 SPEC CHECKSUMS:
+  AloeStackView: 8a4ce0efa08128dd78d538372f60c76c224034bb
   Gifu: 416d4e38c4c2fed012f019e0a1d3ffcb58e5b842
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 2d3e45fd951c2bf4310aa311eed3cfd07bb2a8b7
+PODFILE CHECKSUM: 3d1eb60c1e1f45118623ff9417e803b688ca1ec6
 
 COCOAPODS: 1.12.1
