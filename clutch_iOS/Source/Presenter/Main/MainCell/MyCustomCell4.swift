@@ -35,7 +35,7 @@ class MyCustomCell4: UICollectionViewCell {
     func SetView(){
         [testLabel].forEach { view
             in self.addSubview(view) }
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = 18
         self.backgroundColor = .white
     }
     

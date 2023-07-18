@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     //UICollectionView 선언
     lazy var collectionview: UICollectionView = {
@@ -18,12 +18,51 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return view
     }()
     
+    //FAQ, 공식계정 버튼 컨테이너
+    lazy var container:UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 18
+        
+        return view
+    }()
     
+    //FAQ 버튼
+    lazy var faqButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("자주 묻는 FAQ", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.Clutch.smallMedium
+        button.addTarget(self, action: #selector(faqButtonTapped(_:)), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    //center line
+    lazy var centerLine:UIView = {
+        let view = UIView()
+        view.backgroundColor = .Clutch.mainGrey
+        
+        return view
+    }()
+    
+    //고객센터 버튼
+    lazy var clientButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("클러치 공식계정", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .Clutch.smallMedium
+        button.addTarget(self, action: #selector(clientButtonTapped(_:)), for: .touchUpInside)
+        
+        return button
+    }()
+
     //navigationBar 선언
     let navigationBar = UINavigationBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setView()
         Constraint()
     }
@@ -31,9 +70,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //VC의 view 관련 설정
     func setView() {
         view.backgroundColor = .Clutch.bgGrey //배경색
-        
         //addsubview
-        [navigationBar, collectionview].forEach { view
+        [navigationBar, collectionview, container, faqButton, clientButton, centerLine].forEach { view
             in self.view.addSubview(view) }
 
         navigationBarSet()
@@ -56,7 +94,29 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             make.trailing.equalToSuperview()
             make.height.equalTo(100)
         }
-        
+        //container 오토레이아웃
+        container.snp.makeConstraints { make in
+            make.width.equalTo(361)
+            make.height.equalTo(88)
+            make.top.equalTo(716)
+            make.centerX.equalToSuperview()
+        }
+        //faqButton 오토레이아웃
+        faqButton.snp.makeConstraints { make in
+            make.leading.equalTo(container.snp.leading).offset(60)
+            make.centerY.equalTo(container.snp.centerY)
+        }
+        //centerLine 오토레이아웃
+        centerLine.snp.makeConstraints { make in
+            make.width.equalTo(1)
+            make.height.equalTo(56)
+            make.center.equalTo(container.snp.center)
+        }
+        //clientButton 오토레이아웃
+        clientButton.snp.makeConstraints { make in
+            make.leading.equalTo(centerLine.snp.leading).offset(60)
+            make.centerY.equalTo(container.snp.centerY)
+        }
         
     }
     
@@ -79,7 +139,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         // 좌측 로고
         let setLeftImage = UIImage(named: "clutch_logo")?.withRenderingMode(.alwaysOriginal) // 이미지 오리지널 색상 적용
-        let setLeftButton = UIBarButtonItem(image: setLeftImage, style: .plain, target: self, action: nil)
+        let setLeftButton = UIBarButtonItem(image: setLeftImage, style: .plain, target: self, action: #selector(logoButtonPressed))
                 
         // 각 버튼 할당
         navigationItem.rightBarButtonItem = setRightButton
@@ -91,10 +151,29 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
-    //setRightButton(마이페이지) 버튼 클릭시 액션
+    //setRightButton(마이페이지)버튼 클릭시 액션
     @objc func myPageButtonTapped() {
         present(MypageViewController(), animated: true)
     }
+    
+    //faqButton 버튼 클릭시 액션
+    @objc func faqButtonTapped(_ sender: UIButton) {
+        present(faqViewController(), animated: true)
+    }
+    
+    //clientButton(고객센터) 버튼 클릭 시 액션
+    @objc func clientButtonTapped(_ sender: UIButton) {
+        guard let url = URL(string: "https://www.instagram.com/clutch.doc/?igshid=OGQ5ZDc2ODk2ZA%3D%3D") else {
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    @objc func logoButtonPressed() {
+        let viewController = self
+        navigationController?.setViewControllers([viewController], animated: true)
+    }
+
     
     //cell 등록
     func cellRegister() {
@@ -154,7 +233,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             //2번 cell에 대한 크기 지정, 가로 세로 동일
         case 1:
             let width = collectionview.frame.width
-            let height: CGFloat = 226
+            let height: CGFloat = 256
             return CGSize(width: width, height: height)
             //3번 cell에 대한 크기 지정, 뷰의 가로 값을 2로 나눈뒤 중간 여백을 뺀 값을 가로, 세로에 할당
         default:
