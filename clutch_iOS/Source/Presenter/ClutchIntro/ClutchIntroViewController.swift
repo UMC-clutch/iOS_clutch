@@ -198,6 +198,7 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
             scrollview.setContentOffset(contentOffset, animated: true)
         }
         
+        
     }
     
 }
