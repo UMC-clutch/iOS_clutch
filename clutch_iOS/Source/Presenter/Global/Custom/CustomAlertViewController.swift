@@ -23,14 +23,13 @@ class CustomAlertViewController: UIViewController {
     var confirmText = "(confirmText)"
     
     lazy var container: UIView = {
-        let stackview = UIView()
-        stackview.backgroundColor = .Clutch.mainWhite
-        stackview.layer.cornerRadius = 16
-        stackview.layer.borderWidth = 1
-        stackview.layer.borderColor = UIColor.black.cgColor
-//        stackview.axis = .vertical
+        let view = UIView()
+        view.backgroundColor = .Clutch.mainWhite
+        view.layer.cornerRadius = 16
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.black.cgColor
         
-        return stackview
+        return view
     }()
     
     lazy var titleLabel: UILabel = {
@@ -48,15 +47,7 @@ class CustomAlertViewController: UIViewController {
         
         return label
     }()
-//
-//    lazy var buttonContainer: UIStackView = {
-//        let stackview = UIStackView()
-//        stackview.axis = .horizontal
-//        stackview.spacing = 12
-//
-//        return stackview
-//    }()
-//
+    
     lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle(cancelText, for: .normal)
@@ -66,6 +57,7 @@ class CustomAlertViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.Clutch.mainDarkGreen?.cgColor
+        button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         
         return button
     }()
@@ -77,6 +69,7 @@ class CustomAlertViewController: UIViewController {
         button.setTitleColor(.Clutch.mainWhite, for: .normal)
         button.backgroundColor = .Clutch.mainDarkGreen
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
         
         return button
     }()
@@ -91,12 +84,20 @@ class CustomAlertViewController: UIViewController {
     
     func setView() {
         self.view.backgroundColor = .black.withAlphaComponent(0.5)
-//        buttonContainer.addArrangedSubview(cancelButton)
-//        buttonContainer.addArrangedSubview(confirmButton)
-        
+
         [titleLabel, contextLabel, cancelButton, confirmButton].forEach { view
             in self.container.addSubview(view) }
         self.view.addSubview(container)
+    }
+    
+    @objc func cancelButtonTapped() {
+        //취소 버튼 이벤트 처리
+        print("Cancel Button Tapped")
+    }
+    
+    @objc func confirmButtonTapped() {
+        //확인 버튼 이벤트 처리
+        print("Confirm Button Tapped")
     }
     
     func setConstraint() {
@@ -128,16 +129,8 @@ class CustomAlertViewController: UIViewController {
         
         confirmButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-20)
-//            make.leading.equalTo(6)
             make.height.equalTo(40)
             make.top.equalToSuperview().offset(124)
         }
-        
-//        buttonContainer.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(20)
-//            make.trailingMargin.equalToSuperview().offset(20)
-//            make.height.equalTo(40)
-//            make.top.equalToSuperview().offset(90)
-//        }
     }
 }
