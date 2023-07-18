@@ -22,13 +22,13 @@ class CustomAlertViewController: UIViewController {
     var cancelText = "(cancelText)"
     var confirmText = "(confirmText)"
     
-    lazy var container: UIStackView = {
-        let stackview = UIStackView()
+    lazy var container: UIView = {
+        let stackview = UIView()
         stackview.backgroundColor = .Clutch.mainWhite
         stackview.layer.cornerRadius = 16
         stackview.layer.borderWidth = 1
         stackview.layer.borderColor = UIColor.black.cgColor
-        stackview.axis = .vertical
+//        stackview.axis = .vertical
         
         return stackview
     }()
@@ -48,15 +48,15 @@ class CustomAlertViewController: UIViewController {
         
         return label
     }()
-    
-    lazy var buttonContainer: UIStackView = {
-        let stackview = UIStackView()
-        stackview.axis = .horizontal
-        stackview.spacing = 12
-        
-        return stackview
-    }()
-    
+//
+//    lazy var buttonContainer: UIStackView = {
+//        let stackview = UIStackView()
+//        stackview.axis = .horizontal
+//        stackview.spacing = 12
+//
+//        return stackview
+//    }()
+//
     lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle(cancelText, for: .normal)
@@ -91,11 +91,11 @@ class CustomAlertViewController: UIViewController {
     
     func setView() {
         self.view.backgroundColor = .black.withAlphaComponent(0.5)
-        buttonContainer.addArrangedSubview(cancelButton)
-        buttonContainer.addArrangedSubview(confirmButton)
+//        buttonContainer.addArrangedSubview(cancelButton)
+//        buttonContainer.addArrangedSubview(confirmButton)
         
-        [titleLabel, contextLabel, buttonContainer].forEach { view
-            in self.container.addArrangedSubview(view) }
+        [titleLabel, contextLabel, cancelButton, confirmButton].forEach { view
+            in self.container.addSubview(view) }
         self.view.addSubview(container)
     }
     
@@ -110,27 +110,34 @@ class CustomAlertViewController: UIViewController {
         
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
-            make.top.equalToSuperview().offset(30)
+            make.top.equalToSuperview().offset(32)
         }
         
         contextLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
-            make.top.equalToSuperview().offset(50)
+            make.top.equalToSuperview().offset(76)
         }
         
         cancelButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(20)
+            make.width.equalTo(confirmButton)
+            make.trailing.equalTo(confirmButton.snp.leading).offset(-12)
             make.height.equalTo(40)
+            make.top.equalToSuperview().offset(124)
         }
         
         confirmButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-20)
+//            make.leading.equalTo(6)
             make.height.equalTo(40)
+            make.top.equalToSuperview().offset(124)
         }
         
-        buttonContainer.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.trailingMargin.equalToSuperview().offset(20)
-            make.height.equalTo(40)
-            make.top.equalToSuperview().offset(90)
-        }
+//        buttonContainer.snp.makeConstraints { make in
+//            make.leading.equalToSuperview().offset(20)
+//            make.trailingMargin.equalToSuperview().offset(20)
+//            make.height.equalTo(40)
+//            make.top.equalToSuperview().offset(90)
+//        }
     }
 }
