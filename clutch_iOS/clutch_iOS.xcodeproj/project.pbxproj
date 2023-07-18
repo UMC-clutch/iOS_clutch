@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */; };
 		5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */; };
+		A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207BC852A6665BC002AD898 /* InquiryViewController.swift */; };
+		A223575F2A65279900915DF0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A223575E2A65279900915DF0 /* ProfileViewController.swift */; };
+		A22D5DF22A65678100F8D536 /* InputScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22D5DF12A65678100F8D536 /* InputScreen.swift */; };
+		A248A9982A5FD4C40053E66C /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9972A5FD4C40053E66C /* HistoryCell.swift */; };
+		A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9992A5FD5330053E66C /* InfoCell.swift */; };
+		A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A99B2A5FD5410053E66C /* AccountCell.swift */; };
 		BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */; };
 		BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DC2A4F140E002EB93C /* SetColor.swift */; };
 		BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */; };
@@ -21,6 +27,12 @@
 		BECEC6A62A5EF51C00A177A0 /* Banner1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A52A5EF51C00A177A0 /* Banner1View.swift */; };
 		BECEC6A82A5EF52500A177A0 /* Banner2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A72A5EF52500A177A0 /* Banner2View.swift */; };
 		BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A92A5EF52B00A177A0 /* Banner3View.swift */; };
+		BECEC6AC2A60143200A177A0 /* ColorToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6AB2A60143200A177A0 /* ColorToImage.swift */; };
+		BECEC6AE2A60169500A177A0 /* ClutchIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6AD2A60169500A177A0 /* ClutchIntroView.swift */; };
+		BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B02A6016B100A177A0 /* BaseView.swift */; };
+		BECEC6B32A6016BB00A177A0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B22A6016BB00A177A0 /* BaseViewController.swift */; };
+		BECEC6B52A6050EA00A177A0 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B42A6050EA00A177A0 /* loginViewController.swift */; };
+		BECEC6B72A6050F700A177A0 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B62A6050F700A177A0 /* loginView.swift */; };
 		BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C22A4D6845005106D8 /* AppDelegate.swift */; };
 		BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C42A4D6845005106D8 /* SceneDelegate.swift */; };
 		BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C62A4D6845005106D8 /* MainViewController.swift */; };
@@ -57,6 +69,12 @@
 /* Begin PBXFileReference section */
 		029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.release.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
+		A207BC852A6665BC002AD898 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
+		A223575E2A65279900915DF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A22D5DF12A65678100F8D536 /* InputScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputScreen.swift; sourceTree = "<group>"; };
+		A248A9972A5FD4C40053E66C /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		A248A9992A5FD5330053E66C /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
+		A248A99B2A5FD5410053E66C /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.debug.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		BE67E1DC2A4F140E002EB93C /* SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColor.swift; sourceTree = "<group>"; };
@@ -70,6 +88,12 @@
 		BECEC6A52A5EF51C00A177A0 /* Banner1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner1View.swift; sourceTree = "<group>"; };
 		BECEC6A72A5EF52500A177A0 /* Banner2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner2View.swift; sourceTree = "<group>"; };
 		BECEC6A92A5EF52B00A177A0 /* Banner3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner3View.swift; sourceTree = "<group>"; };
+		BECEC6AB2A60143200A177A0 /* ColorToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorToImage.swift; sourceTree = "<group>"; };
+		BECEC6AD2A60169500A177A0 /* ClutchIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClutchIntroView.swift; sourceTree = "<group>"; };
+		BECEC6B02A6016B100A177A0 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		BECEC6B22A6016BB00A177A0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		BECEC6B42A6050EA00A177A0 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
+		BECEC6B62A6050F700A177A0 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		BED645BF2A4D6845005106D8 /* clutch_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clutch_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED645C22A4D6845005106D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED645C42A4D6845005106D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +166,33 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A207BC842A666567002AD898 /* Inquiry */ = {
+			isa = PBXGroup;
+			children = (
+				A207BC852A6665BC002AD898 /* InquiryViewController.swift */,
+			);
+			path = Inquiry;
+			sourceTree = "<group>";
+		};
+		A223575D2A65272F00915DF0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A223575E2A65279900915DF0 /* ProfileViewController.swift */,
+				A22D5DF12A65678100F8D536 /* InputScreen.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		A248A9962A5FD44D0053E66C /* MyPageCell */ = {
+			isa = PBXGroup;
+			children = (
+				A248A9972A5FD4C40053E66C /* HistoryCell.swift */,
+				A248A9992A5FD5330053E66C /* InfoCell.swift */,
+				A248A99B2A5FD5410053E66C /* AccountCell.swift */,
+			);
+			path = MyPageCell;
+			sourceTree = "<group>";
+		};
 		BE086A6A2A56F744002E4BF4 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +221,8 @@
 				BE086A702A56F799002E4BF4 /* Calculate */,
 				BE086A6D2A56F78E002E4BF4 /* Report */,
 				BE086A732A56F7BF002E4BF4 /* Mypage */,
+				A223575D2A65272F00915DF0 /* Profile */,
+				A207BC842A666567002AD898 /* Inquiry */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -194,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */,
+				BECEC6AD2A60169500A177A0 /* ClutchIntroView.swift */,
 			);
 			path = ClutchIntro;
 			sourceTree = "<group>";
@@ -201,6 +255,8 @@
 		BE086A722A56F79C002E4BF4 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BECEC6B42A6050EA00A177A0 /* loginViewController.swift */,
+				BECEC6B62A6050F700A177A0 /* loginView.swift */,
 				BED645C62A4D6845005106D8 /* MainViewController.swift */,
 				BED645FD2A4D6BA6005106D8 /* MainCell */,
 				BECEC6A22A5EDFDF00A177A0 /* faqViewController.swift */,
@@ -213,6 +269,7 @@
 			children = (
 				2C16A6B82A5F9ED9003D7013 /* Account */,
 				BE744AB52A4F2769005F8F4F /* MypageViewController.swift */,
+				A248A9962A5FD44D0053E66C /* MyPageCell */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -220,6 +277,7 @@
 		BE086A742A56F811002E4BF4 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				BECEC6AF2A6016A400A177A0 /* Base */,
 				BE086A782A56F859002E4BF4 /* Transition */,
 				BE086A772A56F850002E4BF4 /* Extension */,
 				BE086A762A56F847002E4BF4 /* SetFont */,
@@ -248,6 +306,7 @@
 		BE086A772A56F850002E4BF4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				BECEC6AB2A60143200A177A0 /* ColorToImage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -300,6 +359,15 @@
 				BECEC6A92A5EF52B00A177A0 /* Banner3View.swift */,
 			);
 			path = Banner;
+			sourceTree = "<group>";
+		};
+		BECEC6AF2A6016A400A177A0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BECEC6B02A6016B100A177A0 /* BaseView.swift */,
+				BECEC6B22A6016BB00A177A0 /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		BED645B62A4D6845005106D8 = {
@@ -376,6 +444,7 @@
 				BED645BB2A4D6845005106D8 /* Sources */,
 				BED645BC2A4D6845005106D8 /* Frameworks */,
 				BED645BD2A4D6845005106D8 /* Resources */,
+				7D0F0999E4B454AD8EEE7B82 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -493,6 +562,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7D0F0999E4B454AD8EEE7B82 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		93B9C6AD5FA2BB90B8074649 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -525,14 +611,23 @@
 				BED645F62A4D6968005106D8 /* MyCustomCell1.swift in Sources */,
 				BECEC6A82A5EF52500A177A0 /* Banner2View.swift in Sources */,
 				BE744AB42A4F26B1005F8F4F /* ReportViewController.swift in Sources */,
+				A223575F2A65279900915DF0 /* ProfileViewController.swift in Sources */,
 				BED645CD2A4D6845005106D8 /* clutch_iOS.xcdatamodeld in Sources */,
 				BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */,
+				BECEC6B32A6016BB00A177A0 /* BaseViewController.swift in Sources */,
 				BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */,
+				A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */,
 				BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */,
+				A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */,
+				A22D5DF22A65678100F8D536 /* InputScreen.swift in Sources */,
+				A248A9982A5FD4C40053E66C /* HistoryCell.swift in Sources */,
+				BECEC6AC2A60143200A177A0 /* ColorToImage.swift in Sources */,
 				BE744AB22A4F2695005F8F4F /* CalculateViewController.swift in Sources */,
 				BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */,
 				BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */,
+				BECEC6B72A6050F700A177A0 /* loginView.swift in Sources */,
 				BE744AB62A4F2769005F8F4F /* MypageViewController.swift in Sources */,
+				A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */,
 				BED645FC2A4D69DE005106D8 /* MyCustomCell4.swift in Sources */,
 				BE87AC8E2A5DA0B00002E4C6 /* SetFont.swift in Sources */,
 				BECEC6A62A5EF51C00A177A0 /* Banner1View.swift in Sources */,
@@ -541,8 +636,11 @@
 				2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */,
 				BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
+				BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */,
 				BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */,
+				BECEC6AE2A60169500A177A0 /* ClutchIntroView.swift in Sources */,
 				BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */,
+				BECEC6B52A6050EA00A177A0 /* loginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

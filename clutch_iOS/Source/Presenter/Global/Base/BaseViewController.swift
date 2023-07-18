@@ -1,13 +1,13 @@
 //
-//  faqViewController.swift
+//  BaseViewController.swift
 //  clutch_iOS
 //
-//  Created by Dongwan Ryoo on 2023/07/12.
+//  Created by Dongwan Ryoo on 2023/07/13.
 //
 
 import UIKit
 
-class faqViewController: UIViewController{
+class BaseViewController: UIViewController {
     //MARK: - UI ProPerties
 
     //MARK: - Define Method

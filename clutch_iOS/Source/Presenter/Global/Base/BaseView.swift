@@ -1,21 +1,28 @@
 //
-//  faqViewController.swift
+//  BaseView.swift
 //  clutch_iOS
 //
-//  Created by Dongwan Ryoo on 2023/07/12.
+//  Created by Dongwan Ryoo on 2023/07/13.
 //
 
 import UIKit
 
-class faqViewController: UIViewController{
+class BaseView: UIView {
     //MARK: - UI ProPerties
-
+    
+    
     //MARK: - Define Method
-    override func viewDidLoad() {
-        super.viewDidLoad()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         SetView()
         Constraint()
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     //MARK: - Properties
     
@@ -28,6 +35,5 @@ class faqViewController: UIViewController{
     func Constraint() {
         
     }
-  
 
 }

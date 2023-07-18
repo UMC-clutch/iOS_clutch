@@ -36,49 +36,44 @@ class MyCustomCell1: UICollectionViewCell {
         return view
     }()
     
-    var customBannerViews: [UIView] = []
-    var currentViewIndex = 0
-
+    // banner 내용을 표시하는 각 뷰
     let view1 = Banner1View()
     let view2 = Banner2View()
     let view3 = Banner3View()
     
+    // 배너를 담을 배열
+    var customBannerViews: [UIView] = []
+    var currentViewIndex = 0
+    
+    //cell 초기화 시점에 배너에 들어갈 뷰들의 크기를 초기화하기 위한 메서드
     override func layoutSubviews() {
-           super.layoutSubviews()
-           view1.frame = contentView.bounds
+        super.layoutSubviews()
+        view1.frame = contentView.bounds
         view2.frame = contentView.bounds
         view3.frame = contentView.bounds
-       }
+    }
+  
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         SetView()
-        //        Constraint()
-        
-        
-        customBannerViews = [view1, view2, view3]
-        
-        // 초기 뷰 설정
-        bannerView.addSubview(customBannerViews[currentViewIndex])
-        
-        // 3초마다 배너 변경을 위한 타이머 설정
-        Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(changeBanner), userInfo: nil, repeats: true)
+        Constraint()
     }
     
+    //배너 변경을 위한 메서드
     @objc func changeBanner() {
         // 다음 뷰로 변경
         currentViewIndex = (currentViewIndex + 1) % customBannerViews.count
-        
         // 기존 뷰 제거
         bannerView.subviews.forEach { $0.removeFromSuperview() }
-        
         // 새로운 뷰 추가 (페이드 애니메이션 효과 포함)
         let newBannerView = customBannerViews[currentViewIndex]
         bannerView.addSubview(newBannerView)
-        newBannerView.alpha = 0.8 // 초기에 투명 상태로 설정
+        newBannerView.alpha = 0.5 // 초기에 투명 상태로 설정
         
-        UIView.animate(withDuration: 1.5) {
-            newBannerView.alpha = 1 // 페이드 인 애니메이션
+        // 페이드 인 애니메이션
+        UIView.animate(withDuration: 2.5) {
+            newBannerView.alpha = 1
         }
     }
     
@@ -89,9 +84,13 @@ class MyCustomCell1: UICollectionViewCell {
     
     //Cell의 View 관련 설정
     func SetView(){
-        self.addSubview(bannerView)
         self.layer.cornerRadius = 18
         self.backgroundColor = .Clutch.bgGrey
+        self.addSubview(bannerView)
+        customBannerViews = [view1, view2, view3]
+        bannerView.addSubview(customBannerViews[currentViewIndex])
+        // 3초마다 배너 변경을 위한 타이머 설정
+        Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(changeBanner), userInfo: nil, repeats: true)
     }
     
     
@@ -101,7 +100,7 @@ class MyCustomCell1: UICollectionViewCell {
             make.size.equalTo(self.contentView.snp.size)
             make.centerX.equalTo(self.contentView.snp.centerX)
         }
-
+        
     }
     
 }
