@@ -7,9 +7,11 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 class InputScreen: UIView {
-    
+    // MARK: - UI ProPerties
+    // UILabel 선언(질문 제목)
     public lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .Clutch.textDarkGrey
@@ -17,6 +19,7 @@ class InputScreen: UIView {
         return label
     }()
     
+    // UITextField 선언(입력 내용)
     public lazy var textField: UITextField = {
         let textField = UITextField()
         textField.textColor = .black
@@ -24,6 +27,7 @@ class InputScreen: UIView {
         return textField
     }()
     
+    // UIView 선언(구분선)
     public lazy var underLine: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.Clutch.bgGrey
@@ -31,6 +35,7 @@ class InputScreen: UIView {
         return view
     }()
     
+    // MARK: - Define Method
     override init(frame: CGRect) {
         super.init(frame: frame)
         setView()
@@ -41,6 +46,7 @@ class InputScreen: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Set Ui
     func setView() {
         [titleLabel, textField, underLine].forEach { view in
             self.addSubview(view)

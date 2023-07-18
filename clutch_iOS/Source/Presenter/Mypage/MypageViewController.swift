@@ -221,6 +221,7 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
         [collectionView1, collectionView2, collectionView3].forEach { collectionview in
             collectionview.dataSource = self
             collectionview.delegate = self
+            collectionview.isScrollEnabled = false
         }
     }
     
@@ -324,7 +325,7 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
                 let url:String = "https://www.naver.com/"
                 openURL(url)
             case 2:
-                present(vc, animated: true) // "문의하기" 페이지로 이동
+                present(InquiryViewController(), animated: true) // "문의하기" 페이지로 이동
             default :
                 return
             }

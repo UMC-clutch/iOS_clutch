@@ -5,6 +5,7 @@ target 'clutch_iOS' do
 	pod 'SnapKit'
 	pod 'Gifu'
   pod 'AloeStackView'
+  pod 'DropDown'
   
   post_install do |installer|
       installer.pods_project.targets.each do |target|
