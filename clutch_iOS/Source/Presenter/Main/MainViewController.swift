@@ -11,7 +11,7 @@ import SnapKit
 class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     //UICollectionView 선언
-    var collectionview: UICollectionView = {
+    lazy var collectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
@@ -92,7 +92,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.height.equalTo(50)
+            make.height.equalTo(100)
         }
         //container 오토레이아웃
         container.snp.makeConstraints { make in
@@ -144,7 +144,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         // 각 버튼 할당
         navigationItem.rightBarButtonItem = setRightButton
         navigationItem.leftBarButtonItem = setLeftButton
-        
+//        navigationItem.title
         navigationBar.setItems([navigationItem], animated: false) // 이부분 다시 공부 -> 다시 공부
         navigationBar.barTintColor = .Clutch.bgGrey // 배경색 변경
         navigationBar.shadowImage = UIImage() //테두리 없애기 -> 다시 공부
