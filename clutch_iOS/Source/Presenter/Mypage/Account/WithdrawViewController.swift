@@ -63,6 +63,21 @@ class WithdrawViewController: UIViewController {
         return view
     }()
     
+    lazy var withdrawButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("탈퇴하기", for: .normal)
+        button.setTitleColor(.Clutch.textDarkGrey, for: .normal)
+        button.titleLabel?.font = .Clutch.subheadMedium
+        button.addTarget(self, action: #selector(withdrawButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 11
+        button.backgroundColor = .Clutch.bgGrey
+        // Highlighted 상태일 때 배경 및 텍스트 색상
+//        let iamge = image(withColor: .Clutch.mainDarkGreen!)
+//        button.setBackgroundImage(iamge, for: .highlighted)
+//        button.setTitleColor(.Clutch.mainWhite, for: .highlighted)
+        return button
+    }()
+    
     // MARK: - Define Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +89,7 @@ class WithdrawViewController: UIViewController {
         
     //MARK: - Set UI
     func setView() {
-        [navigationBar, checkLabel, nameLabel, userNameLabel, underLine1, reasonLabel, underLine2].forEach { view in
+        [navigationBar, checkLabel, nameLabel, userNameLabel, underLine1, reasonLabel, underLine2, withdrawButton].forEach { view in
             self.view.addSubview(view)
         }
 
@@ -100,16 +115,21 @@ class WithdrawViewController: UIViewController {
         print("Back Button Tapped")
     }
     
+    @objc func withdrawButtonTapped(_ sender: UIButton) {
+        //회원탈퇴 API 호출, 메인화면으로 나가는 코드 필요
+        print("Withdraw Button Tapped")
+        }
+    
     func setConstraint() {
         navigationBar.snp.makeConstraints { make in
             make.width.equalToSuperview()
-            // safe area에 맞추는 코드로 일반화 필요
-            make.top.equalToSuperview().offset(56)
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.equalToSuperview()
         }
         
         checkLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
+            //작은 폰에서 넘 아래로 감. 동적으로 맞춰는게 좋을까?
             make.top.equalToSuperview().offset(131)
         }
         
@@ -126,9 +146,9 @@ class WithdrawViewController: UIViewController {
         underLine1.snp.makeConstraints{ make in
             make.height.equalTo(2)
             make.top.equalToSuperview().offset(293)
-            make.left.equalToSuperview().offset(17)
-            //오른쪽 여백이 안생김.. 해결 필요
-            make.right.equalToSuperview().offset(17)
+            make.leading.equalToSuperview().offset(17)
+            make.trailingMargin.equalToSuperview().offset(17)
+            make.centerX.equalToSuperview()
         }
         
         reasonLabel.snp.makeConstraints { make in
@@ -139,9 +159,17 @@ class WithdrawViewController: UIViewController {
         underLine2.snp.makeConstraints{ make in
             make.height.equalTo(2)
             make.top.equalToSuperview().offset(394)
-            make.left.equalToSuperview().offset(17)
-            //오른쪽 여백이 안생김.. 해결 필요
-            make.right.equalToSuperview().offset(17)
+            make.leading.equalToSuperview().offset(17)
+            make.trailingMargin.equalToSuperview().offset(17)
+            make.centerX.equalToSuperview()
+        }
+        
+        withdrawButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.trailingMargin.equalToSuperview().offset(16)
+            make.height.equalTo(53)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
+            make.centerX.equalToSuperview()
         }
     }
 }
