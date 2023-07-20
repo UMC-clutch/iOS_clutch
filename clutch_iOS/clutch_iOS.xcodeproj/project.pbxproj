@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */; };
 		2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */; };
 		5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */; };
 		A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207BC852A6665BC002AD898 /* InquiryViewController.swift */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.release.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
 		A207BC852A6665BC002AD898 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
 		A223575E2A65279900915DF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0912CBA92A68C28500139593 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		2C16A6B82A5F9ED9003D7013 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +287,7 @@
 		BE086A742A56F811002E4BF4 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				0912CBA92A68C28500139593 /* Custom */,
 				BECEC6AF2A6016A400A177A0 /* Base */,
 				BE086A782A56F859002E4BF4 /* Transition */,
 				BE086A772A56F850002E4BF4 /* Extension */,
@@ -616,6 +627,7 @@
 				BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */,
 				BECEC6B32A6016BB00A177A0 /* BaseViewController.swift in Sources */,
 				BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */,
+				0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */,
 				A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */,
 				BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */,
 				A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */,
