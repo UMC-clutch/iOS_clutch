@@ -16,11 +16,11 @@ enum AlertType {
 class CustomAlertViewController: UIViewController {
     
     //MARK: - UI ProPerties
-
-    var alertTitle = "(alertTitle)"
-    var alertContext = "(alertContext)"
-    var cancelText = "(cancelText)"
-    var confirmText = "(confirmText)"
+    lazy var alertType = AlertType.onlyConfirm
+    lazy var alertTitle = "(alertTitle)"
+    lazy var alertContext = "(alertContext)"
+    lazy var cancelText = "(cancelText)"
+    lazy var confirmText = "(confirmText)"
     
     lazy var container: UIView = {
         let view = UIView()
@@ -84,10 +84,19 @@ class CustomAlertViewController: UIViewController {
     
     func setView() {
         self.view.backgroundColor = .black.withAlphaComponent(0.5)
-
-        [titleLabel, contextLabel, cancelButton, confirmButton].forEach { view
-            in self.container.addSubview(view) }
         self.view.addSubview(container)
+        self.container.addSubview(titleLabel)
+        self.container.addSubview(contextLabel)
+        self.container.addSubview(confirmButton)
+        
+        switch self.alertType {
+        case .canCancel:
+            self.container.addSubview(cancelButton)
+            
+        case .onlyConfirm:
+            cancelButton.isHidden = true
+        }
+        
     }
     
     @objc func cancelButtonTapped() {
@@ -119,18 +128,29 @@ class CustomAlertViewController: UIViewController {
             make.top.equalToSuperview().offset(76)
         }
         
-        cancelButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.width.equalTo(confirmButton)
-            make.trailing.equalTo(confirmButton.snp.leading).offset(-12)
-            make.height.equalTo(40)
-            make.top.equalToSuperview().offset(124)
-        }
-        
-        confirmButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(40)
-            make.top.equalToSuperview().offset(124)
+        switch self.alertType {
+        case .canCancel:
+            cancelButton.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(20)
+                make.width.equalTo(confirmButton)
+                make.trailing.equalTo(confirmButton.snp.leading).offset(-12)
+                make.height.equalTo(40)
+                make.top.equalToSuperview().offset(124)
+            }
+            
+            confirmButton.snp.makeConstraints { make in
+                make.trailing.equalToSuperview().offset(-20)
+                make.height.equalTo(40)
+                make.top.equalToSuperview().offset(124)
+            }
+            
+        case .onlyConfirm:
+            confirmButton.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(20)
+                make.trailing.equalToSuperview().offset(-20)
+                make.height.equalTo(40)
+                make.top.equalToSuperview().offset(124)
+            }
         }
     }
 }
