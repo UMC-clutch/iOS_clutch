@@ -16,6 +16,9 @@
 		A248A9982A5FD4C40053E66C /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9972A5FD4C40053E66C /* HistoryCell.swift */; };
 		A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9992A5FD5330053E66C /* InfoCell.swift */; };
 		A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A99B2A5FD5410053E66C /* AccountCell.swift */; };
+		BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC6B2A6A658F0007F588 /* TextInputView.swift */; };
+		BE40DC6E2A6A67300007F588 /* CheckContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC6D2A6A67300007F588 /* CheckContainer.swift */; };
+		BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC702A6A76620007F588 /* SampleViewController.swift */; };
 		BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */; };
 		BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DC2A4F140E002EB93C /* SetColor.swift */; };
 		BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */; };
@@ -29,7 +32,6 @@
 		BECEC6A82A5EF52500A177A0 /* Banner2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A72A5EF52500A177A0 /* Banner2View.swift */; };
 		BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A92A5EF52B00A177A0 /* Banner3View.swift */; };
 		BECEC6AC2A60143200A177A0 /* ColorToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6AB2A60143200A177A0 /* ColorToImage.swift */; };
-		BECEC6AE2A60169500A177A0 /* ClutchIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6AD2A60169500A177A0 /* ClutchIntroView.swift */; };
 		BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B02A6016B100A177A0 /* BaseView.swift */; };
 		BECEC6B32A6016BB00A177A0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B22A6016BB00A177A0 /* BaseViewController.swift */; };
 		BECEC6B52A6050EA00A177A0 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B42A6050EA00A177A0 /* loginViewController.swift */; };
@@ -78,6 +80,9 @@
 		A248A9992A5FD5330053E66C /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		A248A99B2A5FD5410053E66C /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.debug.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BE40DC6B2A6A658F0007F588 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
+		BE40DC6D2A6A67300007F588 /* CheckContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckContainer.swift; sourceTree = "<group>"; };
+		BE40DC702A6A76620007F588 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
 		BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		BE67E1DC2A4F140E002EB93C /* SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColor.swift; sourceTree = "<group>"; };
 		BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClutchIntroViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +96,6 @@
 		BECEC6A72A5EF52500A177A0 /* Banner2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner2View.swift; sourceTree = "<group>"; };
 		BECEC6A92A5EF52B00A177A0 /* Banner3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner3View.swift; sourceTree = "<group>"; };
 		BECEC6AB2A60143200A177A0 /* ColorToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorToImage.swift; sourceTree = "<group>"; };
-		BECEC6AD2A60169500A177A0 /* ClutchIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClutchIntroView.swift; sourceTree = "<group>"; };
 		BECEC6B02A6016B100A177A0 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		BECEC6B22A6016BB00A177A0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BECEC6B42A6050EA00A177A0 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
@@ -257,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */,
-				BECEC6AD2A60169500A177A0 /* ClutchIntroView.swift */,
 			);
 			path = ClutchIntro;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 		BE086A742A56F811002E4BF4 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				BE40DC6F2A6A762C0007F588 /* InfoInput */,
 				0912CBA92A68C28500139593 /* Custom */,
 				BECEC6AF2A6016A400A177A0 /* Base */,
 				BE086A782A56F859002E4BF4 /* Transition */,
@@ -300,8 +304,8 @@
 		BE086A752A56F83A002E4BF4 /* SetColor */ = {
 			isa = PBXGroup;
 			children = (
-				BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */,
 				BE67E1DC2A4F140E002EB93C /* SetColor.swift */,
+				BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */,
 			);
 			path = SetColor;
 			sourceTree = "<group>";
@@ -360,6 +364,16 @@
 				BED645CB2A4D6845005106D8 /* clutch_iOS.xcdatamodeld */,
 			);
 			path = clutch_iOS;
+			sourceTree = "<group>";
+		};
+		BE40DC6F2A6A762C0007F588 /* InfoInput */ = {
+			isa = PBXGroup;
+			children = (
+				BE40DC6D2A6A67300007F588 /* CheckContainer.swift */,
+				BE40DC6B2A6A658F0007F588 /* TextInputView.swift */,
+				BE40DC702A6A76620007F588 /* SampleViewController.swift */,
+			);
+			path = InfoInput;
 			sourceTree = "<group>";
 		};
 		BECEC6A42A5EF4E300A177A0 /* Banner */ = {
@@ -628,6 +642,7 @@
 				BECEC6B32A6016BB00A177A0 /* BaseViewController.swift in Sources */,
 				BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */,
 				0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */,
+				BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */,
 				A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */,
 				BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */,
 				A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */,
@@ -647,10 +662,11 @@
 				BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */,
 				2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */,
 				BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */,
+				BE40DC6E2A6A67300007F588 /* CheckContainer.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
 				BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */,
 				BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */,
-				BECEC6AE2A60169500A177A0 /* ClutchIntroView.swift in Sources */,
+				BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */,
 				BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */,
 				BECEC6B52A6050EA00A177A0 /* loginViewController.swift in Sources */,
 			);

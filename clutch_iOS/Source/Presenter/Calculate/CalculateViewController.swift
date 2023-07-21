@@ -6,12 +6,29 @@
 //
 
 import UIKit
+import SnapKit
 
 class CalculateViewController: UIViewController {
+    //MARK: - UI ProPerties
 
+    //MARK: - Define Method
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .Clutch.mainWhite
+        SetView()
+        Constraint()
     }
+    
+    //MARK: - Properties
+    
+    
+    //MARK: - Set Ui
+    func SetView() {
+        self.view.backgroundColor = .white
+    }
+    
+    func Constraint() {
+        
+    }
+  
 
 }

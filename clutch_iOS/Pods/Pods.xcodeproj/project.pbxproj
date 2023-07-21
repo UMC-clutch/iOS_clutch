@@ -127,7 +127,7 @@
 		3AD4419152D35DCA31A8DADE87491452 /* AloeStackView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AloeStackView.modulemap; sourceTree = "<group>"; };
 		3D10CD0E40D674260A23ECDBE7B72B02 /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Sources/ConstraintViewDSL.swift; sourceTree = "<group>"; };
 		3D83C619ECBAA84F14BCC76C8B360C3F /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsets.swift; path = Sources/ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
-		40E5F8D9277E714962AFA02550F15F8A /* libGifu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGifu.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		40E5F8D9277E714962AFA02550F15F8A /* Gifu */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = Gifu; path = libGifu.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C2E9747F5BACFEAD0015E953619646 /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
 		44BEFE8A1A3A2D89838BB8AB6A313D03 /* GIFImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GIFImageView.swift; path = Sources/Gifu/Classes/GIFImageView.swift; sourceTree = "<group>"; };
 		47082E7077629E1E44D776131169FC81 /* Pods-clutch_iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-clutch_iOS.modulemap"; sourceTree = "<group>"; };
@@ -164,16 +164,16 @@
 		8E8780965621969D0BDDFBB79B2DC2C3 /* Array.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Array.swift; path = Sources/Gifu/Extensions/Array.swift; sourceTree = "<group>"; };
 		91DA6C9F7584C6D673BDB87CA398885C /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Sources/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 		95412B4ADC108947B0196D852745AE7A /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Sources/ConstraintItem.swift; sourceTree = "<group>"; };
-		979486118B3E90C08386079D57962701 /* libSnapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSnapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B6725B782188F18CB76A740433F14E4 /* libDropDown.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDropDown.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		979486118B3E90C08386079D57962701 /* SnapKit */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = SnapKit; path = libSnapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B6725B782188F18CB76A740433F14E4 /* DropDown */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = DropDown; path = libDropDown.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F816A2B5D7B6BC8AE195F22EC484393 /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMultiplierTarget.swift; path = Sources/ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
 		A0C5B2FBE209A45C75D061F1C019085A /* ConstraintMakerPrioritizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPrioritizable.swift; path = Sources/ConstraintMakerPrioritizable.swift; sourceTree = "<group>"; };
 		A10E8962EFB0250B28E6A79DAAB1460D /* Pods-clutch_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-clutch_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		A1D0849B3261A9ECBE4A39C01E4DD44D /* GIFAnimatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GIFAnimatable.swift; path = Sources/Gifu/Classes/GIFAnimatable.swift; sourceTree = "<group>"; };
 		A1E3835D4D6A13E16CDE4C86CA2E6475 /* Gifu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Gifu.modulemap; sourceTree = "<group>"; };
 		A44D8936325799F8D17EF1E74A2BA9B4 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Sources/ConstraintDescription.swift; sourceTree = "<group>"; };
-		A456CA48979F87470244D9AA3B0E4EAC /* libAloeStackView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAloeStackView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A456CA48979F87470244D9AA3B0E4EAC /* AloeStackView */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = AloeStackView; path = libAloeStackView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E43E4A32BAFE4EC1DE04AF67895337 /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = Sources/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
 		A5455EA0E5DB03050DBC510A18E32CF9 /* ConstraintMakerRelatable+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintMakerRelatable+Extensions.swift"; path = "Sources/ConstraintMakerRelatable+Extensions.swift"; sourceTree = "<group>"; };
 		A72A227BED304982F50F13D27C4BDB50 /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Sources/LayoutConstraintItem.swift; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 		EF841393AA9C3A7DEC3C4C38C8942C53 /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Sources/ConstraintPriority.swift; sourceTree = "<group>"; };
 		F3B861939A80579F77558363A3DA4C47 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
 		F4051CCC282B09EF7CA9A6EF8580C689 /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Sources/ConstraintMaker.swift; sourceTree = "<group>"; };
-		F4835751DF2AFDD29DFDE765E10DAFE2 /* libPods-clutch_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-clutch_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4835751DF2AFDD29DFDE765E10DAFE2 /* Pods-clutch_iOS */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-clutch_iOS"; path = "libPods-clutch_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F796134F38896B221B9B91797253B430 /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Sources/ConstraintDSL.swift; sourceTree = "<group>"; };
 		FA9CB037C07B6B8FE9424CEB996F969D /* Highlightable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Highlightable.swift; path = Sources/AloeStackView/Protocols/Highlightable.swift; sourceTree = "<group>"; };
 		FCEF9620ECD68AED5A9B9598E49E223F /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Sources/LayoutConstraint.swift; sourceTree = "<group>"; };
@@ -322,6 +322,7 @@
 				C8F6AFFD40B1D17A7284C4E45990699D /* UILayoutSupport+Extensions.swift */,
 				8023E73D81256A3D035BFC6FE938EAEC /* Support Files */,
 			);
+			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -337,6 +338,7 @@
 				A2980C3829D50B27D2ACB3010F851AFF /* Resources */,
 				75C498A754D9A3042ADD5F877B82EA08 /* Support Files */,
 			);
+			name = DropDown;
 			path = DropDown;
 			sourceTree = "<group>";
 		};
@@ -387,11 +389,11 @@
 		CC3712D7FB892C6BB7EA2B16EA6C7E19 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A456CA48979F87470244D9AA3B0E4EAC /* libAloeStackView.a */,
-				9B6725B782188F18CB76A740433F14E4 /* libDropDown.a */,
-				40E5F8D9277E714962AFA02550F15F8A /* libGifu.a */,
-				F4835751DF2AFDD29DFDE765E10DAFE2 /* libPods-clutch_iOS.a */,
-				979486118B3E90C08386079D57962701 /* libSnapKit.a */,
+				A456CA48979F87470244D9AA3B0E4EAC /* AloeStackView */,
+				9B6725B782188F18CB76A740433F14E4 /* DropDown */,
+				40E5F8D9277E714962AFA02550F15F8A /* Gifu */,
+				F4835751DF2AFDD29DFDE765E10DAFE2 /* Pods-clutch_iOS */,
+				979486118B3E90C08386079D57962701 /* SnapKit */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -423,6 +425,7 @@
 				D408F904240232AE99C111CC326A67A8 /* UIImageView.swift */,
 				F253B96A48C06B819C93D12716EECC10 /* Support Files */,
 			);
+			name = Gifu;
 			path = Gifu;
 			sourceTree = "<group>";
 		};
@@ -473,6 +476,7 @@
 				16BA299386CEE13F96A2BD39903E22FD /* Tappable.swift */,
 				F392367425EA744767BA7FA799C3B0AD /* Support Files */,
 			);
+			name = AloeStackView;
 			path = AloeStackView;
 			sourceTree = "<group>";
 		};
@@ -538,7 +542,7 @@
 			);
 			name = SnapKit;
 			productName = SnapKit;
-			productReference = 979486118B3E90C08386079D57962701 /* libSnapKit.a */;
+			productReference = 979486118B3E90C08386079D57962701 /* SnapKit */;
 			productType = "com.apple.product-type.library.static";
 		};
 		4D43E36A5780E203C96C43A3832DC31A /* AloeStackView */ = {
@@ -556,7 +560,7 @@
 			);
 			name = AloeStackView;
 			productName = AloeStackView;
-			productReference = A456CA48979F87470244D9AA3B0E4EAC /* libAloeStackView.a */;
+			productReference = A456CA48979F87470244D9AA3B0E4EAC /* AloeStackView */;
 			productType = "com.apple.product-type.library.static";
 		};
 		830B5AB9E16163B4A1BA339D625FE46C /* Gifu */ = {
@@ -574,7 +578,7 @@
 			);
 			name = Gifu;
 			productName = Gifu;
-			productReference = 40E5F8D9277E714962AFA02550F15F8A /* libGifu.a */;
+			productReference = 40E5F8D9277E714962AFA02550F15F8A /* Gifu */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9FCB54CAB7C0EAC6ECD8A939BB4615FB /* Pods-clutch_iOS */ = {
@@ -595,7 +599,7 @@
 			);
 			name = "Pods-clutch_iOS";
 			productName = "Pods-clutch_iOS";
-			productReference = F4835751DF2AFDD29DFDE765E10DAFE2 /* libPods-clutch_iOS.a */;
+			productReference = F4835751DF2AFDD29DFDE765E10DAFE2 /* Pods-clutch_iOS */;
 			productType = "com.apple.product-type.library.static";
 		};
 		E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */ = {
@@ -613,7 +617,7 @@
 			);
 			name = DropDown;
 			productName = DropDown;
-			productReference = 9B6725B782188F18CB76A740433F14E4 /* libDropDown.a */;
+			productReference = 9B6725B782188F18CB76A740433F14E4 /* DropDown */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -622,9 +626,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -1061,7 +1064,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1085,6 +1087,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1222,7 +1225,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1242,6 +1244,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
