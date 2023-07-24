@@ -50,6 +50,7 @@
 		BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645F72A4D69CF005106D8 /* MyCustomCell2.swift */; };
 		BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645F92A4D69D7005106D8 /* MyCustomCell3.swift */; };
 		BED645FC2A4D69DE005106D8 /* MyCustomCell4.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645FB2A4D69DE005106D8 /* MyCustomCell4.swift */; };
+		BEF1510E2A6E0DA500798D74 /* SampleScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF1510D2A6E0DA500798D74 /* SampleScrollViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		BED645F72A4D69CF005106D8 /* MyCustomCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell2.swift; sourceTree = "<group>"; };
 		BED645F92A4D69D7005106D8 /* MyCustomCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell3.swift; sourceTree = "<group>"; };
 		BED645FB2A4D69DE005106D8 /* MyCustomCell4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell4.swift; sourceTree = "<group>"; };
+		BEF1510D2A6E0DA500798D74 /* SampleScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleScrollViewController.swift; sourceTree = "<group>"; };
 		C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-clutch_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -290,6 +292,7 @@
 		BE086A742A56F811002E4BF4 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				BEF1510C2A6E0D7700798D74 /* SampleScrollViewController */,
 				BE40DC6F2A6A762C0007F588 /* InfoInput */,
 				0912CBA92A68C28500139593 /* Custom */,
 				BECEC6AF2A6016A400A177A0 /* Base */,
@@ -456,6 +459,14 @@
 				BED645FB2A4D69DE005106D8 /* MyCustomCell4.swift */,
 			);
 			path = MainCell;
+			sourceTree = "<group>";
+		};
+		BEF1510C2A6E0D7700798D74 /* SampleScrollViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BEF1510D2A6E0DA500798D74 /* SampleScrollViewController.swift */,
+			);
+			path = SampleScrollViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -655,6 +666,7 @@
 				BECEC6B72A6050F700A177A0 /* loginView.swift in Sources */,
 				BE744AB62A4F2769005F8F4F /* MypageViewController.swift in Sources */,
 				A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */,
+				BEF1510E2A6E0DA500798D74 /* SampleScrollViewController.swift in Sources */,
 				BED645FC2A4D69DE005106D8 /* MyCustomCell4.swift in Sources */,
 				BE87AC8E2A5DA0B00002E4C6 /* SetFont.swift in Sources */,
 				BECEC6A62A5EF51C00A177A0 /* Banner1View.swift in Sources */,
