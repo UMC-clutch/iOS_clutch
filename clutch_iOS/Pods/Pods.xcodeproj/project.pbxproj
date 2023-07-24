@@ -166,7 +166,7 @@
 		95412B4ADC108947B0196D852745AE7A /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Sources/ConstraintItem.swift; sourceTree = "<group>"; };
 		979486118B3E90C08386079D57962701 /* SnapKit */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = SnapKit; path = libSnapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B6725B782188F18CB76A740433F14E4 /* DropDown */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = DropDown; path = libDropDown.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F816A2B5D7B6BC8AE195F22EC484393 /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMultiplierTarget.swift; path = Sources/ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
 		A0C5B2FBE209A45C75D061F1C019085A /* ConstraintMakerPrioritizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPrioritizable.swift; path = Sources/ConstraintMakerPrioritizable.swift; sourceTree = "<group>"; };
 		A10E8962EFB0250B28E6A79DAAB1460D /* Pods-clutch_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-clutch_iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 		EF841393AA9C3A7DEC3C4C38C8942C53 /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Sources/ConstraintPriority.swift; sourceTree = "<group>"; };
 		F3B861939A80579F77558363A3DA4C47 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
 		F4051CCC282B09EF7CA9A6EF8580C689 /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Sources/ConstraintMaker.swift; sourceTree = "<group>"; };
-		F4835751DF2AFDD29DFDE765E10DAFE2 /* libPods-clutch_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-clutch_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4835751DF2AFDD29DFDE765E10DAFE2 /* Pods-clutch_iOS */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-clutch_iOS"; path = "libPods-clutch_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F796134F38896B221B9B91797253B430 /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Sources/ConstraintDSL.swift; sourceTree = "<group>"; };
 		FA9CB037C07B6B8FE9424CEB996F969D /* Highlightable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Highlightable.swift; path = Sources/AloeStackView/Protocols/Highlightable.swift; sourceTree = "<group>"; };
 		FCEF9620ECD68AED5A9B9598E49E223F /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Sources/LayoutConstraint.swift; sourceTree = "<group>"; };
@@ -322,6 +322,7 @@
 				C8F6AFFD40B1D17A7284C4E45990699D /* UILayoutSupport+Extensions.swift */,
 				8023E73D81256A3D035BFC6FE938EAEC /* Support Files */,
 			);
+			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -337,6 +338,7 @@
 				A2980C3829D50B27D2ACB3010F851AFF /* Resources */,
 				75C498A754D9A3042ADD5F877B82EA08 /* Support Files */,
 			);
+			name = DropDown;
 			path = DropDown;
 			sourceTree = "<group>";
 		};
@@ -390,7 +392,7 @@
 				A456CA48979F87470244D9AA3B0E4EAC /* AloeStackView */,
 				9B6725B782188F18CB76A740433F14E4 /* DropDown */,
 				40E5F8D9277E714962AFA02550F15F8A /* Gifu */,
-				F4835751DF2AFDD29DFDE765E10DAFE2 /* libPods-clutch_iOS.a */,
+				F4835751DF2AFDD29DFDE765E10DAFE2 /* Pods-clutch_iOS */,
 				979486118B3E90C08386079D57962701 /* SnapKit */,
 			);
 			name = Products;
@@ -423,6 +425,7 @@
 				D408F904240232AE99C111CC326A67A8 /* UIImageView.swift */,
 				F253B96A48C06B819C93D12716EECC10 /* Support Files */,
 			);
+			name = Gifu;
 			path = Gifu;
 			sourceTree = "<group>";
 		};
@@ -473,6 +476,7 @@
 				16BA299386CEE13F96A2BD39903E22FD /* Tappable.swift */,
 				F392367425EA744767BA7FA799C3B0AD /* Support Files */,
 			);
+			name = AloeStackView;
 			path = AloeStackView;
 			sourceTree = "<group>";
 		};
@@ -595,7 +599,7 @@
 			);
 			name = "Pods-clutch_iOS";
 			productName = "Pods-clutch_iOS";
-			productReference = F4835751DF2AFDD29DFDE765E10DAFE2 /* libPods-clutch_iOS.a */;
+			productReference = F4835751DF2AFDD29DFDE765E10DAFE2 /* Pods-clutch_iOS */;
 			productType = "com.apple.product-type.library.static";
 		};
 		E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */ = {

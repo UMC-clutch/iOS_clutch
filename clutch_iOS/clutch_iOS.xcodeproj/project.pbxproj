@@ -27,6 +27,8 @@
 		BE744AB62A4F2769005F8F4F /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AB52A4F2769005F8F4F /* MypageViewController.swift */; };
 		BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87AC8B2A5D9C610002E4C6 /* TransitionViewController.swift */; };
 		BE87AC8E2A5DA0B00002E4C6 /* SetFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87AC8D2A5DA0B00002E4C6 /* SetFont.swift */; };
+		BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9FF7972A6E9BD00000DA88 /* SmallTextInputView.swift */; };
+		BE9FF79A2A6E9F840000DA88 /* datePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */; };
 		BECEC6A32A5EDFDF00A177A0 /* faqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A22A5EDFDF00A177A0 /* faqViewController.swift */; };
 		BECEC6A62A5EF51C00A177A0 /* Banner1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A52A5EF51C00A177A0 /* Banner1View.swift */; };
 		BECEC6A82A5EF52500A177A0 /* Banner2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A72A5EF52500A177A0 /* Banner2View.swift */; };
@@ -92,6 +94,8 @@
 		BE744AB52A4F2769005F8F4F /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		BE87AC8B2A5D9C610002E4C6 /* TransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionViewController.swift; sourceTree = "<group>"; };
 		BE87AC8D2A5DA0B00002E4C6 /* SetFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetFont.swift; sourceTree = "<group>"; };
+		BE9FF7972A6E9BD00000DA88 /* SmallTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallTextInputView.swift; sourceTree = "<group>"; };
+		BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = datePickerViewController.swift; sourceTree = "<group>"; };
 		BECEC6A22A5EDFDF00A177A0 /* faqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faqViewController.swift; sourceTree = "<group>"; };
 		BECEC6A52A5EF51C00A177A0 /* Banner1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner1View.swift; sourceTree = "<group>"; };
 		BECEC6A72A5EF52500A177A0 /* Banner2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner2View.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				BE744AB32A4F26B1005F8F4F /* ReportViewController.swift */,
+				BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 			children = (
 				BE40DC6D2A6A67300007F588 /* CheckContainer.swift */,
 				BE40DC6B2A6A658F0007F588 /* TextInputView.swift */,
+				BE9FF7972A6E9BD00000DA88 /* SmallTextInputView.swift */,
 				BE40DC702A6A76620007F588 /* SampleViewController.swift */,
 			);
 			path = InfoInput;
@@ -663,6 +669,7 @@
 				BE744AB22A4F2695005F8F4F /* CalculateViewController.swift in Sources */,
 				BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */,
 				BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */,
+				BE9FF79A2A6E9F840000DA88 /* datePickerViewController.swift in Sources */,
 				BECEC6B72A6050F700A177A0 /* loginView.swift in Sources */,
 				BE744AB62A4F2769005F8F4F /* MypageViewController.swift in Sources */,
 				A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */,
@@ -674,6 +681,7 @@
 				BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */,
 				2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */,
 				BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */,
+				BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */,
 				BE40DC6E2A6A67300007F588 /* CheckContainer.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
 				BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */,

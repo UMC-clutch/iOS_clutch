@@ -38,9 +38,7 @@ class SampleScrollViewController: UIViewController, UIScrollViewDelegate {
         
         return button
     }()
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
