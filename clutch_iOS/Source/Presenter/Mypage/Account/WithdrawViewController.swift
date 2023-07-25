@@ -11,7 +11,6 @@ import UIKit
 class WithdrawViewController: UIViewController {
     // MARK: - UI ProPerties
     let navigationBar = UINavigationBar()
-    lazy var withdrawReason = "탈퇴 이유를 선택해주세요"
     
     lazy var checkLabel: UILabel = {
         let label = UILabel()
@@ -59,7 +58,7 @@ class WithdrawViewController: UIViewController {
     
     lazy var selectReasonButton:UIButton = {
         let button = UIButton()
-        button.setTitle(withdrawReason, for: .normal)
+        button.setTitle("탈퇴 이유를 선택해주세요", for: .normal)
         button.setTitleColor(.Clutch.textBlack, for: .normal)
         button.titleLabel?.font = .Clutch.baseMedium
         button.contentHorizontalAlignment = .left
@@ -89,10 +88,8 @@ class WithdrawViewController: UIViewController {
         button.addTarget(self, action: #selector(withdrawButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 11
         button.backgroundColor = .Clutch.bgGrey
-        // Highlighted 상태일 때 배경 및 텍스트 색상
-//        let iamge = image(withColor: .Clutch.mainDarkGreen!)
-//        button.setBackgroundImage(iamge, for: .highlighted)
-//        button.setTitleColor(.Clutch.mainWhite, for: .highlighted)
+        button.isEnabled = false
+        
         return button
     }()
     
@@ -100,7 +97,6 @@ class WithdrawViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-//        setData()
         setView()
         setConstraint()
     }
@@ -135,38 +131,36 @@ class WithdrawViewController: UIViewController {
         
         checkLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            //작은 폰에서 넘 아래로 감. 동적으로 맞춰는게 좋을까?
-            make.top.equalToSuperview().offset(131)
+            make.top.equalTo(navigationBar.snp.bottom).offset(39)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(234)
+            make.top.equalTo(checkLabel.snp.bottom).offset(36)
         }
         
         userNameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(18)
-            make.top.equalToSuperview().offset(267)
+            make.top.equalTo(nameLabel.snp.bottom).offset(10)
         }
 
         underLine1.snp.makeConstraints{ make in
             make.height.equalTo(2)
-            make.top.equalToSuperview().offset(293)
+            make.top.equalTo(userNameLabel.snp.bottom).offset(2)
             make.leading.equalToSuperview().offset(17)
-            make.trailingMargin.equalToSuperview().offset(17)
+            make.trailing.equalToSuperview().offset(-17)
             make.centerX.equalToSuperview()
         }
         
         reasonLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(335)
+            make.top.equalTo(underLine1.snp.bottom).offset(40)
         }
         
         selectReasonButton.snp.makeConstraints{ make in
             make.leading.equalToSuperview().offset(27)
             make.trailing.equalToSuperview().offset(-27)
-            make.top.equalToSuperview().offset(368)
-//            make.top.equalTo(reasonLabel.snp.bottom).offset(10)
+            make.top.equalTo(reasonLabel.snp.bottom).offset(10)
         }
         
         selectImageView.snp.makeConstraints{ make in
@@ -176,15 +170,15 @@ class WithdrawViewController: UIViewController {
         
         underLine2.snp.makeConstraints{ make in
             make.height.equalTo(2)
-            make.top.equalToSuperview().offset(394)
+            make.top.equalTo(selectReasonButton.snp.bottom).offset(2)
             make.leading.equalToSuperview().offset(17)
-            make.trailingMargin.equalToSuperview().offset(17)
+            make.trailing.equalToSuperview().offset(-17)
             make.centerX.equalToSuperview()
         }
         
         withdrawButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.trailingMargin.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
             make.centerX.equalToSuperview()
@@ -209,8 +203,13 @@ extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
     }
     
     func getSelectedCell(selected: String) {
-        withdrawReason = selected
-        selectReasonButton.setTitle(withdrawReason, for: .normal)
+        if selected == "" { return }
+        
+        selectReasonButton.setTitle(selected, for: .normal)
+        
+        withdrawButton.backgroundColor = .Clutch.mainDarkGreen
+        withdrawButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+        withdrawButton.isEnabled = true
     }
     
     @objc func withdrawButtonTapped(_ sender: UIButton) {
