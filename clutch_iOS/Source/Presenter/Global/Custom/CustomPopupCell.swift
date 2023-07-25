@@ -20,17 +20,12 @@ class CustomPopupCell: UICollectionViewCell {
         return label
     }()
     
-    // 체크표시 이미지 넣을 것인지?
-    // 셀 터치하면 바로 창 닫히게 할지
-//    public lazy var checkImageView: UILabel = {
-//        let label = UILabel()
-//        label.text = "" // MypageViewController.swift에서 처리
-//        label.textColor = UIColor.Clutch.textBlack
-//        label.numberOfLines = 1
-//        label.font = UIFont.Clutch.baseMedium
-//
-//        return label
-//    }()
+    lazy var checkImageView:UIImageView = {
+        let imageview = UIImageView(image: UIImage(named: "mypage"))
+        imageview.isHidden = true
+        
+        return imageview
+    }()
     
     //MARK: - Define Method
     override init(frame: CGRect) {
@@ -44,10 +39,9 @@ class CustomPopupCell: UICollectionViewCell {
     }
     
     func SetView() {
-//        [textLabel, nextpageLabel].forEach { view in
-//            self.addSubview(view)
-//        }
-        self.addSubview(textLabel)
+        [textLabel, checkImageView].forEach { view in
+            self.addSubview(view)
+        }
     }
     
     func Constraint() {
@@ -56,9 +50,9 @@ class CustomPopupCell: UICollectionViewCell {
             make.leading.equalToSuperview()
         }
         
-//        nextpageLabel.snp.makeConstraints { make in
-//            make.top.equalToSuperview()
-//            make.trailing.equalToSuperview()
-//        }
+        checkImageView.snp.makeConstraints { make in
+            make.centerY.equalTo(textLabel)
+            make.trailing.equalToSuperview()
+        }
     }
 }

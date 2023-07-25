@@ -11,6 +11,7 @@ import UIKit
 class WithdrawViewController: UIViewController {
     // MARK: - UI ProPerties
     let navigationBar = UINavigationBar()
+    lazy var withdrawReason = "탈퇴 이유를 선택해주세요"
     
     lazy var checkLabel: UILabel = {
         let label = UILabel()
@@ -56,6 +57,23 @@ class WithdrawViewController: UIViewController {
         return label
     }()
     
+    lazy var selectReasonButton:UIButton = {
+        let button = UIButton()
+        button.setTitle(withdrawReason, for: .normal)
+        button.setTitleColor(.Clutch.textBlack, for: .normal)
+        button.titleLabel?.font = .Clutch.baseMedium
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(selectReasonButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var selectImageView:UIImageView = {
+        let imageview = UIImageView(image: UIImage(named: "mypage"))
+        
+        return imageview
+    }()
+    
     lazy var underLine2: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.Clutch.bgGrey
@@ -89,7 +107,7 @@ class WithdrawViewController: UIViewController {
         
     //MARK: - Set UI
     func setView() {
-        [navigationBar, checkLabel, nameLabel, userNameLabel, underLine1, reasonLabel, underLine2, withdrawButton].forEach { view in
+        [navigationBar, checkLabel, nameLabel, userNameLabel, underLine1, reasonLabel, selectReasonButton, selectImageView, underLine2, withdrawButton].forEach { view in
             self.view.addSubview(view)
         }
         setNavigationBar()
@@ -144,6 +162,18 @@ class WithdrawViewController: UIViewController {
             make.top.equalToSuperview().offset(335)
         }
         
+        selectReasonButton.snp.makeConstraints{ make in
+            make.leading.equalToSuperview().offset(27)
+            make.trailing.equalToSuperview().offset(-27)
+            make.top.equalToSuperview().offset(368)
+//            make.top.equalTo(reasonLabel.snp.bottom).offset(10)
+        }
+        
+        selectImageView.snp.makeConstraints{ make in
+            make.trailing.equalToSuperview().offset(-27)
+            make.centerY.equalTo(selectReasonButton)
+        }
+        
         underLine2.snp.makeConstraints{ make in
             make.height.equalTo(2)
             make.top.equalToSuperview().offset(394)
@@ -162,11 +192,25 @@ class WithdrawViewController: UIViewController {
     }
 }
 
-extension WithdrawViewController: CustomAlertDelegate {
+extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
     // MARK: - Define Method
     @objc func backButtonTapped() {
         // 이전 view로 돌아가는 코드 필요
         print("Back Button Tapped")
+    }
+    
+    @objc func selectReasonButtonTapped() {
+        showCustomPopup(popupTitle: "탈퇴 사유를 알려주세요",
+                        popupList: ["서비스 이용이 불편함",
+                                    "문제가 해결되어 이용 의사가 없음",
+                                    "개인정보 및 보안 우려",
+                                    "서비스 대상이 아님"]
+        )
+    }
+    
+    func getSelectedCell(selected: String) {
+        withdrawReason = selected
+        selectReasonButton.setTitle(withdrawReason, for: .normal)
     }
     
     @objc func withdrawButtonTapped(_ sender: UIButton) {
