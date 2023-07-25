@@ -9,23 +9,47 @@ import UIKit
 import SnapKit
 
 
-class ReportViewController: UIViewController, UIScrollViewDelegate {
-    
-    //스크롤을 위한 스크롤 뷰
-    lazy var scrollview:UIScrollView = {
-        let view = UIScrollView()
+class ReportViewController: UIViewController{
+    //MARK: - UI ProPerties
+    lazy var titleLabel:UILabel = {
+        let label = UILabel()
+        label.text = "건물 관련 정보를\n입력해주세요"
+        label.numberOfLines = 2
+        label.font = .Clutch.headtitlebold
+        label.textColor = .Clutch.textBlack
         
-        return view
+        return label
     }()
     
-    //스크롤 뷰 안에 들어갈 내용을 표시할 뷰
-    let contentView: UIView = {
-        let view = UIView()
+    let buildingNameLabel = TextInputView()
+    let mortgageDateLabel = TextInputView()
+    
+    lazy var dateButton:UIButton = {
+        let button = UIButton()
+        let iamge = UIImage(named: "btn_Calendar")
+        button.setBackgroundImage(iamge, for: .normal)
+        button.addTarget(self, action: #selector(dateButtonTapped), for: .touchUpInside)
         
-        return view
+        return button
     }()
     
-    //스크롤 기능을 탑재한 버튼
+    let addressLabel = TextInputView()
+    let buildingNum = SmallTextInputView()
+    let unitNum = SmallTextInputView()
+    
+    lazy var buildingTypeLabel:UILabel = {
+        let label = UILabel()
+        label.text = "건물 유형"
+        label.font = .Clutch.smallMedium
+        label.textColor = .Clutch.textDarkGrey
+        
+        return label
+    }()
+    
+    let apartType = CheckContainer()
+    let multiunitType = CheckContainer()
+    let commercialType = CheckContainer()
+    
     lazy var nextButton:UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
@@ -42,63 +66,156 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
     }()
     
     
-    
+    //MARK: - Define Method
     override func viewDidLoad() {
         super.viewDidLoad()
-        setView()
-        constraints()
+        SetView()
+        Constraint()
     }
-    //뷰관련 셋
-    func setView() {
+    
+    //MARK: - Properties
+    
+    
+    
+    
+    //MARK: - Set Ui
+    func SetView() {
+        TextInputViewSet()
+        CheckContainerSet()
+        SmallTextInputViewSet()
         addsubview()
-        setscrollview()
-        self.view.backgroundColor = .Clutch.mainWhite
+        
+        self.view.backgroundColor = .white
     }
-    //addsubview
+    
     func addsubview() {
-        [scrollview, nextButton].forEach { view in
+        let views:[UIView] = [titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, buildingNum, unitNum, commercialType, buildingTypeLabel, apartType, multiunitType, commercialType, nextButton]
+        
+        views.forEach { view in
             self.view.addSubview(view)
         }
-        
-        [contentView].forEach { view in
-            scrollview.addSubview(view)
-        }
-        
-        [].forEach { view in
-            contentView.addSubview(view)
-        }
-    }
-    //스크롤 뷰관련 셋
-    func setscrollview() {
-        scrollview.delegate = self
-        
     }
     
-    func constraints() {
-        //스크롤 뷰 오토레이아웃
-        scrollview.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+    func TextInputViewSet() {
+        buildingNameLabel.textInputLabel.text = "건물명"
+        mortgageDateLabel.textInputLabel.text = "근저당 설정 기준일"
+        addressLabel.textInputLabel.text = "주소"
+    }
+    
+    func CheckContainerSet() {
+        apartType.checkLabel.text = "아파트/오피스텔"
+        multiunitType.checkLabel.text = "다가구"
+        commercialType.checkLabel.text = "상가"
+    }
+    
+    func SmallTextInputViewSet() {
+        buildingNum.textInputLabel.isHidden = true
+        unitNum.textInputLabel.isHidden = true
+    }
+    
+    func Constraint() {
+        let leading = 16
+        let top = 40
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalToSuperview().offset(50)
         }
-        //contentView 오토레이아웃
-        contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.width.equalTo(view.snp.width)
-            make.height.equalTo(view.frame.height * 3)
+        
+        buildingNameLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(titleLabel.snp.bottom).offset(top)
         }
-        //버튼 오토레이아웃
+        
+        mortgageDateLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(buildingNameLabel.snp.bottom).offset(top)
+        }
+        
+        dateButton.snp.makeConstraints { make in
+            make.trailing.equalTo(mortgageDateLabel.snp.trailing)
+            make.bottom.equalTo(mortgageDateLabel.underLine.snp.bottom).offset(-5)
+            make.size.equalTo(20)
+        }
+        
+        addressLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(mortgageDateLabel.snp.bottom).offset(top)
+        }
+        
+        buildingNum.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(addressLabel.snp.bottom)
+        }
+        
+        unitNum.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-leading)
+            make.top.equalTo(addressLabel.snp.bottom)
+            
+        }
+        
+        buildingTypeLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(buildingNum.snp.bottom).offset(top)
+            
+        }
+        
+        apartType.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(buildingTypeLabel.snp.bottom).offset(12)
+            
+        }
+        
+        multiunitType.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(apartType.snp.bottom).offset(20)
+        }
+        
+        commercialType.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(multiunitType.snp.bottom).offset(20)
+        }
+        
         nextButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(commercialType.snp.bottom).offset(40)
             make.width.equalTo(360)
             make.height.equalTo(50)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
-            make.centerX.equalToSuperview()
         }
+        
+        
     }
     
-    // 버튼 클릭 시 스크롤되도록 하는 메서드
     @objc func ButtonTapped(_ sender: UIButton) {
-        // 다음 버튼 누르면 얼마나 스크롤될 지 offset값 결정
-        let offset = CGPoint(x: 0, y: scrollview.contentSize.height / 3 ) // height의 1/3 만큼 스크롤
-        scrollview.setContentOffset(offset, animated: true)
+        let VC = SampleScrollViewController()
+        present(VC, animated: true)
+        
     }
+    
+    @objc func dateButtonTapped(_ sender: UIButton) {
+        let VC = datePickerViewController()
+        VC.modalPresentationStyle = .overCurrentContext
+        VC.modalTransitionStyle = .crossDissolve
+        
+        // ReportViewController를 datePickerViewController의 델리게이트로 설정합니다.
+        VC.delegate = self
+        
+        present(VC, animated: true)
+    }
+    
     
 }
+
+extension ReportViewController: DatePickerDelegate {
+    func didSelectDate(_ date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        
+        let formattedDate = dateFormatter.string(from: date)
+        mortgageDateLabel.textInputTextField.text = formattedDate
+    }
+}
+
+protocol DatePickerDelegate: AnyObject {
+    func didSelectDate(_ date: Date)
+}
+

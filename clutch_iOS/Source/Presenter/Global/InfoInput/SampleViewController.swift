@@ -12,13 +12,15 @@ class SampleViewController: UIViewController {
     let textinput2 = TextInputView()
     let textinput = TextInputView()
     let ui = CheckContainer()
-
+    let smallInput = SmallTextInputView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .Clutch.mainWhite
         self.view.addSubview(ui)
         self.view.addSubview(textinput)
         self.view.addSubview(textinput2)
+        self.view.addSubview(smallInput)
         constraint()
     }
     
@@ -37,6 +39,11 @@ class SampleViewController: UIViewController {
         textinput2.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalTo(300)
+        }
+        
+        smallInput.snp.makeConstraints { make in
+            make.leading.equalTo(50)
+            make.centerY.equalTo(500)
         }
     }
 

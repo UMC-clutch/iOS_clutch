@@ -1,16 +1,13 @@
 //
-//  CalculateView.swift
+//  SmallTextInputView.swift
 //  clutch_iOS
 //
-//  Created by Dongwan Ryoo on 2023/07/21.
+//  Created by Dongwan Ryoo on 2023/07/24.
 //
 
 import UIKit
-import SnapKit
-// 텍스트 인풋
-// 다 만들었으니 뷰에 추가만 하면 됨
 
-class TextInputView: UIView {
+class SmallTextInputView: UIView {
     //MARK: - UI ProPerties
     lazy var textInputLabel:UILabel = {
         let label = UILabel()
@@ -36,6 +33,17 @@ class TextInputView: UIView {
         
         return view
     }()
+    
+    lazy var leftLabel:UILabel = {
+        let label = UILabel()
+        label.text = "동"
+        label.font = UIFont.Clutch.subheadRegular
+        label.textColor = .Clutch.textBlack
+        
+        return label
+    }()
+    
+    
     
     
     //MARK: - Define Method
@@ -63,14 +71,14 @@ class TextInputView: UIView {
     }
     
     func addsubview() {
-        [textInputLabel, textInputTextField, underLine].forEach { view in
+        [textInputLabel, textInputTextField, leftLabel, underLine].forEach { view in
             self.addSubview(view)
         }
     }
     
     func Constraint() {
         self.snp.makeConstraints { make in
-            make.width.equalTo(360)
+            make.width.equalTo(160)
             make.height.equalTo(56)
         }
         
@@ -85,11 +93,16 @@ class TextInputView: UIView {
             make.width.equalToSuperview()
         }
         
+        leftLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(underLine.snp.bottom)
+        }
+        
         underLine.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(textInputTextField.snp.bottom)
-            make.width.equalTo(360)
-            make.height.equalTo(2) // underLine 뷰의 높이를 고정 값인 2로 설정
+            make.width.equalTo(160)
+            make.height.equalTo(2) 
         }
         
     }
@@ -98,7 +111,7 @@ class TextInputView: UIView {
 }
 
 
-extension TextInputView:UITextFieldDelegate {
+extension SmallTextInputView:UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         underLine.backgroundColor = .Clutch.mainGreen
         textInputLabel.textColor = .Clutch.mainGreen
