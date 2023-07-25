@@ -8,19 +8,28 @@
 import Foundation
 import UIKit
 
+// Custom Alert의 취소/확인 버튼 동작 지정
+protocol CustomAlertDelegate {
+    func cancel()   // 취소 버튼 메소드
+    func confirm()  // 액션 버튼 메소드
+    func done()     // 확인 버튼 메소드
+}
+
 enum AlertType {
-    case onlyConfirm    // 확인 버튼
-    case canCancel      // 확인 + 취소 버튼
+    case canCancel  // 액션 + 취소 버튼
+    case done   // 확인 버튼
 }
 
 class CustomAlertViewController: UIViewController {
     
+    var delegate: CustomAlertDelegate?
+    
     //MARK: - UI ProPerties
-
-    var alertTitle = "(alertTitle)"
-    var alertContext = "(alertContext)"
-    var cancelText = "(cancelText)"
-    var confirmText = "(confirmText)"
+    lazy var alertType = AlertType.canCancel
+    lazy var alertTitle = "(alertTitle)"
+    lazy var alertContext = "(alertContext)"
+    lazy var cancelText = "(cancelText)"
+    lazy var confirmText = "(confirmText)"
     
     lazy var container: UIView = {
         let view = UIView()
@@ -62,20 +71,18 @@ class CustomAlertViewController: UIViewController {
         return button
     }()
     
-    lazy var confirmButton: UIButton = {
+    lazy var actionButton: UIButton = {
         let button = UIButton()
         button.setTitle(confirmText, for: .normal)
         button.titleLabel?.font = .Clutch.smallMedium
         button.setTitleColor(.Clutch.mainWhite, for: .normal)
         button.backgroundColor = .Clutch.mainDarkGreen
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
         
         return button
     }()
     
     //MARK: - Define Method
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
@@ -84,20 +91,43 @@ class CustomAlertViewController: UIViewController {
     
     func setView() {
         self.view.backgroundColor = .black.withAlphaComponent(0.5)
-
-        [titleLabel, contextLabel, cancelButton, confirmButton].forEach { view
-            in self.container.addSubview(view) }
         self.view.addSubview(container)
+        self.container.addSubview(titleLabel)
+        self.container.addSubview(contextLabel)
+        self.container.addSubview(actionButton)
+        
+        // AlertType에 따른 버튼 뷰 처리
+        switch self.alertType {
+        case .canCancel:
+            self.container.addSubview(cancelButton)
+            self.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+            
+        case .done:
+            cancelButton.isHidden = true
+            self.actionButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        }
+        
     }
     
+    // 취소 버튼 메소드
     @objc func cancelButtonTapped() {
-        //취소 버튼 이벤트 처리
-        print("Cancel Button Tapped")
+        self.dismiss(animated: true) {
+            self.delegate?.cancel()
+        }
     }
     
-    @objc func confirmButtonTapped() {
-        //확인 버튼 이벤트 처리
-        print("Confirm Button Tapped")
+    // 액션 버튼 메소드
+    @objc func actionButtonTapped() {
+        self.dismiss(animated: true) {
+            self.delegate?.confirm()
+        }
+    }
+    
+    // 확인 버튼 메소드
+    @objc func doneButtonTapped() {
+        self.dismiss(animated: true) {
+            self.delegate?.done()
+        }
     }
     
     func setConstraint() {
@@ -119,18 +149,55 @@ class CustomAlertViewController: UIViewController {
             make.top.equalToSuperview().offset(76)
         }
         
-        cancelButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.width.equalTo(confirmButton)
-            make.trailing.equalTo(confirmButton.snp.leading).offset(-12)
-            make.height.equalTo(40)
-            make.top.equalToSuperview().offset(124)
-        }
-        
-        confirmButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(40)
-            make.top.equalToSuperview().offset(124)
+        // AlertType에 따른 버튼 레이아웃 처리
+        switch self.alertType {
+        case .canCancel:
+            cancelButton.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(20)
+                make.width.equalTo(actionButton)
+                make.trailing.equalTo(actionButton.snp.leading).offset(-12)
+                make.height.equalTo(40)
+                make.top.equalToSuperview().offset(124)
+            }
+            
+            actionButton.snp.makeConstraints { make in
+                make.trailing.equalToSuperview().offset(-20)
+                make.height.equalTo(40)
+                make.top.equalToSuperview().offset(124)
+            }
+            
+        case .done:
+            actionButton.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(20)
+                make.trailing.equalToSuperview().offset(-20)
+                make.height.equalTo(40)
+                make.top.equalToSuperview().offset(124)
+            }
         }
     }
 }
+
+// CustomAlert을 간결하게 재사용하기 위한 메소드 구현
+extension CustomAlertDelegate where Self: UIViewController {
+    func showCustomAlert(
+        alertType: AlertType,
+        alertTitle : String,
+        alertContext : String,
+        cancelText : String? = "취소",
+        confirmText : String
+    ) {
+        lazy var customAlertViewController = CustomAlertViewController()
+        customAlertViewController.delegate = self
+        
+        customAlertViewController.modalTransitionStyle = .crossDissolve
+        customAlertViewController.modalPresentationStyle = .overFullScreen
+        customAlertViewController.alertType = alertType
+        customAlertViewController.alertTitle = alertTitle
+        customAlertViewController.alertContext = alertContext
+        customAlertViewController.cancelText = cancelText ?? "취소"
+        customAlertViewController.confirmText = confirmText
+        
+        self.present(customAlertViewController, animated: true, completion: nil)
+    }
+}
+

@@ -320,7 +320,7 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
         } else if collectionView == collectionView2 {
             switch indexPath.row {
             case 0:
-                present(vc, animated: true) // "앱 버전" 페이지로 이동
+                present(SampleViewController(), animated: true) // "앱 버전" 페이지로 이동
             case 1:
                 let url:String = "https://www.naver.com/"
                 openURL(url)
