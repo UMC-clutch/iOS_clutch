@@ -33,7 +33,7 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
     lazy var closeButton: UIButton = {
         let button = UIButton()
         // 삭제 버튼 이미지로 변경 필요
-        button.setImage(UIImage(named: "mypage"), for: .normal)
+        button.setImage(UIImage(named: "btn_Close_round"), for: .normal)
         button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         return button
     }()

@@ -68,7 +68,8 @@ class WithdrawViewController: UIViewController {
     }()
     
     lazy var selectImageView:UIImageView = {
-        let imageview = UIImageView(image: UIImage(named: "mypage"))
+        let imageview = UIImageView(image: UIImage(named: "btn_arrow_small"))
+        imageview.transform = imageview.transform.rotated(by: .pi*0.5)
         
         return imageview
     }()
@@ -112,7 +113,7 @@ class WithdrawViewController: UIViewController {
     func setNavigationBar() {
         let navigationItem = UINavigationItem()
         let backButton = UIBarButtonItem(
-            image:UIImage(systemName: "chevron.backward"),
+            image:UIImage(named: "btn_arrow_big"),
             style: .plain, target: self,
             action: #selector(backButtonTapped))
         backButton.tintColor = .black

@@ -21,7 +21,7 @@ class CustomPopupCell: UICollectionViewCell {
     }()
     
     lazy var checkImageView:UIImageView = {
-        let imageview = UIImageView(image: UIImage(named: "mypage"))
+        let imageview = UIImageView(image: UIImage(named: "Done_round"))
         imageview.isHidden = true
         
         return imageview
