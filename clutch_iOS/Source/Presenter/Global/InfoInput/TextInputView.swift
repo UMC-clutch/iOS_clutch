@@ -7,9 +7,6 @@
 
 import UIKit
 import SnapKit
-
-
-
 // 텍스트 인풋
 // 다 만들었으니 뷰에 추가만 하면 됨
 
@@ -125,3 +122,4 @@ extension TextInputView:UITextFieldDelegate {
         return true
     }
 }
+

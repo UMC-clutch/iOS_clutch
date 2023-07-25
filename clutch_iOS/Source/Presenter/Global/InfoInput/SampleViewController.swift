@@ -13,7 +13,7 @@ class SampleViewController: UIViewController {
     let textinput = TextInputView()
     let ui = CheckContainer()
     let smallInput = SmallTextInputView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .Clutch.mainWhite
