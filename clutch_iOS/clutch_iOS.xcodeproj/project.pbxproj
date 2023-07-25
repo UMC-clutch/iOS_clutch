@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */; };
+		0912CBAD2A68C60C00139593 /* CustomPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */; };
+		093EB0BC2A6F7DD400AC1F71 /* CustomPopupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */; };
 		2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */; };
 		5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */; };
 		A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207BC852A6665BC002AD898 /* InquiryViewController.swift */; };
@@ -70,6 +72,8 @@
 /* Begin PBXFileReference section */
 		029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.release.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupViewController.swift; sourceTree = "<group>"; };
+		093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupCell.swift; sourceTree = "<group>"; };
 		2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
 		A207BC852A6665BC002AD898 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
 		A223575E2A65279900915DF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */,
+				0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */,
+				093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -624,7 +630,9 @@
 				BE744AB42A4F26B1005F8F4F /* ReportViewController.swift in Sources */,
 				A223575F2A65279900915DF0 /* ProfileViewController.swift in Sources */,
 				BED645CD2A4D6845005106D8 /* clutch_iOS.xcdatamodeld in Sources */,
+				0912CBAD2A68C60C00139593 /* CustomPopupViewController.swift in Sources */,
 				BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */,
+				093EB0BC2A6F7DD400AC1F71 /* CustomPopupCell.swift in Sources */,
 				BECEC6B32A6016BB00A177A0 /* BaseViewController.swift in Sources */,
 				BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */,
 				0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */,
