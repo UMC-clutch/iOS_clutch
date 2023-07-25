@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
-import DropDown
+//import DropDown
 
 class InquiryViewController: UIViewController {
     // MARK: - UI ProPerties
@@ -44,7 +44,7 @@ class InquiryViewController: UIViewController {
     // 텍스트뷰
     public lazy var textView: UITextView = {
         let textView = UITextView()
-        textView.text = "어떤 내용이 궁금하신가요?"
+        textView.text = ""
         textView.font = UIFont.Clutch.baseMedium
         textView.textColor = UIColor.Clutch.textDarkGrey
         textView.backgroundColor = UIColor.Clutch.bgGrey
@@ -56,8 +56,17 @@ class InquiryViewController: UIViewController {
         return textView
     }()
     
-    // 문의하기 버튼
-    
+    // UIButton 선언("문의하기")
+    lazy var checkButton: UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = .Clutch.bgGrey
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 10
+        btn.titleLabel?.font = .Clutch.subheadMedium
+        btn.setTitleColor(.Clutch.textDarkGrey, for: .normal)
+        btn.setTitle("문의하기", for: .normal)
+        return btn
+    }()
     
     // MARK: - Define Method
     override func viewDidLoad() {
@@ -70,7 +79,7 @@ class InquiryViewController: UIViewController {
     
     //MARK: - Set Ui
     func setView() {
-        [navigationBar, nameInput.titleLabel, nameInput.textField, nameInput.underLine, categoryInput.titleLabel, categoryInput.underLine, inquiryInput.titleLabel, textView].forEach { view in
+        [navigationBar, nameInput.titleLabel, nameInput.textField, nameInput.underLine, categoryInput.titleLabel, categoryInput.underLine, inquiryInput.titleLabel, textView, checkButton].forEach { view in
             self.view.addSubview(view)
         }
         navigationBarSet()
@@ -165,6 +174,13 @@ class InquiryViewController: UIViewController {
             make.height.equalTo(200)
             make.top.equalToSuperview().offset(369)
             make.centerX.equalToSuperview()
+        }
+        
+        checkButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(700)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(361)
+            make.height.equalTo(53)
         }
         
     }
