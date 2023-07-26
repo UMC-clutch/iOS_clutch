@@ -469,7 +469,6 @@
 				BED645BB2A4D6845005106D8 /* Sources */,
 				BED645BC2A4D6845005106D8 /* Frameworks */,
 				BED645BD2A4D6845005106D8 /* Resources */,
-				7D0F0999E4B454AD8EEE7B82 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -587,23 +586,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7D0F0999E4B454AD8EEE7B82 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		93B9C6AD5FA2BB90B8074649 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
