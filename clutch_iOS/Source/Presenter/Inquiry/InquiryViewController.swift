@@ -40,13 +40,16 @@ class InquiryViewController: UIViewController {
 
     
     // 텍스트뷰
+    lazy var placeholder = "어떤 내용이 궁금하신가요?"
+    
     public lazy var textView: UITextView = {
         let textView = UITextView()
-        textView.text = ""
+        textView.delegate = self
+        textView.text = placeholder
         textView.font = UIFont.Clutch.baseMedium
         textView.textColor = UIColor.Clutch.textDarkGrey
         textView.backgroundColor = UIColor.Clutch.bgGrey
-//        textView.textInputView.backgroundColor = UIColor.Clutch.bgGrey
+        textView.layer.cornerRadius = 8
         textView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         textView.textContainerInset = .init(top: 18, left: 23, bottom: 18, right: 23)
         textView.scrollIndicatorInsets = .init(top: 18, left: 10, bottom: 18, right: 23)
@@ -189,7 +192,7 @@ class InquiryViewController: UIViewController {
     }
 }
 
-extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate {
+extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITextViewDelegate {
     // MARK: - Define Method
     @objc func selectTypeButtonTapped() {
         showCustomPopup(popupTitle: "문의 유형",
@@ -247,4 +250,23 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate {
         print("custom done Button Tapped")
     }
     
+    //TextView
+    func textViewDidBeginEditing(_ textView: UITextView) {
+            /// 플레이스홀더
+            if textView.text.isEmpty {
+                self.textView.textColor = UIColor.Clutch.textDarkGrey
+                self.textView.text = placeholder
+            } else if textView.text == placeholder {
+                self.textView.textColor = .Clutch.textBlack
+                self.textView.text = nil
+            }
+        }
+        
+    func textViewDidEndEditing(_ textView: UITextView) {
+        /// 플레이스홀더
+        if textView.text.isEmpty {
+            self.textView.textColor = UIColor.Clutch.textDarkGrey
+            self.textView.text = placeholder
+        }
+    }
 }
