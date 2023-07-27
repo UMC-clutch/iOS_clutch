@@ -79,7 +79,7 @@ class InquiryViewController: UIViewController {
     
     //MARK: - Set Ui
     func setView() {
-        [navigationBar, nameInput.titleLabel, nameInput.textField, nameInput.underLine, categoryInput.titleLabel, categoryInput.underLine, inquiryInput.titleLabel, textView, checkButton].forEach { view in
+        [navigationBar, nameInput.titleLabel, nameInput.textLabel, nameInput.underLine, categoryInput.titleLabel, categoryInput.underLine, inquiryInput.titleLabel, textView, checkButton].forEach { view in
             self.view.addSubview(view)
         }
         navigationBarSet()
@@ -87,13 +87,13 @@ class InquiryViewController: UIViewController {
     
     func setData() {
         nameInput.titleLabel.text = "이메일"
-        nameInput.textField.attributedPlaceholder = NSAttributedString(string: "email@example.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.textDarkGrey ?? .black])
+        nameInput.textLabel.text = "email@example.com"
         
         categoryInput.titleLabel.text = "문의 유형"
-        categoryInput.textField.attributedPlaceholder = NSAttributedString(string: "카테고리를 선택해주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.textDarkGrey ?? .black])
+        categoryInput.textLabel.text = "카테고리를 선택해주세요"
         
         inquiryInput.titleLabel.text = "문의 내용"
-        inquiryInput.textField.attributedPlaceholder = NSAttributedString(string: "내용을 적어주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.textDarkGrey ?? .black])
+        inquiryInput.textLabel.text = "내용을 적어주세요"
     }
     
     func navigationBarSet() {
@@ -132,7 +132,7 @@ class InquiryViewController: UIViewController {
             make.top.equalToSuperview().offset(142)
         }
         
-        nameInput.textField.snp.makeConstraints { make in
+        nameInput.textLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(171)
         }

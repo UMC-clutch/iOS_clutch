@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController {
     let nameInput = InputScreen()
     let mailInput = InputScreen()
     let phoneNumberInput = InputScreen()
-        
+    
     // MARK: - Define Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,25 +27,26 @@ class ProfileViewController: UIViewController {
         setView()
         Constraint()
     }
-        
+    
     //MARK: - Set Ui
     func setView() {
-        [navigationBar, nameInput.titleLabel, nameInput.textField, nameInput.underLine, mailInput.titleLabel, mailInput.textField, mailInput.underLine, phoneNumberInput.titleLabel, phoneNumberInput.textField, phoneNumberInput.underLine].forEach { view in
+        [navigationBar, nameInput.titleLabel, nameInput.textLabel, nameInput.underLine, mailInput.titleLabel, mailInput.textLabel, mailInput.underLine, phoneNumberInput.titleLabel, phoneNumberInput.textLabel, phoneNumberInput.underLine].forEach { view in
             self.view.addSubview(view)
         }
-
+        
         navigationBarSet()
     }
     
     func setData() {
         nameInput.titleLabel.text = "이름"
-        nameInput.textField.attributedPlaceholder = NSAttributedString(string: "조혜원", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.textDarkGrey ?? .black])
+        nameInput.textLabel.text = "조혜원" // -> 회원 정보 데이터로 처리
         
         mailInput.titleLabel.text = "이메일"
-        mailInput.textField.attributedPlaceholder = NSAttributedString(string: "clutch@kakao.com", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.textDarkGrey ?? .black])
+        mailInput.textLabel.text = "clutch@kakao.com"
         
         phoneNumberInput.titleLabel.text = "휴대폰 번호"
-        phoneNumberInput.textField.attributedPlaceholder = NSAttributedString(string: "010-1234-5678", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.textDarkGrey ?? .black])
+        phoneNumberInput.textLabel.text = "010-1234-5679"
+        
     }
     
     func navigationBarSet() {
@@ -57,7 +58,7 @@ class ProfileViewController: UIViewController {
         navigationBar.setItems([navigationItem], animated: false)
         navigationBar.barTintColor = .Clutch.mainWhite // 배경색 변경
         navigationBar.shadowImage = UIImage() // 테두리 없애기
-        self.navigationBar.tintColor = .black // 백버튼 색깔 변경  
+        self.navigationBar.tintColor = .black // 백버튼 색깔 변경
         
         let titleTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.black, // 제목 텍스트 색상
@@ -84,7 +85,7 @@ class ProfileViewController: UIViewController {
             make.top.equalToSuperview().offset(169)
         }
         
-        nameInput.textField.snp.makeConstraints { make in
+        nameInput.textLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(196)
         }
@@ -101,7 +102,7 @@ class ProfileViewController: UIViewController {
             make.top.equalToSuperview().offset(268)
         }
         
-        mailInput.textField.snp.makeConstraints { make in
+        mailInput.textLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(297)
         }
@@ -118,7 +119,7 @@ class ProfileViewController: UIViewController {
             make.top.equalToSuperview().offset(369)
         }
         
-        phoneNumberInput.textField.snp.makeConstraints { make in
+        phoneNumberInput.textLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(402)
         }
@@ -133,3 +134,5 @@ class ProfileViewController: UIViewController {
     }
     
 }
+
+
