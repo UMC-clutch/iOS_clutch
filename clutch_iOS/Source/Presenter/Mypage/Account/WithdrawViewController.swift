@@ -10,13 +10,14 @@ import UIKit
 
 class WithdrawViewController: UIViewController {
     // MARK: - UI ProPerties
-    let navigationBar = UINavigationBar()
+    lazy var navigationBar = UINavigationBar()
     
-    lazy var checkLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "클러치를 탈퇴하기 전에\n확인해주세요"
         label.font = .Clutch.headtitlebold
         label.numberOfLines = 2
+        label.textColor = .Clutch.textBlack
         
         return label
     }()
@@ -104,7 +105,7 @@ class WithdrawViewController: UIViewController {
         
     //MARK: - Set UI
     func setView() {
-        [navigationBar, checkLabel, nameLabel, userNameLabel, underLine1, reasonLabel, selectReasonButton, selectImageView, underLine2, withdrawButton].forEach { view in
+        [navigationBar, titleLabel, nameLabel, userNameLabel, underLine1, reasonLabel, selectReasonButton, selectImageView, underLine2, withdrawButton].forEach { view in
             self.view.addSubview(view)
         }
         setNavigationBar()
@@ -130,14 +131,14 @@ class WithdrawViewController: UIViewController {
             make.leading.equalToSuperview()
         }
         
-        checkLabel.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.top.equalTo(navigationBar.snp.bottom).offset(39)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalTo(checkLabel.snp.bottom).offset(36)
+            make.top.equalTo(titleLabel.snp.bottom).offset(36)
         }
         
         userNameLabel.snp.makeConstraints { make in

@@ -17,8 +17,8 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
     var delegate: CustomPopupDelegate?
     
     //MARK: - UI ProPerties
-    
-    lazy var popupTitle = "(alertTitle)"
+
+    lazy var popupTitle = "(Popup Title)"
     lazy var popupList: [String] = ["cell1", "cell2", "cell3", "cell4"]
     lazy var selectedCell = ""
     
@@ -30,9 +30,17 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
         return view
     }()
     
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = popupTitle
+        label.font = .Clutch.subtitleBold
+        label.textColor = .Clutch.textBlack
+        
+        return label
+    }()
+    
     lazy var closeButton: UIButton = {
         let button = UIButton()
-        // 삭제 버튼 이미지로 변경 필요
         button.setImage(UIImage(named: "btn_Close_round"), for: .normal)
         button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         return button
@@ -44,14 +52,6 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
         view.backgroundColor = .Clutch.mainWhite
         
         return view
-    }()
-    
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = popupTitle
-        label.font = .Clutch.subtitleBold
-        
-        return label
     }()
     
     //MARK: - Define Method
@@ -101,10 +101,12 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
     // 닫기 버튼 동작
     @objc func closeButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true) {
+            // delegate에게 매개변수로 선택된 cell의 text를 전달
             self.delegate?.getSelectedCell(selected: self.selectedCell)
         }
     }
     
+    // collectionview 관련 설정
     func setCollectionview() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -113,10 +115,12 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
         collectionView.register(CustomPopupCell.self, forCellWithReuseIdentifier: "CustomPopupCell")
     }
     
+    // cell 개수 설정
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
     
+    // cell에 들어갈 data 설정
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomPopupCell", for: indexPath) as? CustomPopupCell else {
             return UICollectionViewCell()
@@ -126,12 +130,12 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
         return cell
     }
     
+    // cell 크기 및 간격 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width: CGFloat = collectionView.frame.width
         let height = collectionView.frame.height / 4
-        let size = CGSize(width: width, height: height)
-        return size
+        return CGSize(width: width, height: height)
     }
     
     // cell 선택시 동작
@@ -152,7 +156,7 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
     }
 }
 
-// CustomAlert을 간결하게 재사용하기 위한 메소드 구현
+// CustomPopup을 간결하게 재사용하기 위한 메소드 구현
 extension CustomPopupDelegate where Self: UIViewController {
     func showCustomPopup(
         popupTitle: String,
