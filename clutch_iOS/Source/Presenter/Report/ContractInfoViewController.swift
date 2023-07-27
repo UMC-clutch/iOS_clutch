@@ -51,6 +51,8 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     
     lazy var residentCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0 // 상하간격
+        layout.minimumInteritemSpacing = 0 // 좌우간격
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .Clutch.mainWhite
         
@@ -68,6 +70,8 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     
     var interventionCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0 // 상하간격
+        layout.minimumInteritemSpacing = 0 // 좌우간격
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .Clutch.mainWhite
         
@@ -85,6 +89,8 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     
     var dividenCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0 // 상하간격
+        layout.minimumInteritemSpacing = 0 // 좌우간격
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .Clutch.mainWhite
         
@@ -177,26 +183,26 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         
         residentLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalTo(titleLabel.snp.bottom).offset(44)
+            make.top.equalTo(titleLabel.snp.bottom).offset(47)
         }
         
         residentCollectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalTo(residentLabel.snp.bottom).offset(12)
-            make.height.equalTo(67)
+            make.top.equalTo(residentLabel.snp.bottom).offset(3.5)
+            make.height.equalTo(88)
         }
         
         interventionLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalTo(residentCollectionView.snp.bottom).offset(44)
+            make.top.equalTo(residentCollectionView.snp.bottom).offset(35)
         }
         
         interventionCollectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalTo(interventionLabel.snp.bottom).offset(12)
-            make.height.equalTo(67)
+            make.top.equalTo(interventionLabel.snp.bottom).offset(3.5)
+            make.height.equalTo(88)
         }
         
         dividenLabel.snp.makeConstraints { make in
@@ -207,15 +213,15 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         dividenCollectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalTo(dividenLabel.snp.bottom).offset(12)
-            make.height.equalTo(67)
+            make.top.equalTo(dividenLabel.snp.bottom).offset(3.5)
+            make.height.equalTo(88)
         }
         
         //버튼 오토레이아웃
         submitButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(50)
+            make.height.equalTo(53)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
         }
         

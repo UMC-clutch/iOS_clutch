@@ -46,13 +46,13 @@ class CheckCell: UICollectionViewCell {
     func Constraint() {
         checkImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
-            make.top.equalToSuperview()
-            make.size.equalTo(20)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(21)
         }
         
         textLabel.snp.makeConstraints { make in
             make.leading.equalTo(checkImageView.snp.trailing).offset(12)
-            make.centerY.equalTo(checkImageView)
+            make.centerY.equalToSuperview()
         }
     }
 }
