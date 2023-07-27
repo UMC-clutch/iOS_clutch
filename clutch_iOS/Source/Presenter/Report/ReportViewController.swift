@@ -11,6 +11,8 @@ import SnapKit
 
 class ReportViewController: UIViewController{
     //MARK: - UI ProPerties
+    public lazy var navigationBar = UINavigationBar()
+    
     lazy var titleLabel:UILabel = {
         let label = UILabel()
         label.text = "건물 관련 정보를\n입력해주세요"
@@ -46,9 +48,19 @@ class ReportViewController: UIViewController{
         return label
     }()
     
-    let apartType = CheckContainer()
-    let multiunitType = CheckContainer()
-    let commercialType = CheckContainer()
+    // 체크 박스
+    lazy var selectText = ["아파트/오피스텔", "다가구", "상가"]
+    lazy var selectedType = ""
+    
+    lazy var selectCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0 // 상하간격
+        layout.minimumInteritemSpacing = 0 // 좌우간격
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.backgroundColor = .Clutch.mainWhite
+        
+        return view
+    }()
     
     lazy var nextButton:UIButton = {
         let button = UIButton()
@@ -73,39 +85,50 @@ class ReportViewController: UIViewController{
         Constraint()
     }
     
-    //MARK: - Properties
-    
-    
-    
-    
     //MARK: - Set Ui
     func SetView() {
         TextInputViewSet()
-        CheckContainerSet()
         SmallTextInputViewSet()
         addsubview()
+        // 체크박스, 네비게이션바
+        setCollectionview()
+        setNavigationBar()
         
         self.view.backgroundColor = .white
     }
     
     func addsubview() {
-        let views:[UIView] = [titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, buildingNum, unitNum, commercialType, buildingTypeLabel, apartType, multiunitType, commercialType, nextButton]
+        let views:[UIView] = [navigationBar, titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, buildingNum, unitNum, buildingTypeLabel, selectCollectionView, nextButton]
         
         views.forEach { view in
             self.view.addSubview(view)
         }
     }
     
+    func setNavigationBar() {
+        let navigationItem = UINavigationItem()
+        
+        navigationItem.title = "사기 신고 접수"
+        navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.Clutch.subheadBold
+        ]
+        
+        let backButton = UIBarButtonItem(
+            image:UIImage(named: "btn_arrow_big"),
+            style: .plain, target: self,
+            action: #selector(backButtonTapped))
+        backButton.tintColor = .black
+        navigationItem.leftBarButtonItem = backButton
+        navigationBar.setItems([navigationItem], animated: false)
+        navigationBar.barTintColor = .Clutch.mainWhite // 배경색 변경
+        navigationBar.shadowImage = UIImage() // 테두리 없애기
+    }
+    
     func TextInputViewSet() {
         buildingNameLabel.textInputLabel.text = "건물명"
         mortgageDateLabel.textInputLabel.text = "근저당 설정 기준일"
         addressLabel.textInputLabel.text = "주소"
-    }
-    
-    func CheckContainerSet() {
-        apartType.checkLabel.text = "아파트/오피스텔"
-        multiunitType.checkLabel.text = "다가구"
-        commercialType.checkLabel.text = "상가"
     }
     
     func SmallTextInputViewSet() {
@@ -116,9 +139,16 @@ class ReportViewController: UIViewController{
     func Constraint() {
         let leading = 16
         let top = 40
+        
+        navigationBar.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.equalToSuperview()
+        }
+        
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalToSuperview().offset(50)
+            make.top.equalTo(navigationBar.snp.bottom).offset(top)
         }
         
         buildingNameLabel.snp.makeConstraints { make in
@@ -159,30 +189,26 @@ class ReportViewController: UIViewController{
             
         }
         
-        apartType.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(buildingTypeLabel.snp.bottom).offset(12)
-            
-        }
-        
-        multiunitType.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(apartType.snp.bottom).offset(20)
-        }
-        
-        commercialType.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(multiunitType.snp.bottom).offset(20)
+        selectCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(buildingTypeLabel.snp.bottom).offset(3.5)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(132)
         }
         
         nextButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(commercialType.snp.bottom).offset(40)
-            make.width.equalTo(360)
-            make.height.equalTo(50)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(53)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
         
+    }
+    
+    @objc func backButtonTapped() {
+        // 이전 view로 돌아가는 코드 필요
+        print("Back Button Tapped")
     }
     
     @objc func ButtonTapped(_ sender: UIButton) {
@@ -205,13 +231,61 @@ class ReportViewController: UIViewController{
     
 }
 
-extension ReportViewController: DatePickerDelegate {
+extension ReportViewController: DatePickerDelegate,
+                                UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func didSelectDate(_ date: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
         
         let formattedDate = dateFormatter.string(from: date)
         mortgageDateLabel.textInputTextField.text = formattedDate
+    }
+    
+    func setCollectionview() {
+        selectCollectionView.dataSource = self
+        selectCollectionView.delegate = self
+        selectCollectionView.isScrollEnabled = false
+            
+        selectCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "CheckCell")
+    }
+    
+    // cell 개수 설정
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    // cell에 들어갈 data 설정
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = selectCollectionView.dequeueReusableCell(withReuseIdentifier: "CheckCell", for: indexPath) as? CheckCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.textLabel.text = selectText[indexPath.row]
+        return cell
+    }
+    
+    // cell 크기 및 간격 설정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = collectionView.frame.width
+        let height = collectionView.frame.height / 3
+        return CGSize(width: width, height: height)
+    }
+    
+    
+    // cell 선택시 동작
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        for i in 0..<3 {
+            let index = IndexPath(item: i, section: 0)
+            if let cell = collectionView.cellForItem(at: index) as? CheckCell {
+                cell.checkImageView.image = UIImage(named: "btn_deselected")
+            }
+        }
+        
+        // API 호출 위해 선택된 건물유형 저장
+        selectedType = selectText[indexPath.row]
+        if let cell = collectionView.cellForItem(at: indexPath) as? CheckCell {
+            cell.checkImageView.image = UIImage(named: "btn_selected")
+        }
     }
 }
 

@@ -128,6 +128,13 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     
     func setNavigationBar() {
         let navigationItem = UINavigationItem()
+        
+        navigationItem.title = "사기 신고 접수"
+        navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.Clutch.subheadBold
+        ]
+        
         let backButton = UIBarButtonItem(
             image:UIImage(named: "btn_arrow_big"),
             style: .plain, target: self,
@@ -160,6 +167,9 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func constraints() {
+        let leading = 16
+        let top = 40
+        
         navigationBar.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.top.equalTo(self.view.safeAreaLayoutGuide)
@@ -177,52 +187,52 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.top.equalTo(navigationBar.snp.bottom).offset(52)
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(navigationBar.snp.bottom).offset(top)
         }
         
         residentLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.top.equalTo(titleLabel.snp.bottom).offset(47)
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(titleLabel.snp.bottom).offset(top)
         }
         
         residentCollectionView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.top.equalTo(residentLabel.snp.bottom).offset(3.5)
             make.height.equalTo(88)
         }
         
         interventionLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.top.equalTo(residentCollectionView.snp.bottom).offset(35)
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(residentCollectionView.snp.bottom).offset(top)
         }
         
         interventionCollectionView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.top.equalTo(interventionLabel.snp.bottom).offset(3.5)
             make.height.equalTo(88)
         }
         
         dividenLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.top.equalTo(interventionCollectionView.snp.bottom).offset(44)
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(interventionCollectionView.snp.bottom).offset(top)
         }
         
         dividenCollectionView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.top.equalTo(dividenLabel.snp.bottom).offset(3.5)
             make.height.equalTo(88)
         }
         
         //버튼 오토레이아웃
         submitButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.height.equalTo(53)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
         
