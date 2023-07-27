@@ -10,6 +10,8 @@
 		0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */; };
 		0912CBAD2A68C60C00139593 /* CustomPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */; };
 		093EB0BC2A6F7DD400AC1F71 /* CustomPopupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */; };
+		09EBFACE2A710033004C8BE5 /* ContractInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */; };
+		09EBFAD02A7107A4004C8BE5 /* CheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EBFACF2A7107A4004C8BE5 /* CheckCell.swift */; };
 		2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */; };
 		5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */; };
 		A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207BC852A6665BC002AD898 /* InquiryViewController.swift */; };
@@ -79,6 +81,8 @@
 		0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupViewController.swift; sourceTree = "<group>"; };
 		093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupCell.swift; sourceTree = "<group>"; };
+		09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractInfoViewController.swift; sourceTree = "<group>"; };
+		09EBFACF2A7107A4004C8BE5 /* CheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCell.swift; sourceTree = "<group>"; };
 		2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
 		A207BC852A6665BC002AD898 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
 		A223575E2A65279900915DF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 			children = (
 				BE744AB32A4F26B1005F8F4F /* ReportViewController.swift */,
 				BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */,
+				09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 		BE40DC6F2A6A762C0007F588 /* InfoInput */ = {
 			isa = PBXGroup;
 			children = (
+				09EBFACF2A7107A4004C8BE5 /* CheckCell.swift */,
 				BEABD8912A6FE0500015AC29 /* CheckContainer.swift */,
 				BE40DC6B2A6A658F0007F588 /* TextInputView.swift */,
 				BE9FF7972A6E9BD00000DA88 /* SmallTextInputView.swift */,
@@ -492,7 +498,6 @@
 				BED645BB2A4D6845005106D8 /* Sources */,
 				BED645BC2A4D6845005106D8 /* Frameworks */,
 				BED645BD2A4D6845005106D8 /* Resources */,
-				7D0F0999E4B454AD8EEE7B82 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -610,23 +615,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7D0F0999E4B454AD8EEE7B82 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		93B9C6AD5FA2BB90B8074649 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -674,6 +662,7 @@
 				A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */,
 				A22D5DF22A65678100F8D536 /* InputScreen.swift in Sources */,
 				A248A9982A5FD4C40053E66C /* HistoryCell.swift in Sources */,
+				09EBFACE2A710033004C8BE5 /* ContractInfoViewController.swift in Sources */,
 				BECEC6AC2A60143200A177A0 /* ColorToImage.swift in Sources */,
 				BE744AB22A4F2695005F8F4F /* CalculateViewController.swift in Sources */,
 				BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */,
@@ -697,6 +686,7 @@
 				BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */,
 				BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */,
 				BECEC6B52A6050EA00A177A0 /* loginViewController.swift in Sources */,
+				09EBFAD02A7107A4004C8BE5 /* CheckCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
