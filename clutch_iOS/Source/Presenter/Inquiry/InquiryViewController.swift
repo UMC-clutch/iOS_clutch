@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import SnapKit
-//import DropDown
 
 class InquiryViewController: UIViewController {
     // MARK: - UI ProPerties
@@ -19,27 +18,26 @@ class InquiryViewController: UIViewController {
     let nameInput = InputScreen()
     let categoryInput = InputScreen()
     let inquiryInput = InputScreen()
+    
+    // 문의 유형 선택 버튼, 팝업
+    lazy var selectTypeButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("문의 유형을 선택해주세요", for: .normal)
+        button.setTitleColor(.Clutch.textBlack, for: .normal)
+        button.titleLabel?.font = .Clutch.baseMedium
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(selectTypeButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var selectImageView:UIImageView = {
+        let imageview = UIImageView(image: UIImage(named: "btn_arrow_small"))
+        imageview.transform = imageview.transform.rotated(by: .pi*0.5)
+        
+        return imageview
+    }()
 
-    // 드롭다운 메뉴
-//    public lazy var dropDown: DropDown = {
-//        let dropDown = DropDown()
-//        dropDown.dataSource = ["문의 유형1", "문의 유형2", "문의 유형3", "문의 유형4"]
-//        dropDown.show()
-//        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
-//        dropDown.width = 150
-//        dropDown.textColor = UIColor.black
-//        dropDown.selectedTextColor = UIColor.red
-//        dropDown.textFont = UIFont.systemFont(ofSize: 20)
-//        dropDown.backgroundColor = UIColor.white
-//        dropDown.cellHeight = 50
-//        dropDown.cornerRadius = 10
-//        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-//            print("선택한 아이템 : \(item)")
-//            print("인덱스 : \(index)")
-//        }
-//
-//        return dropDown
-//    }()
     
     // 텍스트뷰
     public lazy var textView: UITextView = {
@@ -57,7 +55,7 @@ class InquiryViewController: UIViewController {
     }()
     
     // UIButton 선언("문의하기")
-    lazy var checkButton: UIButton = {
+    lazy var inquiryButton: UIButton = {
         let btn = UIButton()
         btn.backgroundColor = .Clutch.bgGrey
         btn.layer.masksToBounds = true
@@ -65,6 +63,8 @@ class InquiryViewController: UIViewController {
         btn.titleLabel?.font = .Clutch.subheadMedium
         btn.setTitleColor(.Clutch.textDarkGrey, for: .normal)
         btn.setTitle("문의하기", for: .normal)
+        btn.addTarget(self, action: #selector(inquirywButtonTapped), for: .touchUpInside)
+        
         return btn
     }()
     
@@ -79,7 +79,7 @@ class InquiryViewController: UIViewController {
     
     //MARK: - Set Ui
     func setView() {
-        [navigationBar, nameInput.titleLabel, nameInput.textLabel, nameInput.underLine, categoryInput.titleLabel, categoryInput.underLine, inquiryInput.titleLabel, textView, checkButton].forEach { view in
+        [navigationBar, nameInput.titleLabel, nameInput.textLabel, nameInput.underLine, categoryInput.titleLabel, selectTypeButton, selectImageView, categoryInput.underLine, inquiryInput.titleLabel, textView, inquiryButton].forEach { view in
             self.view.addSubview(view)
         }
         navigationBarSet()
@@ -149,13 +149,16 @@ class InquiryViewController: UIViewController {
             make.top.equalToSuperview().offset(239)
         }
         
-//        dropDown.snp.makeConstraints { make in
-//            make.width.equalTo(360)
-//            make.height.equalTo(24)
-//            make.leading.equalToSuperview().offset(16)
-//            make.top.equalToSuperview().offset(268)
-//            make.centerX.equalToSuperview()
-//        }
+        selectTypeButton.snp.makeConstraints{ make in
+            make.leading.equalToSuperview().offset(27)
+            make.trailing.equalToSuperview().offset(-27)
+            make.top.equalTo(categoryInput.titleLabel.snp.bottom).offset(10)
+        }
+        
+        selectImageView.snp.makeConstraints{ make in
+            make.trailing.equalToSuperview().offset(-27)
+            make.centerY.equalTo(selectTypeButton)
+        }
       
         categoryInput.underLine.snp.makeConstraints{ make in
             make.width.equalTo(360)
@@ -176,12 +179,72 @@ class InquiryViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         
-        checkButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(700)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(361)
+        inquiryButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
     }
+}
+
+extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate {
+    // MARK: - Define Method
+    @objc func selectTypeButtonTapped() {
+        showCustomPopup(popupTitle: "문의 유형",
+                        popupList: ["서비스 이용 문의",
+                                    "오류 및 버그 신고",
+                                    "소송 진행상황 문의",
+                                    "법률 관련 문의"]
+        )
+    }
+    
+    func getSelectedCell(selected: String) {
+        if selected == "" { return }
+        
+        selectTypeButton.setTitle(selected, for: .normal)
+        
+        inquiryButton.backgroundColor = .Clutch.mainDarkGreen
+        inquiryButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+        inquiryButton.isEnabled = true
+    }
+    
+    @objc func inquirywButtonTapped(_ sender: UIButton) {
+        showCustomAlert(alertType: .canCancel,
+                        alertTitle: "문의하기",
+                        alertContext: "위 내용으로 문의하시겠습니까?",
+                        cancelText: "취소",
+                        confirmText: "문의하기")
+    }
+    
+    func cancel() {
+        print("custom cancel Button Tapped")
+    }
+    
+    func confirm() {
+        print("custom action Button Tapped")
+        // 탈퇴하기 API 호출
+        let response = "200"
+        // 정상적으로 호출되면 메시지 출력, 창 닫기
+        if response == "200" {
+            showCustomAlert(alertType: .done,
+                            alertTitle: "문의 완료",
+                            alertContext: "정상적으로 접수되었습니다.",
+                            confirmText: "확인")
+            // 창 닫는 코드
+        }
+        // 오류 발생시 메시지 출력
+        else {
+            showCustomAlert(alertType: .done,
+                            alertTitle: "오류 발생",
+                            alertContext: "다시 시도해주세요.",
+                            confirmText: "확인")
+        }
+    }
+    
+    func done() {
+        print("custom done Button Tapped")
+    }
+    
 }
