@@ -4,6 +4,7 @@
 target 'clutch_iOS' do
 	pod 'SnapKit'
 	pod 'Gifu'
+  pod 'IQKeyboardManagerSwift'
   
   
   post_install do |installer|
