@@ -11,7 +11,7 @@ import SnapKit
 
 class InputScreen: UIView {
     // MARK: - UI ProPerties
-    // UILabel 선언(질문 제목)
+    // UILabel 선언(목록 이름)
     public lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .Clutch.textDarkGrey
@@ -19,12 +19,12 @@ class InputScreen: UIView {
         return label
     }()
     
-    // UITextField 선언(입력 내용)
-    public lazy var textField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = .black
+    // UILabel 선언(내용)
+    public lazy var textLabel: UILabel = {
+        let textLabel = UILabel()
+        textLabel.textColor = .black
         
-        return textField
+        return textLabel
     }()
     
     // UIView 선언(구분선)
@@ -48,7 +48,7 @@ class InputScreen: UIView {
     
     //MARK: - Set Ui
     func setView() {
-        [titleLabel, textField, underLine].forEach { view in
+        [titleLabel, textLabel, underLine].forEach { view in
             self.addSubview(view)
         }
     }
@@ -59,7 +59,7 @@ class InputScreen: UIView {
             make.top.equalToSuperview()
         }
         
-        textField.snp.makeConstraints { make in
+        textLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
         }
         
