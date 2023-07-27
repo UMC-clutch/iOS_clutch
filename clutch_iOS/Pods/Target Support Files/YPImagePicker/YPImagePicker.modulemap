@@ -1,0 +1,6 @@
+module YPImagePicker {
+  umbrella header "YPImagePicker-umbrella.h"
+
+  export *
+  module * { export * }
+}

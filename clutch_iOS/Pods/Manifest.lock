@@ -1,24 +1,46 @@
 PODS:
+  - Alamofire (5.7.1)
   - Gifu (3.3.1)
   - IQKeyboardManagerSwift (6.5.12)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
+  - PryntTrimmerView (4.0.2)
   - SnapKit (5.6.0)
+  - SteviaLayout (4.7.3)
+  - YPImagePicker (5.2.1):
+    - PryntTrimmerView (= 4.0.2)
+    - SteviaLayout (= 4.7.3)
 
 DEPENDENCIES:
   - Gifu
   - IQKeyboardManagerSwift
+  - Moya
   - SnapKit
+  - YPImagePicker
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Gifu
     - IQKeyboardManagerSwift
+    - Moya
+    - PryntTrimmerView
     - SnapKit
+    - SteviaLayout
+    - YPImagePicker
 
 SPEC CHECKSUMS:
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   Gifu: 416d4e38c4c2fed012f019e0a1d3ffcb58e5b842
   IQKeyboardManagerSwift: 371b08cb39664fb56030f5345c815a4ffc74bbc0
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
+  YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: 14432c35e5c35e00ab158e40a0bff99e4e0d9fe8
+PODFILE CHECKSUM: 6b19238e1f517b18bb90a24701e9e97c4086938c
 
 COCOAPODS: 1.12.1
