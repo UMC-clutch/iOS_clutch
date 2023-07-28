@@ -59,6 +59,18 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
+    //전입신고일
+    lazy var mortgageDateLabel = TextInputView()
+    
+    lazy var dateButton:UIButton = {
+        let button = UIButton()
+        let iamge = UIImage(named: "btn_Calendar")
+        button.setBackgroundImage(iamge, for: .normal)
+        button.addTarget(self, action: #selector(dateButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     lazy var interventionLabel:UILabel = {
         let label = UILabel()
         label.text = "집주인의 채권 개입 여부"
@@ -239,7 +251,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
-extension ContractInfoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @objc func backButtonTapped() {
         // 이전 view로 돌아가는 코드 필요
         print("Back Button Tapped")
@@ -259,6 +271,26 @@ extension ContractInfoViewController: UICollectionViewDelegate, UICollectionView
             // Scroll by 1/5 of the height
             scrollview.setContentOffset(contentOffset, animated: true)
         }
+    }
+    
+    // 날짜 선택
+    @objc func dateButtonTapped(_ sender: UIButton) {
+        let VC = datePickerViewController()
+        VC.modalPresentationStyle = .overCurrentContext
+        VC.modalTransitionStyle = .crossDissolve
+        
+        // ReportViewController를 datePickerViewController의 델리게이트로 설정합니다.
+        VC.delegate = self
+        
+        present(VC, animated: true)
+    }
+    
+    func didSelectDate(_ date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        
+        let formattedDate = dateFormatter.string(from: date)
+        mortgageDateLabel.textInputTextField.text = formattedDate
     }
     
     // collectionview 관련 설정
