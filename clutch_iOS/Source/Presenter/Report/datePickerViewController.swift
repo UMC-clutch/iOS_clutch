@@ -33,6 +33,7 @@ class datePickerViewController: UIViewController {
         datepicker.backgroundColor = .white
         datepicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
         datepicker.tintColor = UIColor.Clutch.mainGreen
+        datepicker.datePickerMode = .date
         
         return datepicker
     }()
@@ -83,7 +84,7 @@ extension DatePickerDelegate where Self: UIViewController {
         VC.delegate = self
         
         VC.modalPresentationStyle = .overCurrentContext
-        VC.modalTransitionStyle = .crossDissolve
+        VC.modalTransitionStyle = .coverVertical
         VC.titleText = title
         self.present(VC, animated: true, completion: nil)
     }

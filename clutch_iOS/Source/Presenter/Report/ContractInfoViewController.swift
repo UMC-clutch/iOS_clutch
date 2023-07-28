@@ -59,6 +59,30 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
+    //전입신고일
+    lazy var movedInDateLabel = TextInputView()
+    
+    lazy var movedInDateButton:UIButton = {
+        let button = UIButton()
+        let iamge = UIImage(named: "btn_Calendar")
+        button.setBackgroundImage(iamge, for: .normal)
+        button.addTarget(self, action: #selector(dateButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    //  확정일자
+    lazy var fixedDateLabel = TextInputView()
+    
+    lazy var fixedDateButton:UIButton = {
+        let button = UIButton()
+        let iamge = UIImage(named: "btn_Calendar")
+        button.setBackgroundImage(iamge, for: .normal)
+        button.addTarget(self, action: #selector(dateButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     lazy var interventionLabel:UILabel = {
         let label = UILabel()
         label.text = "집주인의 채권 개입 여부"
@@ -97,6 +121,9 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
+    //  보증금
+    lazy var depositLabel = TextInputView()
+    
     lazy var submitButton:UIButton = {
         let button = UIButton()
         button.setTitle("제출", for: .normal)
@@ -122,6 +149,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         setNavigationBar()
         addsubview()
         setscrollview()
+        setTextInputView()
         setCollectionview()
         self.view.backgroundColor = .Clutch.mainWhite
     }
@@ -156,14 +184,19 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
             scrollview.addSubview(view)
         }
         
-        [titleLabel, residentLabel, residentCollectionView, interventionLabel, interventionCollectionView, dividenLabel, dividenCollectionView].forEach { view in
+        [titleLabel, residentLabel, residentCollectionView, movedInDateLabel, movedInDateButton, fixedDateLabel, fixedDateButton, interventionLabel, interventionCollectionView, dividenLabel, dividenCollectionView, depositLabel].forEach { view in
             contentView.addSubview(view)
         }
     }
     //스크롤 뷰관련 셋
     func setscrollview() {
         scrollview.delegate = self
-        
+    }
+    
+    func setTextInputView() {
+        movedInDateLabel.textInputLabel.text = "전입신고일"
+        fixedDateLabel.textInputLabel.text = "확정일자"
+        depositLabel.textInputLabel.text = "보증금 액수"
     }
     
     func constraints() {
@@ -203,9 +236,31 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
             make.height.equalTo(88)
         }
         
-        interventionLabel.snp.makeConstraints { make in
+        movedInDateLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
             make.top.equalTo(residentCollectionView.snp.bottom).offset(top)
+        }
+        
+        movedInDateButton.snp.makeConstraints { make in
+            make.trailing.equalTo(movedInDateLabel.snp.trailing)
+            make.bottom.equalTo(movedInDateLabel.underLine.snp.bottom).offset(-5)
+            make.size.equalTo(20)
+        }
+        
+        fixedDateLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(movedInDateButton.snp.bottom).offset(top)
+        }
+        
+        fixedDateButton.snp.makeConstraints { make in
+            make.trailing.equalTo(fixedDateLabel.snp.trailing)
+            make.bottom.equalTo(fixedDateLabel.underLine.snp.bottom).offset(-5)
+            make.size.equalTo(20)
+        }
+        
+        interventionLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(fixedDateButton.snp.bottom).offset(top)
         }
         
         interventionCollectionView.snp.makeConstraints { make in
@@ -227,7 +282,11 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
             make.height.equalTo(88)
         }
         
-        //버튼 오토레이아웃
+        depositLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(dividenCollectionView.snp.bottom).offset(top)
+        }
+        
         submitButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
@@ -239,7 +298,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
-extension ContractInfoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @objc func backButtonTapped() {
         // 이전 view로 돌아가는 코드 필요
         print("Back Button Tapped")
@@ -261,6 +320,28 @@ extension ContractInfoViewController: UICollectionViewDelegate, UICollectionView
         }
     }
     
+    // 날짜 선택
+    @objc func dateButtonTapped(_ sender: UIButton) {
+        if sender == movedInDateButton {
+            showDatePicker(title: "전입신고일을\n선택해주세요")
+        }
+        else if sender == fixedDateButton {
+            showDatePicker(title: "확정일자를\n선택해주세요")
+        }
+    }
+    
+    func didSelectDate(title:String, date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        let formattedDate = dateFormatter.string(from: date)
+        if title == "전입신고일을\n선택해주세요" {
+            movedInDateLabel.textInputTextField.text = formattedDate
+        }
+        else if title == "확정일자를\n선택해주세요" {
+            fixedDateLabel.textInputTextField.text = formattedDate
+        }
+    }
+    
     // collectionview 관련 설정
     func setCollectionview() {
         [residentCollectionView, interventionCollectionView, dividenCollectionView].forEach { collectionview in
@@ -269,9 +350,9 @@ extension ContractInfoViewController: UICollectionViewDelegate, UICollectionView
             collectionview.isScrollEnabled = false
         }
         
-        residentCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "CheckCell1")
-        interventionCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "CheckCell2")
-        dividenCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "CheckCell3")
+        residentCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "residentCell")
+        interventionCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "interventionCell")
+        dividenCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "dividenCell")
     }
     // cell 개수 설정
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -282,7 +363,7 @@ extension ContractInfoViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == self.residentCollectionView {
-            guard let cell1 = residentCollectionView.dequeueReusableCell(withReuseIdentifier: "CheckCell1", for: indexPath) as? CheckCell else {
+            guard let cell1 = residentCollectionView.dequeueReusableCell(withReuseIdentifier: "residentCell", for: indexPath) as? CheckCell else {
                 return UICollectionViewCell()
             }
             
@@ -290,7 +371,7 @@ extension ContractInfoViewController: UICollectionViewDelegate, UICollectionView
             return cell1
             
         } else if collectionView == self.interventionCollectionView {
-            guard let cell2 = interventionCollectionView.dequeueReusableCell(withReuseIdentifier: "CheckCell2", for: indexPath) as? CheckCell else {
+            guard let cell2 = interventionCollectionView.dequeueReusableCell(withReuseIdentifier: "interventionCell", for: indexPath) as? CheckCell else {
                 return UICollectionViewCell()
             }
             
@@ -298,7 +379,7 @@ extension ContractInfoViewController: UICollectionViewDelegate, UICollectionView
             return cell2
             
         } else if collectionView == self.dividenCollectionView{
-            guard let cell3 = dividenCollectionView.dequeueReusableCell(withReuseIdentifier: "CheckCell3", for: indexPath) as? CheckCell else {
+            guard let cell3 = dividenCollectionView.dequeueReusableCell(withReuseIdentifier: "dividenCell", for: indexPath) as? CheckCell else {
                 return UICollectionViewCell()
             }
             
