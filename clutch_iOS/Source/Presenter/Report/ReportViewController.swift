@@ -218,14 +218,7 @@ class ReportViewController: UIViewController{
     }
     
     @objc func dateButtonTapped(_ sender: UIButton) {
-        let VC = datePickerViewController()
-        VC.modalPresentationStyle = .overCurrentContext
-        VC.modalTransitionStyle = .crossDissolve
-        
-        // ReportViewController를 datePickerViewController의 델리게이트로 설정합니다.
-        VC.delegate = self
-        
-        present(VC, animated: true)
+        showDatePicker(title: "근저당 설정일을\n선택해주세요")
     }
     
     
@@ -233,12 +226,13 @@ class ReportViewController: UIViewController{
 
 extension ReportViewController: DatePickerDelegate,
                                 UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func didSelectDate(_ date: Date) {
+    func didSelectDate(title:String, date: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        
         let formattedDate = dateFormatter.string(from: date)
-        mortgageDateLabel.textInputTextField.text = formattedDate
+        if title == "근저당 설정일을\n선택해주세요" {
+            mortgageDateLabel.textInputTextField.text = formattedDate
+        }
     }
     
     func setCollectionview() {
@@ -289,7 +283,4 @@ extension ReportViewController: DatePickerDelegate,
     }
 }
 
-protocol DatePickerDelegate: AnyObject {
-    func didSelectDate(_ date: Date)
-}
 
