@@ -155,7 +155,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         button.setTitle("제출", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = .Clutch.subheadMedium
-        button.addTarget(self, action: #selector(ButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 11
         button.backgroundColor = .Clutch.mainDarkGreen
         // Highlighted 상태일 때 배경색
@@ -344,26 +344,15 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
-extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ImageDelegate {
     @objc func backButtonTapped() {
         // 이전 view로 돌아가는 코드 필요
         print("Back Button Tapped")
     }
     
-    // 버튼 클릭 시 스크롤되도록 하는 메서드
-    @objc func ButtonTapped(_ sender: UIButton) {
-        let offsetY = scrollview.contentSize.height / 10
-        let contentOffset = CGPoint(x: 0, y: scrollview.contentOffset.y + offsetY)
-        
-        // Check if the content offset reaches the bottom of the scroll view
-        if contentOffset.y >= scrollview.contentSize.height - scrollview.bounds.height {
-            // Scroll to the top
-            let topOffset = CGPoint(x: 0, y: 0)
-            scrollview.setContentOffset(topOffset, animated: true)
-        } else {
-            // Scroll by 1/5 of the height
-            scrollview.setContentOffset(contentOffset, animated: true)
-        }
+    // 버튼 클릭 시 신고 API 호출
+    @objc func submitButtonTapped(_ sender: UIButton) {
+        // 입력조건 확인, API 호출
     }
     
     // 날짜 선택
@@ -398,13 +387,35 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
         residentCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "residentCell")
         interventionCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "interventionCell")
         dividenCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "dividenCell")
-        imageCollectionView.register(imageCell.self, forCellWithReuseIdentifier: "imageCell")
+        
+        imageCollectionView.register(ButtonCell.self, forCellWithReuseIdentifier: "buttonCell")
+        imageCollectionView.register(ImageCell.self, forCellWithReuseIdentifier: "imageCell")
+    }
+    
+    // section 수 설정
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if collectionView == imageCollectionView { return 2}
+        else { return 1}
+    }
+    
+    // section 간격 설정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == imageCollectionView {
+            let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
+            return sectionInsets
+        }
+        else {
+            let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            return sectionInsets
+            
+        }
     }
     
     // cell 개수 설정
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == imageCollectionView {
-            return 10
+            if section == 0 { return 1 }
+            else { return 4 }
         }
         else { return 2 }
     }
@@ -437,11 +448,20 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
             return cell3
             
         } else if collectionView == self.imageCollectionView {
-            guard let cell4 = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? imageCell else { return UICollectionViewCell()
+            if indexPath.section == 0 {
+                guard let cell4 = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "buttonCell", for: indexPath) as? ButtonCell else { return UICollectionViewCell()
+                }
+                return cell4
             }
-            
-            cell4.imageView.image = UIImage(named: "btn_login_kakao")
-            return cell4
+            else {
+                guard let cell5 = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCell else { return UICollectionViewCell()
+                }
+                // 이미지 처리
+                cell5.imageView.image = UIImage(named: "btn_login_kakao")
+                cell5.delegate = self
+                
+                return cell5
+            }
         }
         return UICollectionViewCell()
         
@@ -462,8 +482,13 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
     
     // cell 선택시 동작
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == imageCollectionView { return }
+        if collectionView == imageCollectionView && indexPath.section == 0 {
+            // 이미지 추가
+            print("addPhoto")
+            return
+        }
         else {
+            // 나머지 버튼 모두 선택해제
             for i in 0..<2 {
                 let index = IndexPath(item: i, section: 0)
                 if let cell = collectionView.cellForItem(at: index) as? CheckCell {
@@ -471,6 +496,7 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
                 }
             }
             
+            // 선택된 정보 저장
     //        selectedCell = popupList[indexPath.row]
             if let cell = collectionView.cellForItem(at: indexPath) as? CheckCell {
                 cell.checkImageView.image = UIImage(named: "btn_selected")
@@ -478,4 +504,9 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
         }
     }
     
+    func deleteImage(cell: UICollectionViewCell) {
+        // 해당 index 이미지 삭제
+        let i = imageCollectionView.indexPath(for: cell)?.row
+        print(i!)
+    }
 }

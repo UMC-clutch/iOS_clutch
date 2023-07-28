@@ -8,7 +8,14 @@
 import Foundation
 import UIKit
 
-class imageCell: UICollectionViewCell {
+protocol ImageDelegate: class {
+    func deleteImage(cell: UICollectionViewCell)
+}
+
+class ImageCell: UICollectionViewCell {
+    
+    weak var delegate: ImageDelegate?
+    
     //MARK: - UI ProPerties
     public lazy var imageView: UIImageView = {
         let imageview = UIImageView(image: UIImage(named: "Add_round"))
@@ -54,7 +61,7 @@ class imageCell: UICollectionViewCell {
         }
     }
     
-    @objc func deleteButtonTapped() {
-        print(0)
+    @objc func deleteButtonTapped(_ sender: UIButton) {
+        self.delegate?.deleteImage(cell: self)
     }
 }

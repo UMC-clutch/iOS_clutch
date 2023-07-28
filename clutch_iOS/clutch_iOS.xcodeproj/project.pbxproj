@@ -11,6 +11,7 @@
 		0912CBAD2A68C60C00139593 /* CustomPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */; };
 		093EB0BC2A6F7DD400AC1F71 /* CustomPopupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */; };
 		09D990492A7393E0004F1349 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D990482A7393E0004F1349 /* ImageCell.swift */; };
+		09D9904B2A73A0BB004F1349 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9904A2A73A0BB004F1349 /* ButtonCell.swift */; };
 		09EBFACE2A710033004C8BE5 /* ContractInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */; };
 		09EBFAD02A7107A4004C8BE5 /* CheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EBFACF2A7107A4004C8BE5 /* CheckCell.swift */; };
 		2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */; };
@@ -83,6 +84,7 @@
 		0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupViewController.swift; sourceTree = "<group>"; };
 		093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupCell.swift; sourceTree = "<group>"; };
 		09D990482A7393E0004F1349 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		09D9904A2A73A0BB004F1349 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractInfoViewController.swift; sourceTree = "<group>"; };
 		09EBFACF2A7107A4004C8BE5 /* CheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCell.swift; sourceTree = "<group>"; };
 		2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */,
 				09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */,
 				09D990482A7393E0004F1349 /* ImageCell.swift */,
+				09D9904A2A73A0BB004F1349 /* ButtonCell.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */,
 				BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
+				09D9904B2A73A0BB004F1349 /* ButtonCell.swift in Sources */,
 				BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */,
 				BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */,
 				BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */,
