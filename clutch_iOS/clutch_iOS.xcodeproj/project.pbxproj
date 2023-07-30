@@ -23,6 +23,10 @@
 		BE26DD532A7515AA00024FD4 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = BE26DD522A7515AA00024FD4 /* SkeletonView */; };
 		BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC6B2A6A658F0007F588 /* TextInputView.swift */; };
 		BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC702A6A76620007F588 /* SampleViewController.swift */; };
+		BE53C58B2A765AEA000EF2C5 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C58A2A765AEA000EF2C5 /* UserInfoViewController.swift */; };
+		BE53C58D2A765D45000EF2C5 /* ReportDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */; };
+		BE53C58F2A765D92000EF2C5 /* TextSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */; };
+		BE53C5912A765DF4000EF2C5 /* ReportDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C5902A765DF4000EF2C5 /* ReportDoneView.swift */; };
 		BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */; };
 		BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DC2A4F140E002EB93C /* SetColor.swift */; };
 		BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */; };
@@ -92,6 +96,10 @@
 		A248A99B2A5FD5410053E66C /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		BE40DC6B2A6A658F0007F588 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		BE40DC702A6A76620007F588 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
+		BE53C58A2A765AEA000EF2C5 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDoneViewController.swift; sourceTree = "<group>"; };
+		BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSampleView.swift; sourceTree = "<group>"; };
+		BE53C5902A765DF4000EF2C5 /* ReportDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDoneView.swift; sourceTree = "<group>"; };
 		BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		BE67E1DC2A4F140E002EB93C /* SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColor.swift; sourceTree = "<group>"; };
 		BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClutchIntroViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +253,9 @@
 				BE744AB32A4F26B1005F8F4F /* ReportViewController.swift */,
 				BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */,
 				09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */,
+				BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */,
+				BE53C5902A765DF4000EF2C5 /* ReportDoneView.swift */,
+				BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -270,6 +281,7 @@
 			children = (
 				BECEC6B42A6050EA00A177A0 /* loginViewController.swift */,
 				BECEC6B62A6050F700A177A0 /* loginView.swift */,
+				BE53C58A2A765AEA000EF2C5 /* UserInfoViewController.swift */,
 				BED645C62A4D6845005106D8 /* MainViewController.swift */,
 				BED645FD2A4D6BA6005106D8 /* MainCell */,
 				BECEC6A22A5EDFDF00A177A0 /* faqViewController.swift */,
@@ -611,6 +623,7 @@
 				BE744AB42A4F26B1005F8F4F /* ReportViewController.swift in Sources */,
 				A223575F2A65279900915DF0 /* ProfileViewController.swift in Sources */,
 				BEABD8922A6FE0500015AC29 /* CheckContainer.swift in Sources */,
+				BE53C58B2A765AEA000EF2C5 /* UserInfoViewController.swift in Sources */,
 				BED645CD2A4D6845005106D8 /* clutch_iOS.xcdatamodeld in Sources */,
 				0912CBAD2A68C60C00139593 /* CustomPopupViewController.swift in Sources */,
 				BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */,
@@ -639,11 +652,14 @@
 				BECEC6A62A5EF51C00A177A0 /* Banner1View.swift in Sources */,
 				BECEC6A32A5EDFDF00A177A0 /* faqViewController.swift in Sources */,
 				BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */,
+				BE53C58F2A765D92000EF2C5 /* TextSampleView.swift in Sources */,
 				2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */,
 				BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */,
 				BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
 				BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */,
+				BE53C5912A765DF4000EF2C5 /* ReportDoneView.swift in Sources */,
+				BE53C58D2A765D45000EF2C5 /* ReportDoneViewController.swift in Sources */,
 				BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */,
 				BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */,
 				BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */,
