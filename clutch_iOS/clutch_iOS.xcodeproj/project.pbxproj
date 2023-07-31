@@ -10,6 +10,8 @@
 		0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */; };
 		0912CBAD2A68C60C00139593 /* CustomPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */; };
 		093EB0BC2A6F7DD400AC1F71 /* CustomPopupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */; };
+		09D990492A7393E0004F1349 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D990482A7393E0004F1349 /* ImageCell.swift */; };
+		09D9904B2A73A0BB004F1349 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9904A2A73A0BB004F1349 /* ButtonCell.swift */; };
 		09EBFACE2A710033004C8BE5 /* ContractInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */; };
 		09EBFAD02A7107A4004C8BE5 /* CheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EBFACF2A7107A4004C8BE5 /* CheckCell.swift */; };
 		2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */; };
@@ -85,6 +87,8 @@
 		0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupViewController.swift; sourceTree = "<group>"; };
 		093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupCell.swift; sourceTree = "<group>"; };
+		09D990482A7393E0004F1349 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		09D9904A2A73A0BB004F1349 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractInfoViewController.swift; sourceTree = "<group>"; };
 		09EBFACF2A7107A4004C8BE5 /* CheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCell.swift; sourceTree = "<group>"; };
 		2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +260,8 @@
 				BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */,
 				BE53C5902A765DF4000EF2C5 /* ReportDoneView.swift */,
 				BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */,
+				09D990482A7393E0004F1349 /* ImageCell.swift */,
+				09D9904A2A73A0BB004F1349 /* ButtonCell.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -632,6 +638,7 @@
 				BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */,
 				0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */,
 				BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */,
+				09D990492A7393E0004F1349 /* ImageCell.swift in Sources */,
 				A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */,
 				BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */,
 				A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */,
@@ -657,6 +664,7 @@
 				BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */,
 				BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
+				09D9904B2A73A0BB004F1349 /* ButtonCell.swift in Sources */,
 				BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */,
 				BE53C5912A765DF4000EF2C5 /* ReportDoneView.swift in Sources */,
 				BE53C58D2A765D45000EF2C5 /* ReportDoneViewController.swift in Sources */,
