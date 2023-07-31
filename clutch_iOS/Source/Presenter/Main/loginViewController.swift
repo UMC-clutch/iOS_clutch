@@ -75,9 +75,10 @@ class loginViewController: UIViewController {
     }
     //kakaoButton 클릭 이벤트
     @objc func kakaoButtonTapped(_ sender: UIButton) {
-        let mainVC = MainViewController()
-           mainVC.modalPresentationStyle = .fullScreen
+        let mainVC = UserInfoViewController()
+        mainVC.modalPresentationStyle = .automatic
            present(mainVC, animated: true)
     }
 
 }
+

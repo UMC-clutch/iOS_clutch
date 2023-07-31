@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-
+import SkeletonView
 
 class ReportViewController: UIViewController{
     //MARK: - UI ProPerties
@@ -79,10 +79,17 @@ class ReportViewController: UIViewController{
     
     
     //MARK: - Define Method
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.view.isSkeletonable = true
+        self.view.showSkeleton()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SetView()
         Constraint()
+        self.view.hideSkeleton()
     }
     
     //MARK: - Set Ui
@@ -93,7 +100,6 @@ class ReportViewController: UIViewController{
         // 체크박스, 네비게이션바
         setCollectionview()
         setNavigationBar()
-        
         self.view.backgroundColor = .white
     }
     
