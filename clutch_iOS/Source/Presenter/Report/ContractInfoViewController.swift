@@ -24,7 +24,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }()
     
     //스크롤 뷰 안에 들어갈 내용을 표시할 뷰
-    let contentView: UIView = {
+    lazy var contentView: UIView = {
         let view = UIView()
         
         return view
@@ -59,6 +59,30 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
+    //전입신고일
+    lazy var movedInDateLabel = TextInputView()
+    
+    lazy var movedInDateButton:UIButton = {
+        let button = UIButton()
+        let iamge = UIImage(named: "btn_Calendar")
+        button.setBackgroundImage(iamge, for: .normal)
+        button.addTarget(self, action: #selector(dateButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    //  확정일자
+    lazy var fixedDateLabel = TextInputView()
+    
+    lazy var fixedDateButton:UIButton = {
+        let button = UIButton()
+        let iamge = UIImage(named: "btn_Calendar")
+        button.setBackgroundImage(iamge, for: .normal)
+        button.addTarget(self, action: #selector(dateButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     lazy var interventionLabel:UILabel = {
         let label = UILabel()
         label.text = "집주인의 채권 개입 여부"
@@ -68,7 +92,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
-    var interventionCollectionView: UICollectionView = {
+    lazy var interventionCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0 // 상하간격
         layout.minimumInteritemSpacing = 0 // 좌우간격
@@ -87,10 +111,39 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
-    var dividenCollectionView: UICollectionView = {
+    lazy var dividenCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0 // 상하간격
         layout.minimumInteritemSpacing = 0 // 좌우간격
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.backgroundColor = .Clutch.mainWhite
+        
+        return view
+    }()
+    
+    //  보증금
+    lazy var depositLabel = TextInputView()
+    lazy var wonLabel:UILabel = {
+        let label = UILabel()
+        label.text = "원"
+        label.font = UIFont.Clutch.subtitleRegular
+        label.textColor = .Clutch.textBlack
+        
+        return label
+    }()
+    
+    lazy var uploadLabel:UILabel = {
+        let label = UILabel()
+        label.text = "계약서 파일 업로드"
+        label.font = .Clutch.smallMedium
+        label.textColor = .Clutch.textDarkGrey
+        
+        return label
+    }()
+    
+    lazy var imageCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .Clutch.mainWhite
         
@@ -102,7 +155,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         button.setTitle("제출", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = .Clutch.subheadMedium
-        button.addTarget(self, action: #selector(ButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 11
         button.backgroundColor = .Clutch.mainDarkGreen
         // Highlighted 상태일 때 배경색
@@ -122,6 +175,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         setNavigationBar()
         addsubview()
         setscrollview()
+        setTextInputView()
         setCollectionview()
         self.view.backgroundColor = .Clutch.mainWhite
     }
@@ -155,20 +209,25 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         [contentView].forEach { view in
             scrollview.addSubview(view)
         }
-        
-        [titleLabel, residentLabel, residentCollectionView, interventionLabel, interventionCollectionView, dividenLabel, dividenCollectionView].forEach { view in
+
+        [titleLabel, residentLabel, residentCollectionView, movedInDateLabel, movedInDateButton, fixedDateLabel, fixedDateButton, interventionLabel, interventionCollectionView, dividenLabel, dividenCollectionView, depositLabel, wonLabel, uploadLabel, imageCollectionView].forEach { view in
             contentView.addSubview(view)
         }
     }
     //스크롤 뷰관련 셋
     func setscrollview() {
         scrollview.delegate = self
-        
+    }
+    
+    func setTextInputView() {
+        movedInDateLabel.textInputLabel.text = "전입신고일"
+        fixedDateLabel.textInputLabel.text = "확정일자"
+        depositLabel.textInputLabel.text = "보증금 액수"
     }
     
     func constraints() {
         let leading = 16
-        let top = 40
+        let top = 44
         
         navigationBar.snp.makeConstraints { make in
             make.width.equalToSuperview()
@@ -177,18 +236,21 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         }
         //스크롤 뷰 오토레이아웃
         scrollview.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(submitButton.snp.top).offset(-20)
         }
         //contentView 오토레이아웃
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(view.frame.height * 3)
+            make.height.equalTo(1040)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(navigationBar.snp.bottom).offset(top)
+            make.top.equalToSuperview().offset(top)
         }
         
         residentLabel.snp.makeConstraints { make in
@@ -203,9 +265,31 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
             make.height.equalTo(88)
         }
         
-        interventionLabel.snp.makeConstraints { make in
+        movedInDateLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
             make.top.equalTo(residentCollectionView.snp.bottom).offset(top)
+        }
+        
+        movedInDateButton.snp.makeConstraints { make in
+            make.trailing.equalTo(movedInDateLabel.snp.trailing)
+            make.bottom.equalTo(movedInDateLabel.underLine.snp.bottom).offset(-5)
+            make.size.equalTo(20)
+        }
+        
+        fixedDateLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(movedInDateLabel.underLine.snp.bottom).offset(top)
+        }
+        
+        fixedDateButton.snp.makeConstraints { make in
+            make.trailing.equalTo(fixedDateLabel.snp.trailing)
+            make.bottom.equalTo(fixedDateLabel.underLine.snp.bottom).offset(-5)
+            make.size.equalTo(20)
+        }
+        
+        interventionLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(fixedDateLabel.underLine.snp.bottom).offset(top)
         }
         
         interventionCollectionView.snp.makeConstraints { make in
@@ -227,7 +311,28 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
             make.height.equalTo(88)
         }
         
-        //버튼 오토레이아웃
+        depositLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(dividenCollectionView.snp.bottom).offset(top)
+        }
+        
+        wonLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-leading)
+            make.centerY.equalTo(depositLabel.textInputTextField)
+        }
+        
+        uploadLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(depositLabel.underLine.snp.bottom).offset(top)
+        }
+        
+        imageCollectionView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
+            make.top.equalTo(uploadLabel.snp.bottom).offset(4)
+            make.height.equalTo(100)
+        }
+        
         submitButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
@@ -239,50 +344,87 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
-extension ContractInfoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ImageDelegate {
     @objc func backButtonTapped() {
         // 이전 view로 돌아가는 코드 필요
         print("Back Button Tapped")
     }
     
-    // 버튼 클릭 시 스크롤되도록 하는 메서드
-    @objc func ButtonTapped(_ sender: UIButton) {
-        let offsetY = scrollview.contentSize.height / 10
-        let contentOffset = CGPoint(x: 0, y: scrollview.contentOffset.y + offsetY)
-        
-        // Check if the content offset reaches the bottom of the scroll view
-        if contentOffset.y >= scrollview.contentSize.height - scrollview.bounds.height {
-            // Scroll to the top
-            let topOffset = CGPoint(x: 0, y: 0)
-            scrollview.setContentOffset(topOffset, animated: true)
-        } else {
-            // Scroll by 1/5 of the height
-            scrollview.setContentOffset(contentOffset, animated: true)
+    // 버튼 클릭 시 신고 API 호출
+    @objc func submitButtonTapped(_ sender: UIButton) {
+        // 입력조건 확인, API 호출
+    }
+    
+    // 날짜 선택
+    @objc func dateButtonTapped(_ sender: UIButton) {
+        if sender == movedInDateButton {
+            showDatePicker(title: "전입신고일을\n선택해주세요")
+        }
+        else if sender == fixedDateButton {
+            showDatePicker(title: "확정일자를\n선택해주세요")
+        }
+    }
+    
+    func didSelectDate(title:String, date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        let formattedDate = dateFormatter.string(from: date)
+        if title == "전입신고일을\n선택해주세요" {
+            movedInDateLabel.textInputTextField.text = formattedDate
+        }
+        else if title == "확정일자를\n선택해주세요" {
+            fixedDateLabel.textInputTextField.text = formattedDate
         }
     }
     
     // collectionview 관련 설정
     func setCollectionview() {
-        [residentCollectionView, interventionCollectionView, dividenCollectionView].forEach { collectionview in
+        [residentCollectionView, interventionCollectionView, dividenCollectionView, imageCollectionView].forEach { collectionview in
             collectionview.dataSource = self
             collectionview.delegate = self
-            collectionview.isScrollEnabled = false
         }
         
-        residentCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "CheckCell1")
-        interventionCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "CheckCell2")
-        dividenCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "CheckCell3")
+        residentCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "residentCell")
+        interventionCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "interventionCell")
+        dividenCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "dividenCell")
+        
+        imageCollectionView.register(ButtonCell.self, forCellWithReuseIdentifier: "buttonCell")
+        imageCollectionView.register(ImageCell.self, forCellWithReuseIdentifier: "imageCell")
     }
+    
+    // section 수 설정
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if collectionView == imageCollectionView { return 2}
+        else { return 1}
+    }
+    
+    // section 간격 설정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == imageCollectionView {
+            let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
+            return sectionInsets
+        }
+        else {
+            let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            return sectionInsets
+            
+        }
+    }
+    
     // cell 개수 설정
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        if collectionView == imageCollectionView {
+            if section == 0 { return 1 }
+            else { return 4 }
+        }
+        else { return 2 }
     }
     
     // cell에 들어갈 data 설정
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == self.residentCollectionView {
-            guard let cell1 = residentCollectionView.dequeueReusableCell(withReuseIdentifier: "CheckCell1", for: indexPath) as? CheckCell else {
+            guard let cell1 = residentCollectionView.dequeueReusableCell(withReuseIdentifier: "residentCell", for: indexPath) as? CheckCell else {
                 return UICollectionViewCell()
             }
             
@@ -290,21 +432,36 @@ extension ContractInfoViewController: UICollectionViewDelegate, UICollectionView
             return cell1
             
         } else if collectionView == self.interventionCollectionView {
-            guard let cell2 = interventionCollectionView.dequeueReusableCell(withReuseIdentifier: "CheckCell2", for: indexPath) as? CheckCell else {
+            guard let cell2 = interventionCollectionView.dequeueReusableCell(withReuseIdentifier: "interventionCell", for: indexPath) as? CheckCell else {
                 return UICollectionViewCell()
             }
             
             cell2.textLabel.text = interventionText[indexPath.row]
             return cell2
             
-        } else if collectionView == self.dividenCollectionView{
-            guard let cell3 = dividenCollectionView.dequeueReusableCell(withReuseIdentifier: "CheckCell3", for: indexPath) as? CheckCell else {
+        } else if collectionView == self.dividenCollectionView {
+            guard let cell3 = dividenCollectionView.dequeueReusableCell(withReuseIdentifier: "dividenCell", for: indexPath) as? CheckCell else {
                 return UICollectionViewCell()
             }
             
             cell3.textLabel.text = dividenText[indexPath.row]
             return cell3
             
+        } else if collectionView == self.imageCollectionView {
+            if indexPath.section == 0 {
+                guard let cell4 = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "buttonCell", for: indexPath) as? ButtonCell else { return UICollectionViewCell()
+                }
+                return cell4
+            }
+            else {
+                guard let cell5 = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCell else { return UICollectionViewCell()
+                }
+                // 이미지 처리
+                cell5.imageView.image = UIImage(named: "btn_login_kakao")
+                cell5.delegate = self
+                
+                return cell5
+            }
         }
         return UICollectionViewCell()
         
@@ -312,25 +469,44 @@ extension ContractInfoViewController: UICollectionViewDelegate, UICollectionView
     
     // cell 크기 및 간격 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = collectionView.frame.width
-        let height = collectionView.frame.height / 2
-        return CGSize(width: width, height: height)
+        if collectionView == imageCollectionView {
+            return CGSize(width: 100, height: 98)
+        }
+        else {
+            let width: CGFloat = collectionView.frame.width
+            let height = collectionView.frame.height / 2
+            return CGSize(width: width, height: height)
+        }
     }
     
     
     // cell 선택시 동작
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        for i in 0..<2 {
-            let index = IndexPath(item: i, section: 0)
-            if let cell = collectionView.cellForItem(at: index) as? CheckCell {
-                cell.checkImageView.image = UIImage(named: "btn_deselected")
-            }
+        if collectionView == imageCollectionView && indexPath.section == 0 {
+            // 이미지 추가
+            print("addPhoto")
+            return
         }
-        
-//        selectedCell = popupList[indexPath.row]
-        if let cell = collectionView.cellForItem(at: indexPath) as? CheckCell {
-            cell.checkImageView.image = UIImage(named: "btn_selected")
+        else {
+            // 나머지 버튼 모두 선택해제
+            for i in 0..<2 {
+                let index = IndexPath(item: i, section: 0)
+                if let cell = collectionView.cellForItem(at: index) as? CheckCell {
+                    cell.checkImageView.image = UIImage(named: "btn_deselected")
+                }
+            }
+            
+            // 선택된 정보 저장
+    //        selectedCell = popupList[indexPath.row]
+            if let cell = collectionView.cellForItem(at: indexPath) as? CheckCell {
+                cell.checkImageView.image = UIImage(named: "btn_selected")
+            }
         }
     }
     
+    func deleteImage(cell: UICollectionViewCell) {
+        // 해당 index 이미지 삭제
+        let i = imageCollectionView.indexPath(for: cell)?.row
+        print(i!)
+    }
 }

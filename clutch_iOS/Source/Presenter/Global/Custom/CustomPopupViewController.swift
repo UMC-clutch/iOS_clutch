@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-protocol CustomPopupDelegate {
+protocol CustomPopupDelegate: class {
     func getSelectedCell(selected: String)
 }
 
 class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var delegate: CustomPopupDelegate?
+    weak var delegate: CustomPopupDelegate?
     
     //MARK: - UI ProPerties
 
