@@ -8,13 +8,18 @@
 import UIKit
 import SnapKit
 
+protocol DatePickerDelegate: AnyObject {
+    func didSelectDate(title: String, date: Date)
+}
+
 class datePickerViewController: UIViewController {
     
     weak var delegate: DatePickerDelegate?
     
+    lazy var titleText = "날짜를 선택해 주세요"
     lazy var titleLabel:UILabel = {
         let label = UILabel()
-        label.text = "근저당 설정일을\n선택해주세요"
+        label.text = titleText
         label.numberOfLines = 2
         label.font = .Clutch.headtitlebold
         label.textColor = .Clutch.textBlack
@@ -28,6 +33,7 @@ class datePickerViewController: UIViewController {
         datepicker.backgroundColor = .white
         datepicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
         datepicker.tintColor = UIColor.Clutch.mainGreen
+        datepicker.datePickerMode = .date
         
         return datepicker
     }()
@@ -61,10 +67,25 @@ class datePickerViewController: UIViewController {
         let formattedDate = dateFormatter.string(from: selectedDate)
         
         print("Selected Date: \(formattedDate)")
-        delegate?.didSelectDate(selectedDate)
+        delegate?.didSelectDate(title: titleText, date: selectedDate)
         dismiss(animated: true)
         
     }
     
     
+}
+
+// datePicker를 간결하게 재사용하기 위한 메소드 구현
+extension DatePickerDelegate where Self: UIViewController {
+    func showDatePicker(
+        title: String
+    ) {
+        lazy var VC = datePickerViewController()
+        VC.delegate = self
+        
+        VC.modalPresentationStyle = .overCurrentContext
+        VC.modalTransitionStyle = .coverVertical
+        VC.titleText = title
+        self.present(VC, animated: true, completion: nil)
+    }
 }

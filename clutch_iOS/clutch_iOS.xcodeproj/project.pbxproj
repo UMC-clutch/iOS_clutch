@@ -10,10 +10,11 @@
 		0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */; };
 		0912CBAD2A68C60C00139593 /* CustomPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */; };
 		093EB0BC2A6F7DD400AC1F71 /* CustomPopupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */; };
+		09D990492A7393E0004F1349 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D990482A7393E0004F1349 /* ImageCell.swift */; };
+		09D9904B2A73A0BB004F1349 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9904A2A73A0BB004F1349 /* ButtonCell.swift */; };
 		09EBFACE2A710033004C8BE5 /* ContractInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */; };
 		09EBFAD02A7107A4004C8BE5 /* CheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EBFACF2A7107A4004C8BE5 /* CheckCell.swift */; };
 		2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */; };
-		5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */; };
 		A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207BC852A6665BC002AD898 /* InquiryViewController.swift */; };
 		A223575F2A65279900915DF0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A223575E2A65279900915DF0 /* ProfileViewController.swift */; };
 		A22D5DF22A65678100F8D536 /* InputScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22D5DF12A65678100F8D536 /* InputScreen.swift */; };
@@ -25,12 +26,22 @@
 		A286D4C92A77F9C000C3EB93 /* OutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A286D4C82A77F9C000C3EB93 /* OutputView.swift */; };
 		BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC6B2A6A658F0007F588 /* TextInputView.swift */; };
 		BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC702A6A76620007F588 /* SampleViewController.swift */; };
+		BE4B03442A790C3F009285A3 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4B03432A790C3F009285A3 /* Package.swift */; };
+		BE4B03472A790DCD009285A3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE4B03462A790DCD009285A3 /* Alamofire */; };
+		BE4B034A2A790EBC009285A3 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = BE4B03492A790EBC009285A3 /* SwiftyGif */; };
+		BE4B034C2A790EBC009285A3 /* SwiftyGif-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = BE4B034B2A790EBC009285A3 /* SwiftyGif-Dynamic */; };
+		BE53C58B2A765AEA000EF2C5 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C58A2A765AEA000EF2C5 /* UserInfoViewController.swift */; };
+		BE53C58D2A765D45000EF2C5 /* ReportDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */; };
+		BE53C58F2A765D92000EF2C5 /* TextSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */; };
+		BE53C5912A765DF4000EF2C5 /* ReportDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C5902A765DF4000EF2C5 /* ReportDoneView.swift */; };
+		BE53C5932A766819000EF2C5 /* ReportStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C5922A766819000EF2C5 /* ReportStatusView.swift */; };
 		BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */; };
 		BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DC2A4F140E002EB93C /* SetColor.swift */; };
 		BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */; };
 		BE744AB22A4F2695005F8F4F /* CalculateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AB12A4F2695005F8F4F /* CalculateViewController.swift */; };
 		BE744AB42A4F26B1005F8F4F /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AB32A4F26B1005F8F4F /* ReportViewController.swift */; };
 		BE744AB62A4F2769005F8F4F /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AB52A4F2769005F8F4F /* MypageViewController.swift */; };
+		BE85075C2A77EDFB009ADAD6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE85075B2A77EDFB009ADAD6 /* SnapKit */; };
 		BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87AC8B2A5D9C610002E4C6 /* TransitionViewController.swift */; };
 		BE87AC8E2A5DA0B00002E4C6 /* SetFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87AC8D2A5DA0B00002E4C6 /* SetFont.swift */; };
 		BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9FF7972A6E9BD00000DA88 /* SmallTextInputView.swift */; };
@@ -80,10 +91,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.release.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupViewController.swift; sourceTree = "<group>"; };
 		093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupCell.swift; sourceTree = "<group>"; };
+		09D990482A7393E0004F1349 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		09D9904A2A73A0BB004F1349 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractInfoViewController.swift; sourceTree = "<group>"; };
 		09EBFACF2A7107A4004C8BE5 /* CheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCell.swift; sourceTree = "<group>"; };
 		2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +111,12 @@
 		A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.debug.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BE40DC6B2A6A658F0007F588 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		BE40DC702A6A76620007F588 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
+		BE4B03432A790C3F009285A3 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		BE53C58A2A765AEA000EF2C5 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDoneViewController.swift; sourceTree = "<group>"; };
+		BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSampleView.swift; sourceTree = "<group>"; };
+		BE53C5902A765DF4000EF2C5 /* ReportDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDoneView.swift; sourceTree = "<group>"; };
+		BE53C5922A766819000EF2C5 /* ReportStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportStatusView.swift; sourceTree = "<group>"; };
 		BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		BE67E1DC2A4F140E002EB93C /* SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColor.swift; sourceTree = "<group>"; };
 		BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClutchIntroViewController.swift; sourceTree = "<group>"; };
@@ -138,7 +156,6 @@
 		BED645F92A4D69D7005106D8 /* MyCustomCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell3.swift; sourceTree = "<group>"; };
 		BED645FB2A4D69DE005106D8 /* MyCustomCell4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell4.swift; sourceTree = "<group>"; };
 		BEF1510D2A6E0DA500798D74 /* SampleScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleScrollViewController.swift; sourceTree = "<group>"; };
-		C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-clutch_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +163,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F7F6386A21E2A69A0693E91 /* libPods-clutch_iOS.a in Frameworks */,
+				BE85075C2A77EDFB009ADAD6 /* SnapKit in Frameworks */,
+				BE4B03472A790DCD009285A3 /* Alamofire in Frameworks */,
+				BE4B034A2A790EBC009285A3 /* SwiftyGif in Frameworks */,
+				BE4B034C2A790EBC009285A3 /* SwiftyGif-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,23 +203,6 @@
 				2C16A6B92A5F9F08003D7013 /* WithdrawViewController.swift */,
 			);
 			path = Account;
-			sourceTree = "<group>";
-		};
-		7B09C6DFFDD9C5A6ACA927F9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C5205AA308C3164009CA681C /* libPods-clutch_iOS.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9D3CA54FB7BF665EA4332F89 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */,
-				029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		A207BC842A666567002AD898 /* Inquiry */ = {
@@ -269,6 +272,12 @@
 				BE744AB32A4F26B1005F8F4F /* ReportViewController.swift */,
 				BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */,
 				09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */,
+				BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */,
+				BE53C5902A765DF4000EF2C5 /* ReportDoneView.swift */,
+				BE53C5922A766819000EF2C5 /* ReportStatusView.swift */,
+				BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */,
+				09D990482A7393E0004F1349 /* ImageCell.swift */,
+				09D9904A2A73A0BB004F1349 /* ButtonCell.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -297,6 +306,7 @@
 			children = (
 				BECEC6B42A6050EA00A177A0 /* loginViewController.swift */,
 				BECEC6B62A6050F700A177A0 /* loginView.swift */,
+				BE53C58A2A765AEA000EF2C5 /* UserInfoViewController.swift */,
 				BED645C62A4D6845005106D8 /* MainViewController.swift */,
 				BED645FD2A4D6BA6005106D8 /* MainCell */,
 				BECEC6A22A5EDFDF00A177A0 /* faqViewController.swift */,
@@ -406,6 +416,13 @@
 			path = InfoInput;
 			sourceTree = "<group>";
 		};
+		BE9B7EAB2A7669A1005A86A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BECEC6A42A5EF4E300A177A0 /* Banner */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,14 +445,14 @@
 		BED645B62A4D6845005106D8 = {
 			isa = PBXGroup;
 			children = (
+				BE4B03432A790C3F009285A3 /* Package.swift */,
 				BE086A7C2A56FA85002E4BF4 /* clutch_iOS */,
 				BE086A6A2A56F744002E4BF4 /* Resource */,
 				BED645C12A4D6845005106D8 /* Source */,
 				BED645DB2A4D6846005106D8 /* clutch_iOSTests */,
 				BED645E52A4D6846005106D8 /* clutch_iOSUITests */,
 				BED645C02A4D6845005106D8 /* Products */,
-				9D3CA54FB7BF665EA4332F89 /* Pods */,
-				7B09C6DFFDD9C5A6ACA927F9 /* Frameworks */,
+				BE9B7EAB2A7669A1005A86A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -503,7 +520,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BED645EC2A4D6846005106D8 /* Build configuration list for PBXNativeTarget "clutch_iOS" */;
 			buildPhases = (
-				93B9C6AD5FA2BB90B8074649 /* [CP] Check Pods Manifest.lock */,
 				BED645BB2A4D6845005106D8 /* Sources */,
 				BED645BC2A4D6845005106D8 /* Frameworks */,
 				BED645BD2A4D6845005106D8 /* Resources */,
@@ -513,6 +529,12 @@
 			dependencies = (
 			);
 			name = clutch_iOS;
+			packageProductDependencies = (
+				BE85075B2A77EDFB009ADAD6 /* SnapKit */,
+				BE4B03462A790DCD009285A3 /* Alamofire */,
+				BE4B03492A790EBC009285A3 /* SwiftyGif */,
+				BE4B034B2A790EBC009285A3 /* SwiftyGif-Dynamic */,
+			);
 			productName = clutch_iOS;
 			productReference = BED645BF2A4D6845005106D8 /* clutch_iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -585,6 +607,11 @@
 				Base,
 			);
 			mainGroup = BED645B62A4D6845005106D8;
+			packageReferences = (
+				BE85075A2A77EDFB009ADAD6 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				BE4B03452A790DCD009285A3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BE4B03482A790EBC009285A3 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+			);
 			productRefGroup = BED645C02A4D6845005106D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -623,31 +650,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		93B9C6AD5FA2BB90B8074649 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-clutch_iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		BED645BB2A4D6845005106D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -658,6 +660,7 @@
 				BE744AB42A4F26B1005F8F4F /* ReportViewController.swift in Sources */,
 				A223575F2A65279900915DF0 /* ProfileViewController.swift in Sources */,
 				BEABD8922A6FE0500015AC29 /* CheckContainer.swift in Sources */,
+				BE53C58B2A765AEA000EF2C5 /* UserInfoViewController.swift in Sources */,
 				BED645CD2A4D6845005106D8 /* clutch_iOS.xcdatamodeld in Sources */,
 				0912CBAD2A68C60C00139593 /* CustomPopupViewController.swift in Sources */,
 				BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */,
@@ -666,6 +669,7 @@
 				BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */,
 				0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */,
 				BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */,
+				09D990492A7393E0004F1349 /* ImageCell.swift in Sources */,
 				A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */,
 				BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */,
 				A286D4C92A77F9C000C3EB93 /* OutputView.swift in Sources */,
@@ -678,21 +682,27 @@
 				A22F712D2A7394BE007705C8 /* ResultViewController.swift in Sources */,
 				BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */,
 				BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */,
+				BE4B03442A790C3F009285A3 /* Package.swift in Sources */,
 				BE9FF79A2A6E9F840000DA88 /* datePickerViewController.swift in Sources */,
 				BECEC6B72A6050F700A177A0 /* loginView.swift in Sources */,
 				BE744AB62A4F2769005F8F4F /* MypageViewController.swift in Sources */,
 				A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */,
+				BE53C5932A766819000EF2C5 /* ReportStatusView.swift in Sources */,
 				BEF1510E2A6E0DA500798D74 /* SampleScrollViewController.swift in Sources */,
 				BED645FC2A4D69DE005106D8 /* MyCustomCell4.swift in Sources */,
 				BE87AC8E2A5DA0B00002E4C6 /* SetFont.swift in Sources */,
 				BECEC6A62A5EF51C00A177A0 /* Banner1View.swift in Sources */,
 				BECEC6A32A5EDFDF00A177A0 /* faqViewController.swift in Sources */,
 				BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */,
+				BE53C58F2A765D92000EF2C5 /* TextSampleView.swift in Sources */,
 				2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */,
 				BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */,
 				BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
+				09D9904B2A73A0BB004F1349 /* ButtonCell.swift in Sources */,
 				BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */,
+				BE53C5912A765DF4000EF2C5 /* ReportDoneView.swift in Sources */,
+				BE53C58D2A765D45000EF2C5 /* ReportDoneViewController.swift in Sources */,
 				BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */,
 				BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */,
 				BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */,
@@ -870,7 +880,6 @@
 		};
 		BED645ED2A4D6846005106D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -899,7 +908,6 @@
 		};
 		BED645EE2A4D6846005106D8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 029110AB3B804C4470BE9F1A /* Pods-clutch_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1042,6 +1050,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BE4B03452A790DCD009285A3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.7.0;
+			};
+		};
+		BE4B03482A790EBC009285A3 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
+		BE85075A2A77EDFB009ADAD6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BE4B03462A790DCD009285A3 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE4B03452A790DCD009285A3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		BE4B03492A790EBC009285A3 /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE4B03482A790EBC009285A3 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
+		BE4B034B2A790EBC009285A3 /* SwiftyGif-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE4B03482A790EBC009285A3 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = "SwiftyGif-Dynamic";
+		};
+		BE85075B2A77EDFB009ADAD6 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE85075A2A77EDFB009ADAD6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		BED645CB2A4D6845005106D8 /* clutch_iOS.xcdatamodeld */ = {
