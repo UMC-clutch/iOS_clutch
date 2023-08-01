@@ -19,20 +19,24 @@
 		A248A9982A5FD4C40053E66C /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9972A5FD4C40053E66C /* HistoryCell.swift */; };
 		A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9992A5FD5330053E66C /* InfoCell.swift */; };
 		A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A99B2A5FD5410053E66C /* AccountCell.swift */; };
-		BE26DD502A75155500024FD4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE26DD4F2A75155500024FD4 /* SnapKit */; };
-		BE26DD532A7515AA00024FD4 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = BE26DD522A7515AA00024FD4 /* SkeletonView */; };
 		BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC6B2A6A658F0007F588 /* TextInputView.swift */; };
 		BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC702A6A76620007F588 /* SampleViewController.swift */; };
+		BE4B03442A790C3F009285A3 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4B03432A790C3F009285A3 /* Package.swift */; };
+		BE4B03472A790DCD009285A3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE4B03462A790DCD009285A3 /* Alamofire */; };
+		BE4B034A2A790EBC009285A3 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = BE4B03492A790EBC009285A3 /* SwiftyGif */; };
+		BE4B034C2A790EBC009285A3 /* SwiftyGif-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = BE4B034B2A790EBC009285A3 /* SwiftyGif-Dynamic */; };
 		BE53C58B2A765AEA000EF2C5 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C58A2A765AEA000EF2C5 /* UserInfoViewController.swift */; };
 		BE53C58D2A765D45000EF2C5 /* ReportDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */; };
 		BE53C58F2A765D92000EF2C5 /* TextSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */; };
 		BE53C5912A765DF4000EF2C5 /* ReportDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C5902A765DF4000EF2C5 /* ReportDoneView.swift */; };
+		BE53C5932A766819000EF2C5 /* ReportStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53C5922A766819000EF2C5 /* ReportStatusView.swift */; };
 		BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */; };
 		BE67E1DD2A4F140E002EB93C /* SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DC2A4F140E002EB93C /* SetColor.swift */; };
 		BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */; };
 		BE744AB22A4F2695005F8F4F /* CalculateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AB12A4F2695005F8F4F /* CalculateViewController.swift */; };
 		BE744AB42A4F26B1005F8F4F /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AB32A4F26B1005F8F4F /* ReportViewController.swift */; };
 		BE744AB62A4F2769005F8F4F /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE744AB52A4F2769005F8F4F /* MypageViewController.swift */; };
+		BE85075C2A77EDFB009ADAD6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE85075B2A77EDFB009ADAD6 /* SnapKit */; };
 		BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87AC8B2A5D9C610002E4C6 /* TransitionViewController.swift */; };
 		BE87AC8E2A5DA0B00002E4C6 /* SetFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87AC8D2A5DA0B00002E4C6 /* SetFont.swift */; };
 		BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9FF7972A6E9BD00000DA88 /* SmallTextInputView.swift */; };
@@ -96,10 +100,12 @@
 		A248A99B2A5FD5410053E66C /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		BE40DC6B2A6A658F0007F588 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		BE40DC702A6A76620007F588 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
+		BE4B03432A790C3F009285A3 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		BE53C58A2A765AEA000EF2C5 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDoneViewController.swift; sourceTree = "<group>"; };
 		BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSampleView.swift; sourceTree = "<group>"; };
 		BE53C5902A765DF4000EF2C5 /* ReportDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDoneView.swift; sourceTree = "<group>"; };
+		BE53C5922A766819000EF2C5 /* ReportStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportStatusView.swift; sourceTree = "<group>"; };
 		BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		BE67E1DC2A4F140E002EB93C /* SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColor.swift; sourceTree = "<group>"; };
 		BE744AAF2A4F2685005F8F4F /* ClutchIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClutchIntroViewController.swift; sourceTree = "<group>"; };
@@ -146,8 +152,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE26DD532A7515AA00024FD4 /* SkeletonView in Frameworks */,
-				BE26DD502A75155500024FD4 /* SnapKit in Frameworks */,
+				BE85075C2A77EDFB009ADAD6 /* SnapKit in Frameworks */,
+				BE4B03472A790DCD009285A3 /* Alamofire in Frameworks */,
+				BE4B034A2A790EBC009285A3 /* SwiftyGif in Frameworks */,
+				BE4B034C2A790EBC009285A3 /* SwiftyGif-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +263,7 @@
 				09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */,
 				BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */,
 				BE53C5902A765DF4000EF2C5 /* ReportDoneView.swift */,
+				BE53C5922A766819000EF2C5 /* ReportStatusView.swift */,
 				BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */,
 			);
 			path = Report;
@@ -391,6 +400,13 @@
 			path = InfoInput;
 			sourceTree = "<group>";
 		};
+		BE9B7EAB2A7669A1005A86A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BECEC6A42A5EF4E300A177A0 /* Banner */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,12 +429,14 @@
 		BED645B62A4D6845005106D8 = {
 			isa = PBXGroup;
 			children = (
+				BE4B03432A790C3F009285A3 /* Package.swift */,
 				BE086A7C2A56FA85002E4BF4 /* clutch_iOS */,
 				BE086A6A2A56F744002E4BF4 /* Resource */,
 				BED645C12A4D6845005106D8 /* Source */,
 				BED645DB2A4D6846005106D8 /* clutch_iOSTests */,
 				BED645E52A4D6846005106D8 /* clutch_iOSUITests */,
 				BED645C02A4D6845005106D8 /* Products */,
+				BE9B7EAB2A7669A1005A86A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -496,8 +514,10 @@
 			);
 			name = clutch_iOS;
 			packageProductDependencies = (
-				BE26DD4F2A75155500024FD4 /* SnapKit */,
-				BE26DD522A7515AA00024FD4 /* SkeletonView */,
+				BE85075B2A77EDFB009ADAD6 /* SnapKit */,
+				BE4B03462A790DCD009285A3 /* Alamofire */,
+				BE4B03492A790EBC009285A3 /* SwiftyGif */,
+				BE4B034B2A790EBC009285A3 /* SwiftyGif-Dynamic */,
 			);
 			productName = clutch_iOS;
 			productReference = BED645BF2A4D6845005106D8 /* clutch_iOS.app */;
@@ -572,8 +592,9 @@
 			);
 			mainGroup = BED645B62A4D6845005106D8;
 			packageReferences = (
-				BE26DD4E2A75155500024FD4 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				BE26DD512A7515AA00024FD4 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				BE85075A2A77EDFB009ADAD6 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				BE4B03452A790DCD009285A3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BE4B03482A790EBC009285A3 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
 			);
 			productRefGroup = BED645C02A4D6845005106D8 /* Products */;
 			projectDirPath = "";
@@ -642,10 +663,12 @@
 				BE744AB22A4F2695005F8F4F /* CalculateViewController.swift in Sources */,
 				BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */,
 				BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */,
+				BE4B03442A790C3F009285A3 /* Package.swift in Sources */,
 				BE9FF79A2A6E9F840000DA88 /* datePickerViewController.swift in Sources */,
 				BECEC6B72A6050F700A177A0 /* loginView.swift in Sources */,
 				BE744AB62A4F2769005F8F4F /* MypageViewController.swift in Sources */,
 				A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */,
+				BE53C5932A766819000EF2C5 /* ReportStatusView.swift in Sources */,
 				BEF1510E2A6E0DA500798D74 /* SampleScrollViewController.swift in Sources */,
 				BED645FC2A4D69DE005106D8 /* MyCustomCell4.swift in Sources */,
 				BE87AC8E2A5DA0B00002E4C6 /* SetFont.swift in Sources */,
@@ -1008,34 +1031,52 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BE26DD4E2A75155500024FD4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		BE4B03452A790DCD009285A3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.7.0;
 			};
 		};
-		BE26DD512A7515AA00024FD4 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+		BE4B03482A790EBC009285A3 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Juanpe/SkeletonView";
+			repositoryURL = "https://github.com/kirualex/SwiftyGif";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
+		BE85075A2A77EDFB009ADAD6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.6.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BE26DD4F2A75155500024FD4 /* SnapKit */ = {
+		BE4B03462A790DCD009285A3 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BE26DD4E2A75155500024FD4 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
+			package = BE4B03452A790DCD009285A3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
-		BE26DD522A7515AA00024FD4 /* SkeletonView */ = {
+		BE4B03492A790EBC009285A3 /* SwiftyGif */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BE26DD512A7515AA00024FD4 /* XCRemoteSwiftPackageReference "SkeletonView" */;
-			productName = SkeletonView;
+			package = BE4B03482A790EBC009285A3 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
+		BE4B034B2A790EBC009285A3 /* SwiftyGif-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE4B03482A790EBC009285A3 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = "SwiftyGif-Dynamic";
+		};
+		BE85075B2A77EDFB009ADAD6 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE85075A2A77EDFB009ADAD6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

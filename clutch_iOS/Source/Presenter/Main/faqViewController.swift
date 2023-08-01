@@ -9,6 +9,7 @@ import UIKit
 
 class faqViewController: UIViewController{
     //MARK: - UI ProPerties
+    
 
     //MARK: - Define Method
     override func viewDidLoad() {

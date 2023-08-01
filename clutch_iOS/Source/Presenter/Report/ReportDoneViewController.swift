@@ -26,10 +26,10 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
     //스크롤 기능을 탑재한 버튼
     lazy var nextButton:UIButton = {
         let button = UIButton()
-        button.setTitle("다음", for: .normal)
+        button.setTitle("확인", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = .Clutch.subheadMedium
-        button.addTarget(self, action: #selector(ButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 11
         button.backgroundColor = .Clutch.mainDarkGreen
         // Highlighted 상태일 때 배경색
@@ -38,6 +38,23 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
         
         return button
     }()
+    
+    lazy var cancelButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("신고 취소", for: .normal)
+        button.setTitleColor(.Clutch.mainDarkGreen, for: .normal)
+        button.titleLabel?.font = .Clutch.subheadMedium
+        button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 11
+        button.backgroundColor = .Clutch.mainWhite
+        // Highlighted 상태일 때 배경색
+        let iamge = image(withColor: .Clutch.mainGreen!)
+        button.setBackgroundImage(iamge, for: .highlighted)
+        
+        return button
+    }()
+    
+    let reportDoneView = ReportDoneView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +69,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
     }
     //addsubview
     func addsubview() {
-        [scrollview, nextButton].forEach { view in
+        [scrollview, nextButton, cancelButton].forEach { view in
             self.view.addSubview(view)
         }
         
@@ -60,7 +77,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
             scrollview.addSubview(view)
         }
         
-        [].forEach { view in
+        [reportDoneView].forEach { view in
             contentView.addSubview(view)
         }
     }
@@ -71,6 +88,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func constraints() {
+        let spacing:CGFloat = 16
         //스크롤 뷰 오토레이아웃
         scrollview.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -79,19 +97,31 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(view.frame.height * 3)
+            make.height.equalTo(view.frame.height * 1.3)
+        }
+        
+        cancelButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(spacing)
+            make.width.equalTo((self.view.frame.width - spacing * 3)/2)
+            make.height.equalTo(50)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
         }
         //버튼 오토레이아웃
         nextButton.snp.makeConstraints { make in
-            make.width.equalTo(360)
+            make.leading.equalTo(cancelButton.snp.trailing).offset(spacing)
+            make.width.equalTo((self.view.frame.width - spacing * 3)/2)
             make.height.equalTo(50)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
-            make.centerX.equalToSuperview()
+        }
+    
+        
+        reportDoneView.snp.makeConstraints { make in
+            make.edges.equalTo(contentView.snp.edges)
         }
     }
     
     // 버튼 클릭 시 스크롤되도록 하는 메서드
-    @objc func ButtonTapped(_ sender: UIButton) {
+    @objc func nextButtonTapped(_ sender: UIButton) {
         let offsetY = scrollview.contentSize.height / 10
         let contentOffset = CGPoint(x: 0, y: scrollview.contentOffset.y + offsetY)
         
@@ -105,7 +135,47 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
             scrollview.setContentOffset(contentOffset, animated: true)
         }
         
+    }
+    
+    @objc func cancelButtonTapped(_ sender: UIButton) {
+        showCustomAlert(alertType: .canCancel,
+                        alertTitle: "신고 취소",
+                        alertContext: "정말로 신고를 철회하시겠습니까??",
+                        cancelText: "닫기",
+                        confirmText: "신고취소")
+        
         
     }
     
+}
+
+extension ReportDoneViewController: CustomAlertDelegate {
+    func cancel() {
+        print("custom cancel Button Tapped")
+    }
+    
+    func confirm() {
+        print("custom action Button Tapped")
+        // 탈퇴하기 API 호출
+        let response = "200"
+        // 정상적으로 호출되면 메시지 출력, 창 닫기
+        if response == "200" {
+            showCustomAlert(alertType: .done,
+                            alertTitle: "취소 완료",
+                            alertContext: "신고 내역이 정상적으로 삭제되었습니다",
+                            confirmText: "확인")
+            // 창 닫는 코드
+        }
+        // 오류 발생시 메시지 출력
+        else {
+            showCustomAlert(alertType: .done,
+                            alertTitle: "오류 발생",
+                            alertContext: "다시 시도해주세요.",
+                            confirmText: "확인")
+        }
+    }
+    
+    func done() {
+        print("custom done Button Tapped")
+    }
 }

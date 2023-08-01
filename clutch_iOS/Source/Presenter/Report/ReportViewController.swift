@@ -79,17 +79,10 @@ class ReportViewController: UIViewController{
     
     
     //MARK: - Define Method
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.view.isSkeletonable = true
-        self.view.showSkeleton()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         SetView()
         Constraint()
-        self.view.hideSkeleton()
     }
     
     //MARK: - Set Ui
@@ -218,7 +211,7 @@ class ReportViewController: UIViewController{
     }
     
     @objc func ButtonTapped(_ sender: UIButton) {
-        let VC = SampleScrollViewController()
+        let VC = ReportDoneViewController()
         present(VC, animated: true)
         
     }

@@ -53,7 +53,7 @@ class loginViewController: UIViewController {
         //kakaoButton 오토레이아웃
         kakaoButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(600)
+            make.top.equalTo(400)
             make.width.equalTo(332)
             make.height.equalTo(50)
         }
