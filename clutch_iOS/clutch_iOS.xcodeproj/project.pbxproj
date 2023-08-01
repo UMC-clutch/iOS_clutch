@@ -17,9 +17,12 @@
 		A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207BC852A6665BC002AD898 /* InquiryViewController.swift */; };
 		A223575F2A65279900915DF0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A223575E2A65279900915DF0 /* ProfileViewController.swift */; };
 		A22D5DF22A65678100F8D536 /* InputScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22D5DF12A65678100F8D536 /* InputScreen.swift */; };
+		A22F712D2A7394BE007705C8 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F712C2A7394BE007705C8 /* ResultViewController.swift */; };
+		A22F712F2A73951E007705C8 /* SecondCalculateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F712E2A73951E007705C8 /* SecondCalculateViewController.swift */; };
 		A248A9982A5FD4C40053E66C /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9972A5FD4C40053E66C /* HistoryCell.swift */; };
 		A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9992A5FD5330053E66C /* InfoCell.swift */; };
 		A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A99B2A5FD5410053E66C /* AccountCell.swift */; };
+		A286D4C92A77F9C000C3EB93 /* OutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A286D4C82A77F9C000C3EB93 /* OutputView.swift */; };
 		BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC6B2A6A658F0007F588 /* TextInputView.swift */; };
 		BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC702A6A76620007F588 /* SampleViewController.swift */; };
 		BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67E1DA2A4F13BB002EB93C /* Color+Ext.swift */; };
@@ -87,9 +90,12 @@
 		A207BC852A6665BC002AD898 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
 		A223575E2A65279900915DF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A22D5DF12A65678100F8D536 /* InputScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputScreen.swift; sourceTree = "<group>"; };
+		A22F712C2A7394BE007705C8 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		A22F712E2A73951E007705C8 /* SecondCalculateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCalculateViewController.swift; sourceTree = "<group>"; };
 		A248A9972A5FD4C40053E66C /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		A248A9992A5FD5330053E66C /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		A248A99B2A5FD5410053E66C /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
+		A286D4C82A77F9C000C3EB93 /* OutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputView.swift; sourceTree = "<group>"; };
 		A2C1035267FB099F808417D3 /* Pods-clutch_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clutch_iOS.debug.xcconfig"; path = "Target Support Files/Pods-clutch_iOS/Pods-clutch_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BE40DC6B2A6A658F0007F588 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		BE40DC702A6A76620007F588 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +277,9 @@
 			isa = PBXGroup;
 			children = (
 				BE744AB12A4F2695005F8F4F /* CalculateViewController.swift */,
+				A22F712E2A73951E007705C8 /* SecondCalculateViewController.swift */,
+				A22F712C2A7394BE007705C8 /* ResultViewController.swift */,
+				A286D4C82A77F9C000C3EB93 /* OutputView.swift */,
 			);
 			path = Calculate;
 			sourceTree = "<group>";
@@ -659,12 +668,14 @@
 				BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */,
 				A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */,
 				BED645F82A4D69CF005106D8 /* MyCustomCell2.swift in Sources */,
+				A286D4C92A77F9C000C3EB93 /* OutputView.swift in Sources */,
 				A207BC862A6665BC002AD898 /* InquiryViewController.swift in Sources */,
 				A22D5DF22A65678100F8D536 /* InputScreen.swift in Sources */,
 				A248A9982A5FD4C40053E66C /* HistoryCell.swift in Sources */,
 				09EBFACE2A710033004C8BE5 /* ContractInfoViewController.swift in Sources */,
 				BECEC6AC2A60143200A177A0 /* ColorToImage.swift in Sources */,
 				BE744AB22A4F2695005F8F4F /* CalculateViewController.swift in Sources */,
+				A22F712D2A7394BE007705C8 /* ResultViewController.swift in Sources */,
 				BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */,
 				BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */,
 				BE9FF79A2A6E9F840000DA88 /* datePickerViewController.swift in Sources */,
@@ -687,6 +698,7 @@
 				BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */,
 				BECEC6B52A6050EA00A177A0 /* loginViewController.swift in Sources */,
 				09EBFAD02A7107A4004C8BE5 /* CheckCell.swift in Sources */,
+				A22F712F2A73951E007705C8 /* SecondCalculateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

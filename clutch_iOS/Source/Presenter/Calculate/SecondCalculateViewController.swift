@@ -80,6 +80,8 @@ class SecondCalculateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .Clutch.mainWhite
+        self.checkButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
         SetView()
         navigationBarSet()
         setData()
@@ -118,6 +120,12 @@ class SecondCalculateViewController: UIViewController {
     // -> 네비게이션뷰 만든 후 navigationController?.popViewController(animated: true)로 변경
     @objc func backButtonTapped() {
         present(CalculateViewController(), animated: true)
+    }
+    
+    // checkButton 누르면 ResultViewController() 보여주는 액션
+    @objc func didTapButton() {
+        let secondVC = ResultViewController()
+        self.present(secondVC, animated: true, completion: nil)
     }
     
     func setData() {
