@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 // Custom Alert의 취소/확인 버튼 동작 지정
-protocol CustomAlertDelegate {
+protocol CustomAlertDelegate: class {
     func cancel()   // 취소 버튼 메소드
     func confirm()  // 액션 버튼 메소드
     func done()     // 확인 버튼 메소드
@@ -22,7 +22,7 @@ enum AlertType {
 
 class CustomAlertViewController: UIViewController {
     
-    var delegate: CustomAlertDelegate?
+    weak var delegate: CustomAlertDelegate?
     
     //MARK: - UI ProPerties
     lazy var alertType = AlertType.canCancel

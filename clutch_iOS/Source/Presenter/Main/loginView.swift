@@ -8,10 +8,8 @@
 import UIKit
 
 class loginView: UIView {
-    
-    
+
     //MARK: - UI ProPerties
-    
     //로고
     lazy var logo:UIImageView = {
         let view = UIImageView()
