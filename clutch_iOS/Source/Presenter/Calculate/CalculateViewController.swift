@@ -24,7 +24,8 @@ class CalculateViewController: UIViewController {
         
         return label
     }()
-
+    
+    // UILabel 선언("건물 유형")
     lazy var selectLabel: UILabel = {
         let label = UILabel()
         label.text = "건물 유형"
@@ -48,29 +49,12 @@ class CalculateViewController: UIViewController {
         return view
     }()
     
-    // 주소 입력란 제목 및 첫번째 줄
+    // 주소 입력란 제목 및 첫번째 줄("지번 또는 도로명 주소")
     let addressInput = TextInputView()
     
-    // -> 입력되고 있을 때 "주소" 초록 글씨로 변경
-    // -> 입력되는 폰트만 subheadRegular 으로 변경
-    // 주소 입력란 두번째 줄("상세주소(예: 층수, 동, 호)")
-    lazy var addressTextField: UITextField = {
-        let textField = UITextField()
-        textField.font = .Clutch.baseMedium
-        textField.textColor = .Clutch.textBlack
-        textField.attributedPlaceholder = NSAttributedString(string: "상세주소(예: 층수, 동, 호)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
-        
-        return textField
-    }()
-    
-    // -> 입력되고 있을 때 초록색으로 변경
-    // UIView 선언(회색 구분선)
-    lazy var underLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.Clutch.bgGrey
-        
-        return view
-    }()
+    // 주소 입력란 두번째 줄(동, 호)
+    let buildingNum = SmallTextInputView()
+    let unitNum = SmallTextInputView()
     
     // 평수 입력란
     let sqftInput = TextInputView()
@@ -91,6 +75,8 @@ class CalculateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .Clutch.mainWhite
+        self.checkButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
         SetView()
         navigationBarSet()
         setData()
@@ -104,7 +90,7 @@ class CalculateViewController: UIViewController {
     //MARK: - Set Ui
     func SetView() {
         self.view.backgroundColor = .white
-        [navigationBar, textLabel, selectLabel, selectCollectionView, addressInput, addressTextField, underLine, sqftInput, checkButton].forEach { view in
+        [navigationBar, textLabel, selectLabel, selectCollectionView, addressInput, buildingNum, unitNum, sqftInput, checkButton].forEach { view in
             self.view.addSubview(view)
         }
     }
@@ -129,7 +115,13 @@ class CalculateViewController: UIViewController {
     
     // -> 네비게이션뷰 만든 후 navigationController?.popViewController(animated: true)로 변경
     @objc func backButtonTapped() {
-        present(MypageViewController(), animated: true)
+        present(MainViewController(), animated: true)
+    }
+    
+    // checkButton 누르면 SecondCalculateViewController() 보여주는 액션
+    @objc func didTapButton() {
+        let secondVC = SecondCalculateViewController()
+        self.present(secondVC, animated: true, completion: nil)
     }
     
     func setData() {
@@ -142,6 +134,15 @@ class CalculateViewController: UIViewController {
         sqftInput.textInputTextField.font = .Clutch.baseMedium
         sqftInput.textInputTextField.textColor = .Clutch.textBlack
         sqftInput.textInputTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
+        
+        buildingNum.textInputLabel.isHidden = true
+        buildingNum.textInputTextField.placeholder = ""
+        buildingNum.textInputTextField.textColor = .Clutch.textBlack
+        
+        unitNum.textInputLabel.isHidden = true
+        unitNum.textInputTextField.placeholder = ""
+        unitNum.textInputTextField.textColor = .Clutch.textBlack
+        unitNum.leftLabel.text = "호"
     }
     
     func Constraint() {
@@ -174,21 +175,18 @@ class CalculateViewController: UIViewController {
             make.leading.equalToSuperview().offset(16)
         }
         
-        addressTextField.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(539)
+        buildingNum.snp.makeConstraints { make in
+            make.top.equalTo(addressInput.snp.bottom).offset(6)
             make.leading.equalToSuperview().offset(16)
         }
-
-        underLine.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(565)
-            make.width.equalToSuperview()
-            make.height.equalTo(2)
-            make.centerX.equalToSuperview()
+        
+        unitNum.snp.makeConstraints { make in
+            make.top.equalTo(addressInput.snp.bottom).offset(6)
+            make.leading.equalToSuperview().offset(213)
         }
-
         
         sqftInput.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(611)
+            make.top.equalToSuperview().offset(600)
             make.leading.equalToSuperview().offset(16)
         }
         
