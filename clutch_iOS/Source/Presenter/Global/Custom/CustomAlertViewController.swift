@@ -90,7 +90,7 @@ class CustomAlertViewController: UIViewController {
     }
     
     func setView() {
-        self.view.backgroundColor = .black.withAlphaComponent(0.5)
+        self.view.backgroundColor = .black.withAlphaComponent(0.6)
         self.view.addSubview(container)
         self.container.addSubview(titleLabel)
         self.container.addSubview(contextLabel)
