@@ -64,7 +64,7 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func setView() {
-        self.view.backgroundColor = .black.withAlphaComponent(0.5)
+        self.view.backgroundColor = .black.withAlphaComponent(0.2)
         
         [titleLabel, closeButton, collectionView].forEach { view
             in self.container.addSubview(view) }
