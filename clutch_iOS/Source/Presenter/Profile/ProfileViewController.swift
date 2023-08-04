@@ -66,9 +66,9 @@ class ProfileViewController: UIViewController {
         navigationBar.titleTextAttributes = titleTextAttributes // 제목 스타일 적용
     }
     
-    // -> 네비게이션뷰 만든 후 navigationController?.popViewController(animated: true)로 변경
+    // pop VC
     @objc func backButtonTapped() {
-        present(MypageViewController(), animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     func Constraint() {
