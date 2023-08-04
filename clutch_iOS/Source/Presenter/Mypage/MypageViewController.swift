@@ -11,6 +11,8 @@ import SnapKit
 class MypageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - UI ProPerties
+    lazy var navigationBar = UINavigationBar()
+    
     // UILabel 선언("조혜원님")
     lazy var nameLabel: UILabel = {
         let label = UILabel()
@@ -123,7 +125,7 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
     // infoLabel 터치 이벤트 처리
     @objc func infoLabelTapped() {
         let VC = ProfileViewController() // ProfileViewController의 인스턴스 생성
-        present(VC, animated: true)
+        navigationController?.pushViewController(VC, animated: true)
     }
     
     // openURL 메소드
@@ -136,15 +138,35 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     //VC의 view 관련 설정
     func setView() {
-        [nameLabel, infoLabel, underLine, historyLabel, collectionView1, inquiryLabel, collectionView2, accountLabel, collectionView3].forEach { view in
+        [navigationBar, nameLabel, infoLabel, underLine, historyLabel, collectionView1, inquiryLabel, collectionView2, accountLabel, collectionView3].forEach { view in
             self.view.addSubview(view)
         }
+        setNavigationBar()
         collectionviewSet()
+    }
+    
+    func setNavigationBar() {
+        let navigationItem = UINavigationItem()
+        let backButton = UIBarButtonItem(
+            image:UIImage(named: "btn_arrow_big"),
+            style: .plain, target: self,
+            action: #selector(backButtonTapped))
+        backButton.tintColor = .black
+        navigationItem.leftBarButtonItem = backButton
+        navigationBar.setItems([navigationItem], animated: false)
+        navigationBar.barTintColor = .Clutch.mainWhite // 배경색 변경
+        navigationBar.shadowImage = UIImage() // 테두리 없애기
     }
     
     //VC의 오토레이아웃
     func Constraint() {
         let leading:Int = 16
+        
+        navigationBar.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.equalToSuperview()
+        }
         
         nameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
@@ -198,6 +220,10 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
             make.leading.equalTo(leading)
             make.top.equalTo(678)
         }
+    }
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     // collectionview 관련 설정
@@ -290,35 +316,40 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     // -> cell 액션 이벤트(눌렀을 때 페이지 이동)
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = CalculateViewController()
-        
         if collectionView == collectionView1 {
             switch indexPath.row {
             case 0:
-                present(vc, animated: true) // "전세사기 피해 신고 내역" 페이지로 이동
+                let VC = ReportDoneViewController()
+                navigationController?.pushViewController(VC, animated: true)
             case 1:
-                present(vc, animated: true) // "전세사기 가능성 계산 내역" 페이지로 이동
+                // 가능성 계산 내역 VC로
+                let VC = ReportDoneViewController()
+                navigationController?.pushViewController(VC, animated: true)
             default :
                 return
             }
         } else if collectionView == collectionView2 {
             switch indexPath.row {
             case 0:
-                present(SampleViewController(), animated: true) // "앱 버전" 페이지로 이동
+                // 앱버전 알림으로 띄우기
+                print("앱버전")
             case 1:
                 let url:String = "https://www.naver.com/"
                 openURL(url)
             case 2:
-                present(InquiryViewController(), animated: true) // "문의하기" 페이지로 이동
+                let VC = InquiryViewController()
+                navigationController?.pushViewController(VC, animated: true)
             default :
                 return
             }
         } else if collectionView == collectionView3 {
             switch indexPath.row {
             case 0:
-                present(vc, animated: true) // "로그아웃" 페이지로 이동
+                // 로그아웃 알림으로 띄우기
+                print("로그아웃")
             case 1:
-                present(vc, animated: true) // "탈퇴하기" 페이지로 이동
+                let VC = WithdrawViewController()
+                navigationController?.pushViewController(VC, animated: true)
             default :
                 return
             }

@@ -9,7 +9,7 @@ import UIKit
 
 class UserInfoViewController: UIViewController, CustomAlertDelegate {
     //MARK: - Properties
-    lazy var logined = false
+    lazy var completed = false
     
     //MARK: - UI ProPerties
     public lazy var navigationBar = UINavigationBar()
@@ -103,10 +103,10 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
         // 입력조건 확인 후
         lazy var response = 200
         if response == 200 {
-            logined = true
+            completed = true
         }
         
-        if logined {
+        if completed {
             showCustomAlert(alertType: .done,
                             alertTitle: "회원가입 완료",
                             alertContext: "정상적으로 가입되었습니다.",
@@ -125,7 +125,7 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
     func confirm() { return }
     
     func done() {
-        if logined {
+        if completed {
             let VC = MainViewController()
             navigationController?.pushViewController(VC, animated: true)
         }

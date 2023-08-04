@@ -203,13 +203,12 @@ class ReportViewController: UIViewController{
     }
     
     @objc func backButtonTapped() {
-        // 이전 view로 돌아가는 코드 필요
-        print("Back Button Tapped")
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func ButtonTapped(_ sender: UIButton) {
-        let VC = ReportDoneViewController()
-        present(VC, animated: true)
+        let VC = ContractInfoViewController()
+        navigationController?.pushViewController(VC, animated: true)
         
     }
     

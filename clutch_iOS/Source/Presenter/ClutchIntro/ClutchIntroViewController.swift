@@ -9,6 +9,8 @@ import SnapKit
 
 class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - UI propereties
+    lazy var navigationBar = UINavigationBar()
+    
     //스크롤을 위한 스크롤 뷰
     lazy var scrollview:UIScrollView = {
         let view = UIScrollView()
@@ -107,6 +109,7 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     func setView() {
         addsubview()
         setscrollview()
+        setNavigationBar()
         self.view.backgroundColor = .Clutch.mainWhite
     }
     //addsubview
@@ -117,10 +120,23 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         [contentView].forEach { view in
             scrollview.addSubview(view)
         }
-        [clutchGraphic, mainCopyTextView, mainCopyText, clutchIntroTitle, clutchIntroText].forEach { view in
+        [navigationBar, clutchGraphic, mainCopyTextView, mainCopyText, clutchIntroTitle, clutchIntroText].forEach { view in
             contentView.addSubview(view)
         }
         
+    }
+    
+    func setNavigationBar() {
+        let navigationItem = UINavigationItem()
+        let backButton = UIBarButtonItem(
+            image:UIImage(named: "btn_arrow_big"),
+            style: .plain, target: self,
+            action: #selector(backButtonTapped))
+        backButton.tintColor = .black
+        navigationItem.leftBarButtonItem = backButton
+        navigationBar.setItems([navigationItem], animated: false)
+        navigationBar.barTintColor = .Clutch.mainWhite // 배경색 변경
+        navigationBar.shadowImage = UIImage() // 테두리 없애기
     }
     
     //스크롤 뷰관련 셋
@@ -130,6 +146,13 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     
     func constraints() {
         let leading = 16
+        
+        navigationBar.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.equalToSuperview()
+        }
+        
         //스크롤 뷰 오토레이아웃
         scrollview.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -181,6 +204,10 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     // 버튼 클릭 시 스크롤되도록 하는 메서드
     @objc func ButtonTapped(_ sender: UIButton) {
         let offsetY = scrollview.contentSize.height / 10
@@ -196,7 +223,7 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
             scrollview.setContentOffset(contentOffset, animated: true)
         }
         
-        
+        navigationController?.popViewController(animated: true)
     }
     
 }
