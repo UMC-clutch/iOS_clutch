@@ -35,7 +35,9 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
         button.titleLabel?.font = .Clutch.subheadMedium
         button.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 11
-        button.backgroundColor = .Clutch.mainGreen
+        // 입력에 따른 활성화 처리시
+//        button.backgroundColor = .Clutch.bgGrey
+        button.backgroundColor = .Clutch.mainDarkGreen
         
         return button
     }()
@@ -104,7 +106,7 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
     
     @objc func confirmButtonTapped(_ sender: UIButton) {
         // 입력조건 확인 후
-        lazy var response = 20
+        lazy var response = 200
         if response == 200 {
             logined = true
         }

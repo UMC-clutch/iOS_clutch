@@ -153,12 +153,14 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //setRightButton(마이페이지)버튼 클릭시 액션
     @objc func myPageButtonTapped() {
-        present(MypageViewController(), animated: true)
+        let VC = MypageViewController()
+        navigationController?.pushViewController(VC, animated: true)
     }
     
     //faqButton 버튼 클릭시 액션
     @objc func faqButtonTapped(_ sender: UIButton) {
-        present(faqViewController(), animated: true)
+        let VC = faqViewController()
+        navigationController?.pushViewController(VC, animated: true)
     }
     
     //clientButton(고객센터) 버튼 클릭 시 액션
@@ -249,13 +251,16 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         case 0:
             break
         case 1:
-            present(ClutchIntroViewController(), animated: true)
+            let VC = ClutchIntroViewController()
+            navigationController?.pushViewController(VC, animated: true)
             break
         case 2:
-            present(CalculateViewController(), animated: true)
+            let VC = CalculateViewController()
+            navigationController?.pushViewController(VC, animated: true)
             break
         case 3:
-            present(ReportViewController(), animated: true)
+            let VC = ReportViewController()
+            navigationController?.pushViewController(VC, animated: true)
             break
         default:
             break
