@@ -17,7 +17,6 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
     weak var delegate: CustomPopupDelegate?
     
     //MARK: - UI ProPerties
-
     lazy var popupTitle = "(Popup Title)"
     lazy var popupList: [String] = ["cell1", "cell2", "cell3", "cell4"]
     lazy var selectedCell = ""
@@ -55,7 +54,6 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
     }()
     
     //MARK: - Define Method
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
@@ -156,6 +154,7 @@ class CustomPopupViewController: UIViewController, UICollectionViewDelegate, UIC
     }
 }
 
+//MARK: - extension
 // CustomPopup을 간결하게 재사용하기 위한 메소드 구현
 extension CustomPopupDelegate where Self: UIViewController {
     func showCustomPopup(

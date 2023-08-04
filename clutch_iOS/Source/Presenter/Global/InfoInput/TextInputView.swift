@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+
 // 텍스트 인풋
 // 다 만들었으니 뷰에 추가만 하면 됨
 
@@ -49,10 +50,6 @@ class TextInputView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    //MARK: - Properties
-    
     
     //MARK: - Set Ui
     func SetView() {
@@ -97,7 +94,7 @@ class TextInputView: UIView {
     
 }
 
-
+//MARK: - extension
 extension TextInputView:UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         underLine.backgroundColor = .Clutch.mainGreen

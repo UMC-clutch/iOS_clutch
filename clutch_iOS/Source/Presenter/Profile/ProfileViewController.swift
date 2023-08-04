@@ -28,7 +28,6 @@ class ProfileViewController: UIViewController {
         Constraint()
     }
     
-    //MARK: - Set Ui
     func setView() {
         [navigationBar, nameInput.titleLabel, nameInput.textLabel, nameInput.underLine, mailInput.titleLabel, mailInput.textLabel, mailInput.underLine, phoneNumberInput.titleLabel, phoneNumberInput.textLabel, phoneNumberInput.underLine].forEach { view in
             self.view.addSubview(view)

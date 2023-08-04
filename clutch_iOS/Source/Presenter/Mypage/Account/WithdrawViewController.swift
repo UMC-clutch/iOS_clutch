@@ -102,8 +102,7 @@ class WithdrawViewController: UIViewController {
         setView()
         setConstraint()
     }
-        
-    //MARK: - Set UI
+
     func setView() {
         [navigationBar, titleLabel, nameLabel, userNameLabel, underLine1, reasonLabel, selectReasonButton, selectImageView, underLine2, withdrawButton].forEach { view in
             self.view.addSubview(view)
@@ -187,6 +186,7 @@ class WithdrawViewController: UIViewController {
     }
 }
 
+//MARK: - extension
 extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
     // MARK: - Define Method
     @objc func backButtonTapped() {

@@ -16,6 +16,7 @@ class datePickerViewController: UIViewController {
     
     weak var delegate: DatePickerDelegate?
     
+    //MARK: - UI propereties
     lazy var titleText = "날짜를 선택해 주세요"
     lazy var titleLabel:UILabel = {
         let label = UILabel()
@@ -38,6 +39,7 @@ class datePickerViewController: UIViewController {
         return datepicker
     }()
     
+    //MARK: - define method
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -69,12 +71,11 @@ class datePickerViewController: UIViewController {
         print("Selected Date: \(formattedDate)")
         delegate?.didSelectDate(title: titleText, date: selectedDate)
         dismiss(animated: true)
-        
     }
-    
     
 }
 
+//MARK: - extension
 // datePicker를 간결하게 재사용하기 위한 메소드 구현
 extension DatePickerDelegate where Self: UIViewController {
     func showDatePicker(

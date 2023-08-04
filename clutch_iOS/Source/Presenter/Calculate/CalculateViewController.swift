@@ -83,11 +83,7 @@ class CalculateViewController: UIViewController {
         Constraint()
         setCollectionview()
     }
-    
-    //MARK: - Properties
-    
-    
-    //MARK: - Set Ui
+
     func SetView() {
         self.view.backgroundColor = .white
         [navigationBar, textLabel, selectLabel, selectCollectionView, addressInput, buildingNum, unitNum, sqftInput, checkButton].forEach { view in
@@ -201,6 +197,7 @@ class CalculateViewController: UIViewController {
 
 }
 
+//MARK: - extension
 extension CalculateViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     // collectionview 관련 설정
     func setCollectionview() {

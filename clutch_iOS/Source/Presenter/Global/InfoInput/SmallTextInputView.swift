@@ -43,11 +43,7 @@ class SmallTextInputView: UIView {
         return label
     }()
     
-    
-    
-    
     //MARK: - Define Method
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         SetView()
@@ -58,11 +54,6 @@ class SmallTextInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    //MARK: - Properties
-    
-    
-    //MARK: - Set Ui
     func SetView() {
         self.backgroundColor = .white
         textInputTextField.delegate = self
@@ -110,7 +101,7 @@ class SmallTextInputView: UIView {
     
 }
 
-
+//MARK: - extension
 extension SmallTextInputView:UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         underLine.backgroundColor = .Clutch.mainGreen

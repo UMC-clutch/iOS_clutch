@@ -122,24 +122,6 @@ class ResultViewController: UIViewController {
         return label
     }()
     
-//    // UITextView 선언("건물시세 - (근저당액 + 나의 전세금) > 0\n결과가 양수이면 안전, 음수이면 위험으로 판단해요.")
-//    lazy var formulaView: UITextView = {
-//        let view = UITextView()
-//        view.text = "건물시세 - (근저당액 + 나의 전세금) > 0\n결과가 양수이면 안전, 음수이면 위험으로 판단해요."
-//        view.textColor = .black
-//        view.font = .Clutch.baseMedium
-//        view.backgroundColor = .Clutch.bgGrey
-//        view.layer.cornerRadius = 12
-//        view.isScrollEnabled = false
-//        view.isUserInteractionEnabled = false
-//
-//        let attributedString = NSMutableAttributedString(string: view.text)
-//        attributedString.addAttribute(.foregroundColor, value: UIColor.Clutch.textDarkerGrey ?? .black, range: (view.text as NSString).range(of: "결과가 양수이면 안전, 음수이면 위험으로 판단해요."))
-//        view.attributedText = attributedString
-//
-//        return view
-//    }()
-    
     // OutputView() 선언(시세, 근저당액, 전세금, 보증금 액수)
     let marketPriceOutput = OutputView()
     let morgagePriceOutput = OutputView()
@@ -181,10 +163,7 @@ class ResultViewController: UIViewController {
         
         Constraint()
     }
-    
-    //MARK: - Properties
-    
-    //MARK: - Set Ui
+
     func SetView() {
         self.view.backgroundColor = .white
         

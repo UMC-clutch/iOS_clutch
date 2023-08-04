@@ -8,7 +8,6 @@
 import UIKit
 
 class loginView: UIView {
-
     //MARK: - UI ProPerties
     //로고
     lazy var logo:UIImageView = {
@@ -19,7 +18,6 @@ class loginView: UIView {
     }()
     
     //MARK: - Define Method
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         SetView()
@@ -30,11 +28,6 @@ class loginView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    //MARK: - Properties
-  
-
-    
-    //MARK: - Set Ui
     func SetView() {
         addsubview()
         self.backgroundColor = .white

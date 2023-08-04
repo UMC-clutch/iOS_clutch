@@ -8,8 +8,10 @@
 import UIKit
 
 class ReportStatusView: UIView {
-    //MARK: - UI ProPerties\
+    //MARK: - Properties
+    let status = 1
     
+    //MARK: - UI ProPerties
     lazy var completeImage:UIImageView = {
         let imageView = UIImageView()
         let iamge = UIImage(named: "clutch_logo")
@@ -48,7 +50,6 @@ class ReportStatusView: UIView {
     
     
     //MARK: - Define Method
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         SetView()
@@ -59,11 +60,6 @@ class ReportStatusView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    //MARK: - Properties
-    let status = 1
-    
-    //MARK: - Set Ui
     func SetView() {
         addsubview()
         statusImageSet()

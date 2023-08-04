@@ -8,12 +8,13 @@
 import UIKit
 
 class SampleViewController: UIViewController {
-    
+    //MARK: - UI propereties
     let textinput2 = TextInputView()
     let textinput = TextInputView()
     let ui = CheckContainer()
     let smallInput = SmallTextInputView()
     
+    //MARK: - define method
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .Clutch.mainWhite
@@ -28,7 +29,6 @@ class SampleViewController: UIViewController {
         ui.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalTo(200)
-
         }
         
         textinput.snp.makeConstraints { make in

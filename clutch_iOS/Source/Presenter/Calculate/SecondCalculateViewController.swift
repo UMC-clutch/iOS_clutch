@@ -88,10 +88,6 @@ class SecondCalculateViewController: UIViewController {
         Constraint()
     }
     
-    //MARK: - Properties
-    
-    
-    //MARK: - Set Ui
     func SetView() {
         self.view.backgroundColor = .white
         [navigationBar,textLabel, marketPrice, firstUnitLabel, MortgagePrice, secondUnitLabel, charterPrice, thirdUnitLabel, checkButton].forEach { view in

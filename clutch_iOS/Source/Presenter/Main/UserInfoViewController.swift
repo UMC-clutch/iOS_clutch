@@ -9,7 +9,6 @@ import UIKit
 
 class UserInfoViewController: UIViewController {
     //MARK: - UI ProPerties
-    
     public lazy var navigationBar = UINavigationBar()
     
     lazy var titleLabel:UILabel = {
@@ -32,10 +31,6 @@ class UserInfoViewController: UIViewController {
         Constraint()
     }
     
-    //MARK: - Properties
-    
-    
-    //MARK: - Set Ui
     func SetView() {
         addsubview()
         infoViewSet()

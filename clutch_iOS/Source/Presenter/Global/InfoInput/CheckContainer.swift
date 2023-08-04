@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-
-//체크 박스
+// 체크 박스
 // 다 만들었으니 뷰에 추가만 하면 됨
+
 class CheckContainer: UIView {
     //MARK: - UI ProPerties
     lazy var checkButton:UIButton = {
@@ -32,7 +32,6 @@ class CheckContainer: UIView {
     }()
     
     //MARK: - Define Method
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         SetView()
@@ -46,11 +45,7 @@ class CheckContainer: UIView {
     @objc func checkButtonTapped() {
         checkButton.isSelected.toggle()
     }
-
-    //MARK: - Properties
     
-    
-    //MARK: - Set Ui
     func SetView() {
         self.backgroundColor = .white
         addsubview()

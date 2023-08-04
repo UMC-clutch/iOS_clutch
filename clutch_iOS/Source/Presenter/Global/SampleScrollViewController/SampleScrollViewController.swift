@@ -8,7 +8,7 @@
 import UIKit
 
 class SampleScrollViewController: UIViewController, UIScrollViewDelegate {
-    
+    //MARK: - UI propereties
     //스크롤을 위한 스크롤 뷰
     lazy var scrollview:UIScrollView = {
         let view = UIScrollView()
@@ -39,6 +39,7 @@ class SampleScrollViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
 
+    //MARK: - define method
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()

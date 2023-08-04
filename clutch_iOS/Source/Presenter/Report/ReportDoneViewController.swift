@@ -8,7 +8,7 @@
 import UIKit
 
 class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
-    
+    //MARK: - UI propereties
     //스크롤을 위한 스크롤 뷰
     lazy var scrollview:UIScrollView = {
         let view = UIScrollView()
@@ -55,18 +55,21 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
     }()
     
     let reportDoneView = ReportDoneView()
-
+    
+    //MARK: - define method
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
         constraints()
     }
+    
     //뷰관련 셋
     func setView() {
         addsubview()
         setscrollview()
         self.view.backgroundColor = .Clutch.mainWhite
     }
+    
     //addsubview
     func addsubview() {
         [scrollview, nextButton, cancelButton].forEach { view in
@@ -81,6 +84,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
             contentView.addSubview(view)
         }
     }
+    
     //스크롤 뷰관련 셋
     func setscrollview() {
         scrollview.delegate = self
@@ -113,7 +117,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
             make.height.equalTo(50)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
         }
-    
+        
         
         reportDoneView.snp.makeConstraints { make in
             make.edges.equalTo(contentView.snp.edges)
@@ -149,6 +153,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
     
 }
 
+//MARK: - extension
 extension ReportDoneViewController: CustomAlertDelegate {
     func cancel() {
         print("custom cancel Button Tapped")

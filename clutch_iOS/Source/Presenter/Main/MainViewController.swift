@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
+    //MARK: - UI propereties
     //UICollectionView 선언
     lazy var collectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -59,7 +59,8 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     //navigationBar 선언
     let navigationBar = UINavigationBar()
-    
+        
+    //MARK: - define method
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -174,7 +175,6 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         navigationController?.setViewControllers([viewController], animated: true)
     }
 
-    
     //cell 등록
     func cellRegister() {
         let cellIdentifiers = [

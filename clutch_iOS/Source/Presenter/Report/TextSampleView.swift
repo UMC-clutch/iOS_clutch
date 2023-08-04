@@ -10,7 +10,6 @@ import SnapKit
 
 class TextSampleView: UIView  {
     //MARK: - UI ProPerties
-    
     lazy var rightText:UILabel = {
         let label = UILabel()
         label.font = .Clutch.subheadMedium
@@ -27,9 +26,7 @@ class TextSampleView: UIView  {
         return label
     }()
     
-    
     //MARK: - Define Method
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         SetView()
@@ -39,12 +36,7 @@ class TextSampleView: UIView  {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    //MARK: - Properties
-    
-    
-    //MARK: - Set Ui
+
     func SetView() {
         addsubview()
         self.backgroundColor = .white
@@ -66,7 +58,6 @@ class TextSampleView: UIView  {
             make.top.equalToSuperview()
             make.leading.equalToSuperview()
         }
-        
         
         leftText.snp.makeConstraints { make in
             make.top.equalToSuperview()

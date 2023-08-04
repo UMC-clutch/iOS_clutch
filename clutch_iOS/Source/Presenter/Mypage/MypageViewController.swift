@@ -11,9 +11,6 @@ import SnapKit
 class MypageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - UI ProPerties
-    // -> NavigationBar 선언("<")
-//    let navigationBar = UINavigationBar()
-    
     // UILabel 선언("조혜원님")
     lazy var nameLabel: UILabel = {
         let label = UILabel()
@@ -137,26 +134,13 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
         UIApplication.shared.open(URL, options: [:], completionHandler: nil)
     }
     
-    //MARK: - Set Ui
     //VC의 view 관련 설정
     func setView() {
         [nameLabel, infoLabel, underLine, historyLabel, collectionView1, inquiryLabel, collectionView2, accountLabel, collectionView3].forEach { view in
             self.view.addSubview(view)
         }
         collectionviewSet()
-//        navigationBarSet()
     }
-    
-    // 네비게이션바 관련 설정
-//    func navigationBarSet() {
-//        let navigationItem = UINavigationItem()
-//        let backButton = UIBarButtonItem(image:UIImage(named: "mypage"), style: .plain, target: self, action: #selector(myPageButtonTapped))
-//        navigationItem.leftBarButtonItem = backButton
-//        navigationBar.setItems([navigationItem], animated: false) // 이부분 다시 공부 -> 다시 공부
-//        navigationBar.barTintColor = .Clutch.bgGrey // 배경색 변경
-//        navigationBar.shadowImage = UIImage() //테두리 없애기 -> 다시 공부
-//    }
-//
     
     //VC의 오토레이아웃
     func Constraint() {

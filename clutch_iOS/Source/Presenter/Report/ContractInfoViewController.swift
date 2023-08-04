@@ -10,14 +10,14 @@ import UIKit
 import YPImagePicker
 
 class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
-    //MARK: - UI ProPerties
-    lazy var navigationBar = UINavigationBar()
-    
+    //MARK: - properties
     lazy var residentText = ["거주하고 있어요", "거주하고 있지 않아요"]
     lazy var interventionText = ["개입했어요", "개입하지 않았어요"]
     lazy var dividenText = ["신청했어요", "신청하지 않았어요"]
-    
     lazy var images: [UIImage] = []
+    
+    //MARK: - UI ProPerties
+    lazy var navigationBar = UINavigationBar()
     
     //스크롤을 위한 스크롤 뷰
     lazy var scrollview:UIScrollView = {
@@ -168,11 +168,13 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
 
+    //MARK: - define method
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
         constraints()
     }
+    
     //뷰관련 셋
     func setView() {
         setNavigationBar()
@@ -217,6 +219,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
             contentView.addSubview(view)
         }
     }
+    
     //스크롤 뷰관련 셋
     func setscrollview() {
         scrollview.delegate = self
@@ -347,6 +350,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
+//MARK: - extension
 extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ImageDelegate, CustomAlertDelegate {
     @objc func backButtonTapped() {
         // 이전 view로 돌아가는 코드 필요

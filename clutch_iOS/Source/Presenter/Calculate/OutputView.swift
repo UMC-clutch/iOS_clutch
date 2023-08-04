@@ -31,7 +31,6 @@ class OutputView: UIView {
     }()
     
     //MARK: - Define Method
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         SetView()
@@ -42,11 +41,6 @@ class OutputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    //MARK: - Properties
-    
-    
-    //MARK: - Set Ui
     func SetView() {
         self.backgroundColor = .white
         addsubview()

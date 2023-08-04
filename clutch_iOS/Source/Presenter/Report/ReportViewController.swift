@@ -7,9 +7,12 @@
 
 import UIKit
 import SnapKit
-import SkeletonView
 
 class ReportViewController: UIViewController{
+    //MARK: - properties
+    lazy var selectText = ["아파트/오피스텔", "다가구", "상가"]
+    lazy var selectedType = ""
+    
     //MARK: - UI ProPerties
     public lazy var navigationBar = UINavigationBar()
     
@@ -49,9 +52,6 @@ class ReportViewController: UIViewController{
     }()
     
     // 체크 박스
-    lazy var selectText = ["아파트/오피스텔", "다가구", "상가"]
-    lazy var selectedType = ""
-    
     lazy var selectCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0 // 상하간격
@@ -77,7 +77,6 @@ class ReportViewController: UIViewController{
         return button
     }()
     
-    
     //MARK: - Define Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +84,6 @@ class ReportViewController: UIViewController{
         Constraint()
     }
     
-    //MARK: - Set Ui
     func SetView() {
         TextInputViewSet()
         SmallTextInputViewSet()
@@ -202,7 +200,6 @@ class ReportViewController: UIViewController{
             make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
-        
     }
     
     @objc func backButtonTapped() {
@@ -220,9 +217,9 @@ class ReportViewController: UIViewController{
         showDatePicker(title: "근저당 설정일을\n선택해주세요")
     }
     
-    
 }
 
+//MARK: - extension
 extension ReportViewController: DatePickerDelegate,
                                 UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func didSelectDate(title:String, date: Date) {
@@ -238,7 +235,7 @@ extension ReportViewController: DatePickerDelegate,
         selectCollectionView.dataSource = self
         selectCollectionView.delegate = self
         selectCollectionView.isScrollEnabled = false
-            
+        
         selectCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "CheckCell")
     }
     

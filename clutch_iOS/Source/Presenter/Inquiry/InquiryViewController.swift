@@ -38,7 +38,6 @@ class InquiryViewController: UIViewController {
         return imageview
     }()
 
-    
     // 텍스트뷰
     lazy var placeholder = "어떤 내용이 궁금하신가요?"
     
@@ -80,7 +79,6 @@ class InquiryViewController: UIViewController {
         Constraint()
     }
     
-    //MARK: - Set Ui
     func setView() {
         [navigationBar, nameInput.titleLabel, nameInput.textLabel, nameInput.underLine, categoryInput.titleLabel, selectTypeButton, selectImageView, categoryInput.underLine, inquiryInput.titleLabel, textView, inquiryButton].forEach { view in
             self.view.addSubview(view)
@@ -192,6 +190,7 @@ class InquiryViewController: UIViewController {
     }
 }
 
+//MARK: - extension
 extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITextViewDelegate {
     // MARK: - Define Method
     @objc func selectTypeButtonTapped() {

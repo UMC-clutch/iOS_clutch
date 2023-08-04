@@ -177,6 +177,7 @@ class CustomAlertViewController: UIViewController {
     }
 }
 
+//MARK: - extension
 // CustomAlert을 간결하게 재사용하기 위한 메소드 구현
 extension CustomAlertDelegate where Self: UIViewController {
     func showCustomAlert(

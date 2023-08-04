@@ -43,9 +43,6 @@ class HistoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Properties
-    
-    //MARK: - Set Ui
     // CVC의 view 관련 설정(라벨 추가)
     func SetView() {
         [textLabel, nextpageLabel].forEach { view in

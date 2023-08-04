@@ -11,7 +11,7 @@ import UIKit
 //필요한 곳에 선택해서 사용할 것
 
 class TransitionViewController: UIViewController {
-    
+    //MARK: - UI propereties
     //샘플 버튼 UI
     lazy var sampleButton:UIButton = {
         let button = UIButton()
@@ -22,6 +22,7 @@ class TransitionViewController: UIViewController {
         return button
     }()
     
+    //MARK: - define method
     //이때, action에 넘겨줄 함수
     @objc func ButtonTapped(_ sender: UIButton) {
         // 내부에 버튼 클릭 시 일어날 동작을 코드로 정의
@@ -50,7 +51,6 @@ class TransitionViewController: UIViewController {
         //뒤로 가기 버튼 클릭 시, 현재 VC를 네비게이션 스택에서 제거
         self.navigationController?.popViewController(animated: true)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

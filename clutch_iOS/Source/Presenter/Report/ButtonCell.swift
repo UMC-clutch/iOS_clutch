@@ -17,6 +17,7 @@ class ButtonCell: UICollectionViewCell {
         
         return view
     }()
+    
     public lazy var imageView: UIImageView = {
         let imageview = UIImageView(image: UIImage(named: "Add_round"))
         

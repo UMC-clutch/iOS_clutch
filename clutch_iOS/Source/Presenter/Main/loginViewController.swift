@@ -9,8 +9,8 @@ import UIKit
 
 class loginViewController: UIViewController {
     //MARK: - UI ProPerties
-    
     let loginview = loginView()
+    
     //카카오 로그인 버튼
     lazy var kakaoButton:UIButton = {
         let button = UIButton()
@@ -19,6 +19,7 @@ class loginViewController: UIViewController {
         
         return button
     }()
+    
     //애플 로그인 버튼
     lazy var appleButton:UIButton = {
         let button = UIButton()
@@ -27,8 +28,8 @@ class loginViewController: UIViewController {
         
         return button
     }()
-    //MARK: - Define Method
     
+    //MARK: - Define Method
     //VC의 기본 view 지정
     override func loadView() {
         view = loginview
@@ -40,9 +41,6 @@ class loginViewController: UIViewController {
         Constraint()
     }
 
-    //MARK: - Properties
-    
-    //MARK: - Set Ui
     //뷰 관련 세팅
     func SetView() {
         [appleButton, kakaoButton].forEach { view

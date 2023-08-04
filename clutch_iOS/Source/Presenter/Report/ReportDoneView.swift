@@ -8,8 +8,11 @@
 import UIKit
 
 class ReportDoneView: UIView {
-    //MARK: - UI ProPerties
+    //MARK: - Properties
+    let rightText = ["신고 날짜", "건물명", "근저당 설정 기준일", "주소", "건물유형", "실거주 여부", "전입 신고일", "확정일자", "집주인 채권 개입 여부", "배당 신청 여부", "보증금 액수"]
+    let leftText = ["sample"]
     
+    //MARK: - UI ProPerties
     lazy var statusImage = ReportStatusView()
     
     lazy var reportDate = TextSampleView()
@@ -41,7 +44,6 @@ class ReportDoneView: UIView {
     lazy var depositAmount = TextSampleView()
     
     //MARK: - Define Method
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         SetView()
@@ -60,15 +62,7 @@ class ReportDoneView: UIView {
             }
         }
     }
-    
-    
-    //MARK: - Properties
-    
-    let rightText = ["신고 날짜", "건물명", "근저당 설정 기준일", "주소", "건물유형", "실거주 여부", "전입 신고일", "확정일자", "집주인 채권 개입 여부", "배당 신청 여부", "보증금 액수"]
-    let leftText = ["sample"]
-    
-    
-    //MARK: - Set Ui
+
     func SetView() {
         addsubview()
         labelTextSet()
@@ -172,8 +166,6 @@ class ReportDoneView: UIView {
             make.leading.equalToSuperview().offset(sideInterval)
             make.trailing.equalToSuperview().offset(-sideInterval)
         }
-        
-        
         
     }
 

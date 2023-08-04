@@ -46,7 +46,6 @@ class InputScreen: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Set Ui
     func setView() {
         [titleLabel, textLabel, underLine].forEach { view in
             self.addSubview(view)

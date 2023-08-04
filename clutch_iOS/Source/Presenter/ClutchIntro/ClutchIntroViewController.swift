@@ -8,7 +8,7 @@ import UIKit
 import SnapKit
 
 class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
-    
+    //MARK: - UI propereties
     //스크롤을 위한 스크롤 뷰
     lazy var scrollview:UIScrollView = {
         let view = UIScrollView()
@@ -92,7 +92,7 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
-    
+    //MARK: - define method
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         nextButton.layer.shadowPath = UIBezierPath(roundedRect: nextButton.bounds, cornerRadius: nextButton.layer.cornerRadius).cgPath
@@ -180,8 +180,6 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
             make.top.equalTo(484)
         }
     }
-    
-   
     
     // 버튼 클릭 시 스크롤되도록 하는 메서드
     @objc func ButtonTapped(_ sender: UIButton) {
