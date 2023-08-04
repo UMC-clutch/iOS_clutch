@@ -47,6 +47,7 @@ class loginViewController: UIViewController {
     func SetView() {
         [appleButton, kakaoButton].forEach { view
             in self.view.addSubview(view) }
+        navigationController?.navigationBar.isHidden = true
     }
 
     func Constraint() {
@@ -68,16 +69,15 @@ class loginViewController: UIViewController {
     }
     //appleButton 클릭 이벤트
     @objc func appleButtonTapped(_ sender: UIButton) {
-        let mainVC = MainViewController()
-           mainVC.modalPresentationStyle = .fullScreen
-           present(mainVC, animated: true)
+        print(1)
+        let VC = UserInfoViewController()
+        navigationController?.pushViewController(VC, animated: true)
 
     }
     //kakaoButton 클릭 이벤트
     @objc func kakaoButtonTapped(_ sender: UIButton) {
-        let mainVC = UserInfoViewController()
-        mainVC.modalPresentationStyle = .automatic
-           present(mainVC, animated: true)
+        let VC = UserInfoViewController()
+        navigationController?.pushViewController(VC, animated: true)
     }
 
 }
