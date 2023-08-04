@@ -4,11 +4,28 @@
 //
 //  Created by 현종혁 on 2023/07/28.
 //
+/*
+ let marketPrice: Int64 = 2000000000
+
+ let numberFormatter: NumberFormatter = NumberFormatter()
+ numberFormatter.numberStyle = .decimal
+ let decimalMarketPrice: String = numberFormatter.string(for: marketPrice)!
+
+ marketPriceOutput.outputLabel.text = "\(marketPrice) 원"
+ 
+ */
 
 import Foundation
 import UIKit
 
 class ResultViewController: UIViewController {
+    //MARK: - properties
+    let marketPrice: Int64 = 2000000000
+    var morgagePrice: Int64 = 2000000000
+    var leasePrice: Int64 = 2000000000
+    var depositPrice: Int64 = 200000000
+    var total: Int64 = -3000000
+    
     //MARK: - UI ProPerties
     // UINavigationBar 선언("< 사기 위험성 판단")
     public lazy var navigationBar = UINavigationBar()
@@ -180,21 +197,29 @@ class ResultViewController: UIViewController {
         }
     }
     
+    func decimalPoint(_ txt:Int64) -> String {
+        let numberFormatter: NumberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        let decimalPrice: String = numberFormatter.string(for: txt)!
+        return decimalPrice
+    }
+    
     func OutputViewSet() {
         marketPriceOutput.categoryLabel.text = "시세"
-        marketPriceOutput.outputLabel.text = "2,000,000,000 원"
+        marketPriceOutput.outputLabel.text = "\(decimalPoint(marketPrice)) 원"
         
         morgagePriceOutput.categoryLabel.text = "근저당액"
-        morgagePriceOutput.outputLabel.text = "2,000,000,000 원"
+        morgagePriceOutput.outputLabel.text = "\(decimalPoint(morgagePrice)) 원"
         
         leasePriceOutput.categoryLabel.text = "전세금"
-        leasePriceOutput.outputLabel.text = "2,000,000,000 원"
+        leasePriceOutput.outputLabel.text = "\(decimalPoint(leasePrice)) 원"
         
         depositPriceOutput.categoryLabel.text = "보증금 액수"
-        depositPriceOutput.outputLabel.text = "200,000,000 원"
+        depositPriceOutput.outputLabel.text = "\(decimalPoint(depositPrice)) 원"
         
         totalOutput.categoryLabel.text = "계산 결과"
-        totalOutput.outputLabel.text = "-3,000,000 원"
+        totalOutput.outputLabel.text = "\(decimalPoint(total)) 원"
     }
     
     func navigationBarSet() {

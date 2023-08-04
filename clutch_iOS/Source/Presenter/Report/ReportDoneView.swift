@@ -12,6 +12,8 @@ class ReportDoneView: UIView {
     let rightText = ["신고 날짜", "건물명", "근저당 설정 기준일", "주소", "건물유형", "실거주 여부", "전입 신고일", "확정일자", "집주인 채권 개입 여부", "배당 신청 여부", "보증금 액수"]
     let leftText = ["sample"]
     
+    let depositPrice: Int64 = 2000000000
+    
     //MARK: - UI ProPerties
     lazy var statusImage = ReportStatusView()
     
@@ -54,6 +56,14 @@ class ReportDoneView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func decimalPoint(_ txt:Int64) -> String {
+        let numberFormatter: NumberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        let decimalPrice: String = numberFormatter.string(for: txt)!
+        return decimalPrice
+    }
+    
     func labelTextSet() {
         [reportDate, buildingName, mortgageSettingDate, address, buildingType,isResidentOccupied, moveInReportDate, confirmationDate, landlordLienInvolved, dividendApplicationStatus, depositAmount].enumerated().forEach { index, label in
             if index < rightText.count {
@@ -61,6 +71,7 @@ class ReportDoneView: UIView {
                 label.leftText.text = leftText[0]
             }
         }
+        depositAmount.leftText.text = "\(decimalPoint(depositPrice)) 원"
     }
 
     func SetView() {
