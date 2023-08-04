@@ -231,7 +231,9 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     
     func setTextInputView() {
         movedInDateLabel.textInputLabel.text = "전입신고일"
+        movedInDateLabel.textInputTextField.isUserInteractionEnabled = false
         fixedDateLabel.textInputLabel.text = "확정일자"
+        fixedDateLabel.textInputTextField.isUserInteractionEnabled = false
         depositLabel.textInputLabel.text = "보증금 액수"
     }
     
