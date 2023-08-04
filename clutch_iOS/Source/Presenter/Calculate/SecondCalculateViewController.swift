@@ -86,6 +86,7 @@ class SecondCalculateViewController: UIViewController {
         navigationBarSet()
         setData()
         Constraint()
+        textChange()
     }
     
     func SetView() {
@@ -128,6 +129,31 @@ class SecondCalculateViewController: UIViewController {
         marketPrice.textInputLabel.text = "시세"
         MortgagePrice.textInputLabel.text = "근저당액"
         charterPrice.textInputLabel.text = "지급할 전세금"
+    }
+    
+    func textChange() {
+        marketPrice.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        MortgagePrice.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        charterPrice.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+    }
+    
+    @objc func textCheck() {
+        let allFieldsFilled =
+        marketPrice.textInputTextField.text?.isEmpty == false &&
+        MortgagePrice.textInputTextField.text?.isEmpty == false &&
+        charterPrice.textInputTextField.text?.isEmpty == false
+    
+        print(allFieldsFilled)
+        
+        if allFieldsFilled {
+            checkButton.backgroundColor = .Clutch.mainDarkGreen
+            checkButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+            checkButton.isEnabled = true
+        } else {
+            checkButton.backgroundColor = .Clutch.bgGrey
+            checkButton.isEnabled = false
+        }
+        
     }
     
     func Constraint() {

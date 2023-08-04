@@ -82,6 +82,7 @@ class CalculateViewController: UIViewController {
         setData()
         Constraint()
         setCollectionview()
+        textChange()
     }
 
     func SetView() {
@@ -139,6 +140,34 @@ class CalculateViewController: UIViewController {
         unitNum.textInputTextField.placeholder = ""
         unitNum.textInputTextField.textColor = .Clutch.textBlack
         unitNum.leftLabel.text = "호"
+    }
+    
+    func textChange() {
+        addressInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        buildingNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        sqftInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        unitNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+    }
+    
+    @objc func textCheck() {
+        let allFieldsFilled =
+        addressInput.textInputTextField.text?.isEmpty == false &&
+        buildingNum.textInputTextField.text?.isEmpty == false &&
+        unitNum.textInputTextField.text?.isEmpty == false &&
+        sqftInput.textInputTextField.text?.isEmpty == false
+        
+        print(allFieldsFilled)
+        let indexPaths = selectCollectionView.indexPathsForSelectedItems
+        let isCellSelected = indexPaths != nil && !indexPaths!.isEmpty
+        
+        if isCellSelected && allFieldsFilled {
+            checkButton.backgroundColor = .Clutch.mainDarkGreen
+            checkButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+            checkButton.isEnabled = true
+        } else {
+            checkButton.backgroundColor = .Clutch.bgGrey
+            checkButton.isEnabled = false
+        }
     }
     
     func Constraint() {

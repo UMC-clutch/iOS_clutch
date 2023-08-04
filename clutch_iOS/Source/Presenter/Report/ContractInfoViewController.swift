@@ -162,10 +162,11 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         button.titleLabel?.font = .Clutch.subheadMedium
         button.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 11
-        button.backgroundColor = .Clutch.mainDarkGreen
+        button.backgroundColor = .Clutch.bgGrey
         // Highlighted 상태일 때 배경색
         let iamge = image(withColor: .Clutch.mainGreen!)
         button.setBackgroundImage(iamge, for: .highlighted)
+        button.isEnabled = false
         
         return button
     }()
@@ -185,6 +186,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         setTextInputView()
         setCollectionview()
         self.view.backgroundColor = .Clutch.mainWhite
+        textChange()
     }
     
     func setNavigationBar() {
@@ -231,6 +233,41 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         movedInDateLabel.textInputLabel.text = "전입신고일"
         fixedDateLabel.textInputLabel.text = "확정일자"
         depositLabel.textInputLabel.text = "보증금 액수"
+    }
+    
+    func textChange() {
+        movedInDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        fixedDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        depositLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        
+    }
+    
+    @objc func textCheck() {
+        let allFieldsFilled =
+        movedInDateLabel.textInputTextField.text?.isEmpty == false &&
+        fixedDateLabel.textInputTextField.text?.isEmpty == false &&
+        depositLabel.textInputTextField.text?.isEmpty == false
+
+        print(allFieldsFilled)
+        let indexPaths = residentCollectionView.indexPathsForSelectedItems
+        let isCellSelected = indexPaths != nil && !indexPaths!.isEmpty
+        
+        let indexPaths2 = dividenCollectionView.indexPathsForSelectedItems
+        let isCellSelected2 = indexPaths2 != nil && !indexPaths!.isEmpty
+        
+        let indexPaths3 = interventionCollectionView.indexPathsForSelectedItems
+        let isCellSelected3 = indexPaths3 != nil && !indexPaths!.isEmpty
+        
+        let check = isCellSelected && isCellSelected2 && isCellSelected3
+        
+        if check && allFieldsFilled {
+            submitButton.backgroundColor = .Clutch.mainDarkGreen
+            submitButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+            submitButton.isEnabled = true
+        } else {
+            submitButton.backgroundColor = .Clutch.bgGrey
+            submitButton.isEnabled = false
+        }
     }
     
     func constraints() {
