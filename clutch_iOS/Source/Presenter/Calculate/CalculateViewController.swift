@@ -68,6 +68,7 @@ class CalculateViewController: UIViewController {
         btn.titleLabel?.font = .Clutch.subheadMedium
         btn.setTitleColor(.Clutch.textDarkGrey, for: .normal)
         btn.setTitle("시세 조회", for: .normal)
+        btn.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
         return btn
     }()
     
@@ -75,7 +76,6 @@ class CalculateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .Clutch.mainWhite
-        self.checkButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         
         SetView()
         navigationBarSet()
@@ -111,13 +111,13 @@ class CalculateViewController: UIViewController {
     
     // -> 네비게이션뷰 만든 후 navigationController?.popViewController(animated: true)로 변경
     @objc func backButtonTapped() {
-        present(MainViewController(), animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     // checkButton 누르면 SecondCalculateViewController() 보여주는 액션
-    @objc func didTapButton() {
-        let secondVC = SecondCalculateViewController()
-        self.present(secondVC, animated: true, completion: nil)
+    @objc func checkButtonTapped() {
+        let VC = SecondCalculateViewController()
+        navigationController?.pushViewController(VC, animated: true)
     }
     
     func setData() {

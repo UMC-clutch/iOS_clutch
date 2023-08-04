@@ -215,15 +215,16 @@ class ResultViewController: UIViewController {
         navigationBar.titleTextAttributes = titleTextAttributes // 제목 스타일 적용
     }
     
-    // -> 네비게이션뷰 만든 후 navigationController?.popViewController(animated: true)로 변경
+    // popVC
     @objc func backButtonTapped() {
-        present(SecondCalculateViewController(), animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     // checkButton 누르면 MainViewController() 보여주는 액션
     @objc func didTapButton() {
-        let secondVC = MainViewController()
-        self.present(secondVC, animated: true, completion: nil)
+        if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
+            navigationController?.popToViewController(VC, animated: true)
+        }
     }
     
     func Constraint() {

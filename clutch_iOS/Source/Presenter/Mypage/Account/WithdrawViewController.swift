@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 class WithdrawViewController: UIViewController {
+    //MARK: - Properties
+    lazy var completed = false
+    
     // MARK: - UI ProPerties
     lazy var navigationBar = UINavigationBar()
     
@@ -190,8 +193,7 @@ class WithdrawViewController: UIViewController {
 extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
     // MARK: - Define Method
     @objc func backButtonTapped() {
-        // 이전 view로 돌아가는 코드 필요
-        print("Back Button Tapped")
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func selectReasonButtonTapped() {
@@ -214,11 +216,20 @@ extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
     }
     
     @objc func withdrawButtonTapped(_ sender: UIButton) {
-        showCustomAlert(alertType: .canCancel,
-                        alertTitle: "탈퇴하기",
-                        alertContext: "정말로 탈퇴하시겠습니까?",
-                        cancelText: "취소",
-                        confirmText: "탈퇴하기")
+        
+        // 호출 후
+        lazy var response = 200
+        if response == 200 {
+            completed = true
+        }
+        
+        if completed {
+            showCustomAlert(alertType: .canCancel,
+                            alertTitle: "탈퇴하기",
+                            alertContext: "정말로 탈퇴하시겠습니까?",
+                            cancelText: "취소",
+                            confirmText: "탈퇴하기")
+        }
     }
     
     func cancel() {
@@ -247,7 +258,9 @@ extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
     }
     
     func done() {
-        print("custom done Button Tapped")
+        if completed {
+            navigationController?.popToRootViewController(animated: true)
+        }
     }
     
 }

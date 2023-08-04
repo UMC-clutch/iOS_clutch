@@ -10,7 +10,9 @@ import UIKit
 import YPImagePicker
 
 class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
-    //MARK: - properties
+    //MARK: - Properties
+    lazy var completed = false
+    
     lazy var residentText = ["거주하고 있어요", "거주하고 있지 않아요"]
     lazy var interventionText = ["개입했어요", "개입하지 않았어요"]
     lazy var dividenText = ["신청했어요", "신청하지 않았어요"]
@@ -353,18 +355,25 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
 //MARK: - extension
 extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ImageDelegate, CustomAlertDelegate {
     @objc func backButtonTapped() {
-        // 이전 view로 돌아가는 코드 필요
-        print("Back Button Tapped")
+        navigationController?.popViewController(animated: true)
     }
     
     // 버튼 클릭 시 신고 API 호출
     @objc func submitButtonTapped(_ sender: UIButton) {
-        // 입력조건 확인 후
-        showCustomAlert(alertType: .canCancel,
-                        alertTitle: "신고하기",
-                        alertContext: "정말로 신고하시겠습니까?",
-                        cancelText: "취소",
-                        confirmText: "신고")
+        
+        // 호출 후
+        lazy var response = 200
+        if response == 200 {
+            completed = true
+        }
+        
+        if completed {
+            showCustomAlert(alertType: .canCancel,
+                            alertTitle: "신고하기",
+                            alertContext: "정말로 신고하시겠습니까?",
+                            cancelText: "취소",
+                            confirmText: "신고")
+        }
     }
     
     // 날짜 선택
@@ -597,6 +606,9 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
     }
     
     func done() {
-        print("custom done Button Tapped")
+        if completed {
+            let VC = ReportDoneViewController()
+            navigationController?.pushViewController(VC, animated: true)
+        }
     }
 }
