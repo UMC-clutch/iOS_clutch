@@ -92,7 +92,14 @@ class ResultViewController: UIViewController {
     // UILabel 선언("전세사기 위험성이 높다고 판단되었어요")
     lazy var textLabel: UILabel = {
         let label = UILabel()
-        label.text = "전세사기 위험성이 높다고 판단되었어요"
+        if danger {
+            //위험
+            label.text = "전세사기 위험성이 높다고 판단되었어요"
+        }
+        else {
+            //안전
+            label.text = "전세사기 위험성이 낮다고 판단되었어요"
+        }
         label.font = UIFont.Clutch.baseMedium
         label.textColor = UIColor.Clutch.textDarkGrey
         label.textAlignment = .center
