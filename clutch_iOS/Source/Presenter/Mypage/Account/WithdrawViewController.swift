@@ -231,8 +231,12 @@ extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
         print("custom action Button Tapped")
         // 탈퇴하기 API 호출
         let response = "200"
-        // 정상적으로 호출되면 메시지 출력, 창 닫기
         if response == "200" {
+            completed = true
+        }
+        
+        // 정상적으로 호출되면 메시지 출력, 창 닫기
+        if completed {
             showCustomAlert(alertType: .done,
                             alertTitle: "탈퇴 완료",
                             alertContext: "정상적으로 탈퇴되었습니다.",

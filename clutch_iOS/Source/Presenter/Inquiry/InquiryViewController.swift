@@ -231,8 +231,11 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITex
         print("custom action Button Tapped")
         // 문의하기 API 호출
         let response = "200"
-        // 정상적으로 호출되면 메시지 출력, 창 닫기
         if response == "200" {
+            completed = true
+        }
+        // 정상적으로 호출되면 메시지 출력, 창 닫기
+        if completed {
             showCustomAlert(alertType: .done,
                             alertTitle: "문의 완료",
                             alertContext: "정상적으로 접수되었습니다.",
@@ -249,7 +252,7 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITex
     
     func done() {
         if completed {
-            navigationController?.popToRootViewController(animated: true)
+            navigationController?.popViewController(animated: true)
         }
     }
     
