@@ -76,7 +76,7 @@ class ReportStatusView: UIView {
     }
     
     func addsubview() {
-        [completeImage, titleLabel, subTitleLabel, statusImage].forEach { view in
+        [completeGifImage, titleLabel, subTitleLabel, statusImage].forEach { view in
             self.addSubview(view)
         }
     }
@@ -100,14 +100,14 @@ class ReportStatusView: UIView {
         
         let spacing = 8
         
-        completeImage.snp.makeConstraints { make in
+        completeGifImage.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.size.equalTo(50)
             make.centerX.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(completeImage.snp.bottom).offset(spacing * 2)
+            make.top.equalTo(completeGifImage.snp.bottom).offset(spacing * 2)
             make.centerX.equalToSuperview()
         }
         
