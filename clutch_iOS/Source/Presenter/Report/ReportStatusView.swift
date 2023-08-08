@@ -6,18 +6,28 @@
 //
 
 import UIKit
+import SwiftyGif
 
 class ReportStatusView: UIView {
     //MARK: - Properties
     let status = 1
     
     //MARK: - UI ProPerties
-    lazy var completeImage:UIImageView = {
-        let imageView = UIImageView()
-        let iamge = UIImage(named: "clutch_logo")
-        imageView.image = iamge
-        
-        return imageView
+    lazy var completeGifImage:UIImageView = {
+        do {
+            let gif = try UIImage(gifName: "report_done.gif")
+            let imageview = UIImageView(gifImage: gif, loopCount: 3) // Will loop 3 times
+            imageview.frame = self.bounds
+            
+            return imageview
+        }
+        catch {
+            let imageView = UIImageView()
+            let iamge = UIImage(named: "clutch_logo")
+            imageView.image = iamge
+    
+            return imageView
+        }
     }()
     
     lazy var titleLabel:UILabel = {
