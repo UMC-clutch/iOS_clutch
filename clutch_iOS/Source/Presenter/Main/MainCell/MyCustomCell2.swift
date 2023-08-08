@@ -43,8 +43,7 @@ class MyCustomCell2: UICollectionViewCell {
     lazy var gifImage:UIImageView = {
         do {
             let gif = try UIImage(gifName: "report_done.gif")
-            let imageview = UIImageView(gifImage: gif, loopCount: -1) // Will loop 3 times
-            imageview.frame = self.bounds
+            let imageview = UIImageView(gifImage: gif, loopCount: -1) // Will loop forever
             
             return imageview
         }

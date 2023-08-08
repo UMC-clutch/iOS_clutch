@@ -16,8 +16,7 @@ class ReportStatusView: UIView {
     lazy var completeGifImage:UIImageView = {
         do {
             let gif = try UIImage(gifName: "report_done.gif")
-            let imageview = UIImageView(gifImage: gif, loopCount: 3) // Will loop 3 times
-            imageview.frame = self.bounds
+            let imageview = UIImageView(gifImage: gif, loopCount: 1) // Will loop 3 times
             
             return imageview
         }

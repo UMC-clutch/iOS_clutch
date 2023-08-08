@@ -17,14 +17,16 @@
 
 import Foundation
 import UIKit
+import SwiftyGif
 
 class ResultViewController: UIViewController {
     //MARK: - properties
-    let marketPrice: Int64 = 2000000000
-    var morgagePrice: Int64 = 2000000000
-    var leasePrice: Int64 = 2000000000
-    var depositPrice: Int64 = 200000000
-    var total: Int64 = -3000000
+    lazy var danger = true
+    lazy var marketPrice: Int64 = 2000000000
+    lazy var morgagePrice: Int64 = 2000000000
+    lazy var leasePrice: Int64 = 2000000000
+    lazy var depositPrice: Int64 = 200000000
+    lazy var total: Int64 = -3000000
     
     //MARK: - UI ProPerties
     // UINavigationBar 선언("< 사기 위험성 판단")
@@ -38,24 +40,47 @@ class ResultViewController: UIViewController {
     }()
 
     // UIView 선언(스크롤 뷰 안에 들어갈 내용을 표시할 뷰)
-    let contentView: UIView = {
+    lazy var contentView: UIView = {
         let view = UIView()
         
         return view
     }()
     
-    // UIView 선언(위험/안전 gif) -> 조건문에 따른 이미지 처리
-    lazy var imageView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "Done_round")
-        
-        return view
+    // UIImageView 선언(위험/안전 gif) -> 조건문에 따른 이미지 처리
+    lazy var completeGifImage:UIImageView = {
+        do {
+            lazy var gif = UIImage()
+            if danger {
+                //위험
+                try gif.setGif("report_done.gif")
+            }
+            else {
+                //안전
+                try gif.setGif("report_done.gif")
+            }
+            let imageview = UIImageView(gifImage: gif, loopCount: 1) // Will loop 1 times
+            return imageview
+        }
+        catch {
+            let imageView = UIImageView()
+            let iamge = UIImage(named: "clutch_logo")
+            imageView.image = iamge
+    
+            return imageView
+        }
     }()
     
     // UILabel 선언("위험 단계") -> 계산 결과에 따라 조건문으로 처리
     lazy var statusLabel: UILabel = {
         let label = UILabel()
-        label.text = "위험 단계"
+        if danger {
+            //위험
+            label.text = "위험 단계"
+        }
+        else {
+            //안전
+            label.text = "안전 단계"
+        }
         label.font = UIFont.Clutch.headtitlebold
         label.textColor = UIColor.black
         label.textAlignment = .center
@@ -192,7 +217,7 @@ class ResultViewController: UIViewController {
             scrollview.addSubview(view)
         }
         
-        [navigationBar, imageView, statusLabel, textLabel, firstUnderLine, addressLabel, addressOutputLabel, backgroundView, formulaLabel, marketPriceOutput, morgagePriceOutput, leasePriceOutput, depositPriceOutput, secondUnderLine, totalOutput, ].forEach { view in
+        [navigationBar, completeGifImage, statusLabel, textLabel, firstUnderLine, addressLabel, addressOutputLabel, backgroundView, formulaLabel, marketPriceOutput, morgagePriceOutput, leasePriceOutput, depositPriceOutput, secondUnderLine, totalOutput, ].forEach { view in
             contentView.addSubview(view)
         }
     }
@@ -277,7 +302,7 @@ class ResultViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         
-        imageView.snp.makeConstraints { make in
+        completeGifImage.snp.makeConstraints { make in
             make.height.equalTo(97)
             make.width.equalTo(91)
             make.top.equalToSuperview().offset(127)
