@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-// 체크 박스
-// 다 만들었으니 뷰에 추가만 하면 됨
+//체크 박스
+//다 만들었으니 뷰에 추가만 하면 됨
 
 class CheckContainer: UIView {
     //MARK: - UI ProPerties

@@ -51,6 +51,7 @@ class ReportViewController: UIViewController{
         return label
     }()
     
+    
     // 체크 박스
     lazy var selectCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -65,25 +66,29 @@ class ReportViewController: UIViewController{
     lazy var nextButton:UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(.Clutch.textDarkGrey, for: .normal)
         button.titleLabel?.font = .Clutch.subheadMedium
         button.addTarget(self, action: #selector(ButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 11
-        button.backgroundColor = .Clutch.mainDarkGreen
+        
         // Highlighted 상태일 때 배경색
         let iamge = image(withColor: .Clutch.mainGreen!)
-        button.setBackgroundImage(iamge, for: .highlighted)
         
+        button.isEnabled = false
+        button.backgroundColor = .Clutch.bgGrey
         return button
     }()
     
+
     //MARK: - Define Method
     override func viewDidLoad() {
         super.viewDidLoad()
         SetView()
         Constraint()
+        textChange()
     }
     
+
     func SetView() {
         TextInputViewSet()
         SmallTextInputViewSet()
@@ -94,6 +99,39 @@ class ReportViewController: UIViewController{
         self.view.backgroundColor = .white
     }
     
+    func textChange() {
+        buildingNameLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        mortgageDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        addressLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        buildingNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        unitNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+    }
+    
+    @objc func textCheck() {
+    
+        let allFieldsFilled =
+        buildingNameLabel.textInputTextField.text?.isEmpty == false &&
+        mortgageDateLabel.textInputTextField.text?.isEmpty == false &&
+        addressLabel.textInputTextField.text?.isEmpty == false &&
+        buildingNum.textInputTextField.text?.isEmpty == false &&
+        unitNum.textInputTextField.text?.isEmpty == false
+        
+        print(allFieldsFilled)
+        let indexPaths = selectCollectionView.indexPathsForSelectedItems
+        let isCellSelected = indexPaths != nil && !indexPaths!.isEmpty
+        
+        if isCellSelected && allFieldsFilled {
+            nextButton.backgroundColor = .Clutch.mainDarkGreen
+            nextButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+            nextButton.isEnabled = true
+        } else {
+            nextButton.backgroundColor = .Clutch.bgGrey
+            nextButton.isEnabled = false
+        }
+        
+    }
+    
+ 
     func addsubview() {
         let views:[UIView] = [navigationBar, titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, buildingNum, unitNum, buildingTypeLabel, selectCollectionView, nextButton]
         
@@ -125,6 +163,7 @@ class ReportViewController: UIViewController{
     func TextInputViewSet() {
         buildingNameLabel.textInputLabel.text = "건물명"
         mortgageDateLabel.textInputLabel.text = "근저당 설정 기준일"
+        mortgageDateLabel.textInputTextField.isUserInteractionEnabled = false
         addressLabel.textInputLabel.text = "주소"
     }
     
@@ -208,6 +247,7 @@ class ReportViewController: UIViewController{
     
     @objc func ButtonTapped(_ sender: UIButton) {
         let VC = ContractInfoViewController()
+
         navigationController?.pushViewController(VC, animated: true)
         
     }
@@ -275,7 +315,7 @@ extension ReportViewController: DatePickerDelegate,
         if let cell = collectionView.cellForItem(at: indexPath) as? CheckCell {
             cell.checkImageView.image = UIImage(named: "btn_selected")
         }
+        textCheck()
     }
 }
-
 
