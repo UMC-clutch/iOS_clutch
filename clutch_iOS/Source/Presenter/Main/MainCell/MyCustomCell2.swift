@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SwiftyGif
 
 class MyCustomCell2: UICollectionViewCell {
     
@@ -38,6 +39,22 @@ class MyCustomCell2: UICollectionViewCell {
     
         return label
     }()
+    
+    lazy var gifImage:UIImageView = {
+        do {
+            let gif = try UIImage(gifName: "report_done.gif")
+            let imageview = UIImageView(gifImage: gif, loopCount: -1) // Will loop forever
+            
+            return imageview
+        }
+        catch {
+            let imageView = UIImageView()
+            let iamge = UIImage(named: "clutch_logo")
+            imageView.image = iamge
+
+            return imageView
+        }
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,7 +68,7 @@ class MyCustomCell2: UICollectionViewCell {
     
     //Cell의 View 관련 설정
     func SetView(){
-        [firstLabel, secondLabel, thirdLabel].forEach { view
+        [firstLabel, secondLabel, thirdLabel, gifImage].forEach { view
             in self.addSubview(view) }
         self.layer.cornerRadius = 18
         self.backgroundColor = UIColor.Clutch.mainDarkGreen
@@ -73,6 +90,13 @@ class MyCustomCell2: UICollectionViewCell {
         thirdLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.top.equalTo(secondLabel.snp.bottom).offset(80)
+        }
+        
+        gifImage.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-15)
+            make.bottom.equalToSuperview().offset(-15)
+            make.width.equalTo(150)
+            make.height.equalTo(150)
         }
     }
 }

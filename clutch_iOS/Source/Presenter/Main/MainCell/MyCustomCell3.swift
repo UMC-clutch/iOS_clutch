@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SwiftyGif
 
 class MyCustomCell3: UICollectionViewCell {
     
@@ -21,6 +22,22 @@ class MyCustomCell3: UICollectionViewCell {
         return label
     }()
     
+    lazy var gifImage:UIImageView = {
+        do {
+            let gif = try UIImage(gifName: "report_done.gif")
+            let imageview = UIImageView(gifImage: gif, loopCount: -1) // Will loop forever
+            
+            return imageview
+        }
+        catch {
+            let imageView = UIImageView()
+            let iamge = UIImage(named: "clutch_logo")
+            imageView.image = iamge
+
+            return imageView
+        }
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         SetView()
@@ -33,7 +50,7 @@ class MyCustomCell3: UICollectionViewCell {
     
     //Cell의 View 관련 설정
     func SetView(){
-        [testLabel].forEach { view
+        [testLabel, gifImage].forEach { view
             in self.addSubview(view) }
         self.layer.cornerRadius = 18
         self.backgroundColor = .white
@@ -42,8 +59,15 @@ class MyCustomCell3: UICollectionViewCell {
     //Cell의 오토레이아웃
     func Constraint(){
         testLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.bottom.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(26)
+            make.top.equalToSuperview().offset(28)
+        }
+        
+        gifImage.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-15)
+            make.bottom.equalToSuperview().offset(-15)
+            make.width.equalTo(80)
+            make.height.equalTo(80)
         }
     }
 }

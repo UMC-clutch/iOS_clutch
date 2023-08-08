@@ -6,6 +6,7 @@
 //
 import UIKit
 import SnapKit
+import SwiftyGif
 
 class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - UI propereties
@@ -30,6 +31,22 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = UIColor.Clutch.mainGreen
         
         return view
+    }()
+    
+    lazy var gifImage:UIImageView = {
+        do {
+            let gif = try UIImage(gifName: "report_done.gif")
+            let imageview = UIImageView(gifImage: gif, loopCount: -1) // Will loop 3 forever
+            
+            return imageview
+        }
+        catch {
+            let imageView = UIImageView()
+            let iamge = UIImage(named: "clutch_logo")
+            imageView.image = iamge
+
+            return imageView
+        }
     }()
     
     lazy var clutchIntroTitle:UILabel = {
@@ -114,16 +131,16 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     }
     //addsubview
     func addsubview() {
-        [scrollview, nextButton].forEach { view in
+        [scrollview, navigationBar, nextButton].forEach { view in
             self.view.addSubview(view)
         }
         [contentView].forEach { view in
             scrollview.addSubview(view)
         }
-        [navigationBar, clutchGraphic, mainCopyTextView, mainCopyText, clutchIntroTitle, clutchIntroText].forEach { view in
+        [clutchGraphic, mainCopyTextView, mainCopyText, clutchIntroTitle, clutchIntroText].forEach { view in
             contentView.addSubview(view)
         }
-        
+        clutchGraphic.addSubview(gifImage)
     }
     
     func setNavigationBar() {
@@ -135,7 +152,8 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
         navigationBar.setItems([navigationItem], animated: false)
-        navigationBar.barTintColor = .Clutch.mainWhite // 배경색 변경
+//        navigationBar.barTintColor = .Clutch.mainWhite // 배경색 변경
+        navigationBar.setBackgroundImage(UIImage(), for: .default) // 배경 색 투명하게
         navigationBar.shadowImage = UIImage() // 테두리 없애기
     }
     
@@ -176,6 +194,14 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
             make.width.equalToSuperview()
             make.height.equalTo(273)
             make.top.equalToSuperview()
+        }
+        
+//        //gifImage 오토 레이아웃
+        gifImage.snp.makeConstraints { make in
+            make.leading.equalTo(clutchGraphic).offset(20)
+            make.trailing.equalTo(clutchGraphic).offset(-20)
+            make.top.equalTo(clutchGraphic).offset(100)
+            make.bottom.equalTo(clutchGraphic).offset(-20)
         }
         
         //clutchIntroTitl의 오토레이아웃
