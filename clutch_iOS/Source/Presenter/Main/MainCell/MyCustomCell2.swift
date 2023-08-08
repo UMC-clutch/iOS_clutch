@@ -14,7 +14,7 @@ class MyCustomCell2: UICollectionViewCell {
     lazy var firstLabel:UILabel = {
         let label = UILabel()
         label.text = "클러치가 도와드릴게요"
-        label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        label.font = UIFont.Clutch.headtitlebold
         label.textColor = .white
        
         return label
@@ -23,7 +23,7 @@ class MyCustomCell2: UICollectionViewCell {
     lazy var secondLabel:UILabel = {
         let label = UILabel()
         label.text = "전세사기 가능성을 계산해주고, 사기 신고\n접수 시에 보증금 환급을 도와드립니다."
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.Clutch.baseMedium
         label.textColor = .white
         label.numberOfLines = 2
        
@@ -33,7 +33,7 @@ class MyCustomCell2: UICollectionViewCell {
     lazy var thirdLabel:UILabel = {
         let label = UILabel()
         label.text = "자세히 알고 싶어요 >"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.Clutch.smallMedium
         label.textColor = .white
     
         return label
@@ -72,7 +72,7 @@ class MyCustomCell2: UICollectionViewCell {
         
         thirdLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
-            make.top.equalTo(secondLabel.snp.bottom).offset(80)
+            make.bottom.equalTo(self.snp.bottom).offset(-20)
         }
     }
 }

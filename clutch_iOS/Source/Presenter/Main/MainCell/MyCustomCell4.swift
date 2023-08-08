@@ -14,7 +14,7 @@ class MyCustomCell4: UICollectionViewCell {
     lazy var testLabel:UILabel = {
         let label = UILabel()
         label.text = "전세사기 피해를 \n신고할래요"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.font = UIFont.Clutch.subheadBold
         label.textColor = .Clutch.textBlack
         label.numberOfLines = 2
        

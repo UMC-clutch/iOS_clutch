@@ -14,7 +14,7 @@ class MyCustomCell3: UICollectionViewCell {
     lazy var testLabel:UILabel = {
         let label = UILabel()
         label.text = "사기 가능성을 \n계산하고 싶어요"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.font = UIFont.Clutch.subheadBold
         label.textColor = .Clutch.textBlack
         label.numberOfLines = 2
        
