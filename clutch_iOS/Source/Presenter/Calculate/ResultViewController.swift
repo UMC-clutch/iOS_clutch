@@ -130,7 +130,7 @@ class ResultViewController: UIViewController {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 8
         
-        // 줄 별로 다른 글자 색깔 적용
+        // 줄별로 다른 글자 색깔 적용
         let attributedString = NSMutableAttributedString(string: label.text ?? "")
         attributedString.addAttribute(.foregroundColor, value: UIColor.Clutch.textDarkGrey ?? .black, range: (label.text! as NSString).range(of: "결과가 양수이면 안전, 음수이면 위험으로 판단해요."))
         attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
@@ -311,8 +311,7 @@ class ResultViewController: UIViewController {
         }
         
         backgroundView.snp.makeConstraints { make in
-            make.height.equalTo(86
-            )
+            make.height.equalTo(86)
             make.width.equalTo(361)
             make.top.equalToSuperview().offset(499)
             make.leading.equalToSuperview().offset(16)

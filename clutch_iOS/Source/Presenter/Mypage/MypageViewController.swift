@@ -322,8 +322,7 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
                 let VC = ReportDoneViewController()
                 navigationController?.pushViewController(VC, animated: true)
             case 1:
-                // 가능성 계산 내역 VC로
-                let VC = ReportDoneViewController()
+                let VC = CalculateHistoryViewController()
                 navigationController?.pushViewController(VC, animated: true)
             default :
                 return
