@@ -95,7 +95,7 @@ class ReportDoneView: UIView {
             make.top.equalToSuperview()
             make.leading.equalToSuperview().offset(sideInterval)
             make.trailing.equalToSuperview().offset(-sideInterval)
-            make.height.equalTo(300)
+            make.height.equalTo(400)
         }
         
         reportDate.snp.makeConstraints { make in

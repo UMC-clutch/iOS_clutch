@@ -81,12 +81,16 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //VC의 오토레이아웃
     func Constraint() {
+        let spacing:CGFloat = 16
+        
         //collectionView 오토레이아웃
         collectionview.snp.makeConstraints { make in
+            let heightRatio:CGFloat = 590 / 852
             make.top.equalTo(self.navigationBar.snp.bottom).offset(10)
-            make.bottom.equalToSuperview()
+//            make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
             make.width.equalTo(self.view.frame.width - 20)
+            make.height.equalTo(self.view.frame.height * heightRatio)
         }
         //navigationBar 오토레이아웃
         navigationBar.snp.makeConstraints { make in
@@ -96,10 +100,14 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         //container 오토레이아웃
         container.snp.makeConstraints { make in
+            let topRatio:CGFloat = 40 / 852
+            let heightRatio:CGFloat = 80 / 852
+            
             make.width.equalTo(361)
-            make.height.equalTo(88)
-            make.top.equalTo(716)
-            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(spacing)
+            make.trailing.equalToSuperview().offset(-spacing)
+            make.height.equalTo(heightRatio * UIScreen.main.bounds.height)
+            make.top.equalTo(collectionview.snp.bottom).offset(topRatio * UIScreen.main.bounds.height)
         }
         //faqButton 오토레이아웃
         faqButton.snp.makeConstraints { make in
@@ -109,7 +117,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         //centerLine 오토레이아웃
         centerLine.snp.makeConstraints { make in
             make.width.equalTo(1)
-            make.height.equalTo(56)
+            make.height.equalTo(container.snp.height)
             make.center.equalTo(container.snp.center)
         }
         //clientButton 오토레이아웃
@@ -234,8 +242,9 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
             //2번 cell에 대한 크기 지정, 가로 세로 동일
         case 1:
             let width = collectionview.frame.width
-            let height: CGFloat = 256
-            return CGSize(width: width, height: height)
+            let heightRatio: CGFloat = 256 / 852
+            let viewHeight = UIScreen.main.bounds.height
+            return CGSize(width: width, height: viewHeight * heightRatio)
             //3번 cell에 대한 크기 지정, 뷰의 가로 값을 2로 나눈뒤 중간 여백을 뺀 값을 가로, 세로에 할당
         default:
             let width = (collectionview.frame.width / 2 - 5)

@@ -100,7 +100,9 @@ class ReportStatusView: UIView {
         let spacing = 8
         
         completeGifImage.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            let topRatio:CGFloat = 88/852
+            print(UIScreen.main.bounds.height * topRatio)
+            make.top.equalTo(UIScreen.main.bounds.height * topRatio )
             make.size.equalTo(50)
             make.centerX.equalToSuperview()
         }

@@ -34,9 +34,8 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
         button.titleLabel?.font = .Clutch.subheadMedium
         button.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 11
-        // 입력에 따른 활성화 처리시
-//        button.backgroundColor = .Clutch.bgGrey
-        button.backgroundColor = .Clutch.mainDarkGreen
+        button.backgroundColor = .Clutch.bgGrey
+        button.isEnabled = false
         
         return button
     }()
@@ -51,6 +50,7 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
     func SetView() {
         addsubview()
         infoViewSet()
+        textChange()
         self.view.backgroundColor = .white
     }
     
@@ -94,9 +94,30 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
             make.height.equalTo(53)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-36)
         }
         
+    }
+    
+    func textChange() {
+        emailInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        phoneNumInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+    }
+    
+    @objc func textCheck() {
+        let allFieldsFilled =
+        emailInfo.textInputTextField.text?.isEmpty == false &&
+        phoneNumInfo.textInputTextField.text?.isEmpty == false
+        
+        
+        if allFieldsFilled {
+            confirmButton.backgroundColor = .Clutch.mainDarkGreen
+            confirmButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+            confirmButton.isEnabled = true
+        } else {
+            confirmButton.backgroundColor = .Clutch.bgGrey
+            confirmButton.isEnabled = false
+        }
     }
     
     @objc func confirmButtonTapped(_ sender: UIButton) {
