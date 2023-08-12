@@ -34,6 +34,8 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.Clutch.smallMedium
         button.addTarget(self, action: #selector(faqButtonTapped(_:)), for: .touchUpInside)
+        let image = UIImage(named: "FAQ")
+        button.setImage(image, for: .normal)
         
         return button
     }()
@@ -49,10 +51,12 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     //고객센터 버튼
     lazy var clientButton:UIButton = {
         let button = UIButton()
-        button.setTitle("클러치 공식계정", for: .normal)
+        button.setTitle(" 클러치 공식계정", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .Clutch.smallMedium
         button.addTarget(self, action: #selector(clientButtonTapped(_:)), for: .touchUpInside)
+        let image = UIImage(named: "clutch_official account")
+        button.setImage(image, for: .normal)
         
         return button
     }()
@@ -111,7 +115,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         //faqButton 오토레이아웃
         faqButton.snp.makeConstraints { make in
-            make.leading.equalTo(container.snp.leading).offset(60)
+            make.leading.equalTo(container.snp.leading).offset(26)
             make.centerY.equalTo(container.snp.centerY)
         }
         //centerLine 오토레이아웃
@@ -122,7 +126,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         //clientButton 오토레이아웃
         clientButton.snp.makeConstraints { make in
-            make.leading.equalTo(centerLine.snp.leading).offset(60)
+            make.leading.equalTo(centerLine.snp.leading).offset(26)
             make.centerY.equalTo(container.snp.centerY)
         }
         

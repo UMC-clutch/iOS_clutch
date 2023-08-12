@@ -26,10 +26,10 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
-    lazy var clutchGraphic:UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.Clutch.mainGreen
-        
+    lazy var clutchGraphic:UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "img_clutch_introduction")
+
         return view
     }()
     
@@ -229,7 +229,7 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
             contentView.addSubview(view)
         }
 
-        clutchGraphic.addSubview(gifImage)
+//        clutchGraphic.addSubview(gifImage)
     }
     
     func setNavigationBar() {
@@ -286,12 +286,12 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         }
         
 //        //gifImage 오토 레이아웃
-        gifImage.snp.makeConstraints { make in
-            make.leading.equalTo(clutchGraphic).offset(20)
-            make.trailing.equalTo(clutchGraphic).offset(-20)
-            make.top.equalTo(clutchGraphic).offset(100)
-            make.bottom.equalTo(clutchGraphic).offset(-20)
-        }
+//        gifImage.snp.makeConstraints { make in
+//            make.leading.equalTo(clutchGraphic).offset(20)
+//            make.trailing.equalTo(clutchGraphic).offset(-20)
+//            make.top.equalTo(clutchGraphic).offset(100)
+//            make.bottom.equalTo(clutchGraphic).offset(-20)
+//        }
         
         //clutchIntroTitl의 오토레이아웃
         clutchIntroTitle.snp.makeConstraints { make in

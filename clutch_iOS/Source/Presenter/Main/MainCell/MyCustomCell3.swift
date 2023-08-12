@@ -22,20 +22,28 @@ class MyCustomCell3: UICollectionViewCell {
         return label
     }()
     
-    lazy var gifImage:UIImageView = {
-        do {
-            let gif = try UIImage(gifName: "report_done.gif")
-            let imageview = UIImageView(gifImage: gif, loopCount: -1) // Will loop forever
-            
-            return imageview
-        }
-        catch {
-            let imageView = UIImageView()
-            let iamge = UIImage(named: "clutch_logo")
-            imageView.image = iamge
-
-            return imageView
-        }
+//    lazy var gifImage:UIImageView = {
+//        do {
+//            let gif = try UIImage(gifName: "report_done.gif")
+//            let imageview = UIImageView(gifImage: gif, loopCount: -1) // Will loop forever
+//
+//            return imageview
+//        }
+//        catch {
+//            let imageView = UIImageView()
+//            let iamge = UIImage(named: "clutch_logo")
+//            imageView.image = iamge
+//
+//            return imageView
+//        }
+//    }()
+    
+    lazy var imageView:UIImageView = {
+        let view = UIImageView()
+        let image = UIImage(named: "img_clutch_caclulate 1")
+        view.image = image
+    
+        return view
     }()
     
     override init(frame: CGRect) {
@@ -50,7 +58,7 @@ class MyCustomCell3: UICollectionViewCell {
     
     //Cell의 View 관련 설정
     func SetView(){
-        [testLabel, gifImage].forEach { view
+        [testLabel, imageView].forEach { view
             in self.addSubview(view) }
         self.layer.cornerRadius = 18
         self.backgroundColor = .white
@@ -63,7 +71,7 @@ class MyCustomCell3: UICollectionViewCell {
             make.top.equalToSuperview().offset(28)
         }
         
-        gifImage.snp.makeConstraints { make in
+        imageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-15)
             make.bottom.equalToSuperview().offset(-15)
             make.width.equalTo(80)
