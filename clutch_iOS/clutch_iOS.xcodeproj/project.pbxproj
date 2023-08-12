@@ -10,6 +10,7 @@
 		0912CBAB2A68C28500139593 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */; };
 		0912CBAD2A68C60C00139593 /* CustomPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */; };
 		093EB0BC2A6F7DD400AC1F71 /* CustomPopupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */; };
+		09402EBB2A82160000B937C6 /* report_done.gif in Resources */ = {isa = PBXBuildFile; fileRef = 09402EBA2A82160000B937C6 /* report_done.gif */; };
 		09D990492A7393E0004F1349 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D990482A7393E0004F1349 /* ImageCell.swift */; };
 		09D9904B2A73A0BB004F1349 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9904A2A73A0BB004F1349 /* ButtonCell.swift */; };
 		09EBFACE2A710033004C8BE5 /* ContractInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */; };
@@ -24,6 +25,8 @@
 		A248A99A2A5FD5330053E66C /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A9992A5FD5330053E66C /* InfoCell.swift */; };
 		A248A99C2A5FD5410053E66C /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248A99B2A5FD5410053E66C /* AccountCell.swift */; };
 		A286D4C92A77F9C000C3EB93 /* OutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A286D4C82A77F9C000C3EB93 /* OutputView.swift */; };
+		A2CB67F82A80CA0000294F96 /* CalculateHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CB67F72A80CA0000294F96 /* CalculateHistoryViewController.swift */; };
+		A2CB67FA2A80D78900294F96 /* CalculateHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CB67F92A80D78900294F96 /* CalculateHistoryCell.swift */; };
 		BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC6B2A6A658F0007F588 /* TextInputView.swift */; };
 		BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC702A6A76620007F588 /* SampleViewController.swift */; };
 		BE4B03442A790C3F009285A3 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4B03432A790C3F009285A3 /* Package.swift */; };
@@ -95,6 +98,7 @@
 		0912CBAA2A68C28500139593 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		0912CBAC2A68C60C00139593 /* CustomPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupViewController.swift; sourceTree = "<group>"; };
 		093EB0BB2A6F7DD400AC1F71 /* CustomPopupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupCell.swift; sourceTree = "<group>"; };
+		09402EBA2A82160000B937C6 /* report_done.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = report_done.gif; sourceTree = "<group>"; };
 		09D990482A7393E0004F1349 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		09D9904A2A73A0BB004F1349 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		09EBFACD2A710033004C8BE5 /* ContractInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractInfoViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 		A248A9992A5FD5330053E66C /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		A248A99B2A5FD5410053E66C /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		A286D4C82A77F9C000C3EB93 /* OutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputView.swift; sourceTree = "<group>"; };
+		A2CB67F72A80CA0000294F96 /* CalculateHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateHistoryViewController.swift; sourceTree = "<group>"; };
+		A2CB67F92A80D78900294F96 /* CalculateHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateHistoryCell.swift; sourceTree = "<group>"; };
 		BE40DC6B2A6A658F0007F588 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		BE40DC702A6A76620007F588 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
 		BE4B03432A790C3F009285A3 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -198,6 +204,14 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		09402EB92A8215CF00B937C6 /* Gif */ = {
+			isa = PBXGroup;
+			children = (
+				09402EBA2A82160000B937C6 /* report_done.gif */,
+			);
+			path = Gif;
+			sourceTree = "<group>";
+		};
 		2C16A6B82A5F9ED9003D7013 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +226,14 @@
 				A207BC852A6665BC002AD898 /* InquiryViewController.swift */,
 			);
 			path = Inquiry;
+			sourceTree = "<group>";
+		};
+		A20D8E792A81394900A43921 /* CalculateHistoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				A2CB67F92A80D78900294F96 /* CalculateHistoryCell.swift */,
+			);
+			path = CalculateHistoryCell;
 			sourceTree = "<group>";
 		};
 		A223575D2A65272F00915DF0 /* Profile */ = {
@@ -236,6 +258,7 @@
 		BE086A6A2A56F744002E4BF4 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				09402EB92A8215CF00B937C6 /* Gif */,
 				BED645CE2A4D6846005106D8 /* Assets.xcassets */,
 			);
 			path = Resource;
@@ -290,6 +313,8 @@
 				A22F712E2A73951E007705C8 /* SecondCalculateViewController.swift */,
 				A22F712C2A7394BE007705C8 /* ResultViewController.swift */,
 				A286D4C82A77F9C000C3EB93 /* OutputView.swift */,
+				A2CB67F72A80CA0000294F96 /* CalculateHistoryViewController.swift */,
+				A20D8E792A81394900A43921 /* CalculateHistoryCell */,
 			);
 			path = Calculate;
 			sourceTree = "<group>";
@@ -632,6 +657,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09402EBB2A82160000B937C6 /* report_done.gif in Resources */,
 				BED645D22A4D6846005106D8 /* LaunchScreen.storyboard in Resources */,
 				BED645CF2A4D6846005106D8 /* Assets.xcassets in Resources */,
 				BED645CA2A4D6845005106D8 /* Main.storyboard in Resources */,
@@ -696,6 +722,7 @@
 				BED645FC2A4D69DE005106D8 /* MyCustomCell4.swift in Sources */,
 				BE87AC8E2A5DA0B00002E4C6 /* SetFont.swift in Sources */,
 				BECEC6A62A5EF51C00A177A0 /* Banner1View.swift in Sources */,
+				A2CB67F82A80CA0000294F96 /* CalculateHistoryViewController.swift in Sources */,
 				BECEC6A32A5EDFDF00A177A0 /* faqViewController.swift in Sources */,
 				BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */,
 				BE53C58F2A765D92000EF2C5 /* TextSampleView.swift in Sources */,
@@ -703,6 +730,7 @@
 				BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */,
 				BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
+				A2CB67FA2A80D78900294F96 /* CalculateHistoryCell.swift in Sources */,
 				09D9904B2A73A0BB004F1349 /* ButtonCell.swift in Sources */,
 				BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */,
 				BE53C5912A765DF4000EF2C5 /* ReportDoneView.swift in Sources */,

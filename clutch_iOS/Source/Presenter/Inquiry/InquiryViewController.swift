@@ -10,6 +10,9 @@ import UIKit
 import SnapKit
 
 class InquiryViewController: UIViewController {
+    //MARK: - Properties
+    lazy var completed = false
+    
     // MARK: - UI ProPerties
     // UINavigationBar 선언("< 문의하기")
     public lazy var navigationBar = UINavigationBar()
@@ -226,15 +229,17 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITex
     
     func confirm() {
         print("custom action Button Tapped")
-        // 탈퇴하기 API 호출
+        // 문의하기 API 호출
         let response = "200"
-        // 정상적으로 호출되면 메시지 출력, 창 닫기
         if response == "200" {
+            completed = true
+        }
+        // 정상적으로 호출되면 메시지 출력, 창 닫기
+        if completed {
             showCustomAlert(alertType: .done,
                             alertTitle: "문의 완료",
                             alertContext: "정상적으로 접수되었습니다.",
                             confirmText: "확인")
-            // 창 닫는 코드
         }
         // 오류 발생시 메시지 출력
         else {
@@ -246,7 +251,9 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITex
     }
     
     func done() {
-        print("custom done Button Tapped")
+        if completed {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     //TextView

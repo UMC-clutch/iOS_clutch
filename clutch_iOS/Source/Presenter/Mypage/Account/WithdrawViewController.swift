@@ -216,20 +216,11 @@ extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
     }
     
     @objc func withdrawButtonTapped(_ sender: UIButton) {
-        
-        // 호출 후
-        lazy var response = 200
-        if response == 200 {
-            completed = true
-        }
-        
-        if completed {
-            showCustomAlert(alertType: .canCancel,
-                            alertTitle: "탈퇴하기",
-                            alertContext: "정말로 탈퇴하시겠습니까?",
-                            cancelText: "취소",
-                            confirmText: "탈퇴하기")
-        }
+        showCustomAlert(alertType: .canCancel,
+                        alertTitle: "탈퇴하기",
+                        alertContext: "정말로 탈퇴하시겠습니까?",
+                        cancelText: "취소",
+                        confirmText: "탈퇴하기")
     }
     
     func cancel() {
@@ -240,13 +231,16 @@ extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
         print("custom action Button Tapped")
         // 탈퇴하기 API 호출
         let response = "200"
-        // 정상적으로 호출되면 메시지 출력, 창 닫기
         if response == "200" {
+            completed = true
+        }
+        
+        // 정상적으로 호출되면 메시지 출력, 창 닫기
+        if completed {
             showCustomAlert(alertType: .done,
                             alertTitle: "탈퇴 완료",
                             alertContext: "정상적으로 탈퇴되었습니다.",
                             confirmText: "확인")
-            // 창 닫는 코드
         }
         // 오류 발생시 메시지 출력
         else {

@@ -6,18 +6,27 @@
 //
 
 import UIKit
+import SwiftyGif
 
 class ReportStatusView: UIView {
     //MARK: - Properties
     let status = 1
     
     //MARK: - UI ProPerties
-    lazy var completeImage:UIImageView = {
-        let imageView = UIImageView()
-        let iamge = UIImage(named: "clutch_logo")
-        imageView.image = iamge
-        
-        return imageView
+    lazy var completeGifImage:UIImageView = {
+        do {
+            let gif = try UIImage(gifName: "report_done.gif")
+            let imageview = UIImageView(gifImage: gif, loopCount: 1) // Will loop 3 times
+            
+            return imageview
+        }
+        catch {
+            let imageView = UIImageView()
+            let iamge = UIImage(named: "clutch_logo")
+            imageView.image = iamge
+    
+            return imageView
+        }
     }()
     
     lazy var titleLabel:UILabel = {
@@ -66,7 +75,7 @@ class ReportStatusView: UIView {
     }
     
     func addsubview() {
-        [completeImage, titleLabel, subTitleLabel, statusImage].forEach { view in
+        [completeGifImage, titleLabel, subTitleLabel, statusImage].forEach { view in
             self.addSubview(view)
         }
     }
@@ -90,14 +99,14 @@ class ReportStatusView: UIView {
         
         let spacing = 8
         
-        completeImage.snp.makeConstraints { make in
+        completeGifImage.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.size.equalTo(50)
             make.centerX.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(completeImage.snp.bottom).offset(spacing * 2)
+            make.top.equalTo(completeGifImage.snp.bottom).offset(spacing * 2)
             make.centerX.equalToSuperview()
         }
         

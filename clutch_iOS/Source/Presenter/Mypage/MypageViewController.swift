@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class MypageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    //MARK: - Properties
+    lazy var logout = false
     
     // MARK: - UI ProPerties
     lazy var navigationBar = UINavigationBar()
@@ -322,8 +324,7 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
                 let VC = ReportDoneViewController()
                 navigationController?.pushViewController(VC, animated: true)
             case 1:
-                // 가능성 계산 내역 VC로
-                let VC = ReportDoneViewController()
+                let VC = CalculateHistoryViewController()
                 navigationController?.pushViewController(VC, animated: true)
             default :
                 return
@@ -331,8 +332,10 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
         } else if collectionView == collectionView2 {
             switch indexPath.row {
             case 0:
-                // 앱버전 알림으로 띄우기
-                print("앱버전")
+                showCustomAlert(alertType: .done,
+                                alertTitle: "앱 버전",
+                                alertContext: "ver 1.0 Demo",
+                                confirmText: "확인")
             case 1:
                 let url:String = "https://www.naver.com/"
                 openURL(url)
@@ -345,8 +348,11 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
         } else if collectionView == collectionView3 {
             switch indexPath.row {
             case 0:
-                // 로그아웃 알림으로 띄우기
-                print("로그아웃")
+                showCustomAlert(alertType: .canCancel,
+                                alertTitle: "로그아웃",
+                                alertContext: "정말로 로그아웃 하시겠습니까?",
+                                cancelText: "취소",
+                                confirmText: "로그아웃")
             case 1:
                 let VC = WithdrawViewController()
                 navigationController?.pushViewController(VC, animated: true)
@@ -356,6 +362,47 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
         } else {
             return
         }
+        
+    }
+    
+}
+
+//MARK: - extension
+extension MypageViewController: CustomAlertDelegate {
+    
+    func cancel() {
+        print("custom cancel Button Tapped")
+    }
+    
+    func confirm() {
+        print("custom action Button Tapped")
+        // 로그아웃 API 호출
+        let response = "200"
+        if response == "200" {
+            logout = true
+        }
+        
+        if logout {
+            showCustomAlert(alertType: .done,
+                            alertTitle: "로그아웃 완료",
+                            alertContext: "정상적으로 로그아웃 되었습니다.",
+                            confirmText: "확인")
+        }
+        // 오류 발생시 메시지 출력
+        else {
+            showCustomAlert(alertType: .done,
+                            alertTitle: "오류 발생",
+                            alertContext: "다시 시도해주세요.",
+                            confirmText: "확인")
+        }
+    }
+    
+    func done() {
+        // 로그아웃 되었으면 로그인 화면으로 pop
+        if logout {
+            navigationController?.popToRootViewController(animated: true)
+        }
+        
         
     }
     
