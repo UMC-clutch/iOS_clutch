@@ -40,7 +40,7 @@ class InquiryViewController: UIViewController {
         
         return imageview
     }()
-
+    
     // 텍스트뷰
     lazy var placeholder = "어떤 내용이 궁금하신가요?"
     
@@ -69,6 +69,7 @@ class InquiryViewController: UIViewController {
         btn.setTitleColor(.Clutch.textDarkGrey, for: .normal)
         btn.setTitle("문의하기", for: .normal)
         btn.addTarget(self, action: #selector(inquirywButtonTapped), for: .touchUpInside)
+        btn.isEnabled = false
         
         return btn
     }()
@@ -123,6 +124,8 @@ class InquiryViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    
+    
     func Constraint() {
         navigationBar.snp.makeConstraints { make in
             make.height.equalTo(30)
@@ -163,7 +166,7 @@ class InquiryViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-27)
             make.centerY.equalTo(selectTypeButton)
         }
-      
+        
         categoryInput.underLine.snp.makeConstraints{ make in
             make.width.equalTo(360)
             make.height.equalTo(2)
@@ -206,13 +209,11 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITex
     }
     
     func getSelectedCell(selected: String) {
+        
         if selected == "" { return }
         
         selectTypeButton.setTitle(selected, for: .normal)
-        
-        inquiryButton.backgroundColor = .Clutch.mainDarkGreen
-        inquiryButton.setTitleColor(.Clutch.mainWhite, for: .normal)
-        inquiryButton.isEnabled = true
+    
     }
     
     @objc func inquirywButtonTapped(_ sender: UIButton) {
@@ -258,21 +259,30 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITex
     
     //TextView
     func textViewDidBeginEditing(_ textView: UITextView) {
-            /// 플레이스홀더
-            if textView.text.isEmpty {
-                self.textView.textColor = UIColor.Clutch.textDarkGrey
-                self.textView.text = placeholder
-            } else if textView.text == placeholder {
-                self.textView.textColor = .Clutch.textBlack
-                self.textView.text = nil
-            }
-        }
-        
-    func textViewDidEndEditing(_ textView: UITextView) {
         /// 플레이스홀더
+        if textView.text == placeholder {
+            self.textView.textColor = .Clutch.textBlack
+            self.textView.text = nil
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        //플레이스홀더
         if textView.text.isEmpty {
             self.textView.textColor = UIColor.Clutch.textDarkGrey
             self.textView.text = placeholder
         }
+    
+        //textview에 내용입력, selectTypeButton을 통해 문의 사유를 선택했을 시 버튼 활성 화
+        if textView.text.isEmpty || textView.text == placeholder || selectTypeButton.title(for: .normal) == "문의 유형을 선택해주세요" {
+                inquiryButton.backgroundColor = .Clutch.textDarkGrey
+                inquiryButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+                inquiryButton.isEnabled = false
+             } else {
+
+                 inquiryButton.backgroundColor = .Clutch.textDarkGrey
+                 inquiryButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+                 inquiryButton.isEnabled = true
+             }
     }
 }
