@@ -30,13 +30,22 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
     // UILabel 선언("내 정보 확인") -> ProfileViewController로 이동 처리
     lazy var infoLabel: UILabel = {
         let label = UILabel()
-        label.text = "내 정보 확인 >"
+        label.text = "내 정보 확인"
         label.textColor = UIColor.Clutch.textDarkGrey
         label.textAlignment = .right
         label.numberOfLines = 1
         label.font = UIFont.Clutch.smallMedium
         
         return label
+    }()
+    
+    //우측 화살표 이미지화
+    lazy var rightArrowImageView:UIImageView =  {
+        let image = UIImageView()
+        image.tintColor = .Clutch.textDarkGrey?
+        image.image = UIImage(named: "btn_arrow_small")
+        
+        return image
     }()
     
     // UIView 선언(회색 구분선)
@@ -140,7 +149,7 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     //VC의 view 관련 설정
     func setView() {
-        [navigationBar, nameLabel, infoLabel, underLine, historyLabel, collectionView1, inquiryLabel, collectionView2, accountLabel, collectionView3].forEach { view in
+        [navigationBar, nameLabel, infoLabel, rightArrowImageView, underLine, historyLabel, collectionView1, inquiryLabel, collectionView2, accountLabel, collectionView3].forEach { view in
             self.view.addSubview(view)
         }
         setNavigationBar()
@@ -159,6 +168,7 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
         navigationBar.barTintColor = .Clutch.mainWhite // 배경색 변경
         navigationBar.shadowImage = UIImage() // 테두리 없애기
     }
+
     
     //VC의 오토레이아웃
     func Constraint() {
@@ -176,8 +186,14 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         
         infoLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(289)
+            make.trailing.equalTo(rightArrowImageView.snp.leading)
             make.top.equalToSuperview().offset(130)
+        }
+        
+        rightArrowImageView.snp.makeConstraints { make in
+            make.leading.equalTo(infoLabel.snp.trailing)
+            make.trailing.equalToSuperview().offset(-16)
+            make.centerY.equalTo(infoLabel.snp.centerY)
         }
         
         underLine.snp.makeConstraints { make in
@@ -194,7 +210,7 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         collectionView1.snp.makeConstraints { make in
             make.width.equalTo(361)
-            make.height.equalTo(70)
+            make.height.equalTo(80)
             make.leading.equalTo(leading)
             make.top.equalTo(270)
         }

@@ -40,10 +40,12 @@ class loginView: UIView {
     
     func Constraint() {
         //로고 오토레이아웃
+        let superviewHeight = UIScreen.main.bounds.height
+    
         logo.snp.makeConstraints { make in
             make.size.equalTo(140)
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(240)
+            make.top.equalToSuperview().offset(superviewHeight * 0.3)
         }
         
     }

@@ -49,19 +49,24 @@ class loginViewController: UIViewController {
     }
 
     func Constraint() {
+
+        let leading:CGFloat = 30
+        let superViewHeight = UIScreen.main.bounds.height
+        
         //kakaoButton 오토레이아웃
         kakaoButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(400)
-            make.width.equalTo(332)
-            make.height.equalTo(50)
+            make.top.equalToSuperview().offset(superViewHeight * 0.7)
+            make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
+            make.height.equalTo(kakaoButton.snp.width).multipliedBy(0.15)
         }
         //appleButton 오토레이아웃
         appleButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
             make.top.equalTo(kakaoButton.snp.bottom).offset(20)
-            make.width.equalTo(332)
-            make.height.equalTo(50)
+            make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
+            make.height.equalTo(appleButton.snp.width).multipliedBy(0.15)
+
         }
         
     }
