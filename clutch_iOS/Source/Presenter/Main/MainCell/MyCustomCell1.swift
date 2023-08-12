@@ -39,7 +39,6 @@ class MyCustomCell1: UICollectionViewCell {
     // banner 내용을 표시하는 각 뷰
     let view1 = Banner1View()
     let view2 = Banner2View()
-    let view3 = Banner3View()
     
     // 배너를 담을 배열
     var customBannerViews: [UIView] = []
@@ -50,9 +49,13 @@ class MyCustomCell1: UICollectionViewCell {
         super.layoutSubviews()
         view1.frame = contentView.bounds
         view2.frame = contentView.bounds
-        view3.frame = contentView.bounds
+        view1.bannerButton.frame = contentView.bounds
+        view1.bannerImageView.frame = contentView.bounds
+        view2.bannerButton.frame = contentView.bounds
+        view2.bannerImageView.frame = contentView.bounds
+    
     }
-  
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,7 +90,7 @@ class MyCustomCell1: UICollectionViewCell {
         self.layer.cornerRadius = 18
         self.backgroundColor = .Clutch.bgGrey
         self.addSubview(bannerView)
-        customBannerViews = [view1, view2, view3]
+        customBannerViews = [view1, view2]
         bannerView.addSubview(customBannerViews[currentViewIndex])
         // 3초마다 배너 변경을 위한 타이머 설정
         Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(changeBanner), userInfo: nil, repeats: true)
@@ -96,11 +99,13 @@ class MyCustomCell1: UICollectionViewCell {
     
     //Cell의 오토레이아웃
     func Constraint(){
+        
         bannerView.snp.makeConstraints { make in
-            make.size.equalTo(self.contentView.snp.size)
-            make.centerX.equalTo(self.contentView.snp.centerX)
+            make.edges.equalTo(self.contentView)
         }
         
     }
     
 }
+
+

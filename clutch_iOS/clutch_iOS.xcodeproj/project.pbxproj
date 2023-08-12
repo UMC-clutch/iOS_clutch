@@ -52,9 +52,8 @@
 		BE9FF79A2A6E9F840000DA88 /* datePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */; };
 		BEABD8922A6FE0500015AC29 /* CheckContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEABD8912A6FE0500015AC29 /* CheckContainer.swift */; };
 		BECEC6A32A5EDFDF00A177A0 /* faqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A22A5EDFDF00A177A0 /* faqViewController.swift */; };
-		BECEC6A62A5EF51C00A177A0 /* Banner1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A52A5EF51C00A177A0 /* Banner1View.swift */; };
 		BECEC6A82A5EF52500A177A0 /* Banner2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A72A5EF52500A177A0 /* Banner2View.swift */; };
-		BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A92A5EF52B00A177A0 /* Banner3View.swift */; };
+		BECEC6AA2A5EF52B00A177A0 /* Banner1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6A92A5EF52B00A177A0 /* Banner1View.swift */; };
 		BECEC6AC2A60143200A177A0 /* ColorToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6AB2A60143200A177A0 /* ColorToImage.swift */; };
 		BECEC6B12A6016B100A177A0 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B02A6016B100A177A0 /* BaseView.swift */; };
 		BECEC6B32A6016BB00A177A0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B22A6016BB00A177A0 /* BaseViewController.swift */; };
@@ -135,9 +134,8 @@
 		BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = datePickerViewController.swift; sourceTree = "<group>"; };
 		BEABD8912A6FE0500015AC29 /* CheckContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckContainer.swift; sourceTree = "<group>"; };
 		BECEC6A22A5EDFDF00A177A0 /* faqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faqViewController.swift; sourceTree = "<group>"; };
-		BECEC6A52A5EF51C00A177A0 /* Banner1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner1View.swift; sourceTree = "<group>"; };
 		BECEC6A72A5EF52500A177A0 /* Banner2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner2View.swift; sourceTree = "<group>"; };
-		BECEC6A92A5EF52B00A177A0 /* Banner3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner3View.swift; sourceTree = "<group>"; };
+		BECEC6A92A5EF52B00A177A0 /* Banner1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner1View.swift; sourceTree = "<group>"; };
 		BECEC6AB2A60143200A177A0 /* ColorToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorToImage.swift; sourceTree = "<group>"; };
 		BECEC6B02A6016B100A177A0 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		BECEC6B22A6016BB00A177A0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -452,9 +450,8 @@
 		BECEC6A42A5EF4E300A177A0 /* Banner */ = {
 			isa = PBXGroup;
 			children = (
-				BECEC6A52A5EF51C00A177A0 /* Banner1View.swift */,
+				BECEC6A92A5EF52B00A177A0 /* Banner1View.swift */,
 				BECEC6A72A5EF52500A177A0 /* Banner2View.swift */,
-				BECEC6A92A5EF52B00A177A0 /* Banner3View.swift */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -721,13 +718,12 @@
 				BEF1510E2A6E0DA500798D74 /* SampleScrollViewController.swift in Sources */,
 				BED645FC2A4D69DE005106D8 /* MyCustomCell4.swift in Sources */,
 				BE87AC8E2A5DA0B00002E4C6 /* SetFont.swift in Sources */,
-				BECEC6A62A5EF51C00A177A0 /* Banner1View.swift in Sources */,
 				A2CB67F82A80CA0000294F96 /* CalculateHistoryViewController.swift in Sources */,
 				BECEC6A32A5EDFDF00A177A0 /* faqViewController.swift in Sources */,
 				BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */,
 				BE53C58F2A765D92000EF2C5 /* TextSampleView.swift in Sources */,
 				2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */,
-				BECEC6AA2A5EF52B00A177A0 /* Banner3View.swift in Sources */,
+				BECEC6AA2A5EF52B00A177A0 /* Banner1View.swift in Sources */,
 				BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
 				A2CB67FA2A80D78900294F96 /* CalculateHistoryCell.swift in Sources */,

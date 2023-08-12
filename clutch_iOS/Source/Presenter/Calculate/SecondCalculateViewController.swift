@@ -73,6 +73,7 @@ class SecondCalculateViewController: UIViewController {
         btn.titleLabel?.font = .Clutch.subheadMedium
         btn.setTitleColor(.Clutch.textDarkGrey, for: .normal)
         btn.setTitle("완료", for: .normal)
+        btn.isEnabled = false
         return btn
     }()
     

@@ -69,6 +69,7 @@ class CalculateViewController: UIViewController {
         btn.setTitleColor(.Clutch.textDarkGrey, for: .normal)
         btn.setTitle("시세 조회", for: .normal)
         btn.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
+        btn.isEnabled = false
         return btn
     }()
     

@@ -93,7 +93,6 @@ class ReportViewController: UIViewController{
         TextInputViewSet()
         SmallTextInputViewSet()
         addsubview()
-        // 체크박스, 네비게이션바
         setCollectionview()
         setNavigationBar()
         self.view.backgroundColor = .white

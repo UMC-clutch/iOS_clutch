@@ -275,12 +275,12 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITex
     
         //textview에 내용입력, selectTypeButton을 통해 문의 사유를 선택했을 시 버튼 활성 화
         if textView.text.isEmpty || textView.text == placeholder || selectTypeButton.title(for: .normal) == "문의 유형을 선택해주세요" {
-                inquiryButton.backgroundColor = .Clutch.textDarkGrey
+                inquiryButton.backgroundColor = .Clutch.bgGrey
                 inquiryButton.setTitleColor(.Clutch.mainWhite, for: .normal)
                 inquiryButton.isEnabled = false
              } else {
 
-                 inquiryButton.backgroundColor = .Clutch.textDarkGrey
+                 inquiryButton.backgroundColor = .Clutch.mainDarkGreen
                  inquiryButton.setTitleColor(.Clutch.mainWhite, for: .normal)
                  inquiryButton.isEnabled = true
              }

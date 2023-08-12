@@ -250,7 +250,6 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         fixedDateLabel.textInputTextField.text?.isEmpty == false &&
         depositLabel.textInputTextField.text?.isEmpty == false
 
-        print(allFieldsFilled)
         let indexPaths = residentCollectionView.indexPathsForSelectedItems
         let isCellSelected = indexPaths != nil && !indexPaths!.isEmpty
         

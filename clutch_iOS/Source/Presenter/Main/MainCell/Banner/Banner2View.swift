@@ -9,7 +9,22 @@ import UIKit
 
 class Banner2View: UIView {
     //MARK: - UI ProPerties
+    lazy var bannerImageView:UIImageView = {
+        let imageView = UIImageView()
+        let image = UIImage(named: "img_main_banner_02")
+        imageView.image = image
+        
+        return imageView
+    }()
     
+    lazy var bannerButton:UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        
+        
+        return button
+    }()
     
     //MARK: - Define Method
 
@@ -23,17 +38,22 @@ class Banner2View: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc
+    func buttonTapped() {
+        
+    }
+    
     
     //MARK: - Properties
     
     
     //MARK: - Set Ui
     func SetView() {
-        self.backgroundColor = .blue
         self.layer.cornerRadius = 18
+        self.addSubview(bannerImageView)
+        self.addSubview(bannerButton)
     }
     
-    func Constraint() {
-        
-    }
+    func Constraint() { }
+
 }
