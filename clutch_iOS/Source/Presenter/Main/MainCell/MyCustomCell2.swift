@@ -33,11 +33,18 @@ class MyCustomCell2: UICollectionViewCell {
     
     lazy var thirdLabel:UILabel = {
         let label = UILabel()
-        label.text = "자세히 알고 싶어요 >"
+        label.text = "자세히 알고 싶어요"
         label.font = UIFont.Clutch.smallMedium
         label.textColor = .white
     
         return label
+    }()
+    
+    lazy var rightArrowImageView:UIImageView =  {
+        let image = UIImageView()
+        image.image = UIImage(named: "btn_arrow_small")?.withRenderingMode(.alwaysTemplate)
+        image.tintColor = .white
+        return image
     }()
     
     lazy var gifImage:UIImageView = {
@@ -68,7 +75,7 @@ class MyCustomCell2: UICollectionViewCell {
     
     //Cell의 View 관련 설정
     func SetView(){
-        [firstLabel, secondLabel, thirdLabel, gifImage].forEach { view
+        [firstLabel, secondLabel, thirdLabel, rightArrowImageView, gifImage].forEach { view
             in self.addSubview(view) }
         self.layer.cornerRadius = 18
         self.backgroundColor = UIColor.Clutch.mainDarkGreen
@@ -90,6 +97,13 @@ class MyCustomCell2: UICollectionViewCell {
         thirdLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.bottom.equalTo(self.snp.bottom).offset(-20)
+        }
+        
+        rightArrowImageView.snp.makeConstraints { make in
+            make.leading.equalTo(thirdLabel.snp.trailing)
+            make.bottom.equalTo(self.snp.bottom).offset(-20)
+            make.centerY.equalTo(thirdLabel.snp.centerY)
+            make.size.equalTo(thirdLabel.snp.height)
         }
         
         gifImage.snp.makeConstraints { make in

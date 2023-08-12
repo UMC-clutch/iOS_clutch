@@ -72,7 +72,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     func setView() {
         view.backgroundColor = .Clutch.bgGrey //배경색
         //addsubview
-        [navigationBar, collectionview, container, faqButton, clientButton, centerLine].forEach { view
+        [ navigationBar,collectionview, container, faqButton, clientButton, centerLine].forEach { view
             in self.view.addSubview(view) }
 
         navigationBarSet()
@@ -93,7 +93,6 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.height.equalTo(100)
         }
         //container 오토레이아웃
         container.snp.makeConstraints { make in

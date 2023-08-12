@@ -42,9 +42,8 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
     //우측 화살표 이미지화
     lazy var rightArrowImageView:UIImageView =  {
         let image = UIImageView()
+        image.image = UIImage(named: "btn_arrow_small")?.withRenderingMode(.alwaysTemplate)
         image.tintColor = .Clutch.textDarkGrey?
-        image.image = UIImage(named: "btn_arrow_small")
-        
         return image
     }()
     

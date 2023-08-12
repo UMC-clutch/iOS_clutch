@@ -103,10 +103,10 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         let iamge = image(withColor: .Clutch.mainGreen!)
         button.setBackgroundImage(iamge, for: .highlighted)
         
-        button.layer.shadowColor = UIColor.Clutch.mainDarkGreen?.cgColor
+        button.layer.shadowColor = UIColor.Clutch.mainWhite?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 0)
-        button.layer.shadowRadius = 30
-        button.layer.shadowOpacity = 0.8
+        button.layer.shadowRadius = 50
+        button.layer.shadowOpacity = 10
         button.layer.masksToBounds = false
         return button
     }()
