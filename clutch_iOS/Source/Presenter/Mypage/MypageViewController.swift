@@ -125,12 +125,32 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
         setView()
         Constraint()
         cellRegister()
+        request()
         
         // infoLabel에 UITapGestureRecognizer 추가
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(infoLabelTapped))
         infoLabel.isUserInteractionEnabled = true
         infoLabel.addGestureRecognizer(tapGesture)
     }
+    
+    //MARK: - Network
+    func request() {
+        APIManger.shared.callGetRequest(baseEndPoint: .user, addPath: "/users") { JSON in
+            let eamil = JSON["information"]["email"].stringValue
+            let name = JSON["information"]["name"].stringValue
+            let id = JSON["information"]["id"].intValue
+            let phonenumber = JSON["information"]["phonenumber"].stringValue
+            
+            let information = Information(phonenumber: phonenumber, id: id, name: name, email: eamil)
+            
+            DispatchQueue.main.async {
+                self.nameLabel.text = information.name + "님"
+            }
+        }
+    }
+    
+    
+    
     
     // infoLabel 터치 이벤트 처리
     @objc func infoLabelTapped() {

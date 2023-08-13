@@ -8,6 +8,12 @@
 import UIKit
 import SnapKit
 
+struct BuildingInfo: Codable {
+    let buildingID, price: Int
+    let buildingName, address, dong, ho: String
+    let logicType, type, area: String
+}
+
 class CalculateViewController: UIViewController {
     //MARK: - UI ProPerties
     // UINavigationBar 선언("< 사기 가능성 계산")
@@ -84,6 +90,38 @@ class CalculateViewController: UIViewController {
         Constraint()
         setCollectionview()
         textChange()
+        requestPost()
+    }
+    
+    //MARK: - Network
+    func requestPost() {
+        
+        let parameter = [
+            "buildingName": "서서울삼성",
+            "address": addressInput.textInputTextField.text ?? "" ,
+            "dong": buildingNum.textInputTextField.text ?? "",
+            "ho": unitNum.textInputTextField.text ?? "",
+            "type": "APARTMENT",
+            "area": sqftInput.textInputTextField.text ?? ""
+        ]
+        
+        APIManger.shared.callPostRequest(baseEndPoint: .building, addPath: nil, parameters: parameter) { JSON in
+            let buildingID = JSON["buildingID"].intValue
+            let price = JSON["price"].intValue
+            let buildingName = JSON["buildingName"].stringValue
+            let address = JSON["address"].stringValue
+            let dong = JSON["dong"].stringValue
+            let ho = JSON["ho"].stringValue
+            let logicType = JSON["logicType"].stringValue
+            let type = JSON["type"].stringValue
+            let area = JSON["area"].stringValue
+            
+            
+            let info = BuildingInfo(buildingID: buildingID, price: price, buildingName: buildingName, address: address, dong: dong, ho: ho, logicType: logicType, type: type, area: area)
+            
+            print(info)
+        }
+
     }
 
     func SetView() {
@@ -157,7 +195,6 @@ class CalculateViewController: UIViewController {
         unitNum.textInputTextField.text?.isEmpty == false &&
         sqftInput.textInputTextField.text?.isEmpty == false
         
-        print(allFieldsFilled)
         let indexPaths = selectCollectionView.indexPathsForSelectedItems
         let isCellSelected = indexPaths != nil && !indexPaths!.isEmpty
         

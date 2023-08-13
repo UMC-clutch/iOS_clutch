@@ -26,6 +26,25 @@ class ProfileViewController: UIViewController {
         setData()
         setView()
         Constraint()
+        request()
+    }
+    
+    // MARK: - Network
+    func request() {
+        APIManger.shared.callGetRequest(baseEndPoint: .user, addPath: "/users") { JSON in
+            let eamil = JSON["information"]["email"].stringValue
+            let name = JSON["information"]["name"].stringValue
+            let id = JSON["information"]["id"].intValue
+            let phonenumber = JSON["information"]["phonenumber"].stringValue
+            
+            let information = Information(phonenumber: phonenumber, id: id, name: name, email: eamil)
+            
+            DispatchQueue.main.async {
+                self.nameInput.textLabel.text = information.name
+                self.mailInput.textLabel.text = information.email
+                self.phoneNumberInput.textLabel.text = information.phonenumber
+            }
+        }
     }
     
     func setView() {

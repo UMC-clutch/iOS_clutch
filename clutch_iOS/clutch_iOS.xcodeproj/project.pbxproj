@@ -48,6 +48,10 @@
 		BE85075C2A77EDFB009ADAD6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE85075B2A77EDFB009ADAD6 /* SnapKit */; };
 		BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87AC8B2A5D9C610002E4C6 /* TransitionViewController.swift */; };
 		BE87AC8E2A5DA0B00002E4C6 /* SetFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87AC8D2A5DA0B00002E4C6 /* SetFont.swift */; };
+		BE90A4D82A88B5A70052FBC1 /* BaseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE90A4D72A88B5A70052FBC1 /* BaseEndpoint.swift */; };
+		BE90A4DA2A88B8E30052FBC1 /* Ext + URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE90A4D92A88B8E30052FBC1 /* Ext + URL.swift */; };
+		BE90A4DC2A88BA9A0052FBC1 /* APIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE90A4DB2A88BA9A0052FBC1 /* APIManger.swift */; };
+		BE90A4DF2A88BABE0052FBC1 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = BE90A4DE2A88BABE0052FBC1 /* SwiftyJSON */; };
 		BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9FF7972A6E9BD00000DA88 /* SmallTextInputView.swift */; };
 		BE9FF79A2A6E9F840000DA88 /* datePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */; };
 		BEABD8922A6FE0500015AC29 /* CheckContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEABD8912A6FE0500015AC29 /* CheckContainer.swift */; };
@@ -130,6 +134,9 @@
 		BE744AB52A4F2769005F8F4F /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		BE87AC8B2A5D9C610002E4C6 /* TransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionViewController.swift; sourceTree = "<group>"; };
 		BE87AC8D2A5DA0B00002E4C6 /* SetFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetFont.swift; sourceTree = "<group>"; };
+		BE90A4D72A88B5A70052FBC1 /* BaseEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEndpoint.swift; sourceTree = "<group>"; };
+		BE90A4D92A88B8E30052FBC1 /* Ext + URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + URL.swift"; sourceTree = "<group>"; };
+		BE90A4DB2A88BA9A0052FBC1 /* APIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManger.swift; sourceTree = "<group>"; };
 		BE9FF7972A6E9BD00000DA88 /* SmallTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallTextInputView.swift; sourceTree = "<group>"; };
 		BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = datePickerViewController.swift; sourceTree = "<group>"; };
 		BEABD8912A6FE0500015AC29 /* CheckContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckContainer.swift; sourceTree = "<group>"; };
@@ -167,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE90A4DF2A88BABE0052FBC1 /* SwiftyJSON in Frameworks */,
 				BE85075C2A77EDFB009ADAD6 /* SnapKit in Frameworks */,
 				BE4B03582A7A2F28009285A3 /* YPImagePicker in Frameworks */,
 				BE4B03472A790DCD009285A3 /* Alamofire in Frameworks */,
@@ -396,29 +404,6 @@
 			path = Transition;
 			sourceTree = "<group>";
 		};
-		BE086A792A56F868002E4BF4 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				BE086A7B2A56F886002E4BF4 /* Model */,
-				BE086A7A2A56F87E002E4BF4 /* Network */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		BE086A7A2A56F87E002E4BF4 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		BE086A7B2A56F886002E4BF4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		BE086A7C2A56FA85002E4BF4 /* clutch_iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +423,32 @@
 				BE40DC702A6A76620007F588 /* SampleViewController.swift */,
 			);
 			path = InfoInput;
+			sourceTree = "<group>";
+		};
+		BE90A4D42A88B5870052FBC1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BE90A4D62A88B59D0052FBC1 /* Model */,
+				BE90A4D52A88B5920052FBC1 /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		BE90A4D52A88B5920052FBC1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BE90A4D92A88B8E30052FBC1 /* Ext + URL.swift */,
+				BE90A4D72A88B5A70052FBC1 /* BaseEndpoint.swift */,
+				BE90A4DB2A88BA9A0052FBC1 /* APIManger.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BE90A4D62A88B59D0052FBC1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BE9B7EAB2A7669A1005A86A5 /* Frameworks */ = {
@@ -492,9 +503,9 @@
 		BED645C12A4D6845005106D8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				BE90A4D42A88B5870052FBC1 /* Data */,
 				BE086A6B2A56F767002E4BF4 /* Application */,
 				BE086A6C2A56F781002E4BF4 /* Presenter */,
-				BE086A792A56F868002E4BF4 /* Data */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -558,6 +569,7 @@
 				BE4B03572A7A2F28009285A3 /* YPImagePicker */,
 				BE4B035A2A7A2F5D009285A3 /* IQKeyboardManagerSwift */,
 				BE4B03602A7A3018009285A3 /* SwiftyGif */,
+				BE90A4DE2A88BABE0052FBC1 /* SwiftyJSON */,
 			);
 			productName = clutch_iOS;
 			productReference = BED645BF2A4D6845005106D8 /* clutch_iOS.app */;
@@ -637,6 +649,7 @@
 				BE4B03562A7A2F28009285A3 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 				BE4B03592A7A2F5D009285A3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				BE4B035F2A7A3018009285A3 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+				BE90A4DD2A88BABE0052FBC1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = BED645C02A4D6845005106D8 /* Products */;
 			projectDirPath = "";
@@ -721,9 +734,11 @@
 				A2CB67F82A80CA0000294F96 /* CalculateHistoryViewController.swift in Sources */,
 				BECEC6A32A5EDFDF00A177A0 /* faqViewController.swift in Sources */,
 				BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */,
+				BE90A4DA2A88B8E30052FBC1 /* Ext + URL.swift in Sources */,
 				BE53C58F2A765D92000EF2C5 /* TextSampleView.swift in Sources */,
 				2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */,
 				BECEC6AA2A5EF52B00A177A0 /* Banner1View.swift in Sources */,
+				BE90A4D82A88B5A70052FBC1 /* BaseEndpoint.swift in Sources */,
 				BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,
 				A2CB67FA2A80D78900294F96 /* CalculateHistoryCell.swift in Sources */,
@@ -734,6 +749,7 @@
 				BE87AC8C2A5D9C610002E4C6 /* TransitionViewController.swift in Sources */,
 				BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */,
 				BE67E1DB2A4F13BB002EB93C /* Color+Ext.swift in Sources */,
+				BE90A4DC2A88BA9A0052FBC1 /* APIManger.swift in Sources */,
 				BECEC6B52A6050EA00A177A0 /* loginViewController.swift in Sources */,
 				09EBFAD02A7107A4004C8BE5 /* CheckCell.swift in Sources */,
 				A22F712F2A73951E007705C8 /* SecondCalculateViewController.swift in Sources */,
@@ -1132,6 +1148,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		BE90A4DD2A88BABE0052FBC1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1159,6 +1183,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BE85075A2A77EDFB009ADAD6 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		BE90A4DE2A88BABE0052FBC1 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE90A4DD2A88BABE0052FBC1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 

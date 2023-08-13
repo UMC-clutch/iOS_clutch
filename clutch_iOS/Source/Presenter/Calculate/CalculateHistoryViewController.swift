@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 
+struct Calculte: Codable {
+    let id, buildingID, addressID: Int
+    let buildingName, address, dong, ho: String
+    let price, collateralMoney, deposit: Int
+    let isDangerous: Bool
+}
+
 class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - properties
     let date = ["2023년 7월 25일", "2023년 6월 04일"]
@@ -141,6 +148,29 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         tableViewSet()
         navigationBarSet()
         Constraint()
+    }
+    //MARK: - Network
+    
+    func request() {
+        APIManger.shared.callGetRequest(baseEndPoint: .calculate, addPath: nil) { JSON in
+            let id = JSON["id"].intValue
+            let buildingID = JSON["buildingID"].intValue
+            let addressID = JSON["addressID"].intValue
+            let buildingName = JSON["buildingName"].stringValue
+            let address = JSON["address"].stringValue
+            let dong = JSON["dong"].stringValue
+            let ho = JSON["ho"].stringValue
+            let price = JSON["price"].intValue
+            let collateralMoney = JSON["collateralMoney"].intValue
+            let deposit = JSON["deposit"].intValue
+            let isDangerous = JSON["isDangerous"].boolValue
+            
+            let calculte = Calculte(id: id, buildingID: buildingID, addressID: addressID, buildingName: buildingName, address: address, dong: dong, ho: ho, price: price, collateralMoney: collateralMoney, deposit: deposit, isDangerous: isDangerous)
+            
+            DispatchQueue.main.async {
+                
+            }
+        }
     }
     
     func SetView() {

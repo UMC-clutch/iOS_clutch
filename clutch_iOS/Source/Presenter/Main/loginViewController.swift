@@ -5,6 +5,8 @@
 //  Created by Dongwan Ryoo on 2023/07/14.
 //
 
+import Alamofire
+import SwiftyJSON
 import UIKit
 
 class loginViewController: UIViewController {
@@ -39,17 +41,19 @@ class loginViewController: UIViewController {
         super.viewDidLoad()
         SetView()
         Constraint()
+
     }
 
+    
     //뷰 관련 세팅
     func SetView() {
         [appleButton, kakaoButton].forEach { view
             in self.view.addSubview(view) }
         navigationController?.navigationBar.isHidden = true
     }
-
+    
     func Constraint() {
-
+        
         let leading:CGFloat = 30
         let superViewHeight = UIScreen.main.bounds.height
         
@@ -66,7 +70,7 @@ class loginViewController: UIViewController {
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
             make.height.equalTo(appleButton.snp.width).multipliedBy(0.15)
-
+            
         }
         
     }
@@ -75,13 +79,13 @@ class loginViewController: UIViewController {
         print(1)
         let VC = UserInfoViewController()
         navigationController?.pushViewController(VC, animated: true)
-
+        
     }
     //kakaoButton 클릭 이벤트
     @objc func kakaoButtonTapped(_ sender: UIButton) {
         let VC = UserInfoViewController()
         navigationController?.pushViewController(VC, animated: true)
     }
-
+    
 }
 
