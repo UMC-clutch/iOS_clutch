@@ -23,10 +23,10 @@ class MyCustomCell2: UICollectionViewCell {
     
     lazy var secondLabel:UILabel = {
         let label = UILabel()
-        label.text = "전세사기 가능성을 계산해주고, 사기 신고\n접수 시에 보증금 환급을 도와드립니다."
+        label.text = "전세사기 가능성을 계산해주고,\n 사기 신고접수 시에 보증금\n 환급을 도와드립니다."
         label.font = UIFont.Clutch.baseMedium
         label.textColor = .white
-        label.numberOfLines = 2
+        label.numberOfLines = 3
        
         return label
     }()
@@ -49,7 +49,7 @@ class MyCustomCell2: UICollectionViewCell {
     
     lazy var gifImage:UIImageView = {
         do {
-            let gif = try UIImage(gifName: "report_done.gif")
+            let gif = try UIImage(gifName: "img_clutch_main_home.gif")
             let imageview = UIImageView(gifImage: gif, loopCount: -1) // Will loop forever
             
             return imageview
@@ -107,10 +107,10 @@ class MyCustomCell2: UICollectionViewCell {
         }
         
         gifImage.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-15)
-            make.bottom.equalToSuperview().offset(-15)
-            make.width.equalTo(150)
-            make.height.equalTo(150)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.width.equalTo(178)
+            make.height.equalTo(178)
         }
     }
 }

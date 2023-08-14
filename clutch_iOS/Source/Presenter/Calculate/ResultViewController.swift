@@ -52,11 +52,11 @@ class ResultViewController: UIViewController {
             lazy var gif = UIImage()
             if danger {
                 //위험
-                try gif.setGif("report_done.gif")
+                try gif.setGif("img_clutch_danger.gif")
             }
             else {
                 //안전
-                try gif.setGif("report_done.gif")
+                try gif.setGif("img_clutch_safe.gif")
             }
             let imageview = UIImageView(gifImage: gif, loopCount: 1) // Will loop 1 times
             return imageview
@@ -310,10 +310,10 @@ class ResultViewController: UIViewController {
         }
         
         completeGifImage.snp.makeConstraints { make in
-            make.height.equalTo(97)
-            make.width.equalTo(91)
-            make.top.equalToSuperview().offset(127)
-            make.leading.equalToSuperview().offset(151)
+            make.height.equalTo(125)
+            make.width.equalTo(125)
+            make.top.equalTo(navigationBar.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
         }
         
         statusLabel.snp.makeConstraints { make in
