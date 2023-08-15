@@ -8,6 +8,7 @@
 import Alamofire
 import SwiftyJSON
 import UIKit
+import AuthenticationServices
 
 class loginViewController: UIViewController {
     //MARK: - UI ProPerties
@@ -23,10 +24,16 @@ class loginViewController: UIViewController {
     }()
     
     //애플 로그인 버튼
-    lazy var appleButton:UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "btn_login_apple"), for: .normal)
-        button.addTarget(self, action: #selector(appleButtonTapped), for: .touchUpInside)
+//    lazy var appleButton:UIButton = {
+//        let button = UIButton()
+//        button.setImage(UIImage(named: "btn_login_apple"), for: .normal)
+//        button.addTarget(self, action: #selector(appleButtonTapped), for: .touchUpInside)
+//
+//        return button
+//    }()
+    lazy var appleButton:ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
+        button.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
         
         return button
     }()
@@ -74,13 +81,14 @@ class loginViewController: UIViewController {
         }
         
     }
-    //appleButton 클릭 이벤트
-    @objc func appleButtonTapped(_ sender: UIButton) {
-        print(1)
-        let VC = UserInfoViewController()
-        navigationController?.pushViewController(VC, animated: true)
-        
-    }
+//    //appleButton 클릭 이벤트
+//    @objc func appleButtonTapped(_ sender: UIButton) {
+//        print(1)
+//        let VC = UserInfoViewController()
+//        navigationController?.pushViewController(VC, animated: true)
+//
+//    }
+
     //kakaoButton 클릭 이벤트
     @objc func kakaoButtonTapped(_ sender: UIButton) {
         let VC = UserInfoViewController()
@@ -89,3 +97,17 @@ class loginViewController: UIViewController {
     
 }
 
+extension loginViewController: ASAuthorizationControllerDelegate {
+    // - Tag: perform_appleid_request
+    @objc func handleAuthorizationAppleIDButtonPress() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+
+//        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+//        authorizationController.delegate = self
+//        authorizationController.presentationContextProvider = self
+//        authorizationController.performRequests()
+    }
+    
+}
