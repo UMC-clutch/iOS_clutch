@@ -29,7 +29,6 @@
 		A2CB67FA2A80D78900294F96 /* CalculateHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CB67F92A80D78900294F96 /* CalculateHistoryCell.swift */; };
 		BE40DC6C2A6A658F0007F588 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC6B2A6A658F0007F588 /* TextInputView.swift */; };
 		BE40DC712A6A76620007F588 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40DC702A6A76620007F588 /* SampleViewController.swift */; };
-		BE4B03442A790C3F009285A3 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4B03432A790C3F009285A3 /* Package.swift */; };
 		BE4B03472A790DCD009285A3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE4B03462A790DCD009285A3 /* Alamofire */; };
 		BE4B03582A7A2F28009285A3 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = BE4B03572A7A2F28009285A3 /* YPImagePicker */; };
 		BE4B035B2A7A2F5D009285A3 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BE4B035A2A7A2F5D009285A3 /* IQKeyboardManagerSwift */; };
@@ -120,7 +119,6 @@
 		A2CB67F92A80D78900294F96 /* CalculateHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateHistoryCell.swift; sourceTree = "<group>"; };
 		BE40DC6B2A6A658F0007F588 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		BE40DC702A6A76620007F588 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
-		BE4B03432A790C3F009285A3 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		BE53C58A2A765AEA000EF2C5 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		BE53C58C2A765D45000EF2C5 /* ReportDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDoneViewController.swift; sourceTree = "<group>"; };
 		BE53C58E2A765D92000EF2C5 /* TextSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSampleView.swift; sourceTree = "<group>"; };
@@ -140,6 +138,7 @@
 		BE9FF7972A6E9BD00000DA88 /* SmallTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallTextInputView.swift; sourceTree = "<group>"; };
 		BE9FF7992A6E9F840000DA88 /* datePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = datePickerViewController.swift; sourceTree = "<group>"; };
 		BEABD8912A6FE0500015AC29 /* CheckContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckContainer.swift; sourceTree = "<group>"; };
+		BEABDF5B2A8B3AC50020F356 /* clutch_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = clutch_iOS.entitlements; sourceTree = "<group>"; };
 		BECEC6A22A5EDFDF00A177A0 /* faqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faqViewController.swift; sourceTree = "<group>"; };
 		BECEC6A72A5EF52500A177A0 /* Banner2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner2View.swift; sourceTree = "<group>"; };
 		BECEC6A92A5EF52B00A177A0 /* Banner1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner1View.swift; sourceTree = "<group>"; };
@@ -407,6 +406,7 @@
 		BE086A7C2A56FA85002E4BF4 /* clutch_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				BEABDF5B2A8B3AC50020F356 /* clutch_iOS.entitlements */,
 				BED645D32A4D6846005106D8 /* Info.plist */,
 				BED645CB2A4D6845005106D8 /* clutch_iOS.xcdatamodeld */,
 			);
@@ -479,7 +479,6 @@
 		BED645B62A4D6845005106D8 = {
 			isa = PBXGroup;
 			children = (
-				BE4B03432A790C3F009285A3 /* Package.swift */,
 				BE086A7C2A56FA85002E4BF4 /* clutch_iOS */,
 				BE086A6A2A56F744002E4BF4 /* Resource */,
 				BED645C12A4D6845005106D8 /* Source */,
@@ -722,7 +721,6 @@
 				A22F712D2A7394BE007705C8 /* ResultViewController.swift in Sources */,
 				BE744AB02A4F2685005F8F4F /* ClutchIntroViewController.swift in Sources */,
 				BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */,
-				BE4B03442A790C3F009285A3 /* Package.swift in Sources */,
 				BE9FF79A2A6E9F840000DA88 /* datePickerViewController.swift in Sources */,
 				BECEC6B72A6050F700A177A0 /* loginView.swift in Sources */,
 				BE744AB62A4F2769005F8F4F /* MypageViewController.swift in Sources */,
@@ -931,11 +929,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = clutch_iOS/clutch_iOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = clutch_iOS/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"카메라를 사용하여 사진을 찍습니다\"";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"갤러리에 접근하여 사진을 선택합니다\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -947,7 +948,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "alert.clutch-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Clutch-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -963,11 +964,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = clutch_iOS/clutch_iOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = clutch_iOS/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"카메라를 사용하여 사진을 찍습니다\"";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"갤러리에 접근하여 사진을 선택합니다\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -979,7 +983,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "alert.clutch-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Clutch-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
