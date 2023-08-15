@@ -8,16 +8,14 @@
 import UIKit
 
 struct Information: Codable {
-    let phonenumber: String
-    let id: Int
-    let name, email: String
+    public var id: String
+    public var name, email, phonenumber: String
 }
 
 class UserInfoViewController: UIViewController, CustomAlertDelegate {
     //MARK: - Properties
     lazy var completed = false
-    lazy var userID = ""
-    lazy var userEmail = ""
+    lazy var userInfo = Information(id: "", name: "", email: "", phonenumber: "")
     
     //MARK: - UI ProPerties
     public lazy var navigationBar = UINavigationBar()
@@ -32,6 +30,7 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
         return label
     }()
     
+    lazy var namelInfo = TextInputView()
     lazy var emailInfo = TextInputView()
     lazy var phoneNumInfo = TextInputView()
     
@@ -53,23 +52,48 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
         super.viewDidLoad()
         SetView()
         Constraint()
-        request()
     }
     
     //MARK: - Network
-    func request() {
-        APIManger.shared.callGetRequest(baseEndPoint: .user, addPath: "/users") { JSON in
-            let eamil = JSON["information"]["email"].stringValue
-            let name = JSON["information"]["name"].stringValue
-            let id = JSON["information"]["id"].intValue
-            let phonenumber = JSON["information"]["phonenumber"].stringValue
-            
-            let information = Information(phonenumber: phonenumber, id: id, name: name, email: eamil)
-            
-            DispatchQueue.main.async {
-                self.emailInfo.textInputTextField.text = information.email
-                self.phoneNumInfo.textInputTextField.text = information.phonenumber
+    func requestLogin() {
+        print("called")
+        let parameter = [
+            "oauthId": userInfo.id,
+            "name": namelInfo.textInputTextField.text ?? userInfo.name,
+            "email": emailInfo.textInputTextField.text ?? userInfo.email,
+            "phonenumber": phoneNumInfo.textInputTextField.text ?? userInfo.phonenumber
+        ]
+        
+        APIManger.shared.callPostRequest(baseEndPoint: .login, addPath: "/apple/", parameters: parameter) { JSON in
+            // 호출 오류시 처리 -- 의도대로 안됨.
+            if JSON["check"].boolValue == false {
+                print("fail")
+                self.showCustomAlert(alertType: .done,
+                                alertTitle: "오류 발생",
+                                alertContext: "다시 시도해주세요.",
+                                confirmText: "확인")
             }
+            
+            let grnatType = JSON["grnatType"].stringValue
+            let accessToken = JSON["accessToken"].stringValue
+            let accessTokenExpirationTime = JSON["accessTokenExpirationTime"].intValue
+            let refreshToken = JSON["refreshToken"].stringValue
+            let refreshTokenExpirationTime = JSON["refreshTokenExpirationTime"].intValue
+            
+            // 테스트
+            print(grnatType)
+            print(accessToken)
+            print(accessTokenExpirationTime)
+            print(refreshToken)
+            print(refreshTokenExpirationTime)
+            
+            // 로그인, 토큰 저장 처리
+            APIManger.shared.jwtToken = accessToken
+            self.completed = true
+            self.showCustomAlert(alertType: .done,
+                            alertTitle: "회원가입 완료",
+                            alertContext: "정상적으로 가입되었습니다.",
+                            confirmText: "확인")
         }
     }
     
@@ -83,16 +107,17 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
     }
     
     func addsubview() {
-        [navigationBar, titleLabel, emailInfo, phoneNumInfo, confirmButton].forEach { view in
+        [navigationBar, titleLabel, namelInfo ,emailInfo, phoneNumInfo, confirmButton].forEach { view in
             self.view.addSubview(view)
         }
     }
     
     func infoViewSet() {
+        namelInfo.textInputLabel.text = "이름"
+        emailInfo.textInputTextField.text = userInfo.name
+        
         emailInfo.textInputLabel.text = "이메일 주소"
-        if userEmail != "" {
-            emailInfo.textInputTextField.text = userEmail
-        }
+        emailInfo.textInputTextField.text = userInfo.email
         
         phoneNumInfo.textInputLabel.text = "휴대폰 번호"
     }
@@ -112,9 +137,14 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
             make.top.equalTo(navigationBar.snp.bottom).offset(top)
         }
         
-        emailInfo.snp.makeConstraints { make in
+        namelInfo.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
             make.top.equalTo(titleLabel.snp.bottom).offset(top)
+        }
+        
+        emailInfo.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(namelInfo.snp.bottom).offset(top)
         }
         
         phoneNumInfo.snp.makeConstraints { make in
@@ -132,12 +162,14 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
     }
     
     func textChange() {
+        namelInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         emailInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         phoneNumInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
     }
     
     @objc func textCheck() {
         let allFieldsFilled =
+        namelInfo.textInputTextField.text?.isEmpty == false &&
         emailInfo.textInputTextField.text?.isEmpty == false &&
         phoneNumInfo.textInputTextField.text?.isEmpty == false
         
@@ -153,29 +185,19 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
     }
     
     @objc func confirmButtonTapped(_ sender: UIButton) {
-        // 입력조건 확인 후
-        lazy var response = 200
-        if response == 200 {
-            completed = true
-        }
-        
-        if completed {
-            showCustomAlert(alertType: .done,
-                            alertTitle: "회원가입 완료",
-                            alertContext: "정상적으로 가입되었습니다.",
-                            confirmText: "확인")
-        }
-        else {
-            showCustomAlert(alertType: .done,
-                            alertTitle: "오류 발생",
-                            alertContext: "다시 시도해주세요.",
-                            confirmText: "확인")
-        }
+        showCustomAlert(alertType: .canCancel,
+                        alertTitle: "회원가입",
+                        alertContext: "위 정보로 가입하시겠습니까?",
+                        cancelText: "취소",
+                        confirmText: "확인")
     }
   
     func cancel() { return }
     
-    func confirm() { return }
+    func confirm() {
+        print("confirm")
+        requestLogin()
+    }
     
     func done() {
         if completed {

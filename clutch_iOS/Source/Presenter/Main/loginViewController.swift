@@ -111,19 +111,25 @@ extension loginViewController: ASAuthorizationControllerDelegate {
         authorizationController.performRequests()
     }
     
+    // 로그인 수행, 값 받아오는 함수
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
             // Create an account in your system.
             let userIdentifier = appleIDCredential.user
-//            let fullName = appleIDCredential.fullName
+            let fullName = appleIDCredential.fullName
             let email = appleIDCredential.email
+            
+            print(userIdentifier)
+            print((fullName?.familyName ?? "") + (fullName?.givenName ?? ""))
+            print(email)
             
             // 회원가입, 로그인
             let VC = UserInfoViewController()
-            VC.userID = userIdentifier
-            VC.userEmail = email ?? ""
+            VC.userInfo.id = userIdentifier
+            VC.userInfo.name = (fullName?.familyName ?? "") + (fullName?.givenName ?? "")
+            VC.userInfo.email = email ?? ""
             navigationController?.pushViewController(VC, animated: true)
         
         case let passwordCredential as ASPasswordCredential:
@@ -134,9 +140,8 @@ extension loginViewController: ASAuthorizationControllerDelegate {
             
             // 회원가입, 로그인
             let VC = UserInfoViewController()
-            VC.userID = username
+            VC.userInfo.id = username
             navigationController?.pushViewController(VC, animated: true)
-            print("success")
             
         default:
             break

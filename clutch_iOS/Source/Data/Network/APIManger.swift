@@ -14,7 +14,7 @@ class APIManger {
     static let shared = APIManger()
     private init() { }
     
-    let jwtToken = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImR3cnl1MzA3OUBnbWFpbC5jb20iLCJuYW1lIjoi66WY64-Z7JmEIiwiaWF0IjoxNjkxOTMwMjEyLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxOTMyMDEyfQ.62QHbv8zsmtypIJu9Al9cq3p1CI35jamV_ElJX3PhWU"
+    var jwtToken = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImR3cnl1MzA3OUBnbWFpbC5jb20iLCJuYW1lIjoi66WY64-Z7JmEIiwiaWF0IjoxNjkxOTMwMjEyLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxOTMyMDEyfQ.62QHbv8zsmtypIJu9Al9cq3p1CI35jamV_ElJX3PhWU"
 
 
     //get요청
