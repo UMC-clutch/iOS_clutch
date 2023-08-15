@@ -16,6 +16,8 @@ struct Information: Codable {
 class UserInfoViewController: UIViewController, CustomAlertDelegate {
     //MARK: - Properties
     lazy var completed = false
+    lazy var userID = ""
+    lazy var userEmail = ""
     
     //MARK: - UI ProPerties
     public lazy var navigationBar = UINavigationBar()
@@ -88,6 +90,10 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
     
     func infoViewSet() {
         emailInfo.textInputLabel.text = "이메일 주소"
+        if userEmail != "" {
+            emailInfo.textInputTextField.text = userEmail
+        }
+        
         phoneNumInfo.textInputLabel.text = "휴대폰 번호"
     }
     
