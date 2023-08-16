@@ -122,13 +122,14 @@ extension loginViewController: ASAuthorizationControllerDelegate {
             let email = appleIDCredential.email
             
             print(userIdentifier)
-            print((fullName?.familyName ?? "") + (fullName?.givenName ?? ""))
-            print(email)
-            
+            let name = (fullName?.familyName ?? "") + (fullName?.givenName ?? "")
+            print(name)
+            print(email ?? "")
+
             // 회원가입, 로그인
             let VC = UserInfoViewController()
             VC.userInfo.id = userIdentifier
-            VC.userInfo.name = (fullName?.familyName ?? "") + (fullName?.givenName ?? "")
+            VC.userInfo.name = name
             VC.userInfo.email = email ?? ""
             navigationController?.pushViewController(VC, animated: true)
         

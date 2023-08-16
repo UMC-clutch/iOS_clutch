@@ -57,37 +57,40 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
     //MARK: - Network
     func requestLogin() {
         print("called")
-        let parameter = [
+        let parameter: [String:String] = [
             "oauthId": userInfo.id,
             "name": namelInfo.textInputTextField.text ?? userInfo.name,
             "email": emailInfo.textInputTextField.text ?? userInfo.email,
-            "phonenumber": phoneNumInfo.textInputTextField.text ?? userInfo.phonenumber
+            "phoneNumber": phoneNumInfo.textInputTextField.text ?? userInfo.phonenumber
         ]
-        
-        APIManger.shared.callPostRequest(baseEndPoint: .login, addPath: "/apple/", parameters: parameter) { JSON in
-            // 호출 오류시 처리 -- 의도대로 안됨.
+        print(parameter)
+        APIManger.shared.callLoginPostRequest(baseEndPoint: .login, addPath: "/apple", parameters: parameter) { JSON in
+            // 호출 오류시 처리
             if JSON["check"].boolValue == false {
                 print("fail")
+                print(JSON["check"].boolValue)
+                print(JSON["information"]["accessToken"])
                 self.showCustomAlert(alertType: .done,
                                 alertTitle: "오류 발생",
                                 alertContext: "다시 시도해주세요.",
                                 confirmText: "확인")
+                return
             }
             
-            let grnatType = JSON["grnatType"].stringValue
-            let accessToken = JSON["accessToken"].stringValue
-            let accessTokenExpirationTime = JSON["accessTokenExpirationTime"].intValue
-            let refreshToken = JSON["refreshToken"].stringValue
-            let refreshTokenExpirationTime = JSON["refreshTokenExpirationTime"].intValue
+            let grantType = JSON["information"]["grantType"].stringValue
+            let accessToken = JSON["information"]["accessToken"].stringValue
+            let accessTokenExpirationTime = JSON["information"]["accessTokenExpirationTime"].int64Value
+            let refreshToken = JSON["information"]["refreshToken"].stringValue
+            let refreshTokenExpirationTime = JSON["information"]["refreshTokenExpirationTime"].int64Value
             
             // 테스트
-            print(grnatType)
+            print(grantType)
             print(accessToken)
             print(accessTokenExpirationTime)
             print(refreshToken)
             print(refreshTokenExpirationTime)
             
-            // 로그인, 토큰 저장 처리
+            // 로그인 성공, 토큰 저장 처리
             APIManger.shared.jwtToken = accessToken
             self.completed = true
             self.showCustomAlert(alertType: .done,
