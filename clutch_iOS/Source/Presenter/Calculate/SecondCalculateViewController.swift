@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 
 class SecondCalculateViewController: UIViewController {
+    //MARK: - Properties
+    lazy var completed = false
+    var price = 0
+    
     //MARK: - UI ProPerties
     // UINavigationBar 선언("< 사기 가능성 계산")
     public lazy var navigationBar = UINavigationBar()
@@ -128,6 +132,7 @@ class SecondCalculateViewController: UIViewController {
     
     func setData() {
         marketPrice.textInputLabel.text = "시세"
+        marketPrice.textInputTextField.text = String(price)
         MortgagePrice.textInputLabel.text = "근저당액"
         charterPrice.textInputLabel.text = "지급할 전세금"
     }
