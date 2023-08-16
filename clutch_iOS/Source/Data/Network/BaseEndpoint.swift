@@ -15,6 +15,7 @@ enum BaseEndpoint {
     case contract
     case report
     case user
+    case login
 
     var requestURL:String {
         switch self {
@@ -24,7 +25,7 @@ enum BaseEndpoint {
         case.contract: return URL.makeEndPointString("/api/v1/contract")
         case.report: return URL.makeEndPointString("/api/v1/report")
         case.user: return URL.makeEndPointString("/api/v1")
-            
+        case.login: return URL.makeEndPointString("/api/login")
         }
     }
 }

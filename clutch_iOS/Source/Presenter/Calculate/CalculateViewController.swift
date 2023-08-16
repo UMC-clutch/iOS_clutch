@@ -15,6 +15,10 @@ struct BuildingInfo: Codable {
 }
 
 class CalculateViewController: UIViewController {
+    //MARK: - Properties
+    lazy var completed = false
+    lazy var price = 0
+    
     //MARK: - UI ProPerties
     // UINavigationBar 선언("< 사기 가능성 계산")
     public lazy var navigationBar = UINavigationBar()
@@ -90,7 +94,6 @@ class CalculateViewController: UIViewController {
         Constraint()
         setCollectionview()
         textChange()
-        requestPost()
     }
     
     //MARK: - Network
@@ -105,21 +108,38 @@ class CalculateViewController: UIViewController {
             "area": sqftInput.textInputTextField.text ?? ""
         ]
         
-        APIManger.shared.callPostRequest(baseEndPoint: .building, addPath: nil, parameters: parameter) { JSON in
-            let buildingID = JSON["buildingID"].intValue
-            let price = JSON["price"].intValue
-            let buildingName = JSON["buildingName"].stringValue
-            let address = JSON["address"].stringValue
-            let dong = JSON["dong"].stringValue
-            let ho = JSON["ho"].stringValue
-            let logicType = JSON["logicType"].stringValue
-            let type = JSON["type"].stringValue
-            let area = JSON["area"].stringValue
+        APIManger.shared.callPostRequest(baseEndPoint: .building, addPath: "", parameters: parameter) { JSON in
+            // 호출 오류시 처리
+            if JSON["check"].boolValue == false {
+                self.showCustomAlert(alertType: .done,
+                                alertTitle: "오류 발생",
+                                alertContext: "다시 시도해주세요.",
+                                confirmText: "확인")
+                return
+            }
+            
+            let buildingID = JSON["information"]["buildingID"].intValue
+            let price = JSON["information"]["price"].intValue
+            let buildingName = JSON["information"]["buildingName"].stringValue
+            let address = JSON["information"]["address"].stringValue
+            let dong = JSON["information"]["dong"].stringValue
+            let ho = JSON["information"]["ho"].stringValue
+            let logicType = JSON["information"]["logicType"].stringValue
+            let type = JSON["information"]["type"].stringValue
+            let area = JSON["information"]["area"].stringValue
             
             
             let info = BuildingInfo(buildingID: buildingID, price: price, buildingName: buildingName, address: address, dong: dong, ho: ho, logicType: logicType, type: type, area: area)
             
             print(info)
+            self.price = info.price
+            
+            // 알림창 호출, 확인 누르면 화면전환
+            self.completed = true
+            self.showCustomAlert(alertType: .done,
+                            alertTitle: "시세조회 완료",
+                            alertContext: "정상적으로 조회되었습니다.",
+                            confirmText: "확인")
         }
 
     }
@@ -154,10 +174,10 @@ class CalculateViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    // checkButton 누르면 SecondCalculateViewController() 보여주는 액션
+    
     @objc func checkButtonTapped() {
-        let VC = SecondCalculateViewController()
-        navigationController?.pushViewController(VC, animated: true)
+        print("시세조회 API 호출")
+        requestPost()
     }
     
     func setData() {
@@ -265,7 +285,7 @@ class CalculateViewController: UIViewController {
 }
 
 //MARK: - extension
-extension CalculateViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CalculateViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CustomAlertDelegate {
     // collectionview 관련 설정
     func setCollectionview() {
         selectCollectionView.dataSource = self
@@ -314,4 +334,18 @@ extension CalculateViewController: UICollectionViewDelegate, UICollectionViewDat
         }
     }
     
+    func cancel() { return }
+    
+    func confirm() { return }
+    
+    func done() {
+        if completed {
+            let VC = SecondCalculateViewController()
+            print(VC.price)
+            VC.price = self.price
+            print(self.price)
+            print(VC.price)
+            navigationController?.pushViewController(VC, animated: true)
+        }
+    }
 }

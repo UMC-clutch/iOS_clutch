@@ -19,6 +19,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true // 화면 아무 곳이나 터치 시 키보드 dismiss
+        
+        // 자동로그인 처리
+        /*
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier) { (credentialState, error) in
+            switch credentialState {
+            case .authorized:
+                break // The Apple ID credential is valid.
+            case .revoked, .notFound:
+                // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
+                DispatchQueue.main.async {
+                    self.window?.rootViewController?.showLoginViewController()
+                }
+            default:
+                break
+            }
+        }
+        */
         return true
     }
 

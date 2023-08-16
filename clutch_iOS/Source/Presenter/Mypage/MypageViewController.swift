@@ -136,12 +136,12 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
     //MARK: - Network
     func request() {
         APIManger.shared.callGetRequest(baseEndPoint: .user, addPath: "/users") { JSON in
-            let eamil = JSON["information"]["email"].stringValue
+            let id = JSON["information"]["id"].stringValue
             let name = JSON["information"]["name"].stringValue
-            let id = JSON["information"]["id"].intValue
+            let eamil = JSON["information"]["email"].stringValue
             let phonenumber = JSON["information"]["phonenumber"].stringValue
             
-            let information = Information(phonenumber: phonenumber, id: id, name: name, email: eamil)
+            let information = Information(id: id, name: name, email: eamil, phonenumber: phonenumber)
             
             DispatchQueue.main.async {
                 self.nameLabel.text = information.name + "님"

@@ -83,7 +83,6 @@ class loginViewController: UIViewController {
     }
 //    //appleButton 클릭 이벤트
 //    @objc func appleButtonTapped(_ sender: UIButton) {
-//        print(1)
 //        let VC = UserInfoViewController()
 //        navigationController?.pushViewController(VC, animated: true)
 //
@@ -97,17 +96,81 @@ class loginViewController: UIViewController {
     
 }
 
+
+// apple 로그인 처리
 extension loginViewController: ASAuthorizationControllerDelegate {
-    // - Tag: perform_appleid_request
+    // apple id 로그인 요청
     @objc func handleAuthorizationAppleIDButtonPress() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
 
-//        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-//        authorizationController.delegate = self
-//        authorizationController.presentationContextProvider = self
-//        authorizationController.performRequests()
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
     
+    // 로그인 수행, 값 받아오는 함수
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            
+            // Create an account in your system.
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+            print(userIdentifier)
+            let name = (fullName?.familyName ?? "") + (fullName?.givenName ?? "")
+            print(name)
+            print(email ?? "")
+
+            // 회원가입, 로그인
+            let VC = UserInfoViewController()
+            VC.userInfo.id = userIdentifier
+            VC.userInfo.name = name
+            VC.userInfo.email = email ?? ""
+            navigationController?.pushViewController(VC, animated: true)
+        
+        case let passwordCredential as ASPasswordCredential:
+        
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+//            let password = passwordCredential.password
+            
+            // 회원가입, 로그인
+            let VC = UserInfoViewController()
+            VC.userInfo.id = username
+            navigationController?.pushViewController(VC, animated: true)
+            
+        default:
+            break
+        }
+    }
+    
+    func performExistingAccountSetupFlows() {
+        // Prepare requests for both Apple ID and password providers.
+        let requests = [ASAuthorizationAppleIDProvider().createRequest(),
+                        ASAuthorizationPasswordProvider().createRequest()]
+        
+        // Create an authorization controller with the given requests.
+        let authorizationController = ASAuthorizationController(authorizationRequests: requests)
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    // error
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+      // Handle error.
+        print("Apple Login Error")
+    }
+}
+
+extension loginViewController: ASAuthorizationControllerPresentationContextProviding {
+    // 애플 로그인 창 띄우는 함수
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
 }
