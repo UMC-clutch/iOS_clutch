@@ -58,6 +58,8 @@ class CalculateViewController: UIViewController {
         
         return view
     }()
+    // 건물명 입력
+    let buildingNameInput = TextInputView()
     
     // 주소 입력란 제목 및 첫번째 줄("지번 또는 도로명 주소")
     let addressInput = TextInputView()
@@ -100,7 +102,7 @@ class CalculateViewController: UIViewController {
     func requestPost() {
         
         let parameter = [
-            "buildingName": "서서울삼성",
+            "buildingName": buildingNameInput.textInputTextField.text ?? "",
             "address": addressInput.textInputTextField.text ?? "" ,
             "dong": buildingNum.textInputTextField.text ?? "",
             "ho": unitNum.textInputTextField.text ?? "",
@@ -146,7 +148,7 @@ class CalculateViewController: UIViewController {
 
     func SetView() {
         self.view.backgroundColor = .white
-        [navigationBar, textLabel, selectLabel, selectCollectionView, addressInput, buildingNum, unitNum, sqftInput, checkButton].forEach { view in
+        [buildingNameInput, navigationBar, textLabel, selectLabel, selectCollectionView, addressInput, buildingNum, unitNum, sqftInput, checkButton].forEach { view in
             self.view.addSubview(view)
         }
     }
@@ -181,6 +183,12 @@ class CalculateViewController: UIViewController {
     }
     
     func setData() {
+        
+        buildingNameInput.textInputLabel.text = "건물명"
+        buildingNameInput.textInputTextField.font = .Clutch.baseMedium
+        buildingNameInput.textInputTextField.textColor = .Clutch.textBlack
+        buildingNameInput.textInputTextField.attributedPlaceholder = NSAttributedString(string: "정확한 건물명을 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
+        
         addressInput.textInputLabel.text = "주소"
         addressInput.textInputTextField.font = .Clutch.baseMedium
         addressInput.textInputTextField.textColor = .Clutch.textBlack
@@ -253,8 +261,13 @@ class CalculateViewController: UIViewController {
             make.height.equalTo(132)
         }
         
-        addressInput.snp.makeConstraints { make in
+        buildingNameInput.snp.makeConstraints { make in
             make.top.equalTo(selectCollectionView.snp.bottom).offset(25)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        addressInput.snp.makeConstraints { make in
+            make.top.equalTo(buildingNameInput.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
         }
         
@@ -264,12 +277,12 @@ class CalculateViewController: UIViewController {
         }
         
         unitNum.snp.makeConstraints { make in
-            make.top.equalTo(addressInput.snp.bottom).offset(6)
-            make.leading.equalToSuperview().offset(213)
+            make.top.equalTo(addressInput.snp.bottom)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         sqftInput.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(600)
+            make.top.equalTo(buildingNum.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
         }
         
