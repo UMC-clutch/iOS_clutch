@@ -8,16 +8,10 @@
 import UIKit
 import SnapKit
 
-struct BuildingInfo: Codable {
-    let buildingID, price: Int
-    let buildingName, address, dong, ho: String
-    let logicType, type, area: String
-}
-
 class CalculateViewController: UIViewController {
     //MARK: - Properties
     lazy var completed = false
-    lazy var price = 0
+    var buildingPrice:PostBuildingPrice?
     
     //MARK: - UI ProPerties
     // UINavigationBar 선언("< 사기 가능성 계산")
@@ -131,10 +125,9 @@ class CalculateViewController: UIViewController {
             let area = JSON["information"]["area"].stringValue
             
             
-            let info = BuildingInfo(buildingID: buildingID, price: price, buildingName: buildingName, address: address, dong: dong, ho: ho, logicType: logicType, type: type, area: area)
+            let info = PostBuildingPrice(buildingId: buildingID, price: price, buildingName: buildingName, address: address, dong: dong, ho: ho, logicType: logicType, type: type, area: area)
             
-            print(info)
-            self.price = info.price
+            self.buildingPrice = info
             
             // 알림창 호출, 확인 누르면 화면전환
             self.completed = true
@@ -272,7 +265,7 @@ class CalculateViewController: UIViewController {
         }
         
         buildingNum.snp.makeConstraints { make in
-            make.top.equalTo(addressInput.snp.bottom).offset(6)
+            make.top.equalTo(addressInput.snp.bottom)
             make.leading.equalToSuperview().offset(16)
         }
         
@@ -290,7 +283,7 @@ class CalculateViewController: UIViewController {
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
         }
     }
   
@@ -354,10 +347,9 @@ extension CalculateViewController: UICollectionViewDelegate, UICollectionViewDat
     func done() {
         if completed {
             let VC = SecondCalculateViewController()
-            print(VC.price)
-            VC.price = self.price
-            print(self.price)
-            print(VC.price)
+            VC.buildingPrice = self.buildingPrice
+            print(self.buildingPrice)
+            
             navigationController?.pushViewController(VC, animated: true)
         }
     }

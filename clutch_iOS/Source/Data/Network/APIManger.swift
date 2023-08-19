@@ -49,7 +49,7 @@ class APIManger {
     }
     
     //Post요청
-    func callPostRequest(baseEndPoint:BaseEndpoint, addPath:String?, parameters: [String: String], completionHnadler: @escaping(JSON) -> ()) {
+    func callPostRequest(baseEndPoint:BaseEndpoint, addPath:String?, parameters: [String: Any], completionHnadler: @escaping(JSON) -> ()) {
 
         let headers: HTTPHeaders = [
             "accept": "application/json",
