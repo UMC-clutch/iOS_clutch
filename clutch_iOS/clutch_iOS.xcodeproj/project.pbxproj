@@ -77,6 +77,8 @@
 		BECEC6B32A6016BB00A177A0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B22A6016BB00A177A0 /* BaseViewController.swift */; };
 		BECEC6B52A6050EA00A177A0 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B42A6050EA00A177A0 /* loginViewController.swift */; };
 		BECEC6B72A6050F700A177A0 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B62A6050F700A177A0 /* loginView.swift */; };
+		BED2C66D2A90A172002B5B86 /* Get.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED2C66C2A90A172002B5B86 /* Get.swift */; };
+		BED2C66F2A90A17E002B5B86 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED2C66E2A90A17E002B5B86 /* Post.swift */; };
 		BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C22A4D6845005106D8 /* AppDelegate.swift */; };
 		BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C42A4D6845005106D8 /* SceneDelegate.swift */; };
 		BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C62A4D6845005106D8 /* MainViewController.swift */; };
@@ -167,6 +169,8 @@
 		BECEC6B22A6016BB00A177A0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BECEC6B42A6050EA00A177A0 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		BECEC6B62A6050F700A177A0 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
+		BED2C66C2A90A172002B5B86 /* Get.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get.swift; sourceTree = "<group>"; };
+		BED2C66E2A90A17E002B5B86 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		BED645BF2A4D6845005106D8 /* clutch_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clutch_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED645C22A4D6845005106D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED645C42A4D6845005106D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -464,7 +468,7 @@
 		BE90A4D42A88B5870052FBC1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				BE90A4D62A88B59D0052FBC1 /* Model */,
+				BED2C66B2A90A154002B5B86 /* Model */,
 				BE90A4D52A88B5920052FBC1 /* Network */,
 			);
 			path = Data;
@@ -478,13 +482,6 @@
 				BE90A4DB2A88BA9A0052FBC1 /* APIManger.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		BE90A4D62A88B59D0052FBC1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		BE9B7EAB2A7669A1005A86A5 /* Frameworks */ = {
@@ -510,6 +507,15 @@
 				BECEC6B22A6016BB00A177A0 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		BED2C66B2A90A154002B5B86 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BED2C66C2A90A172002B5B86 /* Get.swift */,
+				BED2C66E2A90A17E002B5B86 /* Post.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BED645B62A4D6845005106D8 = {
@@ -750,9 +756,11 @@
 				BE744AB42A4F26B1005F8F4F /* ReportViewController.swift in Sources */,
 				A223575F2A65279900915DF0 /* ProfileViewController.swift in Sources */,
 				BEABD8922A6FE0500015AC29 /* CheckContainer.swift in Sources */,
+				BED2C66F2A90A17E002B5B86 /* Post.swift in Sources */,
 				BE53C58B2A765AEA000EF2C5 /* UserInfoViewController.swift in Sources */,
 				BED645CD2A4D6845005106D8 /* clutch_iOS.xcdatamodeld in Sources */,
 				0912CBAD2A68C60C00139593 /* CustomPopupViewController.swift in Sources */,
+				BED2C66D2A90A172002B5B86 /* Get.swift in Sources */,
 				BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */,
 				093EB0BC2A6F7DD400AC1F71 /* CustomPopupCell.swift in Sources */,
 				BECEC6B32A6016BB00A177A0 /* BaseViewController.swift in Sources */,

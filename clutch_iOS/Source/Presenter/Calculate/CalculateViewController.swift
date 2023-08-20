@@ -8,13 +8,11 @@
 import UIKit
 import SnapKit
 
-struct BuildingInfo: Codable {
-    let buildingID, price: Int
-    let buildingName, address, dong, ho: String
-    let logicType, type, area: String
-}
-
 class CalculateViewController: UIViewController {
+    //MARK: - Properties
+    lazy var completed = false
+    var buildingPrice:PostBuildingPrice?
+    
     //MARK: - UI ProPerties
     // UINavigationBar 선언("< 사기 가능성 계산")
     public lazy var navigationBar = UINavigationBar()
@@ -54,6 +52,8 @@ class CalculateViewController: UIViewController {
         
         return view
     }()
+    // 건물명 입력
+    let buildingNameInput = TextInputView()
     
     // 주소 입력란 제목 및 첫번째 줄("지번 또는 도로명 주소")
     let addressInput = TextInputView()
@@ -90,14 +90,13 @@ class CalculateViewController: UIViewController {
         Constraint()
         setCollectionview()
         textChange()
-        requestPost()
     }
     
     //MARK: - Network
     func requestPost() {
         
         let parameter = [
-            "buildingName": "서서울삼성",
+            "buildingName": buildingNameInput.textInputTextField.text ?? "",
             "address": addressInput.textInputTextField.text ?? "" ,
             "dong": buildingNum.textInputTextField.text ?? "",
             "ho": unitNum.textInputTextField.text ?? "",
@@ -105,28 +104,44 @@ class CalculateViewController: UIViewController {
             "area": sqftInput.textInputTextField.text ?? ""
         ]
         
-        APIManger.shared.callPostRequest(baseEndPoint: .building, addPath: nil, parameters: parameter) { JSON in
-            let buildingID = JSON["buildingID"].intValue
-            let price = JSON["price"].intValue
-            let buildingName = JSON["buildingName"].stringValue
-            let address = JSON["address"].stringValue
-            let dong = JSON["dong"].stringValue
-            let ho = JSON["ho"].stringValue
-            let logicType = JSON["logicType"].stringValue
-            let type = JSON["type"].stringValue
-            let area = JSON["area"].stringValue
+        APIManger.shared.callPostRequest(baseEndPoint: .building, addPath: "", parameters: parameter) { JSON in
+            // 호출 오류시 처리
+            if JSON["check"].boolValue == false {
+                self.showCustomAlert(alertType: .done,
+                                alertTitle: "오류 발생",
+                                alertContext: "다시 시도해주세요.",
+                                confirmText: "확인")
+                return
+            }
+            
+            let buildingID = JSON["information"]["buildingID"].intValue
+            let price = JSON["information"]["price"].intValue
+            let buildingName = JSON["information"]["buildingName"].stringValue
+            let address = JSON["information"]["address"].stringValue
+            let dong = JSON["information"]["dong"].stringValue
+            let ho = JSON["information"]["ho"].stringValue
+            let logicType = JSON["information"]["logicType"].stringValue
+            let type = JSON["information"]["type"].stringValue
+            let area = JSON["information"]["area"].stringValue
             
             
-            let info = BuildingInfo(buildingID: buildingID, price: price, buildingName: buildingName, address: address, dong: dong, ho: ho, logicType: logicType, type: type, area: area)
+            let info = PostBuildingPrice(buildingId: buildingID, price: price, buildingName: buildingName, address: address, dong: dong, ho: ho, logicType: logicType, type: type, area: area)
             
-            print(info)
+            self.buildingPrice = info
+            
+            // 알림창 호출, 확인 누르면 화면전환
+            self.completed = true
+            self.showCustomAlert(alertType: .done,
+                            alertTitle: "시세조회 완료",
+                            alertContext: "정상적으로 조회되었습니다.",
+                            confirmText: "확인")
         }
 
     }
 
     func SetView() {
         self.view.backgroundColor = .white
-        [navigationBar, textLabel, selectLabel, selectCollectionView, addressInput, buildingNum, unitNum, sqftInput, checkButton].forEach { view in
+        [buildingNameInput, navigationBar, textLabel, selectLabel, selectCollectionView, addressInput, buildingNum, unitNum, sqftInput, checkButton].forEach { view in
             self.view.addSubview(view)
         }
     }
@@ -154,13 +169,19 @@ class CalculateViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    // checkButton 누르면 SecondCalculateViewController() 보여주는 액션
+    
     @objc func checkButtonTapped() {
-        let VC = SecondCalculateViewController()
-        navigationController?.pushViewController(VC, animated: true)
+        print("시세조회 API 호출")
+        requestPost()
     }
     
     func setData() {
+        
+        buildingNameInput.textInputLabel.text = "건물명"
+        buildingNameInput.textInputTextField.font = .Clutch.baseMedium
+        buildingNameInput.textInputTextField.textColor = .Clutch.textBlack
+        buildingNameInput.textInputTextField.attributedPlaceholder = NSAttributedString(string: "정확한 건물명을 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
+        
         addressInput.textInputLabel.text = "주소"
         addressInput.textInputTextField.font = .Clutch.baseMedium
         addressInput.textInputTextField.textColor = .Clutch.textBlack
@@ -233,23 +254,28 @@ class CalculateViewController: UIViewController {
             make.height.equalTo(132)
         }
         
-        addressInput.snp.makeConstraints { make in
+        buildingNameInput.snp.makeConstraints { make in
             make.top.equalTo(selectCollectionView.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
         }
         
+        addressInput.snp.makeConstraints { make in
+            make.top.equalTo(buildingNameInput.snp.bottom).offset(25)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
         buildingNum.snp.makeConstraints { make in
-            make.top.equalTo(addressInput.snp.bottom).offset(6)
+            make.top.equalTo(addressInput.snp.bottom)
             make.leading.equalToSuperview().offset(16)
         }
         
         unitNum.snp.makeConstraints { make in
-            make.top.equalTo(addressInput.snp.bottom).offset(6)
-            make.leading.equalToSuperview().offset(213)
+            make.top.equalTo(addressInput.snp.bottom)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         sqftInput.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(600)
+            make.top.equalTo(buildingNum.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
         }
         
@@ -257,7 +283,7 @@ class CalculateViewController: UIViewController {
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
         }
     }
   
@@ -265,7 +291,7 @@ class CalculateViewController: UIViewController {
 }
 
 //MARK: - extension
-extension CalculateViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CalculateViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CustomAlertDelegate {
     // collectionview 관련 설정
     func setCollectionview() {
         selectCollectionView.dataSource = self
@@ -314,4 +340,17 @@ extension CalculateViewController: UICollectionViewDelegate, UICollectionViewDat
         }
     }
     
+    func cancel() { return }
+    
+    func confirm() { return }
+    
+    func done() {
+        if completed {
+            let VC = SecondCalculateViewController()
+            VC.buildingPrice = self.buildingPrice
+            print(self.buildingPrice)
+            
+            navigationController?.pushViewController(VC, animated: true)
+        }
+    }
 }

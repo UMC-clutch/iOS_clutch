@@ -285,14 +285,6 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
             make.top.equalToSuperview()
         }
         
-//        //gifImage 오토 레이아웃
-//        gifImage.snp.makeConstraints { make in
-//            make.leading.equalTo(clutchGraphic).offset(20)
-//            make.trailing.equalTo(clutchGraphic).offset(-20)
-//            make.top.equalTo(clutchGraphic).offset(100)
-//            make.bottom.equalTo(clutchGraphic).offset(-20)
-//        }
-        
         //clutchIntroTitl의 오토레이아웃
         clutchIntroTitle.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(305)

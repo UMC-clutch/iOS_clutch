@@ -5,10 +5,16 @@
 //  Created by 현종혁 on 2023/07/28.
 //
 
-import Foundation
+import Alamofire
+import SwiftyJSON
 import UIKit
 
 class SecondCalculateViewController: UIViewController {
+    //MARK: - Properties
+    lazy var completed = false
+    var buildingPrice:PostBuildingPrice?
+    var postCalculate:PostCalculate?
+    
     //MARK: - UI ProPerties
     // UINavigationBar 선언("< 사기 가능성 계산")
     public lazy var navigationBar = UINavigationBar()
@@ -90,6 +96,46 @@ class SecondCalculateViewController: UIViewController {
         textChange()
     }
     
+    func callrequest() {
+        
+        guard let buildingprice = buildingPrice else {return}
+        
+        print(buildingprice)
+        
+        let parameters = [
+            
+            "buildingId": buildingprice.buildingId,
+            "collateral": Int(MortgagePrice.textInputTextField.text ?? "00")!,
+            "deposit": Int(charterPrice.textInputTextField.text ?? "00")!,
+            "isDangerous": true,
+            
+        ] as [String : Any]
+        
+        print(parameters)
+        
+        APIManger.shared.callPostRequest(baseEndPoint: .calculate, addPath: "", parameters: parameters) { JSON in
+            
+            let json = JSON["infomation"].arrayValue
+            print(json)
+            
+            let id = JSON["infomation"]["id"].intValue
+            let buildingId = JSON["infomation"]["buildingId"].intValue
+            let collateral = JSON["infomation"]["collateral"].intValue
+            let deposit = JSON["infomation"]["deposit"].intValue
+            let isDangerous = JSON["infomation"]["isDangerous"].boolValue
+            
+            self.postCalculate = PostCalculate(id: id, buildingId: buildingId, collateral: collateral, deposit: deposit, isDangerous: isDangerous)
+            
+            self.showCustomAlert(alertType: .done,
+                                 alertTitle: "근저당액, 전세금 입력완료",
+                                 alertContext: "정상적으로 제출되었습니다.",
+                                 confirmText: "확인")
+        }
+    }
+    
+    
+    
+    
     func SetView() {
         self.view.backgroundColor = .white
         [navigationBar,textLabel, marketPrice, firstUnitLabel, MortgagePrice, secondUnitLabel, charterPrice, thirdUnitLabel, checkButton].forEach { view in
@@ -122,12 +168,16 @@ class SecondCalculateViewController: UIViewController {
     
     // checkButton 누르면 ResultViewController() 보여주는 액션
     @objc func didTapButton() {
-        let VC = ResultViewController()
-        navigationController?.pushViewController(VC, animated: true)
+        callrequest()
+        
     }
     
     func setData() {
+        
+        guard let buildingprice = buildingPrice else {return}
+        
         marketPrice.textInputLabel.text = "시세"
+        marketPrice.textInputTextField.text = "\(buildingprice.price)"
         MortgagePrice.textInputLabel.text = "근저당액"
         charterPrice.textInputLabel.text = "지급할 전세금"
     }
@@ -143,7 +193,7 @@ class SecondCalculateViewController: UIViewController {
         marketPrice.textInputTextField.text?.isEmpty == false &&
         MortgagePrice.textInputTextField.text?.isEmpty == false &&
         charterPrice.textInputTextField.text?.isEmpty == false
-    
+        
         print(allFieldsFilled)
         
         if allFieldsFilled {
@@ -201,12 +251,27 @@ class SecondCalculateViewController: UIViewController {
         }
         
         checkButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(700)
             make.width.equalTo(360)
             make.height.equalTo(53)
             make.centerX.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
         }
         
     }
     
+    
 }
+
+extension SecondCalculateViewController: CustomAlertDelegate {
+    func cancel() { return }
+    
+    func confirm() { return }
+    
+    func done() {
+        let VC = ResultViewController()
+        VC.buildingPrice = self.buildingPrice
+        VC.postCalculate = self.postCalculate
+        navigationController?.pushViewController(VC, animated: true)
+    }
+}
+
