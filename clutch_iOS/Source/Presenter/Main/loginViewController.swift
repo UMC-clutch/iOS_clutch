@@ -23,14 +23,16 @@ class loginViewController: UIViewController {
         return button
     }()
     
+    lazy var kakaoAuthVM : KakaoAuthVM = { KakaoAuthVM() }()
+    
     //애플 로그인 버튼
-//    lazy var appleButton:UIButton = {
-//        let button = UIButton()
-//        button.setImage(UIImage(named: "btn_login_apple"), for: .normal)
-//        button.addTarget(self, action: #selector(appleButtonTapped), for: .touchUpInside)
-//
-//        return button
-//    }()
+    //    lazy var appleButton:UIButton = {
+    //        let button = UIButton()
+    //        button.setImage(UIImage(named: "btn_login_apple"), for: .normal)
+    //        button.addTarget(self, action: #selector(appleButtonTapped), for: .touchUpInside)
+    //
+    //        return button
+    //    }()
     lazy var appleButton:ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
         button.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
@@ -48,9 +50,9 @@ class loginViewController: UIViewController {
         super.viewDidLoad()
         SetView()
         Constraint()
-
+        
     }
-
+    
     
     //뷰 관련 세팅
     func SetView() {
@@ -81,18 +83,47 @@ class loginViewController: UIViewController {
         }
         
     }
+
+    //    //appleButton 클릭 이벤트
+    //    @objc func appleButtonTapped(_ sender: UIButton) {
+    //        print(1)
+    //        let VC = UserInfoViewController()
+    //        navigationController?.pushViewController(VC, animated: true)
+    //
+    //    }
+    
+//    //kakaoButton 클릭 이벤트
+//    @objc func kakaoButtonTapped(_ sender: UIButton) {
+//        Task {
+//            kakaoAuthVM.KakaoLogin()
+
 //    //appleButton 클릭 이벤트
 //    @objc func appleButtonTapped(_ sender: UIButton) {
 //        let VC = UserInfoViewController()
 //        navigationController?.pushViewController(VC, animated: true)
-//
-//    }
 
+//
+//            DispatchQueue.main.async {
+//                let VC = UserInfoViewController()
+//                self.navigationController?.pushViewController(VC, animated: true)
+//            }
+//        }
+//    }
+    
     //kakaoButton 클릭 이벤트
     @objc func kakaoButtonTapped(_ sender: UIButton) {
-        let VC = UserInfoViewController()
-        navigationController?.pushViewController(VC, animated: true)
+        Task { [weak self] in
+            if await kakaoAuthVM.KakaoLogin() {
+                DispatchQueue.main.async {
+                    let VC = UserInfoViewController()
+                    self?.navigationController?.pushViewController(VC, animated: true)
+                }
+            } else {
+                print("Login failed.")
+            }
+        }
     }
+
     
 }
 

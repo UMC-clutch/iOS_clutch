@@ -8,6 +8,8 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true // 화면 아무 곳이나 터치 시 키보드 dismiss
+        
+        let nativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
+        
+        KakaoSDK.initSDK(appKey: nativeAppKey as! String)
         
         // 자동로그인 처리
         /*
@@ -37,9 +43,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         */
+
         return true
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+            if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                return AuthController.handleOpenUrl(url: url)
+            }
 
+            return false
+        }
     
     // MARK: UISceneSession Lifecycle
     
