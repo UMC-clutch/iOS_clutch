@@ -26,7 +26,7 @@ struct PostCalculate: Codable {
 struct PostBuildingInfo: Codable {
     let buildingName, address, dong, ho: String
     let collateralDate: String
-    let type: String
+    let type, area: String
 
 }
 

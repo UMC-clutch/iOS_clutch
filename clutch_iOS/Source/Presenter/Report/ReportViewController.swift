@@ -169,6 +169,7 @@ class ReportViewController: UIViewController{
     func SmallTextInputViewSet() {
         buildingNum.textInputLabel.isHidden = true
         unitNum.textInputLabel.isHidden = true
+        unitNum.leftLabel.text = "호"
     }
     
     func Constraint() {
@@ -328,8 +329,9 @@ extension ReportViewController: DatePickerDelegate,
               "address": addressLabel.textInputTextField.text ?? "" ,
               "dong": buildingNum.textInputTextField.text ?? "",
               "ho": unitNum.textInputTextField.text ?? "",
-              "collateralDate": mortgageDateLabel.textInputTextField.text ?? "",
+              "collateralDate": dateForDB(inDateStr: mortgageDateLabel.textInputTextField.text ?? ""),
               "type": "APARTMENT",
+//              "area": sqftInput.textInputTextField.text ?? ""
         ]
         print(parameter)
         APIManger.shared.callPostRequest(baseEndPoint: .report, addPath: "/building", parameters: parameter) { JSON in
