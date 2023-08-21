@@ -8,13 +8,27 @@
 import UIKit
 import SnapKit
 
-class ReportViewController: UIViewController{
+class ReportViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - properties
     lazy var selectText = ["아파트/오피스텔", "다가구", "상가"]
     lazy var selectedType = ""
     
     //MARK: - UI ProPerties
     public lazy var navigationBar = UINavigationBar()
+    
+    //스크롤을 위한 스크롤 뷰
+    lazy var scrollview:UIScrollView = {
+        let view = UIScrollView()
+        
+        return view
+    }()
+    
+    //스크롤 뷰 안에 들어갈 내용을 표시할 뷰
+    lazy var contentView: UIView = {
+        let view = UIView()
+        
+        return view
+    }()
     
     lazy var titleLabel:UILabel = {
         let label = UILabel()
@@ -41,6 +55,7 @@ class ReportViewController: UIViewController{
     let addressLabel = TextInputView()
     let buildingNum = SmallTextInputView()
     let unitNum = SmallTextInputView()
+    let sqftInput = TextInputView()
     
     lazy var buildingTypeLabel:UILabel = {
         let label = UILabel()
@@ -95,13 +110,14 @@ class ReportViewController: UIViewController{
         addsubview()
         setCollectionview()
         setNavigationBar()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .Clutch.mainWhite
     }
     
     func textChange() {
         buildingNameLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         mortgageDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         addressLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        sqftInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         buildingNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         unitNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
     }
@@ -112,6 +128,7 @@ class ReportViewController: UIViewController{
         buildingNameLabel.textInputTextField.text?.isEmpty == false &&
         mortgageDateLabel.textInputTextField.text?.isEmpty == false &&
         addressLabel.textInputTextField.text?.isEmpty == false &&
+        sqftInput.textInputTextField.text?.isEmpty == false &&
         buildingNum.textInputTextField.text?.isEmpty == false &&
         unitNum.textInputTextField.text?.isEmpty == false
         
@@ -132,11 +149,20 @@ class ReportViewController: UIViewController{
     
  
     func addsubview() {
-        let views:[UIView] = [navigationBar, titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, buildingNum, unitNum, buildingTypeLabel, selectCollectionView, nextButton]
-        
-        views.forEach { view in
+        [navigationBar, scrollview, nextButton].forEach { view in
             self.view.addSubview(view)
         }
+        
+        scrollview.addSubview(contentView)
+        
+        [titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, sqftInput, buildingNum, unitNum, buildingTypeLabel, selectCollectionView].forEach { view in
+            contentView.addSubview(view)
+        }
+    }
+    
+    //스크롤 뷰관련 셋
+    func setscrollview() {
+        scrollview.delegate = self
     }
     
     func setNavigationBar() {
@@ -161,14 +187,35 @@ class ReportViewController: UIViewController{
     
     func TextInputViewSet() {
         buildingNameLabel.textInputLabel.text = "건물명"
+        buildingNameLabel.textInputTextField.font = .Clutch.baseMedium
+        buildingNameLabel.textInputTextField.textColor = .Clutch.textBlack
+        buildingNameLabel.textInputTextField.attributedPlaceholder = NSAttributedString(string: "정확한 건물명을 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
+        
         mortgageDateLabel.textInputLabel.text = "근저당 설정 기준일"
+        mortgageDateLabel.textInputTextField.font = .Clutch.baseMedium
+        mortgageDateLabel.textInputTextField.textColor = .Clutch.textBlack
+        mortgageDateLabel.textInputTextField.attributedPlaceholder = NSAttributedString(string: "날짜를 선택해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
         mortgageDateLabel.textInputTextField.isUserInteractionEnabled = false
+        
         addressLabel.textInputLabel.text = "주소"
+        addressLabel.textInputTextField.font = .Clutch.baseMedium
+        addressLabel.textInputTextField.textColor = .Clutch.textBlack
+        addressLabel.textInputTextField.attributedPlaceholder = NSAttributedString(string: "지번 또는 도로명 주소", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
+        
+        sqftInput.textInputLabel.text = "평수"
+        sqftInput.textInputTextField.font = .Clutch.baseMedium
+        sqftInput.textInputTextField.textColor = .Clutch.textBlack
+        sqftInput.textInputTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
     }
     
     func SmallTextInputViewSet() {
         buildingNum.textInputLabel.isHidden = true
+        buildingNum.textInputTextField.placeholder = ""
+        buildingNum.textInputTextField.textColor = .Clutch.textBlack
+        
         unitNum.textInputLabel.isHidden = true
+        unitNum.textInputTextField.placeholder = ""
+        unitNum.textInputTextField.textColor = .Clutch.textBlack
         unitNum.leftLabel.text = "호"
     }
     
@@ -181,10 +228,23 @@ class ReportViewController: UIViewController{
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.equalToSuperview()
         }
+        //스크롤 뷰 오토레이아웃
+        scrollview.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(nextButton.snp.top).offset(-20)
+        }
+        //contentView 오토레이아웃
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(view.snp.width)
+            make.height.equalTo(740)
+        }
         
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(navigationBar.snp.bottom).offset(top)
+            make.top.equalToSuperview().offset(top)
         }
         
         buildingNameLabel.snp.makeConstraints { make in
@@ -208,14 +268,19 @@ class ReportViewController: UIViewController{
             make.top.equalTo(mortgageDateLabel.snp.bottom).offset(top)
         }
         
+        sqftInput.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(addressLabel.snp.bottom).offset(top)
+        }
+        
         buildingNum.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(addressLabel.snp.bottom)
+            make.top.equalTo(sqftInput.snp.bottom)
         }
         
         unitNum.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-leading)
-            make.top.equalTo(addressLabel.snp.bottom)
+            make.top.equalTo(sqftInput.snp.bottom)
             
         }
         
@@ -331,7 +396,7 @@ extension ReportViewController: DatePickerDelegate,
               "ho": unitNum.textInputTextField.text ?? "",
               "collateralDate": dateForDB(inDateStr: mortgageDateLabel.textInputTextField.text ?? ""),
               "type": "APARTMENT",
-//              "area": sqftInput.textInputTextField.text ?? ""
+              "area": sqftInput.textInputTextField.text ?? ""
         ]
         print(parameter)
         APIManger.shared.callPostRequest(baseEndPoint: .report, addPath: "/building", parameters: parameter) { JSON in
@@ -345,22 +410,7 @@ extension ReportViewController: DatePickerDelegate,
             }
             
             // 정상적으로 호출 시 알림 없이 다음 화면으로 전환
-            let buildingID = JSON["information"]["buildingID"].intValue
-            let buildingName = JSON["information"]["buildingName"].stringValue
-            let address = JSON["information"]["address"].stringValue
-            let dong = JSON["information"]["dong"].stringValue
-            let ho = JSON["information"]["ho"].stringValue
-            let collateralDate = JSON["information"]["collateralDate"].stringValue
-            let type = JSON["information"]["type"].stringValue
-            
-            print(buildingID)
-            print(buildingName)
-            print(address)
-            print(dong)
-            print(ho)
-            print(collateralDate)
-            print(type)
-            
+            let buildingID = JSON["information"]["buildingId"].intValue
             
             // 다음 호출 uri에 필요한 빌딩ID 전달
             let VC = ContractInfoViewController()
