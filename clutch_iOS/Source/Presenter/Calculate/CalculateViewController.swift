@@ -114,18 +114,17 @@ class CalculateViewController: UIViewController {
                 return
             }
             
-            let buildingID = JSON["information"]["buildingID"].intValue
+            let buildingID = JSON["information"]["buildingId"].intValue
             let price = JSON["information"]["price"].intValue
             let buildingName = JSON["information"]["buildingName"].stringValue
             let address = JSON["information"]["address"].stringValue
             let dong = JSON["information"]["dong"].stringValue
             let ho = JSON["information"]["ho"].stringValue
-            let logicType = JSON["information"]["logicType"].stringValue
             let type = JSON["information"]["type"].stringValue
             let area = JSON["information"]["area"].stringValue
             
             
-            let info = PostBuildingPrice(buildingId: buildingID, price: price, buildingName: buildingName, address: address, dong: dong, ho: ho, logicType: logicType, type: type, area: area)
+            let info = PostBuildingPrice(buildingId: buildingID, price: price, buildingName: buildingName, address: address, dong: dong, ho: ho, type: type, area: area)
             
             self.buildingPrice = info
             
@@ -185,7 +184,7 @@ class CalculateViewController: UIViewController {
         addressInput.textInputLabel.text = "주소"
         addressInput.textInputTextField.font = .Clutch.baseMedium
         addressInput.textInputTextField.textColor = .Clutch.textBlack
-        addressInput.textInputTextField.attributedPlaceholder = NSAttributedString(string: "지번 또는 도로명 주소", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
+        addressInput.textInputTextField.attributedPlaceholder = NSAttributedString(string: "도로명 주소를 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
         
         sqftInput.textInputLabel.text = "평수"
         sqftInput.textInputTextField.font = .Clutch.baseMedium

@@ -81,6 +81,10 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
             let refreshToken = JSON["information"]["refreshToken"].stringValue
             let refreshTokenExpirationTime = JSON["information"]["refreshTokenExpirationTime"].int64Value
             
+            //탈퇴 페이지 회원 정보 넘기기
+            singleItem.shared.username = self.namelInfo.textInputTextField.text ?? self.userInfo.name
+
+            
             // 테스트
             print(grantType)
             print(accessToken)
@@ -204,6 +208,7 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
         if completed {
             let VC = MainViewController()
             navigationController?.pushViewController(VC, animated: true)
+            
         }
     }
 }

@@ -5,15 +5,9 @@
 //  Created by 현종혁 on 2023/08/07.
 //
 
-import Foundation
 import UIKit
-
-struct Calculte: Codable {
-    let id, buildingID, addressID: Int
-    let buildingName, address, dong, ho: String
-    let price, collateralMoney, deposit: Int
-    let isDangerous: Bool
-}
+import Alamofire
+import SwiftyJSON
 
 class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - properties
@@ -22,16 +16,11 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
     let address = ["서울특별시 용산구 청파로47길 100", "경기도 고양시 일산서구 일산3동"]
     let post = ["", "505동 606호"]
     
+    var calculateResult:[GetCaculate] = []
+    
     //MARK: - UI propereties
     // UINavigationBar 선언("< 사기 가능성 조회 내역")
     public lazy var navigationBar = UINavigationBar()
-    
-    //스크롤을 위한 스크롤 뷰
-    lazy var scrollview: UIScrollView = {
-        let view = UIScrollView()
-        
-        return view
-    }()
     
     //스크롤 뷰 안에 들어갈 내용을 표시할 뷰
     let contentView: UIView = {
@@ -63,7 +52,7 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
     // UIView 선언(물음표 이미지)
     lazy var leftImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "clutch_logo")
+        view.image = UIImage(named: "Question_fill")
         
         return view
     }()
@@ -130,20 +119,35 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         return view
     }()
     
-    // UITableView 선언
-    lazy var tableView2 : UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .white
+    lazy var noResultLabel: UILabel = {
+        let Label = UILabel()
+        if calculateResult.count == 0 {
+            Label.text = "결과 내역이 없습니다."
+        } else {
+            Label.text = ""
+        }
+        Label.font = .Clutch.smallBold
+        Label.textColor = .Clutch.textDarkGrey
         
-        return tableView
+        return Label
     }()
+    
+    
+    
+    // UITableView 선언
+//    lazy var tableView2 : UITableView = {
+//        let tableView = UITableView()
+//        tableView.backgroundColor = .white
+//
+//        return tableView
+//    }()
     
     //MARK: - Define Method
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .Clutch.mainWhite
         button.addTarget(self, action: #selector(goToClutchIntro), for: .touchUpInside)
-        
+        request()
         SetView()
         tableViewSet()
         navigationBarSet()
@@ -153,22 +157,16 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
     
     func request() {
         APIManger.shared.callGetRequest(baseEndPoint: .calculate, addPath: nil) { JSON in
-            let id = JSON["id"].intValue
-            let buildingID = JSON["buildingID"].intValue
-            let addressID = JSON["addressID"].intValue
-            let buildingName = JSON["buildingName"].stringValue
-            let address = JSON["address"].stringValue
-            let dong = JSON["dong"].stringValue
-            let ho = JSON["ho"].stringValue
-            let price = JSON["price"].intValue
-            let collateralMoney = JSON["collateralMoney"].intValue
-            let deposit = JSON["deposit"].intValue
-            let isDangerous = JSON["isDangerous"].boolValue
-            
-            let calculte = Calculte(id: id, buildingID: buildingID, addressID: addressID, buildingName: buildingName, address: address, dong: dong, ho: ho, price: price, collateralMoney: collateralMoney, deposit: deposit, isDangerous: isDangerous)
-            
-            DispatchQueue.main.async {
+            do {
+                // JSON 데이터를 GetCaculate 배열로 디코딩합니다.
+                let decoder = JSONDecoder()
+                let calculateResult = try decoder.decode([GetCaculate].self, from: JSON["information"].rawData())
                 
+                // 디코딩이 성공하면 배열에 데이터를 할당하고 테이블 뷰를 리로드합니다.
+                self.calculateResult = calculateResult
+                self.tableView1.reloadData()
+            } catch {
+                print("JSON 디코딩 오류: \(error.localizedDescription)")
             }
         }
     }
@@ -176,25 +174,18 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
     func SetView() {
         self.view.backgroundColor = .white
         
-        [scrollview].forEach { view in
+        [navigationBar, backgroundView, button, leftImageView, rightImageView, introLabel, seperateLine1, tableView1, noResultLabel].forEach { view in
             self.view.addSubview(view)
-        }
-        
-        [contentView].forEach { view in
-            scrollview.addSubview(view)
-        }
-        
-        [navigationBar, backgroundView, button, leftImageView, rightImageView, introLabel, seperateLine1, tableView1, seperateLine2, tableView2].forEach { view in
-            contentView.addSubview(view)
         }
     }
     
     func tableViewSet() {
-        [tableView1, tableView2].forEach { tableView in
+        [tableView1].forEach { tableView in
             tableView.dataSource = self
             tableView.delegate = self
             tableView.separatorStyle = .none
             tableView.register(CalculateHistoryCell.self, forCellReuseIdentifier: "cell")
+            tableView.rowHeight = 180
         }
     }
     
@@ -230,19 +221,19 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         navigationBar.snp.makeConstraints { make in
             make.height.equalTo(30)
             make.width.equalToSuperview()
-            make.top.equalToSuperview().offset(65)
-            make.leading.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+
         }
         
-        scrollview.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+//        scrollview.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
         
-        contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.width.equalTo(view.snp.width)
-            make.height.equalTo(view.frame.height * 1.2)
-        }
+//        contentView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//            make.width.equalTo(view.snp.width)
+//            make.height.equalTo(view.frame.height * 1.2)
+//        }
         
         backgroundView.snp.makeConstraints { make in
             make.height.equalTo(76)
@@ -280,51 +271,45 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         }
         
         tableView1.snp.makeConstraints { make in
-            make.width.equalTo(361)
-            make.height.equalTo(190)
-            make.top.equalTo(seperateLine1.snp.top).offset(48)
-            make.centerX.equalToSuperview()
-        }
-        
-        seperateLine2.snp.makeConstraints { make in
             make.width.equalToSuperview()
-            make.height.equalTo(12)
-            make.top.equalTo(tableView1.snp.top).offset(212)
+            make.top.equalTo(seperateLine1.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
-        tableView2.snp.makeConstraints { make in
-            make.width.equalTo(361)
-            make.height.equalTo(190)
-            make.top.equalTo(seperateLine2.snp.top).offset(48)
-            make.centerX.equalToSuperview()
+        noResultLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        return calculateResult.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CalculateHistoryCell else {
-            return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CalculateHistoryCell
+        else { return UITableViewCell() }
+        
+        let row = indexPath.row
+        let result = calculateResult[row].price - calculateResult[row].collateralMoney - calculateResult[row].deposit
+        
+        if result < 0 {
+            cell.stateLabel.text = "위험 단계"
+        } else {
+            cell.stateLabel.text = "안전 단계"
         }
         
-        if tableView == tableView1 {
-            cell.dateLabel.text = date[0]
-            cell.stateLabel.text = state[0]
-            cell.addressInfoLabel.text = address[0]
-            cell.postInfoLabel.text = post[0]
-            
-        } else if tableView == tableView2 {
-            cell.dateLabel.text = date[1]
-            cell.stateLabel.text = state[1]
-            cell.addressInfoLabel.text = address[1]
-            cell.postInfoLabel.text = post[1]
-        }
-        
+        cell.addressInfoLabel.text = calculateResult[row].address + calculateResult[row].dong + "동" + calculateResult[row].address + "호"
+       
+                
         return cell
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let VC = ResultViewController()
+        navigationController?.pushViewController(VC, animated: true)
+    }
+
 }
