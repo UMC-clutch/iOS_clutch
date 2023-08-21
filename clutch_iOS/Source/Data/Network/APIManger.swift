@@ -115,7 +115,7 @@ class APIManger {
 
 
     //Delete요청
-    func callDeleteRequest(baseEndPoint:BaseEndpoint, addPath:String?, completion: @escaping (Result<JSON, Error>) -> Void) {
+    func callDeleteRequest(baseEndPoint:BaseEndpoint, addPath:String?, completionHnadler: @escaping (JSON, Int) -> Void) {
 
         let headers: HTTPHeaders = [
             "accept": "application/json",
@@ -128,13 +128,17 @@ class APIManger {
         AF.request(url, method: .delete, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
+                print(value)
+                let statusCode = response.response?.statusCode ?? 0
+                print(statusCode)
                 let json = JSON(value)
-                completion(.success(json))
-                print("delete 요청 성공")
+                completionHnadler(json, statusCode)
+                print("post 요청 성공")
 
             case .failure(let error):
-                completion(.failure(error))
-                print("delete 요청 실패")
+                print(error)
+                let json = JSON(error)
+                print("post 요청 실패", json)
             }
         }
     }

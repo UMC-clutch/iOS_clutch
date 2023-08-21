@@ -67,7 +67,7 @@ class CalculateHistoryCell: UITableViewCell {
         let label = UILabel()
         label.text = "" // CalculateHistoryViewController에서 처리
         label.textColor = UIColor.Clutch.textBlack
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         label.font = UIFont.Clutch.baseMedium
         label.textAlignment = .right
         
@@ -86,11 +86,18 @@ class CalculateHistoryCell: UITableViewCell {
         return label
     }()
     
+    // 하단 구분선
+    lazy var seperateBottomLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .Clutch.bgGrey
+        
+        return view
+    }()
+    
     //MARK: - Define Method
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .white
-        
         SetView()
         Constraint()
     }
@@ -105,25 +112,27 @@ class CalculateHistoryCell: UITableViewCell {
     }
     
     func SetView() {
-        [dateLabel, nextpageButton, stateLabel, seperateLine, addressLabel, addressInfoLabel, postInfoLabel].forEach { view in
+        [dateLabel, nextpageButton, stateLabel, seperateLine, addressLabel, addressInfoLabel, seperateBottomLine].forEach { view in
             self.addSubview(view)
         }
     }
 
     func Constraint() {
+        let spacing:CGFloat = 16
+        
         dateLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
+            make.top.equalToSuperview().offset(spacing)
+            make.leading.equalToSuperview().offset(spacing)
         }
             
         nextpageButton.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.top.equalToSuperview().offset(spacing)
+            make.trailing.equalToSuperview().offset(-spacing)
         }
         
         stateLabel.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.top).offset(36)
-            make.leading.equalToSuperview()
+            make.leading.equalToSuperview().offset(spacing)
         }
         
         seperateLine.snp.makeConstraints { make in
@@ -134,18 +143,21 @@ class CalculateHistoryCell: UITableViewCell {
         
         addressLabel.snp.makeConstraints { make in
             make.top.equalTo(seperateLine.snp.top).offset(17)
-            make.leading.equalToSuperview()
+            make.leading.equalToSuperview().offset(spacing)
         }
         
         addressInfoLabel.snp.makeConstraints { make in
             make.top.equalTo(seperateLine.snp.top).offset(17)
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-spacing)
         }
         
-        postInfoLabel.snp.makeConstraints { make in
-            make.top.equalTo(addressInfoLabel.snp.top).offset(20)
-            make.trailing.equalToSuperview()
+        seperateBottomLine.snp.makeConstraints { make in
+            make.bottom.width.equalToSuperview()
+            make.height.equalTo(12)
+            make.centerX.equalToSuperview()
+
         }
+        
         
     }
 
