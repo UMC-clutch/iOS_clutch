@@ -9,6 +9,7 @@ import Alamofire
 import SwiftyJSON
 import UIKit
 import AuthenticationServices
+import KakaoSDKUser
 
 class loginViewController: UIViewController {
     //MARK: - UI ProPerties
@@ -25,14 +26,7 @@ class loginViewController: UIViewController {
     
     lazy var kakaoAuthVM : KakaoAuthVM = { KakaoAuthVM() }()
     
-    //애플 로그인 버튼
-    //    lazy var appleButton:UIButton = {
-    //        let button = UIButton()
-    //        button.setImage(UIImage(named: "btn_login_apple"), for: .normal)
-    //        button.addTarget(self, action: #selector(appleButtonTapped), for: .touchUpInside)
-    //
-    //        return button
-    //    }()
+    //애플 로그인 버튼    
     lazy var appleButton:ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
         button.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
@@ -53,7 +47,6 @@ class loginViewController: UIViewController {
         
     }
     
-    
     //뷰 관련 세팅
     func SetView() {
         [appleButton, kakaoButton].forEach { view
@@ -73,50 +66,43 @@ class loginViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-leading)
             make.height.equalTo(kakaoButton.snp.width).multipliedBy(0.15)
         }
+        
         //appleButton 오토레이아웃
         appleButton.snp.makeConstraints { make in
             make.top.equalTo(kakaoButton.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
             make.height.equalTo(appleButton.snp.width).multipliedBy(0.15)
-            
         }
         
     }
 
-    //    //appleButton 클릭 이벤트
-    //    @objc func appleButtonTapped(_ sender: UIButton) {
-    //        print(1)
-    //        let VC = UserInfoViewController()
-    //        navigationController?.pushViewController(VC, animated: true)
-    //
-    //    }
-    
-//    //kakaoButton 클릭 이벤트
-//    @objc func kakaoButtonTapped(_ sender: UIButton) {
-//        Task {
-//            kakaoAuthVM.KakaoLogin()
 
-//    //appleButton 클릭 이벤트
-//    @objc func appleButtonTapped(_ sender: UIButton) {
-//        let VC = UserInfoViewController()
-//        navigationController?.pushViewController(VC, animated: true)
-
-//
-//            DispatchQueue.main.async {
-//                let VC = UserInfoViewController()
-//                self.navigationController?.pushViewController(VC, animated: true)
-//            }
-//        }
-//    }
+// kakao 로그인 처리
     
     //kakaoButton 클릭 이벤트
     @objc func kakaoButtonTapped(_ sender: UIButton) {
         Task { [weak self] in
             if await kakaoAuthVM.KakaoLogin() {
                 DispatchQueue.main.async {
-                    let VC = UserInfoViewController()
-                    self?.navigationController?.pushViewController(VC, animated: true)
+                    UserApi.shared.me() { (user, error) in
+                        if let error = error {
+                            print(error)
+                        }
+                        
+                        let userID = user?.kakaoAccount?.ci
+                        let userName = user?.kakaoAccount?.profile?.nickname
+                        let userEmail = user?.kakaoAccount?.email
+
+                        let VC = UserInfoViewController()
+                        VC.userInfo.id = userID ?? ""
+                        VC.userInfo.name = userName ?? ""
+                        VC.userInfo.email = userEmail ?? ""
+                        
+                        VC.loginPath = "/kakao"
+                        self?.navigationController?.pushViewController(VC, animated: true)
+
+                    }
                 }
             } else {
                 print("Login failed.")
@@ -162,6 +148,7 @@ extension loginViewController: ASAuthorizationControllerDelegate {
             VC.userInfo.id = userIdentifier
             VC.userInfo.name = name
             VC.userInfo.email = email ?? ""
+            VC.loginPath = "/apple"
             navigationController?.pushViewController(VC, animated: true)
         
         case let passwordCredential as ASPasswordCredential:
@@ -173,6 +160,7 @@ extension loginViewController: ASAuthorizationControllerDelegate {
             // 회원가입, 로그인
             let VC = UserInfoViewController()
             VC.userInfo.id = username
+            VC.loginPath = "/apple"
             navigationController?.pushViewController(VC, animated: true)
             
         default:
