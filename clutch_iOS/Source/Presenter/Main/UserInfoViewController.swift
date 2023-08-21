@@ -15,6 +15,7 @@ struct Information: Codable {
 class UserInfoViewController: UIViewController, CustomAlertDelegate {
     //MARK: - Properties
     lazy var completed = false
+    lazy var loginPath = ""
     lazy var userInfo = Information(id: "", name: "", email: "", phonenumber: "")
     
     //MARK: - UI ProPerties
@@ -64,7 +65,7 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
             "phoneNumber": phoneNumInfo.textInputTextField.text ?? userInfo.phonenumber
         ]
         
-        APIManger.shared.callLoginPostRequest(baseEndPoint: .login, addPath: "/apple", parameters: parameter) { JSON in
+        APIManger.shared.callLoginPostRequest(baseEndPoint: .login, addPath: loginPath, parameters: parameter) { JSON in
             // 호출 오류시 처리
             if JSON["check"].boolValue == false {
                 self.showCustomAlert(alertType: .done,

@@ -77,28 +77,7 @@ class loginViewController: UIViewController {
         
     }
 
-    //    //appleButton 클릭 이벤트
-    //    @objc func appleButtonTapped(_ sender: UIButton) {
-    //        print(1)
-    //        let VC = UserInfoViewController()
-    //        navigationController?.pushViewController(VC, animated: true)
-    //
-    //    }
-    
 
-//    //appleButton 클릭 이벤트
-//    @objc func appleButtonTapped(_ sender: UIButton) {
-//        let VC = UserInfoViewController()
-//        navigationController?.pushViewController(VC, animated: true)
-
-//
-//            DispatchQueue.main.async {
-//                let VC = UserInfoViewController()
-//                self.navigationController?.pushViewController(VC, animated: true)
-//            }
-//        }
-//    }
-    
 // kakao 로그인 처리
     
     //kakaoButton 클릭 이벤트
@@ -106,9 +85,24 @@ class loginViewController: UIViewController {
         Task { [weak self] in
             if await kakaoAuthVM.KakaoLogin() {
                 DispatchQueue.main.async {
-                    self?.kakaoAuthVM.kakaoGetUserInfo()
-                    let VC = UserInfoViewController()
-                    self?.navigationController?.pushViewController(VC, animated: true)
+                    UserApi.shared.me() { (user, error) in
+                        if let error = error {
+                            print(error)
+                        }
+                        
+                        let userID = user?.kakaoAccount?.ci
+                        let userName = user?.kakaoAccount?.profile?.nickname
+                        let userEmail = user?.kakaoAccount?.email
+
+                        let VC = UserInfoViewController()
+                        VC.userInfo.id = userID ?? ""
+                        VC.userInfo.name = userName ?? ""
+                        VC.userInfo.email = userEmail ?? ""
+                        
+                        VC.loginPath = "/kakao"
+                        self?.navigationController?.pushViewController(VC, animated: true)
+
+                    }
                 }
             } else {
                 print("Login failed.")
@@ -154,6 +148,7 @@ extension loginViewController: ASAuthorizationControllerDelegate {
             VC.userInfo.id = userIdentifier
             VC.userInfo.name = name
             VC.userInfo.email = email ?? ""
+            VC.loginPath = "/apple"
             navigationController?.pushViewController(VC, animated: true)
         
         case let passwordCredential as ASPasswordCredential:
@@ -165,6 +160,7 @@ extension loginViewController: ASAuthorizationControllerDelegate {
             // 회원가입, 로그인
             let VC = UserInfoViewController()
             VC.userInfo.id = username
+            VC.loginPath = "/apple"
             navigationController?.pushViewController(VC, animated: true)
             
         default:

@@ -105,24 +105,24 @@ class KakaoAuthVM: ObservableObject {
         }
     }
     
-    /// 사용자 정보 가져오기
-    public func kakaoGetUserInfo() {
-        UserApi.shared.me() { (user, error) in
-            if let error = error {
-                print(error)
-            }
-            
-            let userID = user?.kakaoAccount?.ci
-            let userName = user?.kakaoAccount?.profile?.nickname
-            let userEmail = user?.kakaoAccount?.email
-
-            let VC = UserInfoViewController()
-            VC.userInfo.id = userID ?? ""
-            VC.userInfo.name = userName ?? ""
-            VC.userInfo.email = userEmail ?? ""
-        }
-        
-    }
+//    /// 사용자 정보 가져오기
+//    public func kakaoGetUserInfo() {
+//        UserApi.shared.me() { (user, error) in
+//            if let error = error {
+//                print(error)
+//            }
+//
+//            let userID = user?.kakaoAccount?.ci
+//            let userName = user?.kakaoAccount?.profile?.nickname
+//            let userEmail = user?.kakaoAccount?.email
+//
+//            let VC = UserInfoViewController()
+//            VC.userInfo.id = userID ?? ""
+//            VC.userInfo.name = userName ?? ""
+//            VC.userInfo.email = userEmail ?? ""
+//        }
+//
+//    }
     
     
 } // class KakaoAuthVM
