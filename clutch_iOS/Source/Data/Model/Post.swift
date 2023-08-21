@@ -22,14 +22,19 @@ struct PostCalculate: Codable {
 
 }
 
-// MARK: - PostReport
-struct PostReport: Codable {
-    let reportStatus, reportedAt: String
-    let reportId: Int
-    let buildingName, collateralDate, address, dong: String
-    let ho, buildingType: String
-    let has_landlord_intervene, has_applied_dividend: Bool
+// MARK: - BuildingPrice
+struct PostBuildingInfo: Codable {
+    let buildingName, address, dong, ho: String
+    let collateralDate: String
+    let type, area: String
+
+}
+
+// MARK: - BuildingPrice
+struct PostContractInfo: Codable {
+    let buildingId: Int
+    let hasLived, hasLandlordIntervene, hasAppliedDividend: Bool
+    let transportReportDate, confirmationDate: String
     let deposit: Int
-    let has_lived: Bool
-    let transport_report_date, confirmation_date: String
+
 }

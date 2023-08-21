@@ -12,6 +12,7 @@ import YPImagePicker
 class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - Properties
     lazy var completed = false
+    lazy var buildingID: Int = 0
     
     lazy var residentText = ["거주하고 있어요", "거주하고 있지 않아요"]
     lazy var interventionText = ["개입했어요", "개입하지 않았어요"]
@@ -176,6 +177,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         setView()
         constraints()
+        print(buildingID)
     }
     
     //뷰관련 셋
@@ -398,20 +400,11 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
     
     // 버튼 클릭 시 신고 API 호출
     @objc func submitButtonTapped(_ sender: UIButton) {
-        
-        // 호출 후
-        lazy var response = 200
-        if response == 200 {
-            completed = true
-        }
-        
-        if completed {
-            showCustomAlert(alertType: .canCancel,
-                            alertTitle: "신고하기",
-                            alertContext: "정말로 신고하시겠습니까?",
-                            cancelText: "취소",
-                            confirmText: "신고")
-        }
+        showCustomAlert(alertType: .canCancel,
+                        alertTitle: "신고하기",
+                        alertContext: "정말로 신고하시겠습니까?",
+                        cancelText: "취소",
+                        confirmText: "신고")
     }
     
     // 날짜 선택
@@ -623,30 +616,55 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
     }
     
     func confirm() {
-        print("custom action Button Tapped")
-        // 신고하기 API 호출
-        let response = "200"
-        // 정상적으로 호출되면 메시지 출력, 창 닫기
-        if response == "200" {
-            showCustomAlert(alertType: .done,
-                            alertTitle: "신고 완료",
-                            alertContext: "정상적으로 신고되었습니다.",
-                            confirmText: "확인")
-            // 창 닫는 코드
-        }
-        // 오류 발생시 메시지 출력
-        else {
-            showCustomAlert(alertType: .done,
-                            alertTitle: "오류 발생",
-                            alertContext: "다시 시도해주세요.",
-                            confirmText: "확인")
-        }
+        print("confirm")
+//        requestPost()
     }
     
     func done() {
         if completed {
             let VC = ReportDoneViewController()
             navigationController?.pushViewController(VC, animated: true)
+        }
+    }
+
+    //MARK: - Network
+    func requestReportContract() {
+        
+    // 신고하기 API 호출
+        let parameter: [String:String] = [
+            "1" : "1"
+//            "oauthId": userInfo.id,
+//            "name": namelInfo.textInputTextField.text ?? userInfo.name,
+//            "email": emailInfo.textInputTextField.text ?? userInfo.email,
+//            "phoneNumber": phoneNumInfo.textInputTextField.text ?? userInfo.phonenumber
+        ]
+        
+        APIManger.shared.callLoginPostRequest(baseEndPoint: .contract, addPath: "/apple", parameters: parameter) { JSON in
+            // 호출 오류시 처리
+            if JSON["check"].boolValue == false {
+                self.showCustomAlert(alertType: .done,
+                                     alertTitle: "오류 발생",
+                                     alertContext: "다시 시도해주세요.",
+                                     confirmText: "확인")
+                return
+            }
+            
+            let response = "200"
+            
+            if response != "200" {
+                self.showCustomAlert(alertType: .done,
+                                     alertTitle: "오류 발생",
+                                     alertContext: "다시 시도해주세요.",
+                                     confirmText: "확인")
+            }
+            
+            // 응답 처리
+            
+            self.completed = true
+            self.showCustomAlert(alertType: .done,
+                                 alertTitle: "신고 완료",
+                                 alertContext: "정상적으로 신고되었습니다.",
+                                 confirmText: "확인")
         }
     }
 }

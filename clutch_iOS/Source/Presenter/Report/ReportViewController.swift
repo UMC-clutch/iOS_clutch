@@ -169,6 +169,7 @@ class ReportViewController: UIViewController{
     func SmallTextInputViewSet() {
         buildingNum.textInputLabel.isHidden = true
         unitNum.textInputLabel.isHidden = true
+        unitNum.leftLabel.text = "호"
     }
     
     func Constraint() {
@@ -245,10 +246,7 @@ class ReportViewController: UIViewController{
     }
     
     @objc func ButtonTapped(_ sender: UIButton) {
-        let VC = ContractInfoViewController()
-
-        navigationController?.pushViewController(VC, animated: true)
-        
+        requestReportBuilding()
     }
     
     @objc func dateButtonTapped(_ sender: UIButton) {
@@ -259,7 +257,7 @@ class ReportViewController: UIViewController{
 
 //MARK: - extension
 extension ReportViewController: DatePickerDelegate,
-                                UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+                                UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CustomAlertDelegate {
     func didSelectDate(title:String, date: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
@@ -315,6 +313,60 @@ extension ReportViewController: DatePickerDelegate,
             cell.checkImageView.image = UIImage(named: "btn_selected")
         }
         textCheck()
+    }
+    
+    // 오류발생 시 팝업 위한 커스텀 알림
+    func cancel() { return }
+    func confirm() { return }
+    func done() { return }
+
+    //MARK: - Network
+    func requestReportBuilding() {
+        
+    // 신고하기 API 호출
+        let parameter: [String:String] = [
+              "buildingName": buildingNameLabel.textInputTextField.text ?? "",
+              "address": addressLabel.textInputTextField.text ?? "" ,
+              "dong": buildingNum.textInputTextField.text ?? "",
+              "ho": unitNum.textInputTextField.text ?? "",
+              "collateralDate": dateForDB(inDateStr: mortgageDateLabel.textInputTextField.text ?? ""),
+              "type": "APARTMENT",
+//              "area": sqftInput.textInputTextField.text ?? ""
+        ]
+        print(parameter)
+        APIManger.shared.callPostRequest(baseEndPoint: .report, addPath: "/building", parameters: parameter) { JSON in
+            // 호출 오류시 처리
+            if JSON["check"].boolValue == false {
+                self.showCustomAlert(alertType: .done,
+                                     alertTitle: "오류 발생",
+                                     alertContext: "다시 시도해주세요.",
+                                     confirmText: "확인")
+                return
+            }
+            
+            // 정상적으로 호출 시 알림 없이 다음 화면으로 전환
+            let buildingID = JSON["information"]["buildingID"].intValue
+            let buildingName = JSON["information"]["buildingName"].stringValue
+            let address = JSON["information"]["address"].stringValue
+            let dong = JSON["information"]["dong"].stringValue
+            let ho = JSON["information"]["ho"].stringValue
+            let collateralDate = JSON["information"]["collateralDate"].stringValue
+            let type = JSON["information"]["type"].stringValue
+            
+            print(buildingID)
+            print(buildingName)
+            print(address)
+            print(dong)
+            print(ho)
+            print(collateralDate)
+            print(type)
+            
+            
+            // 다음 호출 uri에 필요한 빌딩ID 전달
+            let VC = ContractInfoViewController()
+            VC.buildingID = buildingID
+            self.navigationController?.pushViewController(VC, animated: true)
+        }
     }
 }
 
