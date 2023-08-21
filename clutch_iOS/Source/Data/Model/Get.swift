@@ -20,3 +20,15 @@ struct GetUser: Codable {
     let id: Int
     let name, email: String
 }
+
+// MARK: - GetReportInfo
+struct GetReport: Codable {
+    let reportStatus, reportedAt: String
+    let reportId: Int
+    let buildingName, collateralDate, address, dong: String
+    let ho, buildingType: String
+    let has_landlord_intervene, has_applied_dividend: Bool
+    let deposit: Int
+    let has_lived: Bool
+    let transport_report_date, confirmation_date: String
+}
