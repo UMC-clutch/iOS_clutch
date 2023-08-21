@@ -19,7 +19,7 @@ class KakaoAuthVM: ObservableObject {
     init() {
         print("KakaoAuthVM - init() called")
     }
-
+    
     // 카카오톡 앱으로 로그인 인증
     func kakaoLoginWithApp() async -> Bool {
         
@@ -64,7 +64,7 @@ class KakaoAuthVM: ObservableObject {
     @MainActor
     func KakaoLogin() async -> Bool {
         print("KakaoAuthVM - handleKakaoLogin() called")
-
+        
         return await withCheckedContinuation { continuation in
             Task {
                 let loginSuccess: Bool
@@ -80,7 +80,7 @@ class KakaoAuthVM: ObservableObject {
             }
         }
     } // KakaoLogin()
-
+    
     @MainActor
     func kakaoLogout() {
         Task {
@@ -89,7 +89,7 @@ class KakaoAuthVM: ObservableObject {
             }
         }
     }
-
+    
     func handleKakaoLogOut() async -> Bool {
         await withCheckedContinuation { continuation in
             UserApi.shared.logout {(error) in
@@ -104,5 +104,25 @@ class KakaoAuthVM: ObservableObject {
             }
         }
     }
-
+    
+//    /// 사용자 정보 가져오기
+//    public func kakaoGetUserInfo() {
+//        UserApi.shared.me() { (user, error) in
+//            if let error = error {
+//                print(error)
+//            }
+//
+//            let userID = user?.kakaoAccount?.ci
+//            let userName = user?.kakaoAccount?.profile?.nickname
+//            let userEmail = user?.kakaoAccount?.email
+//
+//            let VC = UserInfoViewController()
+//            VC.userInfo.id = userID ?? ""
+//            VC.userInfo.name = userName ?? ""
+//            VC.userInfo.email = userEmail ?? ""
+//        }
+//
+//    }
+    
+    
 } // class KakaoAuthVM

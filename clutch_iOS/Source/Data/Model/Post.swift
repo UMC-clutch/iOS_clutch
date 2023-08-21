@@ -11,7 +11,7 @@ import Foundation
 struct PostBuildingPrice: Codable {
     let buildingId, price: Int
     let buildingName, address, dong, ho: String
-    let logicType, type, area: String
+    let type, area: String
 
 }
 

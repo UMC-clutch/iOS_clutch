@@ -50,12 +50,16 @@ class ResultViewController: UIViewController {
     
     // UIImageView 선언(위험/안전 gif) -> 조건문에 따른 이미지 처리
     lazy var completeGifImage:UIImageView = {
+        
+        guard let buildingprice = buildingPrice else { return UIImageView()}
+        guard let postcalculate = postCalculate else { return UIImageView()}
+        
+        let result = buildingprice.price - postcalculate.collateral - postcalculate.deposit
+        
         do {
             lazy var gif = UIImage()
             
-            let isDanger = postCalculate!.isDangerous
-            
-            if isDanger == true {
+            if result < 0 {
                 //위험
                 try gif.setGif("img_clutch_danger.gif")
             }
@@ -77,8 +81,13 @@ class ResultViewController: UIViewController {
     
     // UILabel 선언("위험 단계") -> 계산 결과에 따라 조건문으로 처리
     lazy var statusLabel: UILabel = {
+        guard let buildingprice = buildingPrice else { return UILabel()}
+        guard let postcalculate = postCalculate else { return UILabel()}
+        
+        let result = buildingprice.price - postcalculate.collateral - postcalculate.deposit
+        
         let label = UILabel()
-        if danger {
+        if result < 0 {
             //위험
             label.text = "위험 단계"
         }
@@ -96,8 +105,13 @@ class ResultViewController: UIViewController {
     
     // UILabel 선언("전세사기 위험성이 높다고 판단되었어요")
     lazy var textLabel: UILabel = {
+        guard let buildingprice = buildingPrice else { return UILabel()}
+        guard let postcalculate = postCalculate else { return UILabel()}
+        
+        let result = buildingprice.price - postcalculate.collateral - postcalculate.deposit
+        
         let label = UILabel()
-        if danger {
+        if result < 0 {
             //위험
             label.text = "전세사기 위험성이 높다고 판단되었어요"
         }
@@ -136,7 +150,7 @@ class ResultViewController: UIViewController {
     // UILabel 선언(주소)
     lazy var addressOutputLabel: UILabel = {
         let label = UILabel()
-        label.text = buildingPrice!.address
+        label.text = buildingPrice?.address ?? ""
         label.font = UIFont.Clutch.subheadMedium
         label.textColor = UIColor.Clutch.textDarkerGrey
         label.textAlignment = .right
@@ -210,12 +224,11 @@ class ResultViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .Clutch.mainWhite
         self.checkButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        
         SetView()
         OutputViewSet()
         navigationBarSet()
-        
         Constraint()
+    
     }
 
     func SetView() {
@@ -243,21 +256,27 @@ class ResultViewController: UIViewController {
     }
     
     func OutputViewSet() {
+        
+        guard let buildingprice = buildingPrice else { return}
+        guard let postcalculate = postCalculate else { return}
+        
         marketPriceOutput.categoryLabel.text = "시세"
-        marketPriceOutput.outputLabel.text = "\(buildingPrice!.price) 원"
+        marketPriceOutput.outputLabel.text = "\(buildingprice.price) 원"
         
         morgagePriceOutput.categoryLabel.text = "근저당액"
-        morgagePriceOutput.outputLabel.text = "\(postCalculate!.collateral) 원"
+        morgagePriceOutput.outputLabel.text = "\(postcalculate.collateral) 원"
         
         leasePriceOutput.categoryLabel.text = "전세금"
-        leasePriceOutput.outputLabel.text = "\(postCalculate!.deposit) 원"
+        leasePriceOutput.outputLabel.text = "\(postcalculate.deposit) 원"
         
         depositPriceOutput.categoryLabel.text = "보증금 액수"
         depositPriceOutput.outputLabel.text = "\(decimalPoint(depositPrice)) 원"
         
         totalOutput.categoryLabel.text = "계산 결과"
         
-        let result = buildingPrice!.price - (postCalculate!.collateral + postCalculate!.deposit )
+        let result = buildingprice.price - postcalculate.collateral - postcalculate.deposit
+        
+        print(result)
         totalOutput.outputLabel.text = "\(result) 원"
     }
     
@@ -306,7 +325,7 @@ class ResultViewController: UIViewController {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(view.frame.height * 1.2)
+            make.height.equalTo(view.frame.height * 1.1)
         }
         
         checkButton.snp.makeConstraints { make in
@@ -375,11 +394,6 @@ class ResultViewController: UIViewController {
             make.top.equalTo(morgagePriceOutput.snp.top).offset(55)
             make.centerX.equalToSuperview()
         }
-        
-//        depositPriceOutput.snp.makeConstraints { make in
-//            make.top.equalTo(leasePriceOutput.snp.top).offset(55)
-//            make.centerX.equalToSuperview()
-//        }
         
         secondUnderLine.snp.makeConstraints { make in
             make.top.equalTo(leasePriceOutput.snp.top).offset(55)

@@ -88,10 +88,10 @@ class SecondCalculateViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .Clutch.mainWhite
         self.checkButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        
         SetView()
         navigationBarSet()
         setData()
+        marketPrice.textIsEmpty()
         Constraint()
         textChange()
     }
@@ -115,26 +115,27 @@ class SecondCalculateViewController: UIViewController {
         
         APIManger.shared.callPostRequest(baseEndPoint: .calculate, addPath: "", parameters: parameters) { JSON in
             
-            let json = JSON["infomation"].arrayValue
-            print(json)
-            
-            let id = JSON["infomation"]["id"].intValue
-            let buildingId = JSON["infomation"]["buildingId"].intValue
-            let collateral = JSON["infomation"]["collateral"].intValue
-            let deposit = JSON["infomation"]["deposit"].intValue
-            let isDangerous = JSON["infomation"]["isDangerous"].boolValue
+            if JSON["check"].boolValue == false {
+                self.showCustomAlert(alertType: .done,
+                                alertTitle: "오류 발생",
+                                alertContext: "다시 시도해주세요.",
+                                confirmText: "확인")
+                return
+            }
+                        
+            let id = JSON["information"]["id"].intValue
+            let buildingId = JSON["information"]["buildingId"].intValue
+            let collateral = JSON["information"]["collateral"].intValue
+            let deposit = JSON["information"]["deposit"].intValue
+            let isDangerous = JSON["information"]["isDangerous"].boolValue
             
             self.postCalculate = PostCalculate(id: id, buildingId: buildingId, collateral: collateral, deposit: deposit, isDangerous: isDangerous)
-            
             self.showCustomAlert(alertType: .done,
                                  alertTitle: "근저당액, 전세금 입력완료",
                                  alertContext: "정상적으로 제출되었습니다.",
                                  confirmText: "확인")
         }
     }
-    
-    
-    
     
     func SetView() {
         self.view.backgroundColor = .white
@@ -274,4 +275,5 @@ extension SecondCalculateViewController: CustomAlertDelegate {
         navigationController?.pushViewController(VC, animated: true)
     }
 }
+
 

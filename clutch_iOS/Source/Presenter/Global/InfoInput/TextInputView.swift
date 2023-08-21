@@ -51,6 +51,16 @@ class TextInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func textIsEmpty() {
+        
+        guard let text = textInputTextField.text else {return}
+        guard let placeholder = textInputTextField.placeholder else {return}
+        
+        if text.isEmpty == false  {
+            underLine.backgroundColor = .Clutch.mainGreen
+            textInputLabel.textColor = .Clutch.mainGreen
+        }
+    }
     //MARK: - Set Ui
     func SetView() {
         self.backgroundColor = .white

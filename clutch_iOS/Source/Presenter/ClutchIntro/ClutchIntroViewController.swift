@@ -182,7 +182,7 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     //스크롤 기능을 탑재한 버튼
     lazy var nextButton:UIButton = {
         let button = UIButton()
-        button.setTitle("다음", for: .normal)
+        button.setTitle("상단으로", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = .Clutch.subheadMedium
         button.addTarget(self, action: #selector(ButtonTapped), for: .touchUpInside)
@@ -238,10 +238,10 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
             image:UIImage(named: "btn_arrow_big"),
             style: .plain, target: self,
             action: #selector(backButtonTapped))
-        backButton.tintColor = .black
+        backButton.tintColor = .Clutch.textDarkGrey
         navigationItem.leftBarButtonItem = backButton
         navigationBar.setItems([navigationItem], animated: false)
-//        navigationBar.barTintColor = .Clutch.mainWhite // 배경색 변경
+//        navigationBar.backgroundColor = .Clutch.mainWhite
         navigationBar.setBackgroundImage(UIImage(), for: .default) // 배경 색 투명하게
         navigationBar.shadowImage = UIImage() // 테두리 없애기
     }
@@ -352,19 +352,9 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     
     // 버튼 클릭 시 스크롤되도록 하는 메서드
     @objc func ButtonTapped(_ sender: UIButton) {
-        let offsetY = scrollview.contentSize.height / 10
-        let contentOffset = CGPoint(x: 0, y: scrollview.contentOffset.y + offsetY)
         
-        // Check if the content offset reaches the bottom of the scroll view
-        if contentOffset.y >= scrollview.contentSize.height - scrollview.bounds.height {
-            // Scroll to the top
-            let topOffset = CGPoint(x: 0, y: 0)
-            scrollview.setContentOffset(topOffset, animated: true)
-        } else {
-            // Scroll by 1/5 of the height
-            scrollview.setContentOffset(contentOffset, animated: true)
-        }
-
+        let topOffset = CGPoint(x: 0, y: 0)
+        scrollview.setContentOffset(topOffset, animated: true)
     }
     
 }

@@ -80,6 +80,7 @@
 		BECEC6B72A6050F700A177A0 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEC6B62A6050F700A177A0 /* loginView.swift */; };
 		BED2C66D2A90A172002B5B86 /* Get.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED2C66C2A90A172002B5B86 /* Get.swift */; };
 		BED2C66F2A90A17E002B5B86 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED2C66E2A90A17E002B5B86 /* Post.swift */; };
+		BED2C6712A91126C002B5B86 /* SingleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED2C6702A91126C002B5B86 /* SingleItem.swift */; };
 		BED645C32A4D6845005106D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C22A4D6845005106D8 /* AppDelegate.swift */; };
 		BED645C52A4D6845005106D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C42A4D6845005106D8 /* SceneDelegate.swift */; };
 		BED645C72A4D6845005106D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED645C62A4D6845005106D8 /* MainViewController.swift */; };
@@ -173,6 +174,7 @@
 		BECEC6B62A6050F700A177A0 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		BED2C66C2A90A172002B5B86 /* Get.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get.swift; sourceTree = "<group>"; };
 		BED2C66E2A90A17E002B5B86 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		BED2C6702A91126C002B5B86 /* SingleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleItem.swift; sourceTree = "<group>"; };
 		BED645BF2A4D6845005106D8 /* clutch_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clutch_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED645C22A4D6845005106D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED645C42A4D6845005106D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				BE90A4D92A88B8E30052FBC1 /* Ext + URL.swift */,
 				BE90A4D72A88B5A70052FBC1 /* BaseEndpoint.swift */,
 				BE90A4DB2A88BA9A0052FBC1 /* APIManger.swift */,
+				BED2C6702A91126C002B5B86 /* SingleItem.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				BE53C58F2A765D92000EF2C5 /* TextSampleView.swift in Sources */,
 				2C16A6BA2A5F9F08003D7013 /* WithdrawViewController.swift in Sources */,
 				BECEC6AA2A5EF52B00A177A0 /* Banner1View.swift in Sources */,
+				BED2C6712A91126C002B5B86 /* SingleItem.swift in Sources */,
 				BE90A4D82A88B5A70052FBC1 /* BaseEndpoint.swift in Sources */,
 				BE9FF7982A6E9BD00000DA88 /* SmallTextInputView.swift in Sources */,
 				BED645FA2A4D69D7005106D8 /* MyCustomCell3.swift in Sources */,

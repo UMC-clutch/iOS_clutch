@@ -11,6 +11,7 @@ import UIKit
 class WithdrawViewController: UIViewController {
     //MARK: - Properties
     lazy var completed = false
+    var username = ""
     
     // MARK: - UI ProPerties
     lazy var navigationBar = UINavigationBar()
@@ -37,9 +38,9 @@ class WithdrawViewController: UIViewController {
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
         //실제 text 사용자 이름으로 받아오기 필요
-        label.text = "User Name"
+        label.text = "  " + singleItem.shared.username + "님"
         label.font = .Clutch.baseMedium
-        label.textColor = .Clutch.textDarkGrey
+        label.textColor = .Clutch.textBlack
 
         return label
     }()
@@ -111,6 +112,7 @@ class WithdrawViewController: UIViewController {
             self.view.addSubview(view)
         }
         setNavigationBar()
+        
     }
     
     func setNavigationBar() {
@@ -230,25 +232,29 @@ extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
     func confirm() {
         print("custom action Button Tapped")
         // 탈퇴하기 API 호출
-        let response = "200"
-        if response == "200" {
-            completed = true
+        APIManger.shared.callDeleteRequest(baseEndPoint: .user, addPath: "") { JSON, statusCode in
+            let statusCode = "200"
+            if statusCode == "200" {
+                self.completed = true
+            }
+            
+            // 정상적으로 호출되면 메시지 출력, 창 닫기
+            if self.completed {
+                self.showCustomAlert(alertType: .done,
+                                alertTitle: "탈퇴 완료",
+                                alertContext: "정상적으로 탈퇴되었습니다.",
+                                confirmText: "확인")
+            }
+            // 오류 발생시 메시지 출력
+            else {
+                self.showCustomAlert(alertType: .done,
+                                alertTitle: "오류 발생",
+                                alertContext: "다시 시도해주세요.",
+                                confirmText: "확인")
+            }
         }
         
-        // 정상적으로 호출되면 메시지 출력, 창 닫기
-        if completed {
-            showCustomAlert(alertType: .done,
-                            alertTitle: "탈퇴 완료",
-                            alertContext: "정상적으로 탈퇴되었습니다.",
-                            confirmText: "확인")
-        }
-        // 오류 발생시 메시지 출력
-        else {
-            showCustomAlert(alertType: .done,
-                            alertTitle: "오류 발생",
-                            alertContext: "다시 시도해주세요.",
-                            confirmText: "확인")
-        }
+        
     }
     
     func done() {
