@@ -665,18 +665,22 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
             "confirmationDate": dateForDB(inDateStr: confirmationDateLabel.textInputTextField.text ?? ""),
             "hasLandlordIntervene": hasIntervene,
             "hasAppliedDividend": hasDividend,
-            "deposit": Int(depositLabel.textInputTextField.text ?? "0") ?? 0
+            "deposit": Int64(depositLabel.textInputTextField.text ?? "0") ?? 0
         ]
         print(parameter)
         
         // JSON 데이터를 Data로 변환
         if let jsonData = try? JSONSerialization.data(withJSONObject: parameter, options: []) {
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                            print("JSON Data: \(jsonString)")
+                        }
             formData.append(jsonData, withName: "requestDto", mimeType: "application/json")
         }
         
         for image in images {
             let imageData = image.jpegData(compressionQuality: 0.8)!
 //            let imageData = image.pngData()
+            print("Image Data: \(imageData)")
             formData.append(imageData, withName: "files", fileName: "image\(images.firstIndex(of: image)!+1).jpg", mimeType: "image/jpeg")
         }
         
