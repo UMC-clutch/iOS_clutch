@@ -112,6 +112,39 @@ class APIManger {
         }
 
     }
+    
+    //MultipartForm Post요청
+    func callFormRequest(baseEndPoint:BaseEndpoint, addPath:String?, formData: MultipartFormData, completionHnadler: @escaping(JSON) -> ()) {
+
+        let headers: HTTPHeaders = [
+            "accept": "application/json",
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "multipart/form-data"
+        ]
+
+        guard let addPath = addPath else { return }
+        let url = baseEndPoint.requestURL + addPath
+        print(url)
+
+        AF.upload(multipartFormData: formData, to: url, method: .post, headers: headers).validate().responseJSON { response in
+            switch response.result {
+
+            case .success(let value):
+                print(value)
+                let json = JSON(value)
+                completionHnadler(json)
+                print("MultipartForm post 요청 성공")
+
+            case .failure(let error):
+                print(error)
+                let json = JSON(error)
+                completionHnadler(json)
+                print("MultipartForm post 요청 실패")
+            }
+
+        }
+
+    }
 
 
     //Delete요청

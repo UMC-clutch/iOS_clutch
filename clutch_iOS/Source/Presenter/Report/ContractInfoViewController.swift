@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import YPImagePicker
+import Alamofire
 
 class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - Properties
@@ -664,10 +665,24 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
             "hasAppliedDividend": hasDividend,
             "deposit": Int(depositLabel.textInputTextField.text ?? "0") ?? 0
         ]
-        print(parameter)
-        APIManger.shared.callPostRequest(baseEndPoint: .contract, addPath: "/\(buildingID)", parameters: parameter) { JSON in
+        
+        
+        let formData = MultipartFormData()
+        // JSON 데이터를 Data로 변환
+        if let jsonData = try? JSONSerialization.data(withJSONObject: parameter, options: []) {
+            formData.append(jsonData, withName: "requestDto", mimeType: "application/json")
+        }
+        
+        for image in images {
+            let imageData = image.jpegData(compressionQuality: 0.8)!
+//                let imageData = image.pngData()
+            formData.append(imageData, withName: "files", fileName: "image\(images.firstIndex(of: image)!+1).jpg", mimeType: "image/jpeg")
+        }
+        
+        APIManger.shared.callFormRequest(baseEndPoint: .contract, addPath: "/\(buildingID)", formData: formData) { JSON in
             // 호출 오류시 처리
             if JSON["check"].boolValue == false {
+                print(JSON["information"]["message"].stringValue)
                 self.showCustomAlert(alertType: .done,
                                      alertTitle: "오류 발생",
                                      alertContext: "다시 시도해주세요.",
