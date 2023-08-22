@@ -656,7 +656,9 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
     //MARK: - Network
     func requestReportContract() {
         
-    // 신고하기 API 호출
+        // 신고하기 API 호출
+        let formData = MultipartFormData()
+        
         let parameter: [String:Any] = [
             "hasLived": hasLived,
             "transportReportDate": dateForDB(inDateStr: transportReportDateLabel.textInputTextField.text ?? ""),
@@ -665,9 +667,8 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
             "hasAppliedDividend": hasDividend,
             "deposit": Int(depositLabel.textInputTextField.text ?? "0") ?? 0
         ]
+        print(parameter)
         
-        
-        let formData = MultipartFormData()
         // JSON 데이터를 Data로 변환
         if let jsonData = try? JSONSerialization.data(withJSONObject: parameter, options: []) {
             formData.append(jsonData, withName: "requestDto", mimeType: "application/json")
@@ -675,7 +676,7 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
         
         for image in images {
             let imageData = image.jpegData(compressionQuality: 0.8)!
-//                let imageData = image.pngData()
+//            let imageData = image.pngData()
             formData.append(imageData, withName: "files", fileName: "image\(images.firstIndex(of: image)!+1).jpg", mimeType: "image/jpeg")
         }
         
@@ -683,6 +684,8 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
             // 호출 오류시 처리
             if JSON["check"].boolValue == false {
                 print(JSON["information"]["message"].stringValue)
+                print(JSON["error"].stringValue)
+                print(JSON["path"].stringValue)
                 self.showCustomAlert(alertType: .done,
                                      alertTitle: "오류 발생",
                                      alertContext: "다시 시도해주세요.",

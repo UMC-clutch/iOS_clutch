@@ -166,12 +166,12 @@ class APIManger {
                 print(statusCode)
                 let json = JSON(value)
                 completionHnadler(json, statusCode)
-                print("post 요청 성공")
+                print("delete 요청 성공")
 
             case .failure(let error):
                 print(error)
                 let json = JSON(error)
-                print("post 요청 실패", json)
+                print("delete 요청 실패", json)
             }
         }
     }

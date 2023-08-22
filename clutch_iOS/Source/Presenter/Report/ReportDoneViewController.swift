@@ -8,8 +8,12 @@
 import UIKit
 
 class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
-    //MARK: - UI propereties
+    //MARK: - Properties
     lazy var canceled = false
+    var reportInfo: GetReport?
+    lazy var fromVC = ""
+    
+    //MARK: - UI propereties
     
     //스크롤을 위한 스크롤 뷰
     lazy var scrollview:UIScrollView = {
@@ -49,9 +53,8 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
         button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 11
         button.backgroundColor = .Clutch.mainWhite
-        // Highlighted 상태일 때 배경색
-        let iamge = image(withColor: .Clutch.mainGreen!)
-        button.setBackgroundImage(iamge, for: .highlighted)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.Clutch.mainDarkGreen?.cgColor
         
         return button
     }()
@@ -74,7 +77,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
     
     //addsubview
     func addsubview() {
-        [scrollview, doneButton, cancelButton].forEach { view in
+        [scrollview].forEach { view in
             self.view.addSubview(view)
         }
         
@@ -82,7 +85,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
             scrollview.addSubview(view)
         }
         
-        [reportDoneView].forEach { view in
+        [reportDoneView, doneButton, cancelButton].forEach { view in
             contentView.addSubview(view)
         }
     }
@@ -103,21 +106,21 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(view.frame.height * 1.3)
+            make.height.equalTo(view.frame.height * 1.4)
         }
         
         cancelButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(spacing)
             make.width.equalTo((self.view.frame.width - spacing * 3)/2)
             make.height.equalTo(50)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-20)
         }
         //버튼 오토레이아웃
         doneButton.snp.makeConstraints { make in
             make.leading.equalTo(cancelButton.snp.trailing).offset(spacing)
             make.width.equalTo((self.view.frame.width - spacing * 3)/2)
             make.height.equalTo(50)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-20)
         }
         
         
@@ -126,13 +129,21 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    // 버튼 클릭 시 스크롤되도록 하는 메서드
+    // 완료버튼 화면전환 동작
     @objc func doneButtonTapped(_ sender: UIButton) {
-        if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
-                    navigationController?.popToViewController(VC, animated: true)
+        // 신고화면에서 불러졌으면 메인으로
+        if fromVC == "report" {
+            if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
+                        navigationController?.popToViewController(VC, animated: true)
+            }
+        }
+        // 마이페이지에서 불러졌으면 뒤로
+        else {
+            navigationController?.popViewController(animated: true)
         }
     }
     
+    // 신고취소 버튼 동작
     @objc func cancelButtonTapped(_ sender: UIButton) {
         showCustomAlert(alertType: .canCancel,
                         alertTitle: "신고 취소",
@@ -152,22 +163,22 @@ extension ReportDoneViewController: CustomAlertDelegate {
     func confirm() {
         print("custom action Button Tapped")
         // 탈퇴하기 API 호출
-        let response = 200
-        if response == 200 {
-            canceled = true
-        }
-        // 정상적으로 호출되면 메시지 출력
-        if canceled {
-            showCustomAlert(alertType: .done,
+        
+        APIManger.shared.callDeleteRequest(baseEndPoint: .report, addPath: "/delete") { JSON, status in
+            // 호출 오류시 처리
+            if status != 200 {
+                self.showCustomAlert(alertType: .done,
+                                     alertTitle: "오류 발생",
+                                     alertContext: "다시 시도해주세요.",
+                                     confirmText: "확인")
+                return
+            }
+            
+            // 정상 호출 완료
+            self.canceled = true
+            self.showCustomAlert(alertType: .done,
                             alertTitle: "취소 완료",
                             alertContext: "신고 내역이 정상적으로 삭제되었습니다",
-                            confirmText: "확인")
-        }
-        // 오류 발생시 메시지 출력
-        else {
-            showCustomAlert(alertType: .done,
-                            alertTitle: "오류 발생",
-                            alertContext: "다시 시도해주세요.",
                             confirmText: "확인")
         }
     }
@@ -176,6 +187,86 @@ extension ReportDoneViewController: CustomAlertDelegate {
         if canceled {
             if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
                         navigationController?.popToViewController(VC, animated: true)
+            }
+        }
+    }
+    
+    //MARK: - Network
+    func requestGet() {
+        APIManger.shared.callGetRequest(baseEndPoint: .report, addPath: "/comp") { JSON in
+            // 호출 오류시 처리
+            if JSON["check"].boolValue == false {
+                self.showCustomAlert(alertType: .done,
+                                     alertTitle: "오류 발생",
+                                     alertContext: "다시 시도해주세요.",
+                                     confirmText: "확인")
+                return
+            }
+            
+            let reportStatus = JSON["information"]["reportStatus"].stringValue
+            let reportedAt = JSON["information"]["reportedAt"].stringValue
+            let reportId = JSON["information"]["reportId"].intValue
+            let buildingName = JSON["information"]["buildingName"].stringValue
+            let collateralDate = JSON["information"]["collateralDate"].stringValue
+            let address = JSON["information"]["address"].stringValue
+            let dong = JSON["information"]["dong"].stringValue
+            let ho = JSON["information"]["ho"].stringValue
+            let buildingType = JSON["information"]["buildingType"].stringValue
+            let hasLandlordIntervene = JSON["information"]["hasLandlordIntervene"].boolValue
+            let hasAppliedDividend = JSON["information"]["hasAppliedDividend"].boolValue
+            let deposit = JSON["information"]["deposit"].intValue
+            let hasLived = JSON["information"]["hasLived"].boolValue
+            let transportReportDate = JSON["information"]["transportReportDate"].stringValue
+            let confirmationDate = JSON["information"]["confirmationDate"].stringValue
+            
+            self.reportInfo = GetReport(reportStatus: reportStatus,
+                                       reportedAt: reportedAt,
+                                       reportId: reportId,
+                                       buildingName: buildingName,
+                                       collateralDate: collateralDate,
+                                       address: address,
+                                       dong: dong,
+                                       ho: ho,
+                                       buildingType: buildingType,
+                                       hasLandlordIntervene: hasLandlordIntervene,
+                                       hasAppliedDividend: hasAppliedDividend,
+                                       deposit: deposit,
+                                       hasLived: hasLived,
+                                       transportReportDate: transportReportDate,
+                                       confirmationDate: confirmationDate
+            )
+            
+            
+            DispatchQueue.main.async {
+                self.reportDoneView.reportDate.rightText.text = dateForView(inDateStr: reportedAt)
+                self.reportDoneView.buildingName.rightText.text = buildingName
+                self.reportDoneView.mortgageSettingDate.rightText.text = dateForView(inDateStr: collateralDate)
+                self.reportDoneView.address.rightText.text = address + "\n\(dong)동 \(ho)호"
+                self.reportDoneView.address.rightText.textAlignment = .right
+                // 추후 type별 영문 string -> 한글 조건 처리 필요
+                self.reportDoneView.buildingType.rightText.text = "아파트/오피스텔"
+                if hasLived {
+                    self.reportDoneView.isResidentOccupied.rightText.text = "거주 중"
+                }
+                else {
+                    self.reportDoneView.isResidentOccupied.rightText.text = "미거주 중"
+                }
+                self.reportDoneView.moveInReportDate.rightText.text = dateForView(inDateStr: transportReportDate)
+                self.reportDoneView.confirmationDate.rightText.text = dateForView(inDateStr: confirmationDate)
+                if hasLandlordIntervene {
+                    self.reportDoneView.landlordLienInvolved.rightText.text = "개입"
+                }
+                else {
+                    self.reportDoneView.landlordLienInvolved.rightText.text = "미개입"
+                }
+                if hasAppliedDividend {
+                    self.reportDoneView.dividendApplicationStatus.rightText.text = "신청"
+                }
+                else {
+                    self.reportDoneView.dividendApplicationStatus.rightText.text = "미신청"
+                }
+                // 숫자 점찍기 적용 요망
+                self.reportDoneView.confirmationDate.rightText.text = dateForView(inDateStr: confirmationDate)
             }
         }
     }
