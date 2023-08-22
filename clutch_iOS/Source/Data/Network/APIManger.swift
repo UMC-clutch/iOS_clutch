@@ -15,6 +15,13 @@ class APIManger {
     private init() { }
     
     var jwtToken = ""
+    
+    func leta() -> String {
+        
+        return "ddd"
+        
+    }
+
 
     //get요청
     func callGetRequest(baseEndPoint:BaseEndpoint, addPath:String?, completionHnadler: @escaping(JSON) -> ()) {
@@ -115,7 +122,7 @@ class APIManger {
 
 
     //Delete요청
-    func callDeleteRequest(baseEndPoint:BaseEndpoint, addPath:String?, completionHnadler: @escaping (JSON, Int) -> Void) {
+    func callDeleteRequest(baseEndPoint:BaseEndpoint, addPath:String?,parameters: [String: String] ,completionHnadler: @escaping (JSON, Int) -> Void) {
 
         let headers: HTTPHeaders = [
             "accept": "application/json",
@@ -124,8 +131,9 @@ class APIManger {
 
         guard let addPath = addPath else { return }
         let url = baseEndPoint.requestURL + addPath
+        print(url)
 
-        AF.request(url, method: .delete, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { response in
+        AF.request(url, method: .delete, parameters:parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 print(value)

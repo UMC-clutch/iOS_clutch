@@ -231,10 +231,13 @@ extension WithdrawViewController: CustomPopupDelegate, CustomAlertDelegate {
     
     func confirm() {
         print("custom action Button Tapped")
+        
+        let parameters = ["reason":"solved"]
+        
         // 탈퇴하기 API 호출
-        APIManger.shared.callDeleteRequest(baseEndPoint: .user, addPath: "") { JSON, statusCode in
-            let statusCode = "200"
-            if statusCode == "200" {
+        APIManger.shared.callDeleteRequest(baseEndPoint: .user, addPath: "/users", parameters: parameters) { JSON, statusCode in
+//            let statusCode = "200"
+            if statusCode == 200 {
                 self.completed = true
             }
             

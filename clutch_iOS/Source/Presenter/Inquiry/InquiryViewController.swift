@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import MessageUI
 
 class InquiryViewController: UIViewController {
     //MARK: - Properties
@@ -81,6 +82,7 @@ class InquiryViewController: UIViewController {
         setData()
         setView()
         Constraint()
+        request()
     }
     
     func setView() {
@@ -90,9 +92,21 @@ class InquiryViewController: UIViewController {
         navigationBarSet()
     }
     
+    //MARK: - Network
+    func request() {
+        APIManger.shared.callGetRequest(baseEndPoint: .user, addPath: "/users") { JSON in
+            let email = JSON["information"]["email"].stringValue
+            let information = Information(id: "", name: "", email: email, phonenumber: "")
+            
+            DispatchQueue.main.async {
+                self.nameInput.textLabel.text = information.email
+            }
+        }
+    }
+    
     func setData() {
         nameInput.titleLabel.text = "이메일"
-        nameInput.textLabel.text = "email@example.com"
+        nameInput.textLabel.text = ""
         
         categoryInput.titleLabel.text = "문의 유형"
         categoryInput.textLabel.text = "카테고리를 선택해주세요"
@@ -197,6 +211,12 @@ class InquiryViewController: UIViewController {
 }
 
 //MARK: - extension
+extension InquiryViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+}
+
 extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITextViewDelegate {
     // MARK: - Define Method
     @objc func selectTypeButtonTapped() {
@@ -213,7 +233,7 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITex
         if selected == "" { return }
         
         selectTypeButton.setTitle(selected, for: .normal)
-    
+        
     }
     
     @objc func inquirywButtonTapped(_ sender: UIButton) {
@@ -222,6 +242,21 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITex
                         alertContext: "위 내용으로 문의하시겠습니까?",
                         cancelText: "취소",
                         confirmText: "문의하기")
+        
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+            mailComposer.setToRecipients(["jhh980622@naver.com"])
+            mailComposer.setSubject("클러치 문의")
+            
+            if let inquiryText = textView.text {
+                mailComposer.setMessageBody(inquiryText, isHTML: false)
+            }
+            
+            present(mailComposer, animated: true, completion: nil)
+        } else {
+            print("메일 전송에 실패했습니다")
+        }
     }
     
     func cancel() {
@@ -272,17 +307,17 @@ extension InquiryViewController: CustomPopupDelegate, CustomAlertDelegate, UITex
             self.textView.textColor = UIColor.Clutch.textDarkGrey
             self.textView.text = placeholder
         }
-    
+        
         //textview에 내용입력, selectTypeButton을 통해 문의 사유를 선택했을 시 버튼 활성 화
         if textView.text.isEmpty || textView.text == placeholder || selectTypeButton.title(for: .normal) == "문의 유형을 선택해주세요" {
-                inquiryButton.backgroundColor = .Clutch.bgGrey
-                inquiryButton.setTitleColor(.Clutch.mainWhite, for: .normal)
-                inquiryButton.isEnabled = false
-             } else {
-
-                 inquiryButton.backgroundColor = .Clutch.mainDarkGreen
-                 inquiryButton.setTitleColor(.Clutch.mainWhite, for: .normal)
-                 inquiryButton.isEnabled = true
-             }
+            inquiryButton.backgroundColor = .Clutch.bgGrey
+            inquiryButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+            inquiryButton.isEnabled = false
+        } else {
+            
+            inquiryButton.backgroundColor = .Clutch.mainDarkGreen
+            inquiryButton.setTitleColor(.Clutch.mainWhite, for: .normal)
+            inquiryButton.isEnabled = true
+        }
     }
 }
