@@ -21,20 +21,3 @@ struct PostCalculate: Codable {
     let isDangerous: Bool
 
 }
-
-// MARK: - BuildingPrice
-struct PostBuildingInfo: Codable {
-    let buildingName, address, dong, ho: String
-    let collateralDate: String
-    let type, area: String
-
-}
-
-// MARK: - BuildingPrice
-struct PostContractInfo: Codable {
-    let buildingId: Int
-    let hasLived, hasLandlordIntervene, hasAppliedDividend: Bool
-    let transportReportDate, confirmationDate: String
-    let deposit: Int
-
-}
