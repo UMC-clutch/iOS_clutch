@@ -12,11 +12,15 @@ import YPImagePicker
 class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - Properties
     lazy var completed = false
-    lazy var buildingID: Int = 0
+    lazy var buildingID: Int = -1
     
-    lazy var residentText = ["거주하고 있어요", "거주하고 있지 않아요"]
-    lazy var interventionText = ["개입했어요", "개입하지 않았어요"]
-    lazy var dividenText = ["신청했어요", "신청하지 않았어요"]
+    lazy var livedText = ["거주하고 있어요", "거주하고 있지 않아요"]
+    lazy var hasLived = false
+    lazy var interveneText = ["개입했어요", "개입하지 않았어요"]
+    lazy var hasIntervene = false
+    lazy var dividendText = ["신청했어요", "신청하지 않았어요"]
+    lazy var hasDividend = false
+
     lazy var images: [UIImage] = []
     
     //MARK: - UI ProPerties
@@ -46,7 +50,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
-    lazy var residentLabel:UILabel = {
+    lazy var livedLabel:UILabel = {
         let label = UILabel()
         label.text = "실거주 여부"
         label.font = .Clutch.smallMedium
@@ -55,7 +59,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
-    lazy var residentCollectionView: UICollectionView = {
+    lazy var livedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0 // 상하간격
         layout.minimumInteritemSpacing = 0 // 좌우간격
@@ -66,9 +70,9 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }()
     
     //전입신고일
-    lazy var movedInDateLabel = TextInputView()
+    lazy var transportReportDateLabel = TextInputView()
     
-    lazy var movedInDateButton:UIButton = {
+    lazy var transportReportDateButton:UIButton = {
         let button = UIButton()
         let iamge = UIImage(named: "btn_Calendar")
         button.setBackgroundImage(iamge, for: .normal)
@@ -78,9 +82,9 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }()
     
     //  확정일자
-    lazy var fixedDateLabel = TextInputView()
+    lazy var confirmationDateLabel = TextInputView()
     
-    lazy var fixedDateButton:UIButton = {
+    lazy var confirmationDateButton:UIButton = {
         let button = UIButton()
         let iamge = UIImage(named: "btn_Calendar")
         button.setBackgroundImage(iamge, for: .normal)
@@ -89,7 +93,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
-    lazy var interventionLabel:UILabel = {
+    lazy var interveneLabel:UILabel = {
         let label = UILabel()
         label.text = "집주인의 채권 개입 여부"
         label.font = .Clutch.smallMedium
@@ -98,7 +102,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
-    lazy var interventionCollectionView: UICollectionView = {
+    lazy var interveneCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0 // 상하간격
         layout.minimumInteritemSpacing = 0 // 좌우간격
@@ -108,7 +112,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
-    lazy var dividenLabel:UILabel = {
+    lazy var dividendLabel:UILabel = {
         let label = UILabel()
         label.text = "배당신청 여부"
         label.font = .Clutch.smallMedium
@@ -117,7 +121,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
-    lazy var dividenCollectionView: UICollectionView = {
+    lazy var dividendCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0 // 상하간격
         layout.minimumInteritemSpacing = 0 // 좌우간격
@@ -221,7 +225,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
             scrollview.addSubview(view)
         }
 
-        [titleLabel, residentLabel, residentCollectionView, movedInDateLabel, movedInDateButton, fixedDateLabel, fixedDateButton, interventionLabel, interventionCollectionView, dividenLabel, dividenCollectionView, depositLabel, wonLabel, uploadLabel, imageCollectionView].forEach { view in
+        [titleLabel, livedLabel, livedCollectionView, transportReportDateLabel, transportReportDateButton, confirmationDateLabel, confirmationDateButton, interveneLabel, interveneCollectionView, dividendLabel, dividendCollectionView, depositLabel, wonLabel, uploadLabel, imageCollectionView].forEach { view in
             contentView.addSubview(view)
         }
     }
@@ -232,33 +236,33 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setTextInputView() {
-        movedInDateLabel.textInputLabel.text = "전입신고일"
-        movedInDateLabel.textInputTextField.isUserInteractionEnabled = false
-        fixedDateLabel.textInputLabel.text = "확정일자"
-        fixedDateLabel.textInputTextField.isUserInteractionEnabled = false
+        transportReportDateLabel.textInputLabel.text = "전입신고일"
+        transportReportDateLabel.textInputTextField.isUserInteractionEnabled = false
+        confirmationDateLabel.textInputLabel.text = "확정일자"
+        confirmationDateLabel.textInputTextField.isUserInteractionEnabled = false
         depositLabel.textInputLabel.text = "보증금 액수"
     }
     
     func textChange() {
-        movedInDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        fixedDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        transportReportDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        confirmationDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         depositLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         
     }
     
     @objc func textCheck() {
         let allFieldsFilled =
-        movedInDateLabel.textInputTextField.text?.isEmpty == false &&
-        fixedDateLabel.textInputTextField.text?.isEmpty == false &&
+        transportReportDateLabel.textInputTextField.text?.isEmpty == false &&
+        confirmationDateLabel.textInputTextField.text?.isEmpty == false &&
         depositLabel.textInputTextField.text?.isEmpty == false
 
-        let indexPaths = residentCollectionView.indexPathsForSelectedItems
+        let indexPaths = livedCollectionView.indexPathsForSelectedItems
         let isCellSelected = indexPaths != nil && !indexPaths!.isEmpty
         
-        let indexPaths2 = dividenCollectionView.indexPathsForSelectedItems
+        let indexPaths2 = dividendCollectionView.indexPathsForSelectedItems
         let isCellSelected2 = indexPaths2 != nil && !indexPaths!.isEmpty
         
-        let indexPaths3 = interventionCollectionView.indexPathsForSelectedItems
+        let indexPaths3 = interveneCollectionView.indexPathsForSelectedItems
         let isCellSelected3 = indexPaths3 != nil && !indexPaths!.isEmpty
         
         let check = isCellSelected && isCellSelected2 && isCellSelected3
@@ -301,67 +305,67 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
             make.top.equalToSuperview().offset(top)
         }
         
-        residentLabel.snp.makeConstraints { make in
+        livedLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
             make.top.equalTo(titleLabel.snp.bottom).offset(top)
         }
         
-        residentCollectionView.snp.makeConstraints { make in
+        livedCollectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
-            make.top.equalTo(residentLabel.snp.bottom).offset(3.5)
+            make.top.equalTo(livedLabel.snp.bottom).offset(3.5)
             make.height.equalTo(88)
         }
         
-        movedInDateLabel.snp.makeConstraints { make in
+        transportReportDateLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(residentCollectionView.snp.bottom).offset(top)
+            make.top.equalTo(livedCollectionView.snp.bottom).offset(top)
         }
         
-        movedInDateButton.snp.makeConstraints { make in
-            make.trailing.equalTo(movedInDateLabel.snp.trailing)
-            make.bottom.equalTo(movedInDateLabel.underLine.snp.bottom).offset(-5)
+        transportReportDateButton.snp.makeConstraints { make in
+            make.trailing.equalTo(transportReportDateLabel.snp.trailing)
+            make.bottom.equalTo(transportReportDateLabel.underLine.snp.bottom).offset(-5)
             make.size.equalTo(20)
         }
         
-        fixedDateLabel.snp.makeConstraints { make in
+        confirmationDateLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(movedInDateLabel.underLine.snp.bottom).offset(top)
+            make.top.equalTo(transportReportDateLabel.underLine.snp.bottom).offset(top)
         }
         
-        fixedDateButton.snp.makeConstraints { make in
-            make.trailing.equalTo(fixedDateLabel.snp.trailing)
-            make.bottom.equalTo(fixedDateLabel.underLine.snp.bottom).offset(-5)
+        confirmationDateButton.snp.makeConstraints { make in
+            make.trailing.equalTo(confirmationDateLabel.snp.trailing)
+            make.bottom.equalTo(confirmationDateLabel.underLine.snp.bottom).offset(-5)
             make.size.equalTo(20)
         }
         
-        interventionLabel.snp.makeConstraints { make in
+        interveneLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(fixedDateLabel.underLine.snp.bottom).offset(top)
+            make.top.equalTo(confirmationDateLabel.underLine.snp.bottom).offset(top)
         }
         
-        interventionCollectionView.snp.makeConstraints { make in
+        interveneCollectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
-            make.top.equalTo(interventionLabel.snp.bottom).offset(3.5)
+            make.top.equalTo(interveneLabel.snp.bottom).offset(3.5)
             make.height.equalTo(88)
         }
         
-        dividenLabel.snp.makeConstraints { make in
+        dividendLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(interventionCollectionView.snp.bottom).offset(top)
+            make.top.equalTo(interveneCollectionView.snp.bottom).offset(top)
         }
         
-        dividenCollectionView.snp.makeConstraints { make in
+        dividendCollectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
-            make.top.equalTo(dividenLabel.snp.bottom).offset(3.5)
+            make.top.equalTo(dividendLabel.snp.bottom).offset(3.5)
             make.height.equalTo(88)
         }
         
         depositLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(dividenCollectionView.snp.bottom).offset(top)
+            make.top.equalTo(dividendCollectionView.snp.bottom).offset(top)
         }
         
         wonLabel.snp.makeConstraints { make in
@@ -409,10 +413,10 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
     
     // 날짜 선택
     @objc func dateButtonTapped(_ sender: UIButton) {
-        if sender == movedInDateButton {
+        if sender == transportReportDateButton {
             showDatePicker(title: "전입신고일을\n선택해주세요")
         }
-        else if sender == fixedDateButton {
+        else if sender == confirmationDateButton {
             showDatePicker(title: "확정일자를\n선택해주세요")
         }
     }
@@ -422,23 +426,23 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
         let formattedDate = dateFormatter.string(from: date)
         if title == "전입신고일을\n선택해주세요" {
-            movedInDateLabel.textInputTextField.text = formattedDate
+            transportReportDateLabel.textInputTextField.text = formattedDate
         }
         else if title == "확정일자를\n선택해주세요" {
-            fixedDateLabel.textInputTextField.text = formattedDate
+            confirmationDateLabel.textInputTextField.text = formattedDate
         }
     }
     
     // collectionview 관련 설정
     func setCollectionview() {
-        [residentCollectionView, interventionCollectionView, dividenCollectionView, imageCollectionView].forEach { collectionview in
+        [livedCollectionView, interveneCollectionView, dividendCollectionView, imageCollectionView].forEach { collectionview in
             collectionview.dataSource = self
             collectionview.delegate = self
         }
         
-        residentCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "residentCell")
-        interventionCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "interventionCell")
-        dividenCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "dividenCell")
+        livedCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "residentCell")
+        interveneCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "interventionCell")
+        dividendCollectionView.register(CheckCell.self, forCellWithReuseIdentifier: "dividenCell")
         
         imageCollectionView.register(ButtonCell.self, forCellWithReuseIdentifier: "buttonCell")
         imageCollectionView.register(ImageCell.self, forCellWithReuseIdentifier: "imageCell")
@@ -475,28 +479,28 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
     // cell에 들어갈 data 설정
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if collectionView == self.residentCollectionView {
-            guard let cell1 = residentCollectionView.dequeueReusableCell(withReuseIdentifier: "residentCell", for: indexPath) as? CheckCell else {
+        if collectionView == self.livedCollectionView {
+            guard let cell1 = livedCollectionView.dequeueReusableCell(withReuseIdentifier: "residentCell", for: indexPath) as? CheckCell else {
                 return UICollectionViewCell()
             }
             
-            cell1.textLabel.text = residentText[indexPath.row]
+            cell1.textLabel.text = livedText[indexPath.row]
             return cell1
             
-        } else if collectionView == self.interventionCollectionView {
-            guard let cell2 = interventionCollectionView.dequeueReusableCell(withReuseIdentifier: "interventionCell", for: indexPath) as? CheckCell else {
+        } else if collectionView == self.interveneCollectionView {
+            guard let cell2 = interveneCollectionView.dequeueReusableCell(withReuseIdentifier: "interventionCell", for: indexPath) as? CheckCell else {
                 return UICollectionViewCell()
             }
             
-            cell2.textLabel.text = interventionText[indexPath.row]
+            cell2.textLabel.text = interveneText[indexPath.row]
             return cell2
             
-        } else if collectionView == self.dividenCollectionView {
-            guard let cell3 = dividenCollectionView.dequeueReusableCell(withReuseIdentifier: "dividenCell", for: indexPath) as? CheckCell else {
+        } else if collectionView == self.dividendCollectionView {
+            guard let cell3 = dividendCollectionView.dequeueReusableCell(withReuseIdentifier: "dividenCell", for: indexPath) as? CheckCell else {
                 return UICollectionViewCell()
             }
             
-            cell3.textLabel.text = dividenText[indexPath.row]
+            cell3.textLabel.text = dividendText[indexPath.row]
             return cell3
             
         } else if collectionView == self.imageCollectionView {
@@ -535,6 +539,7 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
     
     // cell 선택시 동작
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // 이미지 collectionView
         if collectionView == imageCollectionView && indexPath.section == 0 {
             // 이미지 추가
             if images.count >= 10 {
@@ -585,21 +590,41 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
             present(picker, animated: true, completion: .none)
             return
         }
-        else {
-            // 나머지 버튼 모두 선택해제
-            for i in 0..<2 {
-                let index = IndexPath(item: i, section: 0)
-                if let cell = collectionView.cellForItem(at: index) as? CheckCell {
-                    cell.checkImageView.image = UIImage(named: "btn_deselected")
-                }
-            }
-            
-            // 선택된 정보 저장
-    //        selectedCell = popupList[indexPath.row]
-            if let cell = collectionView.cellForItem(at: indexPath) as? CheckCell {
-                cell.checkImageView.image = UIImage(named: "btn_selected")
-            }
+        
+        // 선택 collectionView
+        
+        // 선택 셀 활성화
+        if let cell = collectionView.cellForItem(at: indexPath) as? CheckCell {
+            cell.checkImageView.image = UIImage(named: "btn_selected")
         }
+        // 미선택 셀 비활성화
+        let index = IndexPath(item: (indexPath.row + 1) % 2, section: 0)
+        if let cell = collectionView.cellForItem(at: index) as? CheckCell {
+            cell.checkImageView.image = UIImage(named: "btn_deselected")
+        }
+        
+        // bool 값 지정
+        var checked = false
+        switch indexPath.row {
+        case 0:
+            checked = true
+        case 1:
+            checked = false
+        default:
+            return
+        }
+        
+        switch collectionView {
+        case self.livedCollectionView:
+            hasLived = checked
+        case self.interveneCollectionView:
+            hasIntervene = checked
+        case self.dividendCollectionView:
+            hasDividend = checked
+        default:
+            return
+        }
+        
     }
     
     func deleteImage(cell: UICollectionViewCell) {
@@ -617,7 +642,7 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
     
     func confirm() {
         print("confirm")
-//        requestPost()
+        requestReportContract()
     }
     
     func done() {
@@ -631,15 +656,16 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
     func requestReportContract() {
         
     // 신고하기 API 호출
-        let parameter: [String:String] = [
-            "1" : "1"
-//            "oauthId": userInfo.id,
-//            "name": namelInfo.textInputTextField.text ?? userInfo.name,
-//            "email": emailInfo.textInputTextField.text ?? userInfo.email,
-//            "phoneNumber": phoneNumInfo.textInputTextField.text ?? userInfo.phonenumber
+        let parameter: [String:Any] = [
+            "hasLived": hasLived,
+            "transportReportDate": dateForDB(inDateStr: transportReportDateLabel.textInputTextField.text ?? ""),
+            "confirmationDate": dateForDB(inDateStr: confirmationDateLabel.textInputTextField.text ?? ""),
+            "hasLandlordIntervene": hasIntervene,
+            "hasAppliedDividend": hasDividend,
+            "deposit": Int(depositLabel.textInputTextField.text ?? "0") ?? 0
         ]
-        
-        APIManger.shared.callLoginPostRequest(baseEndPoint: .contract, addPath: "/apple", parameters: parameter) { JSON in
+        print(parameter)
+        APIManger.shared.callPostRequest(baseEndPoint: .contract, addPath: "/\(buildingID)", parameters: parameter) { JSON in
             // 호출 오류시 처리
             if JSON["check"].boolValue == false {
                 self.showCustomAlert(alertType: .done,
@@ -647,15 +673,6 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
                                      alertContext: "다시 시도해주세요.",
                                      confirmText: "확인")
                 return
-            }
-            
-            let response = "200"
-            
-            if response != "200" {
-                self.showCustomAlert(alertType: .done,
-                                     alertTitle: "오류 발생",
-                                     alertContext: "다시 시도해주세요.",
-                                     confirmText: "확인")
             }
             
             // 응답 처리
