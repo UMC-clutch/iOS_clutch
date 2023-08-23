@@ -275,8 +275,7 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         
         unitNum.snp.makeConstraints { make in
             make.trailing.equalTo(sqftInput.snp.trailing)
-            make.top.equalTo(sqftInput.snp.bottom)
-            
+            make.top.equalTo(addressLabel.snp.bottom)
         }
         
         sqftInput.snp.makeConstraints { make in
