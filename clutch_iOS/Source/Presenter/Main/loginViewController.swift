@@ -27,8 +27,15 @@ class loginViewController: UIViewController {
     lazy var kakaoAuthVM : KakaoAuthVM = { KakaoAuthVM() }()
     
     //애플 로그인 버튼    
-    lazy var appleButton:ASAuthorizationAppleIDButton = {
-        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
+//    lazy var appleButton:ASAuthorizationAppleIDButton = {
+//        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
+//        button.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+//
+//        return button
+//    }()
+    lazy var appleButton:UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "btn_login_apple"), for: .normal)
         button.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
         
         return button
