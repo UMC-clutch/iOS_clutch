@@ -357,6 +357,7 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
             switch indexPath.row {
             case 0:
                 let VC = ReportDoneViewController()
+                VC.fromVC = "MyPage"
                 navigationController?.pushViewController(VC, animated: true)
             case 1:
                 let VC = CalculateHistoryViewController()

@@ -10,7 +10,7 @@ import SwiftyGif
 
 class ReportStatusView: UIView {
     //MARK: - Properties
-    let status = 1
+    lazy var status = ""
     
     //MARK: - UI ProPerties
     lazy var completeGifImage:UIImageView = {
@@ -82,13 +82,13 @@ class ReportStatusView: UIView {
     
     func statusImageSet() {
         switch status {
-        case 0:
+        case "APLLIED":
             statusImage.image = UIImage(named: "status1_3x")
-        case 1:
+        case "DECISIONING":
             statusImage.image = UIImage(named: "status2_3x")
-        case 2:
+        case "WILLPAID":
             statusImage.image = UIImage(named: "status3_3x")
-        case 3:
+        case "COMP":
             statusImage.image = UIImage(named: "status4_3x")
         default:
             statusImage.image = UIImage(named: "status1_3x")
