@@ -106,7 +106,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(1100)
+            make.height.equalTo(1220)
         }
         
         cancelButton.snp.makeConstraints { make in
