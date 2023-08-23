@@ -64,6 +64,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - define method
     override func viewDidLoad() {
         super.viewDidLoad()
+        requestGet()
         setView()
         constraints()
     }
@@ -132,13 +133,13 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
     // 완료버튼 화면전환 동작
     @objc func doneButtonTapped(_ sender: UIButton) {
         // 신고화면에서 불러졌으면 메인으로
-        if fromVC == "report" {
+        if fromVC == "Report" {
             if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
                         navigationController?.popToViewController(VC, animated: true)
             }
         }
         // 마이페이지에서 불러졌으면 뒤로
-        else {
+        else if fromVC == "MyPage" {
             navigationController?.popViewController(animated: true)
         }
     }
@@ -162,9 +163,8 @@ extension ReportDoneViewController: CustomAlertDelegate {
     
     func confirm() {
         print("custom action Button Tapped")
-        // 탈퇴하기 API 호출
         
-        APIManger.shared.callDeleteRequest(baseEndPoint: .report, addPath: "/delete") { JSON, status in
+        APIManger.shared.callDeleteRequest(baseEndPoint: .report, addPath: "/delete", parameters: nil) { JSON, status in
             // 호출 오류시 처리
             if status != 200 {
                 self.showCustomAlert(alertType: .done,
@@ -202,6 +202,7 @@ extension ReportDoneViewController: CustomAlertDelegate {
                                      confirmText: "확인")
                 return
             }
+            // 신고 내역이 없는 경우 처리
             
             let reportStatus = JSON["information"]["reportStatus"].stringValue
             let reportedAt = JSON["information"]["reportedAt"].stringValue

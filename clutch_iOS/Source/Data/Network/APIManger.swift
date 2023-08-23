@@ -5,6 +5,8 @@
 //  Created by Dongwan Ryoo on 2023/08/13.
 //
 
+import Foundation
+import UIKit
 import Alamofire
 import SwiftyJSON
 import Foundation
@@ -15,12 +17,6 @@ class APIManger {
     private init() { }
     
     var jwtToken = ""
-    
-    func leta() -> String {
-        
-        return "ddd"
-        
-    }
 
 
     //get요청
@@ -35,7 +31,7 @@ class APIManger {
         let url = baseEndPoint.requestURL + addPath
         
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { response in
-            
+            debugPrint(response)
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -69,6 +65,7 @@ class APIManger {
         print(url)
 
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { response in
+            debugPrint(response)
             switch response.result {
                 
             case .success(let value):
@@ -101,6 +98,7 @@ class APIManger {
         print(url)
 
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { response in
+            debugPrint(response)
             switch response.result {
                 
             case .success(let value):
@@ -121,7 +119,8 @@ class APIManger {
     }
     
     //MultipartForm Post요청
-    func callFormRequest(baseEndPoint:BaseEndpoint, addPath:String?, formData: MultipartFormData, completionHnadler: @escaping(JSON) -> ()) {
+    func callFormRequest(baseEndPoint:BaseEndpoint, addPath:String?, //formData: MultipartFormData,
+                         dict: [String:Any], images: [UIImage], completionHnadler: @escaping(JSON) -> ()) {
 
         let headers: HTTPHeaders = [
             "accept": "application/json",
@@ -132,8 +131,27 @@ class APIManger {
         guard let addPath = addPath else { return }
         let url = baseEndPoint.requestURL + addPath
         print(url)
-
-        AF.upload(multipartFormData: formData, to: url, method: .post, headers: headers).validate().responseJSON { response in
+        
+        AF.upload(multipartFormData: { (multipart) in
+            if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+                if let jsonString = String(data: jsonData, encoding: .utf8) {
+                                print("JSON Data: \(jsonString)")
+                            }
+                multipart.append(jsonData, withName: "requestDto", mimeType: "application/json")
+            }
+            
+            for image in images {
+                let imageData = image.jpegData(compressionQuality: 0.8)!
+                
+                print("Image Data: \(imageData)")
+                multipart.append(imageData, withName: "files", fileName: "image\(images.firstIndex(of: image)!+1).jpg", mimeType: "image/jpeg")
+            }
+            print(multipart)
+            print(multipart.boundary)
+            print(multipart.contentLength)
+            print(multipart.contentType)
+        }, to: url, method: .post, headers: headers).validate().responseJSON { response in
+            debugPrint(response)
             switch response.result {
 
             case .success(let value):
@@ -155,7 +173,7 @@ class APIManger {
 
 
     //Delete요청
-    func callDeleteRequest(baseEndPoint:BaseEndpoint, addPath:String?,parameters: [String: String] ,completionHnadler: @escaping (JSON, Int) -> Void) {
+    func callDeleteRequest(baseEndPoint:BaseEndpoint, addPath:String?,parameters: [String: String]? ,completionHnadler: @escaping (JSON, Int) -> Void) {
 
         let headers: HTTPHeaders = [
             "accept": "application/json",
@@ -167,6 +185,7 @@ class APIManger {
         print(url)
 
         AF.request(url, method: .delete, parameters:parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { response in
+            debugPrint(response)
             switch response.result {
             case .success(let value):
                 print(value)
