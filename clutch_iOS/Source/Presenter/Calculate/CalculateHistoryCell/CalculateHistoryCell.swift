@@ -112,7 +112,7 @@ class CalculateHistoryCell: UITableViewCell {
     }
     
     func SetView() {
-        [dateLabel, nextpageButton, stateLabel, seperateLine, addressLabel, addressInfoLabel, seperateBottomLine].forEach { view in
+        [dateLabel, nextpageButton, stateLabel, seperateLine, addressLabel, addressInfoLabel, postInfoLabel,seperateBottomLine].forEach { view in
             self.addSubview(view)
         }
     }
@@ -120,10 +120,10 @@ class CalculateHistoryCell: UITableViewCell {
     func Constraint() {
         let spacing:CGFloat = 16
         
-        dateLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(spacing)
-            make.leading.equalToSuperview().offset(spacing)
-        }
+//        dateLabel.snp.makeConstraints { make in
+//            make.top.equalToSuperview().offset(spacing)
+//            make.leading.equalToSuperview().offset(spacing)
+//        }
             
         nextpageButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(spacing)
@@ -131,7 +131,7 @@ class CalculateHistoryCell: UITableViewCell {
         }
         
         stateLabel.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.top).offset(36)
+            make.top.equalToSuperview().offset(spacing)
             make.leading.equalToSuperview().offset(spacing)
         }
         
@@ -151,12 +151,18 @@ class CalculateHistoryCell: UITableViewCell {
             make.trailing.equalToSuperview().offset(-spacing)
         }
         
+        postInfoLabel.snp.makeConstraints { make in
+            make.top.equalTo(addressInfoLabel.snp.bottom)
+            make.trailing.equalToSuperview().offset(-spacing)
+        }
+        
         seperateBottomLine.snp.makeConstraints { make in
             make.bottom.width.equalToSuperview()
             make.height.equalTo(12)
             make.centerX.equalToSuperview()
 
         }
+    
         
         
     }

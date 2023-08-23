@@ -95,7 +95,7 @@ class TextInputView: UIView {
         underLine.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(textInputTextField.snp.bottom)
-            make.width.equalTo(360)
+            make.width.equalToSuperview()
             make.height.equalTo(2) // underLine 뷰의 높이를 고정 값인 2로 설정
         }
         

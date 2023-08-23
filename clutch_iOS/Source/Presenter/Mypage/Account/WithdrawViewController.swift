@@ -38,7 +38,7 @@ class WithdrawViewController: UIViewController {
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
         //실제 text 사용자 이름으로 받아오기 필요
-        label.text = "  " + singleItem.shared.username + "님"
+        label.text = "  "
         label.font = .Clutch.baseMedium
         label.textColor = .Clutch.textBlack
 
@@ -105,6 +105,7 @@ class WithdrawViewController: UIViewController {
         view.backgroundColor = .white
         setView()
         setConstraint()
+        request()
     }
 
     func setView() {
@@ -115,6 +116,22 @@ class WithdrawViewController: UIViewController {
         
     }
     
+    func request() {
+        APIManger.shared.callGetRequest(baseEndPoint: .user, addPath: "/users") { JSON in
+            let id = JSON["information"]["id"].stringValue
+            let name = JSON["information"]["name"].stringValue
+            let eamil = JSON["information"]["email"].stringValue
+            let phonenumber = JSON["information"]["phonenumber"].stringValue
+            
+            let information = Information(id: id, name: name, email: eamil, phonenumber: phonenumber)
+            
+            DispatchQueue.main.async {
+                self.userNameLabel.text = information.name
+                
+            }
+        }
+    }
+
     func setNavigationBar() {
         let navigationItem = UINavigationItem()
         let backButton = UIBarButtonItem(

@@ -338,7 +338,7 @@ class ResultViewController: UIViewController {
         completeGifImage.snp.makeConstraints { make in
             make.height.equalTo(125)
             make.width.equalTo(125)
-            make.top.equalTo(navigationBar.snp.bottom).offset(20)
+            make.bottom.equalTo(statusLabel.snp.top).offset(-32)
             make.centerX.equalToSuperview()
         }
         
