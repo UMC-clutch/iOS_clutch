@@ -98,6 +98,7 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - Define Method
     override func viewDidLoad() {
         super.viewDidLoad()
+        requestGet()
         SetView()
         Constraint()
         textChange()
@@ -381,8 +382,14 @@ extension ReportViewController: DatePickerDelegate,
     }
     
     // 오류발생 시 팝업 위한 커스텀 알림
-    func cancel() { return }
-    func confirm() { return }
+    func cancel() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    func confirm() {
+        let VC = ReportDoneViewController()
+        VC.fromVC = "Main"
+        navigationController?.pushViewController(VC, animated: true)
+    }
     func done() { return }
 
     //MARK: - Network
@@ -416,6 +423,22 @@ extension ReportViewController: DatePickerDelegate,
             let VC = ContractInfoViewController()
             VC.buildingID = buildingID
             self.navigationController?.pushViewController(VC, animated: true)
+        }
+    }
+    
+    func requestGet() {
+        APIManger.shared.callGetRequest(baseEndPoint: .report, addPath: "/comp") { JSON in
+            // 신고 내역이 없는 경우
+            if !(JSON["information"].isEmpty) {
+                self.showCustomAlert(alertType: .canCancel,
+                                     alertTitle: "전세사기 피해 접수 완료",
+                                     alertContext: "신고 내역을 조회하시겠습니까?",
+                                     cancelText: "메인으로",
+                                     confirmText: "조회")
+                return
+            }
+            
+            print("정상 : 신고 내역 없음")
         }
     }
 }

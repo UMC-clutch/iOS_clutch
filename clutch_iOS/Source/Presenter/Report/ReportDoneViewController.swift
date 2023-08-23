@@ -132,15 +132,15 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
     
     // 완료버튼 화면전환 동작
     @objc func doneButtonTapped(_ sender: UIButton) {
-        // 신고화면에서 불러졌으면 메인으로
-        if fromVC == "Report" {
+        // 마이페이지에서 불러졌으면 뒤로
+        if fromVC == "MyPage" {
+            navigationController?.popViewController(animated: true)
+        }
+        // 아니면 메인으로
+        else {
             if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
                         navigationController?.popToViewController(VC, animated: true)
             }
-        }
-        // 마이페이지에서 불러졌으면 뒤로
-        else if fromVC == "MyPage" {
-            navigationController?.popViewController(animated: true)
         }
     }
     
@@ -185,15 +185,15 @@ extension ReportDoneViewController: CustomAlertDelegate {
     
     func done() {
         if canceled {
-            // 신고화면에서 불러졌으면 메인으로
-            if fromVC == "Report" {
+            // 마이페이지에서 불러졌으면 뒤로
+            if fromVC == "MyPage" {
+                navigationController?.popViewController(animated: true)
+            }
+            // 아니면 메인으로
+            else {
                 if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
                             navigationController?.popToViewController(VC, animated: true)
                 }
-            }
-            // 마이페이지에서 불러졌으면 뒤로
-            else if fromVC == "MyPage" {
-                navigationController?.popViewController(animated: true)
             }
         }
     }
