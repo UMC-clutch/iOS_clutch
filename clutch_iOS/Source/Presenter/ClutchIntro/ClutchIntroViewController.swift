@@ -219,13 +219,13 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     }
     //addsubview
     func addsubview() {
-        [scrollview, navigationBar, nextButton].forEach { view in
+        [scrollview, navigationBar].forEach { view in
             self.view.addSubview(view)
         }
         [contentView].forEach { view in
             scrollview.addSubview(view)
         }
-        [clutchGraphic, mainCopyTextView, mainCopyText, clutchIntroTitle, clutchIntroText, clutchIntroTextParagraph2Title, clutchIntroTextParagraph2, clutchIntroWaringText, clutchIntroTextParagraph3Title, clutchIntroTextParagraph3, clutchIntroTextParagraph4, clutchIntroTextParagraph5].forEach { view in
+        [clutchGraphic, mainCopyTextView, mainCopyText, clutchIntroTitle, clutchIntroText, clutchIntroTextParagraph2Title, clutchIntroTextParagraph2, clutchIntroWaringText, clutchIntroTextParagraph3Title, clutchIntroTextParagraph3, clutchIntroTextParagraph4, clutchIntroTextParagraph5, nextButton].forEach { view in
             contentView.addSubview(view)
         }
 
@@ -241,7 +241,7 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         backButton.tintColor = .Clutch.textDarkGrey
         navigationItem.leftBarButtonItem = backButton
         navigationBar.setItems([navigationItem], animated: false)
-//        navigationBar.backgroundColor = .Clutch.mainWhite
+//        navigationBar.backgroundColor = .Clutch.mainDarkGreen
         navigationBar.setBackgroundImage(UIImage(), for: .default) // 배경 색 투명하게
         navigationBar.shadowImage = UIImage() // 테두리 없애기
     }
@@ -252,7 +252,6 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func constraints() {
-        let leading = 16
         
         navigationBar.snp.makeConstraints { make in
             make.width.equalToSuperview()
@@ -268,15 +267,8 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.bottom.equalTo(clutchIntroTextParagraph5.snp.bottom).offset(80)
+            make.bottom.equalTo(nextButton.snp.bottom).offset(20)
             
-        }
-        //버튼 오토레이아웃
-        nextButton.snp.makeConstraints { make in
-            make.width.equalTo(360)
-            make.height.equalTo(50)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
-            make.centerX.equalToSuperview()
         }
         //clutchGraphic 오토 레이이아웃
         clutchGraphic.snp.makeConstraints { make in
@@ -343,6 +335,15 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         clutchIntroTextParagraph5.snp.makeConstraints { make in
             make.top.equalTo(clutchIntroTextParagraph4.snp.bottom).offset(24)
             make.leading.trailing.equalToSuperview().inset(30)
+        }
+        
+        //버튼 오토레이아웃
+        nextButton.snp.makeConstraints { make in
+            make.width.equalTo(360)
+            make.height.equalTo(50)
+            make.top.equalTo(clutchIntroTextParagraph5.snp.bottom).offset(60)
+            make.bottom.equalToSuperview().offset(-20)
+            make.centerX.equalToSuperview()
         }
     }
     
