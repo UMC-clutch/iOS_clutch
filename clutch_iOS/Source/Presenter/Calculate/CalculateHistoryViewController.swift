@@ -309,16 +309,16 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         let VC = ResultViewController()
         VC.addressOutputLabel.text = reversedArray[index].address
         VC.marketPriceOutput.categoryLabel.text = "시세"
-        VC.marketPriceOutput.outputLabel.text = "\(reversedArray[index].price) 원"
+        VC.marketPriceOutput.outputLabel.text = decimalPoint(reversedArray[index].price) + "원"
         
         VC.morgagePriceOutput.categoryLabel.text = "근저당액"
-        VC.morgagePriceOutput.outputLabel.text = "\(reversedArray[index].collateralMoney) 원"
+        VC.morgagePriceOutput.outputLabel.text = decimalPoint(reversedArray[index].collateralMoney) + "원"
         
         VC.leasePriceOutput.categoryLabel.text = "전세금"
-        VC.leasePriceOutput.outputLabel.text = "\(reversedArray[index].deposit) 원"
+        VC.leasePriceOutput.outputLabel.text = decimalPoint(reversedArray[index].deposit) + "원"
         
         VC.totalOutput.categoryLabel.text = "계산 결과"
-        VC.totalOutput.outputLabel.text = "\(result) 원"
+        VC.totalOutput.outputLabel.text = decimalPoint(result) + "원"
         
         do {
             lazy var gif = UIImage()

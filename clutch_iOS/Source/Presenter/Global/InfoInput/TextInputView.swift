@@ -61,6 +61,8 @@ class TextInputView: UIView {
             textInputLabel.textColor = .Clutch.mainGreen
         }
     }
+    
+    
     //MARK: - Set Ui
     func SetView() {
         self.backgroundColor = .white
@@ -101,6 +103,16 @@ class TextInputView: UIView {
         
     }
     
+    func formatNumber(_ number: Int) -> String? {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.groupingSeparator = ","
+    
+        
+        let decimalPrice: String = numberFormatter.string(for: number)!
+        return decimalPrice
+
+    }
     
 }
 
@@ -116,6 +128,12 @@ extension TextInputView:UITextFieldDelegate {
             underLine.backgroundColor = .Clutch.bgGrey
             textInputLabel.textColor = .Clutch.textDarkGrey
         }
+        
+        if let currentText = Int(textField.text ?? "") {
+            let formattedText = formatNumber(currentText)
+                textField.text = formattedText
+        }
+    
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -128,5 +146,14 @@ extension TextInputView:UITextFieldDelegate {
         
         return true
     }
+    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        let currentText = Int(textField.text ?? "")!10
+//
+//        let formattedText = formatNumber(currentText)
+//            textField.text = formattedText
+//
+//        return false
+//    }
 }
 

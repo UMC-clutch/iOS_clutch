@@ -105,8 +105,8 @@ class SecondCalculateViewController: UIViewController {
         let parameters = [
             
             "buildingId": buildingprice.buildingId,
-            "collateral": Int(MortgagePrice.textInputTextField.text ?? "00")!,
-            "deposit": Int(charterPrice.textInputTextField.text ?? "00")!,
+            "collateral": removedecimalPoint(MortgagePrice.textInputTextField.text ?? "00") ?? 0,
+            "deposit": removedecimalPoint(charterPrice.textInputTextField.text ?? "00") ?? 0,
             "isDangerous": true,
             
         ] as [String : Any]
@@ -178,7 +178,7 @@ class SecondCalculateViewController: UIViewController {
         guard let buildingprice = buildingPrice else {return}
         
         marketPrice.textInputLabel.text = "시세"
-        marketPrice.textInputTextField.text = "\(buildingprice.price)"
+        marketPrice.textInputTextField.text = buildingprice.price.formatted()
         MortgagePrice.textInputLabel.text = "근저당액"
         charterPrice.textInputLabel.text = "지급할 전세금"
     }
