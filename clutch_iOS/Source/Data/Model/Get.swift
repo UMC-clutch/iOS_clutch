@@ -8,18 +8,12 @@
 import Foundation
 
 // MARK: - GetCaculate
-struct GetCaculate: Codable {
-    let id, buildingId, addressId: Int
-    let buildingName, address, dong, ho: String
-    let price, collateralMoney, deposit: Int
-    let isDangerous: Bool
-}
-
 struct GetUser: Codable {
     let phonenumber: String
     let id: Int
     let name, email: String
 }
+
 
 // MARK: - GetReportInfo
 struct GetReport: Codable {
@@ -31,4 +25,31 @@ struct GetReport: Codable {
     let deposit: Int
     let hasLived: Bool
     let transportReportDate, confirmationDate: String
+    
+    struct GetCaculate: Codable {
+        let id: Int
+        let buildingId: Int
+        let buildingName: String
+        let address: String
+        let dong: String
+        let ho: String
+        let price: Int
+        let collateralMoney: Int
+        let deposit: Int
+        let isDangerous: Bool
+        //    let createdAd:Date
+        
+        enum CodingKeys: String, CodingKey {
+            case id
+            case buildingId = "buildingId"
+            case buildingName
+            case address
+            case dong
+            case ho
+            case price
+            case collateralMoney
+            case deposit
+            case isDangerous
+        }
+    }
 }
