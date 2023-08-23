@@ -161,7 +161,7 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
             make.height.equalTo(53)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-36)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
     }
