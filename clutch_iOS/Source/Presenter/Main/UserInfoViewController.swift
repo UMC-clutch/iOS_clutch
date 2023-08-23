@@ -47,6 +47,15 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
         
         return button
     }()
+    
+    lazy var exampleButton: UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = .clear
+        btn.setTitle("", for: .normal)
+        btn.addTarget(self, action: #selector(exampleButtonTapped), for: .touchUpInside)
+        btn.isEnabled = true
+        return btn
+    }()
 
     //MARK: - Define Method
     override func viewDidLoad() {
@@ -112,7 +121,7 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
     }
     
     func addsubview() {
-        [navigationBar, titleLabel, namelInfo ,emailInfo, phoneNumInfo, confirmButton].forEach { view in
+        [navigationBar, titleLabel, namelInfo ,emailInfo, phoneNumInfo, confirmButton, exampleButton].forEach { view in
             self.view.addSubview(view)
         }
     }
@@ -164,12 +173,28 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
             make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
+        exampleButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(navigationBar.snp.bottom).offset(top)
+            make.size.equalTo(titleLabel.snp.size)
+        }
+        
+    }
+    
+    @objc func exampleButtonTapped() {
+        emailInfo.textInputTextField.text = "dwryu3079@gmail.com"
+        phoneNumInfo.textInputTextField.text = "010-3370-3079"
+        namelInfo.textInputTextField.text = "류동완"
+        emailInfo.textIsEmpty()
+        phoneNumInfo.textIsEmpty()
+        namelInfo.textIsEmpty()
+        self.textCheck()
     }
     
     func textChange() {
-        namelInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        emailInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        phoneNumInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        namelInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        emailInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        phoneNumInfo.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
     }
     
     @objc func textCheck() {

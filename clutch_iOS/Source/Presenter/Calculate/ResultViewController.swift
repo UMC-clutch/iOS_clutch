@@ -242,7 +242,7 @@ class ResultViewController: UIViewController {
             self.view.addSubview(view)
         }
         
-        [contentView].forEach { view in
+        [contentView, navigationBar].forEach { view in
             scrollview.addSubview(view)
         }
         
@@ -252,37 +252,29 @@ class ResultViewController: UIViewController {
         }
     }
     
-    func decimalPoint(_ txt:Int64) -> String {
-        let numberFormatter: NumberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        
-        let decimalPrice: String = numberFormatter.string(for: txt)!
-        return decimalPrice
-    }
-    
     func OutputViewSet() {
         
         guard let buildingprice = buildingPrice else { return}
         guard let postcalculate = postCalculate else { return}
         
         marketPriceOutput.categoryLabel.text = "시세"
-        marketPriceOutput.outputLabel.text = "\(buildingprice.price) 원"
+        marketPriceOutput.outputLabel.text = decimalPoint(buildingprice.price) + "원"
         
         morgagePriceOutput.categoryLabel.text = "근저당액"
-        morgagePriceOutput.outputLabel.text = "\(postcalculate.collateral) 원"
+        morgagePriceOutput.outputLabel.text = decimalPoint(postcalculate.collateral) + "원"
         
         leasePriceOutput.categoryLabel.text = "전세금"
-        leasePriceOutput.outputLabel.text = "\(postcalculate.deposit) 원"
+        leasePriceOutput.outputLabel.text = decimalPoint(postcalculate.deposit) + "원"
         
-        depositPriceOutput.categoryLabel.text = "보증금 액수"
-        depositPriceOutput.outputLabel.text = "\(decimalPoint(depositPrice)) 원"
+//        depositPriceOutput.categoryLabel.text = "보증금 액수"
+//        depositPriceOutput.outputLabel.text = "\(decimalPoint(depositPrice)) 원"
         
         totalOutput.categoryLabel.text = "계산 결과"
         
         let result = buildingprice.price - postcalculate.collateral - postcalculate.deposit
         
         print(result)
-        totalOutput.outputLabel.text = "\(result) 원"
+        totalOutput.outputLabel.text = "\(decimalPoint(result)) 원"
     }
     
     func navigationBarSet() {

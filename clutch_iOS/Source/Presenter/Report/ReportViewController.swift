@@ -94,6 +94,15 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
+    lazy var exampleButton: UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = .clear
+        btn.setTitle("", for: .normal)
+        btn.addTarget(self, action: #selector(exampleButtonTapped), for: .touchUpInside)
+        btn.isEnabled = true
+        return btn
+    }()
+    
 
     //MARK: - Define Method
     override func viewDidLoad() {
@@ -115,12 +124,12 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func textChange() {
-        buildingNameLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        mortgageDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        addressLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        buildingNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        unitNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        sqftInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        buildingNameLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        mortgageDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        addressLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        buildingNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        unitNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        sqftInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
     }
     
     @objc func textCheck() {
@@ -146,6 +155,20 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
             nextButton.isEnabled = false
         }
         
+    }
+    
+    @objc func exampleButtonTapped() {
+        buildingNameLabel.textInputTextField.text = "한남더힐"
+        addressLabel.textInputTextField.text = "서울특별시 용산구 독서당로 111"
+        buildingNum.textInputTextField.text = "131"
+        unitNum.textInputTextField.text = "101"
+        sqftInput.textInputTextField.text = "87A"
+        
+        buildingNameLabel.textIsEmpty()
+        addressLabel.textIsEmpty()
+        buildingNum.textIsEmpty()
+        unitNum.textIsEmpty()
+        sqftInput.textIsEmpty()
     }
     
  
@@ -199,7 +222,7 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         mortgageDateLabel.textInputTextField.textColor = .Clutch.textBlack
         mortgageDateLabel.textInputTextField.attributedPlaceholder = NSAttributedString(string: "날짜를 선택해주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Clutch.mainGrey ?? .black])
         mortgageDateLabel.textInputTextField.isUserInteractionEnabled = false
-        
+            
         addressLabel.textInputLabel.text = "주소"
         addressLabel.textInputTextField.font = .Clutch.baseMedium
         addressLabel.textInputTextField.textColor = .Clutch.textBlack
@@ -305,6 +328,13 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
             make.height.equalTo(53)
         }
         
+        exampleButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.top)
+            make.leading.equalTo(titleLabel.snp.leading)
+            make.width.equalTo(titleLabel.snp.width)
+            make.height.equalTo(titleLabel.snp.height)
+        }
+        
     }
     
     @objc func backButtonTapped() {
@@ -330,6 +360,7 @@ extension ReportViewController: DatePickerDelegate,
         let formattedDate = dateFormatter.string(from: date)
         if title == "근저당 설정일을\n선택해주세요" {
             mortgageDateLabel.textInputTextField.text = formattedDate
+            mortgageDateLabel.textIsEmpty()
         }
     }
     

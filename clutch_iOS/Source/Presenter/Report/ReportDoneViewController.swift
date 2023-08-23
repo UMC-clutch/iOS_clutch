@@ -294,7 +294,7 @@ extension ReportDoneViewController: CustomAlertDelegate {
                     self.reportDoneView.dividendApplicationStatus.leftText.text = "미신청"
                 }
                 // 숫자 점찍기 적용 요망
-                self.reportDoneView.depositAmount.leftText.text = String(deposit)
+                self.reportDoneView.depositAmount.leftText.text = self.decimalPoint(deposit) + "원"
             }
         }
     }

@@ -121,7 +121,10 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         //centerLine 오토레이아웃
         centerLine.snp.makeConstraints { make in
             make.width.equalTo(1)
-            make.height.equalTo(container.snp.height)
+            
+            let centerLineHeight = container.bounds.height * 0.6
+            print(centerLineHeight)
+            make.height.equalTo(centerLineHeight)
             make.center.equalTo(container.snp.center)
         }
         //clientButton 오토레이아웃

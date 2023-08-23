@@ -246,10 +246,9 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func textChange() {
-        transportReportDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        confirmationDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        depositLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        
+        transportReportDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        confirmationDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        depositLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
     }
     
     @objc func textCheck() {
@@ -267,7 +266,13 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         let indexPaths3 = interveneCollectionView.indexPathsForSelectedItems
         let isCellSelected3 = indexPaths3 != nil && !indexPaths!.isEmpty
         
-        let check = isCellSelected && isCellSelected2 && isCellSelected3
+        var checkImgae:Bool = false
+        
+        if !images.isEmpty {
+            checkImgae.toggle()
+        }
+        
+        let check = isCellSelected && isCellSelected2 && isCellSelected3 && checkImgae
         
         if check && allFieldsFilled {
             submitButton.backgroundColor = .Clutch.mainDarkGreen
@@ -428,9 +433,11 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
         let formattedDate = dateFormatter.string(from: date)
         if title == "전입신고일을\n선택해주세요" {
             transportReportDateLabel.textInputTextField.text = formattedDate
+            transportReportDateLabel.textIsEmpty()
         }
         else if title == "확정일자를\n선택해주세요" {
             confirmationDateLabel.textInputTextField.text = formattedDate
+            confirmationDateLabel.textIsEmpty()
         }
     }
     
@@ -584,6 +591,7 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
                 }
                 picker.dismiss(animated: true) {
                     self.imageCollectionView.reloadData()
+                    self.textCheck()
                 }
             }
                 
@@ -635,6 +643,7 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
         // "이미지 삭제할까요?" 알림 띄울지? 커스텀 알림은 예외처리 좀 들어가야 함.
         images.remove(at: i)
         imageCollectionView.reloadData()
+        self.textCheck()
     }
     
     func cancel() {
@@ -666,7 +675,7 @@ extension ContractInfoViewController: DatePickerDelegate, UICollectionViewDelega
             "confirmationDate": dateForDB(inDateStr: confirmationDateLabel.textInputTextField.text ?? ""),
             "hasLandlordIntervene": hasIntervene,
             "hasAppliedDividend": hasDividend,
-            "deposit": Int64(depositLabel.textInputTextField.text ?? "0") ?? 0
+            "deposit": removedecimalPoint(depositLabel.textInputTextField.text ?? "0")
         ]
         
         APIManger.shared.callFormRequest(baseEndPoint: .contract, addPath: "/\(buildingID)", dict: parameter, images: images) { JSON in

@@ -40,6 +40,7 @@ class loginViewController: UIViewController {
         
         return button
     }()
+
     
     //MARK: - Define Method
     //VC의 기본 view 지정
@@ -83,7 +84,6 @@ class loginViewController: UIViewController {
         }
         
     }
-
 
 // kakao 로그인 처리
     
@@ -192,6 +192,8 @@ extension loginViewController: ASAuthorizationControllerDelegate {
       // Handle error.
         print("Apple Login Error")
     }
+    
+    
 }
 
 extension loginViewController: ASAuthorizationControllerPresentationContextProviding {

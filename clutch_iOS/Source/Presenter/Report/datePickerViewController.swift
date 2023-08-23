@@ -10,6 +10,7 @@ import SnapKit
 
 protocol DatePickerDelegate: AnyObject {
     func didSelectDate(title: String, date: Date)
+
 }
 
 class datePickerViewController: UIViewController {
@@ -70,6 +71,7 @@ class datePickerViewController: UIViewController {
         
         print("Selected Date: \(formattedDate)")
         delegate?.didSelectDate(title: titleText, date: selectedDate)
+    
         dismiss(animated: true)
     }
     

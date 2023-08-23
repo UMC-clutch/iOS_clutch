@@ -220,6 +220,8 @@ class CalculateViewController: UIViewController, UIScrollViewDelegate {
         buildingNum.textIsEmpty()
         unitNum.textIsEmpty()
         sqftInput.textIsEmpty()
+        self.textCheck()
+
     }
     
     func setData() {
@@ -400,6 +402,7 @@ extension CalculateViewController: UICollectionViewDelegate, UICollectionViewDat
             let index = IndexPath(item: i, section: 0)
             if let cell = collectionView.cellForItem(at: index) as? CheckCell {
                 cell.checkImageView.image = UIImage(named: "btn_deselected")
+                self.textCheck()
             }
         }
         
