@@ -29,6 +29,7 @@ class ResultViewController: UIViewController {
     lazy var total: Int64 = -3000000
     var buildingPrice:PostBuildingPrice?
     var postCalculate:PostCalculate?
+    lazy var fromVC = ""
     
     //MARK: - UI ProPerties
     // UINavigationBar 선언("< 사기 위험성 판단")
@@ -150,7 +151,10 @@ class ResultViewController: UIViewController {
     // UILabel 선언(주소)
     lazy var addressOutputLabel: UILabel = {
         let label = UILabel()
-        label.text = buildingPrice?.address ?? ""
+        let address = buildingPrice?.address ?? ""
+        let dong = buildingPrice?.dong ?? ""
+        let ho = buildingPrice?.ho ?? ""
+        label.text = "\(address)\n\(dong)동 \(ho)호"
         label.font = UIFont.Clutch.subheadMedium
         label.textColor = UIColor.Clutch.textDarkerGrey
         label.textAlignment = .right
@@ -234,7 +238,7 @@ class ResultViewController: UIViewController {
     func SetView() {
         self.view.backgroundColor = .white
         
-        [scrollview, checkButton].forEach { view in
+        [scrollview].forEach { view in
             self.view.addSubview(view)
         }
         
@@ -242,7 +246,7 @@ class ResultViewController: UIViewController {
             scrollview.addSubview(view)
         }
         
-        [navigationBar, completeGifImage, statusLabel, textLabel, firstUnderLine, addressLabel, addressOutputLabel, backgroundView, formulaLabel, marketPriceOutput, morgagePriceOutput, leasePriceOutput, secondUnderLine, totalOutput, ].forEach { view in
+        [navigationBar, completeGifImage, statusLabel, textLabel, firstUnderLine, addressLabel, addressOutputLabel, backgroundView, formulaLabel, marketPriceOutput, morgagePriceOutput, leasePriceOutput, secondUnderLine, totalOutput, checkButton].forEach { view in
             contentView.addSubview(view)
         }
     }
@@ -305,8 +309,15 @@ class ResultViewController: UIViewController {
     
     // checkButton 누르면 MainViewController() 보여주는 액션
     @objc func didTapButton() {
-        if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
-            navigationController?.popToViewController(VC, animated: true)
+        // 마이페이지에서 불러졌으면 뒤로
+        if fromVC == "MyPage" {
+            navigationController?.popViewController(animated: true)
+        }
+        // 아니면 메인으로
+        else {
+            if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
+                        navigationController?.popToViewController(VC, animated: true)
+            }
         }
     }
     
@@ -325,14 +336,7 @@ class ResultViewController: UIViewController {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(view.frame.height * 1.1)
-        }
-        
-        checkButton.snp.makeConstraints { make in
-            make.width.equalTo(360)
-            make.height.equalTo(50)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
-            make.centerX.equalToSuperview()
+            make.height.equalTo(view.frame.height * 1.15)
         }
         
         completeGifImage.snp.makeConstraints { make in
@@ -365,9 +369,8 @@ class ResultViewController: UIViewController {
         
         addressOutputLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(409)
-            make.leading.equalToSuperview().offset(152)
+            make.trailing.equalToSuperview().offset(-16)
         }
-        
         backgroundView.snp.makeConstraints { make in
             make.height.equalTo(86)
             make.width.equalTo(361)
@@ -403,6 +406,14 @@ class ResultViewController: UIViewController {
         
         totalOutput.snp.makeConstraints { make in
             make.top.equalTo(secondUnderLine.snp.top).offset(35)
+            make.centerX.equalToSuperview()
+        }
+        
+        checkButton.snp.makeConstraints { make in
+            make.width.equalTo(360)
+            make.height.equalTo(50)
+
+            make.bottom.equalToSuperview().offset(-20)
             make.centerX.equalToSuperview()
         }
         

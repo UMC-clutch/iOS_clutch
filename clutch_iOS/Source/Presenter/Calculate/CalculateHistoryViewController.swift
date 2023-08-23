@@ -307,7 +307,11 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         
         
         let VC = ResultViewController()
-        VC.addressOutputLabel.text = reversedArray[index].address
+        let address = reversedArray[index].address
+        let dong = reversedArray[index].dong
+        let ho = reversedArray[index].ho
+        VC.addressOutputLabel.text = "\(address)\n\(dong)동 \(ho)호"
+        VC.addressOutputLabel.numberOfLines = 2
         VC.marketPriceOutput.categoryLabel.text = "시세"
         VC.marketPriceOutput.outputLabel.text = "\(reversedArray[index].price) 원"
         
