@@ -217,16 +217,16 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
     
     func Constraint() {
         navigationBar.snp.makeConstraints { make in
-            make.height.equalTo(30)
             make.width.equalToSuperview()
             make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.equalToSuperview()
         }
         
         backgroundView.snp.makeConstraints { make in
             make.height.equalTo(76)
-            make.width.equalTo(361)
             make.top.equalToSuperview().offset(120)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         button.snp.makeConstraints { make in
@@ -234,6 +234,7 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
             make.width.equalTo(361)
             make.top.equalToSuperview().offset(120)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         leftImageView.snp.makeConstraints { make in
@@ -307,7 +308,11 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         
         
         let VC = ResultViewController()
-        VC.addressOutputLabel.text = reversedArray[index].address
+        let address = reversedArray[index].address
+        let dong = reversedArray[index].dong
+        let ho = reversedArray[index].ho
+        VC.addressOutputLabel.text = "\(address)\n\(dong)동 \(ho)호"
+        VC.addressOutputLabel.numberOfLines = 2
         VC.marketPriceOutput.categoryLabel.text = "시세"
         VC.marketPriceOutput.outputLabel.text = decimalPoint(reversedArray[index].price) + "원"
         
@@ -364,6 +369,7 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         VC.textLabel.textAlignment = .center
         VC.textLabel.numberOfLines = 1
         
+        VC.fromVC = "History"
         navigationController?.pushViewController(VC, animated: true)
         
     }

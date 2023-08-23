@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CalculateViewController: UIViewController {
+class CalculateViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - Properties
     lazy var completed = false
     var buildingPrice:PostBuildingPrice?
@@ -16,6 +16,20 @@ class CalculateViewController: UIViewController {
     //MARK: - UI ProPerties
     // UINavigationBar 선언("< 사기 가능성 계산")
     public lazy var navigationBar = UINavigationBar()
+    
+    //스크롤을 위한 스크롤 뷰
+    lazy var scrollview:UIScrollView = {
+        let view = UIScrollView()
+        
+        return view
+    }()
+    
+    //스크롤 뷰 안에 들어갈 내용을 표시할 뷰
+    let contentView: UIView = {
+        let view = UIView()
+        
+        return view
+    }()
     
     // UILabel 선언("시세 조회를 위한/n정보를 입력해주세요")
     lazy var textLabel: UILabel = {
@@ -148,10 +162,22 @@ class CalculateViewController: UIViewController {
     }
 
     func SetView() {
-        self.view.backgroundColor = .white
-        [buildingNameInput, navigationBar, textLabel, selectLabel, selectCollectionView, addressInput, buildingNum, unitNum, sqftInput, checkButton, exampleButton].forEach { view in
+        [navigationBar, scrollview].forEach { view in
             self.view.addSubview(view)
         }
+        
+        [contentView].forEach { view in
+            scrollview.addSubview(view)
+        }
+        
+        [buildingNameInput, textLabel, selectLabel, selectCollectionView, addressInput, buildingNum, unitNum, sqftInput, checkButton, exampleButton].forEach { view in
+            contentView.addSubview(view)
+        }
+    }
+    
+    //스크롤 뷰관련 셋
+    func setscrollview() {
+        scrollview.delegate = self
     }
     
     func navigationBarSet() {
@@ -254,20 +280,33 @@ class CalculateViewController: UIViewController {
     
     func Constraint() {
         navigationBar.snp.makeConstraints { make in
-            make.height.equalTo(30)
-            make.width.equalToSuperview()
-            make.top.equalToSuperview().offset(65)
-            make.leading.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.width.equalTo(view.snp.width)
+        }
+        
+        scrollview.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.width.equalTo(view.snp.width)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.width.equalTo(view.snp.width)
+            make.height.equalTo(730)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
         textLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(144)
+            make.top.equalToSuperview().offset(40)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         selectLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(260)
+            make.top.equalTo(textLabel.snp.bottom).offset(40)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         selectCollectionView.snp.makeConstraints { make in
@@ -280,11 +319,13 @@ class CalculateViewController: UIViewController {
         buildingNameInput.snp.makeConstraints { make in
             make.top.equalTo(selectCollectionView.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         addressInput.snp.makeConstraints { make in
             make.top.equalTo(buildingNameInput.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         buildingNum.snp.makeConstraints { make in
@@ -300,13 +341,14 @@ class CalculateViewController: UIViewController {
         sqftInput.snp.makeConstraints { make in
             make.top.equalTo(buildingNum.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         checkButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
+            make.top.equalTo(sqftInput.underLine.snp.bottom).offset(60)
         }
         
         exampleButton.snp.makeConstraints { make in

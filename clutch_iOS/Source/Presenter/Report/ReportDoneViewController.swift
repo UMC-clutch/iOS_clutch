@@ -29,7 +29,6 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
-    //스크롤 기능을 탑재한 버튼
     lazy var doneButton:UIButton = {
         let button = UIButton()
         button.setTitle("확인", for: .normal)
@@ -107,7 +106,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(view.frame.height * 1.4)
+            make.height.equalTo(1220)
         }
         
         cancelButton.snp.makeConstraints { make in
@@ -259,7 +258,6 @@ extension ReportDoneViewController: CustomAlertDelegate {
                 self.reportDoneView.statusImage.status = reportStatus
                 self.reportDoneView.statusImage.statusImageSet()
                 
-                print(1)
                 let endIndex = reportedAt.index(reportedAt.startIndex, offsetBy: 10)
                 let extractedDate = String(reportedAt[..<endIndex])
                 self.reportDoneView.reportDate.leftText.text = dateForView(inDateStr: extractedDate)
@@ -280,9 +278,7 @@ extension ReportDoneViewController: CustomAlertDelegate {
                 else {
                     self.reportDoneView.isResidentOccupied.leftText.text = "미거주 중"
                 }
-                print(2)
                 self.reportDoneView.moveInReportDate.leftText.text = dateForView(inDateStr: transportReportDate)
-                print(3)
                 self.reportDoneView.confirmationDate.leftText.text = dateForView(inDateStr: confirmationDate)
                 
                 if hasLandlordIntervene {
