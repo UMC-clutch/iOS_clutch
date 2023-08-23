@@ -117,9 +117,9 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         buildingNameLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         mortgageDateLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         addressLabel.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        sqftInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         buildingNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
         unitNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        sqftInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
     }
     
     @objc func textCheck() {
@@ -128,9 +128,9 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         buildingNameLabel.textInputTextField.text?.isEmpty == false &&
         mortgageDateLabel.textInputTextField.text?.isEmpty == false &&
         addressLabel.textInputTextField.text?.isEmpty == false &&
-        sqftInput.textInputTextField.text?.isEmpty == false &&
         buildingNum.textInputTextField.text?.isEmpty == false &&
-        unitNum.textInputTextField.text?.isEmpty == false
+        unitNum.textInputTextField.text?.isEmpty == false &&
+        sqftInput.textInputTextField.text?.isEmpty == false
         
         print(allFieldsFilled)
         let indexPaths = selectCollectionView.indexPathsForSelectedItems
@@ -155,7 +155,7 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         
         scrollview.addSubview(contentView)
         
-        [titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, sqftInput, buildingNum, unitNum, buildingTypeLabel, selectCollectionView].forEach { view in
+        [titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, buildingNum, unitNum, sqftInput, buildingTypeLabel, selectCollectionView].forEach { view in
             contentView.addSubview(view)
         }
     }
@@ -268,25 +268,25 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
             make.top.equalTo(mortgageDateLabel.snp.bottom).offset(top)
         }
         
-        sqftInput.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(addressLabel.snp.bottom).offset(top)
-        }
-        
         buildingNum.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(sqftInput.snp.bottom)
+            make.top.equalTo(addressLabel.snp.bottom)
         }
         
         unitNum.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-leading)
-            make.top.equalTo(sqftInput.snp.bottom)
+            make.top.equalTo(addressLabel.snp.bottom)
             
+        }
+        
+        sqftInput.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(leading)
+            make.top.equalTo(buildingNum.snp.bottom).offset(top)
         }
         
         buildingTypeLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalTo(buildingNum.snp.bottom).offset(top)
+            make.top.equalTo(sqftInput.snp.bottom).offset(top)
             
         }
         

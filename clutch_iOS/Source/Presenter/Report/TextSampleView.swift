@@ -51,7 +51,7 @@ class TextSampleView: UIView  {
     
     func Constraint() {
         self.snp.makeConstraints { make in
-            make.height.equalTo(rightText.snp.height)
+            make.height.equalTo(leftText.snp.height)
         }
         
         rightText.snp.makeConstraints { make in

@@ -148,7 +148,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
     @objc func cancelButtonTapped(_ sender: UIButton) {
         showCustomAlert(alertType: .canCancel,
                         alertTitle: "신고 취소",
-                        alertContext: "정말로 신고를 철회하시겠습니까??",
+                        alertContext: "정말로 신고를 철회하시겠습니까?",
                         cancelText: "닫기",
                         confirmText: "신고취소")
     }
@@ -185,8 +185,15 @@ extension ReportDoneViewController: CustomAlertDelegate {
     
     func done() {
         if canceled {
-            if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
-                        navigationController?.popToViewController(VC, animated: true)
+            // 신고화면에서 불러졌으면 메인으로
+            if fromVC == "Report" {
+                if let VC = navigationController?.viewControllers.first(where: {$0 is MainViewController}) {
+                            navigationController?.popToViewController(VC, animated: true)
+                }
+            }
+            // 마이페이지에서 불러졌으면 뒤로
+            else if fromVC == "MyPage" {
+                navigationController?.popViewController(animated: true)
             }
         }
     }
@@ -202,7 +209,15 @@ extension ReportDoneViewController: CustomAlertDelegate {
                                      confirmText: "확인")
                 return
             }
-            // 신고 내역이 없는 경우 처리
+            // 신고 내역이 없는 경우
+            else if JSON["information"].isEmpty {
+                self.showCustomAlert(alertType: .done,
+                                     alertTitle: "조회 실패",
+                                     alertContext: "전세사기 피해 신고 내역이 없습니다.",
+                                     confirmText: "확인")
+                self.navigationController?.popViewController(animated: true)
+                return
+            }
             
             let reportStatus = JSON["information"]["reportStatus"].stringValue
             let reportedAt = JSON["information"]["reportedAt"].stringValue
@@ -239,35 +254,49 @@ extension ReportDoneViewController: CustomAlertDelegate {
             
             
             DispatchQueue.main.async {
-                self.reportDoneView.reportDate.rightText.text = dateForView(inDateStr: reportedAt)
-                self.reportDoneView.buildingName.rightText.text = buildingName
-                self.reportDoneView.mortgageSettingDate.rightText.text = dateForView(inDateStr: collateralDate)
-                self.reportDoneView.address.rightText.text = address + "\n\(dong)동 \(ho)호"
-                self.reportDoneView.address.rightText.textAlignment = .right
+                self.reportDoneView.statusImage.status = reportStatus
+                self.reportDoneView.statusImage.statusImageSet()
+                
+                print(1)
+                let endIndex = reportedAt.index(reportedAt.startIndex, offsetBy: 10)
+                let extractedDate = String(reportedAt[..<endIndex])
+                self.reportDoneView.reportDate.leftText.text = dateForView(inDateStr: extractedDate)
+                
+                self.reportDoneView.buildingName.leftText.text = buildingName
+                self.reportDoneView.mortgageSettingDate.leftText.text = dateForView(inDateStr: collateralDate)
+                
+                self.reportDoneView.address.leftText.numberOfLines = 2
+                self.reportDoneView.address.leftText.text = "\(address)\n\(dong)동 \(ho)호"
+                self.reportDoneView.address.leftText.textAlignment = .right
+                
                 // 추후 type별 영문 string -> 한글 조건 처리 필요
-                self.reportDoneView.buildingType.rightText.text = "아파트/오피스텔"
+                self.reportDoneView.buildingType.leftText.text = "아파트/오피스텔"
+                
                 if hasLived {
-                    self.reportDoneView.isResidentOccupied.rightText.text = "거주 중"
+                    self.reportDoneView.isResidentOccupied.leftText.text = "거주 중"
                 }
                 else {
-                    self.reportDoneView.isResidentOccupied.rightText.text = "미거주 중"
+                    self.reportDoneView.isResidentOccupied.leftText.text = "미거주 중"
                 }
-                self.reportDoneView.moveInReportDate.rightText.text = dateForView(inDateStr: transportReportDate)
-                self.reportDoneView.confirmationDate.rightText.text = dateForView(inDateStr: confirmationDate)
+                print(2)
+                self.reportDoneView.moveInReportDate.leftText.text = dateForView(inDateStr: transportReportDate)
+                print(3)
+                self.reportDoneView.confirmationDate.leftText.text = dateForView(inDateStr: confirmationDate)
+                
                 if hasLandlordIntervene {
-                    self.reportDoneView.landlordLienInvolved.rightText.text = "개입"
+                    self.reportDoneView.landlordLienInvolved.leftText.text = "개입"
                 }
                 else {
-                    self.reportDoneView.landlordLienInvolved.rightText.text = "미개입"
+                    self.reportDoneView.landlordLienInvolved.leftText.text = "미개입"
                 }
                 if hasAppliedDividend {
-                    self.reportDoneView.dividendApplicationStatus.rightText.text = "신청"
+                    self.reportDoneView.dividendApplicationStatus.leftText.text = "신청"
                 }
                 else {
-                    self.reportDoneView.dividendApplicationStatus.rightText.text = "미신청"
+                    self.reportDoneView.dividendApplicationStatus.leftText.text = "미신청"
                 }
                 // 숫자 점찍기 적용 요망
-                self.reportDoneView.confirmationDate.rightText.text = dateForView(inDateStr: confirmationDate)
+                self.reportDoneView.depositAmount.leftText.text = String(deposit)
             }
         }
     }
