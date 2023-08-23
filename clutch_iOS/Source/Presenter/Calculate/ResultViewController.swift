@@ -242,7 +242,7 @@ class ResultViewController: UIViewController {
             self.view.addSubview(view)
         }
         
-        [contentView, navigationBar].forEach { view in
+        [contentView].forEach { view in
             scrollview.addSubview(view)
         }
         

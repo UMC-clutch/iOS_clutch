@@ -181,7 +181,7 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
             scrollview.addSubview(view)
         }
         
-        [titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, buildingNum, unitNum, sqftInput, buildingTypeLabel, selectCollectionView, nextButton].forEach { view in
+        [titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, buildingNum, unitNum, sqftInput, buildingTypeLabel, selectCollectionView, nextButton, exampleButton].forEach { view in
             contentView.addSubview(view)
         }
     }

@@ -293,6 +293,7 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         
         cell.addressInfoLabel.text = reversedArray[index].address
         cell.postInfoLabel.text = reversedArray[index].dong + "동" + reversedArray[index].ho + "호"
+        cell.selectionStyle = .none
         
         
         return cell
