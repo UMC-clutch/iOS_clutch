@@ -164,7 +164,9 @@ extension ReportDoneViewController: CustomAlertDelegate {
         print("custom action Button Tapped")
         // 탈퇴하기 API 호출
         
-        APIManger.shared.callDeleteRequest(baseEndPoint: .report, addPath: "/delete") { JSON, status in
+        let parameters = ["reason":"solved"]
+        
+        APIManger.shared.callDeleteRequest(baseEndPoint: .report, addPath: "/delete", parameters: parameters) { JSON, status in
             // 호출 오류시 처리
             if status != 200 {
                 self.showCustomAlert(alertType: .done,

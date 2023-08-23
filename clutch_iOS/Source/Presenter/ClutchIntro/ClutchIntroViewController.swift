@@ -287,8 +287,8 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
         
         //clutchIntroTitl의 오토레이아웃
         clutchIntroTitle.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(305)
-            make.leading.equalToSuperview().offset(leading)
+            make.bottom.equalTo(mainCopyTextView.snp.top).offset(-16)
+            make.leading.equalToSuperview().offset(30)
         }
         
         //mainCopyTextView 오토레이아웃
@@ -317,12 +317,12 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
 
         clutchIntroTextParagraph2.snp.makeConstraints { make in
             make.top.equalTo(clutchIntroTextParagraph2Title.snp.bottom).offset(24)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(30)
         }
 
         clutchIntroWaringText.snp.makeConstraints { make in
             make.top.equalTo(clutchIntroTextParagraph2.snp.bottom).offset(24)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(30)
         }
 
         clutchIntroTextParagraph3Title.snp.makeConstraints { make in
@@ -332,7 +332,7 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
 
         clutchIntroTextParagraph3.snp.makeConstraints { make in
             make.top.equalTo(clutchIntroTextParagraph3Title.snp.bottom).offset(24)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(30)
         }
 
         clutchIntroTextParagraph4.snp.makeConstraints { make in
@@ -342,7 +342,7 @@ class ClutchIntroViewController: UIViewController, UIScrollViewDelegate {
 
         clutchIntroTextParagraph5.snp.makeConstraints { make in
             make.top.equalTo(clutchIntroTextParagraph4.snp.bottom).offset(24)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(30)
         }
     }
     

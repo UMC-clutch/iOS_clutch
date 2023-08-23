@@ -79,6 +79,15 @@ class CalculateViewController: UIViewController {
         return btn
     }()
     
+    lazy var exampleButton: UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = .clear
+        btn.setTitle("", for: .normal)
+        btn.addTarget(self, action: #selector(exampleButtonTapped), for: .touchUpInside)
+        btn.isEnabled = true
+        return btn
+    }()
+    
     //MARK: - Define Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,7 +149,7 @@ class CalculateViewController: UIViewController {
 
     func SetView() {
         self.view.backgroundColor = .white
-        [buildingNameInput, navigationBar, textLabel, selectLabel, selectCollectionView, addressInput, buildingNum, unitNum, sqftInput, checkButton].forEach { view in
+        [buildingNameInput, navigationBar, textLabel, selectLabel, selectCollectionView, addressInput, buildingNum, unitNum, sqftInput, checkButton, exampleButton].forEach { view in
             self.view.addSubview(view)
         }
     }
@@ -174,6 +183,19 @@ class CalculateViewController: UIViewController {
         requestPost()
     }
     
+    @objc func exampleButtonTapped() {
+        buildingNameInput.textInputTextField.text = "한남더힐"
+        addressInput.textInputTextField.text = "서울특별시 용산구 독서당로 111"
+        buildingNum.textInputTextField.text = "131"
+        unitNum.textInputTextField.text = "101"
+        sqftInput.textInputTextField.text = "87A"
+        buildingNameInput.textIsEmpty()
+        addressInput.textIsEmpty()
+        buildingNum.textIsEmpty()
+        unitNum.textIsEmpty()
+        sqftInput.textIsEmpty()
+    }
+    
     func setData() {
         
         buildingNameInput.textInputLabel.text = "건물명"
@@ -202,10 +224,10 @@ class CalculateViewController: UIViewController {
     }
     
     func textChange() {
-        addressInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        buildingNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        sqftInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
-        unitNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .editingChanged)
+        addressInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        buildingNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        sqftInput.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
+        unitNum.textInputTextField.addTarget(self, action: #selector(textCheck), for: .allEvents)
     }
     
     @objc func textCheck() {
@@ -218,7 +240,7 @@ class CalculateViewController: UIViewController {
         let indexPaths = selectCollectionView.indexPathsForSelectedItems
         let isCellSelected = indexPaths != nil && !indexPaths!.isEmpty
         
-        if isCellSelected && allFieldsFilled {
+        if allFieldsFilled {
             checkButton.backgroundColor = .Clutch.mainDarkGreen
             checkButton.setTitleColor(.Clutch.mainWhite, for: .normal)
             checkButton.isEnabled = true
@@ -270,7 +292,7 @@ class CalculateViewController: UIViewController {
         
         unitNum.snp.makeConstraints { make in
             make.top.equalTo(addressInput.snp.bottom)
-            make.trailing.equalToSuperview().offset(-16)
+            make.trailing.equalTo(addressInput.snp.trailing)
         }
         
         sqftInput.snp.makeConstraints { make in
@@ -283,6 +305,13 @@ class CalculateViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
+        }
+        
+        exampleButton.snp.makeConstraints { make in
+            make.top.equalTo(textLabel.snp.top)
+            make.leading.equalTo(textLabel.snp.leading)
+            make.width.equalTo(textLabel.snp.width)
+            make.height.equalTo(textLabel.snp.height)
         }
     }
   

@@ -16,7 +16,7 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
     let address = ["서울특별시 용산구 청파로47길 100", "경기도 고양시 일산서구 일산3동"]
     let post = ["", "505동 606호"]
     
-    var calculateResult:[GetCaculate] = []
+    var calculateResult:[GetReport.GetCaculate] = []
     
     //MARK: - UI propereties
     // UINavigationBar 선언("< 사기 가능성 조회 내역")
@@ -121,11 +121,6 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
     
     lazy var noResultLabel: UILabel = {
         let Label = UILabel()
-        if calculateResult.count == 0 {
-            Label.text = "결과 내역이 없습니다."
-        } else {
-            Label.text = ""
-        }
         Label.font = .Clutch.smallBold
         Label.textColor = .Clutch.textDarkGrey
         
@@ -134,13 +129,6 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
     
     
     
-    // UITableView 선언
-//    lazy var tableView2 : UITableView = {
-//        let tableView = UITableView()
-//        tableView.backgroundColor = .white
-//
-//        return tableView
-//    }()
     
     //MARK: - Define Method
     override func viewDidLoad() {
@@ -156,15 +144,16 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
     //MARK: - Network
     
     func request() {
-        APIManger.shared.callGetRequest(baseEndPoint: .calculate, addPath: nil) { JSON in
+        APIManger.shared.callGetRequest(baseEndPoint: .calculate, addPath: "") { JSON in
             do {
                 // JSON 데이터를 GetCaculate 배열로 디코딩합니다.
                 let decoder = JSONDecoder()
-                let calculateResult = try decoder.decode([GetCaculate].self, from: JSON["information"].rawData())
+                let calculateResult = try decoder.decode([GetReport.GetCaculate].self, from: JSON["information"].rawData())
                 
                 // 디코딩이 성공하면 배열에 데이터를 할당하고 테이블 뷰를 리로드합니다.
                 self.calculateResult = calculateResult
                 self.tableView1.reloadData()
+                self.noResultLabelSet()
             } catch {
                 print("JSON 디코딩 오류: \(error.localizedDescription)")
             }
@@ -179,6 +168,14 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         }
     }
     
+    func noResultLabelSet() {
+        if calculateResult.count == 0 {
+            noResultLabel.text = "결과 내역이 없습니다."
+        } else {
+            noResultLabel.text = ""
+        }
+    }
+    
     func tableViewSet() {
         [tableView1].forEach { tableView in
             tableView.dataSource = self
@@ -186,6 +183,7 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
             tableView.separatorStyle = .none
             tableView.register(CalculateHistoryCell.self, forCellReuseIdentifier: "cell")
             tableView.rowHeight = 180
+            tableView.selectionFollowsFocus = false
         }
     }
     
@@ -222,18 +220,7 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
             make.height.equalTo(30)
             make.width.equalToSuperview()
             make.top.equalTo(self.view.safeAreaLayoutGuide)
-
         }
-        
-//        scrollview.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
-        
-//        contentView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//            make.width.equalTo(view.snp.width)
-//            make.height.equalTo(view.frame.height * 1.2)
-//        }
         
         backgroundView.snp.makeConstraints { make in
             make.height.equalTo(76)
@@ -292,7 +279,10 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         else { return UITableViewCell() }
         
         let row = indexPath.row
-        let result = calculateResult[row].price - calculateResult[row].collateralMoney - calculateResult[row].deposit
+        let reversedArray = calculateResult.reversed()
+        let index = reversedArray.index(reversedArray.startIndex, offsetBy: row)
+        
+        let result = reversedArray[index].price - reversedArray[index].collateralMoney - reversedArray[index].deposit
         
         if result < 0 {
             cell.stateLabel.text = "위험 단계"
@@ -300,16 +290,82 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
             cell.stateLabel.text = "안전 단계"
         }
         
-        cell.addressInfoLabel.text = calculateResult[row].address + calculateResult[row].dong + "동" + calculateResult[row].address + "호"
-       
-                
+        cell.addressInfoLabel.text = reversedArray[index].address
+        cell.postInfoLabel.text = reversedArray[index].dong + "동" + reversedArray[index].ho + "호"
+        
+        
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        let reversedArray = calculateResult.reversed()
+        let index = reversedArray.index(reversedArray.startIndex, offsetBy: row)
+        
+        let result = reversedArray[index].price - reversedArray[index].collateralMoney - reversedArray[index].deposit
+        
+        
         let VC = ResultViewController()
-        navigationController?.pushViewController(VC, animated: true)
-    }
+        VC.addressOutputLabel.text = reversedArray[index].address
+        VC.marketPriceOutput.categoryLabel.text = "시세"
+        VC.marketPriceOutput.outputLabel.text = "\(reversedArray[index].price) 원"
+        
+        VC.morgagePriceOutput.categoryLabel.text = "근저당액"
+        VC.morgagePriceOutput.outputLabel.text = "\(reversedArray[index].collateralMoney) 원"
+        
+        VC.leasePriceOutput.categoryLabel.text = "전세금"
+        VC.leasePriceOutput.outputLabel.text = "\(reversedArray[index].deposit) 원"
+        
+        VC.totalOutput.categoryLabel.text = "계산 결과"
+        VC.totalOutput.outputLabel.text = "\(result) 원"
+        
+        do {
+            lazy var gif = UIImage()
+            
+            if result < 0 {
+                //위험
+                try gif.setGif("img_clutch_danger.gif")
+            }
+            else {
+                //안전
+                try gif.setGif("img_clutch_safe.gif")
+            }
+            VC.completeGifImage = UIImageView(gifImage: gif, loopCount: 1) // Will loop 1 times
+        } catch {
+            VC.completeGifImage = UIImageView()
+        }
+        
+        if result < 0 {
+            //위험
+            VC.statusLabel.text = "위험 단계"
+        }
+        else {
+            //안전
+            VC.statusLabel.text = "안전 단계"
 
+        }
+        
+        VC.statusLabel.font = UIFont.Clutch.headtitlebold
+        VC.statusLabel.textColor = UIColor.black
+        VC.statusLabel.textAlignment = .center
+        VC.statusLabel.numberOfLines = 1
+        
+        if result < 0 {
+            //위험
+            VC.textLabel.text = "전세사기 위험성이 높다고 판단되었어요"
+        }
+        else {
+            //안전
+            VC.textLabel.text = "전세사기 위험성이 낮다고 판단되었어요"
+        }
+        VC.textLabel.font = UIFont.Clutch.baseMedium
+        VC.textLabel.textColor = UIColor.Clutch.textDarkGrey
+        VC.textLabel.textAlignment = .center
+        VC.textLabel.numberOfLines = 1
+        
+        navigationController?.pushViewController(VC, animated: true)
+        
+    }
+    
 }

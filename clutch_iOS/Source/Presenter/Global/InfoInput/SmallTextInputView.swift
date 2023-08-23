@@ -67,6 +67,17 @@ class SmallTextInputView: UIView {
         }
     }
     
+    func textIsEmpty() {
+        
+        guard let text = textInputTextField.text else {return}
+        guard let placeholder = textInputTextField.placeholder else {return}
+        
+        if text.isEmpty == false  {
+            underLine.backgroundColor = .Clutch.mainGreen
+            textInputLabel.textColor = .Clutch.mainGreen
+        }
+    }
+    
     func Constraint() {
         self.snp.makeConstraints { make in
             make.width.equalTo(160)
