@@ -217,16 +217,16 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
     
     func Constraint() {
         navigationBar.snp.makeConstraints { make in
-            make.height.equalTo(30)
             make.width.equalToSuperview()
             make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.equalToSuperview()
         }
         
         backgroundView.snp.makeConstraints { make in
             make.height.equalTo(76)
-            make.width.equalTo(361)
             make.top.equalToSuperview().offset(120)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         button.snp.makeConstraints { make in
@@ -234,6 +234,7 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
             make.width.equalTo(361)
             make.top.equalToSuperview().offset(120)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         leftImageView.snp.makeConstraints { make in
@@ -368,6 +369,7 @@ class CalculateHistoryViewController: UIViewController, UIScrollViewDelegate, UI
         VC.textLabel.textAlignment = .center
         VC.textLabel.numberOfLines = 1
         
+        VC.fromVC = "History"
         navigationController?.pushViewController(VC, animated: true)
         
     }

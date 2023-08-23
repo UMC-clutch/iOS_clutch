@@ -156,7 +156,7 @@ class ResultViewController: UIViewController {
         let ho = buildingPrice?.ho ?? ""
         label.text = "\(address)\n\(dong)동 \(ho)호"
         label.font = UIFont.Clutch.subheadMedium
-        label.textColor = UIColor.Clutch.textDarkerGrey
+        label.textColor = UIColor.Clutch.textBlack
         label.textAlignment = .right
         label.numberOfLines = 2
         
@@ -238,7 +238,7 @@ class ResultViewController: UIViewController {
     func SetView() {
         self.view.backgroundColor = .white
         
-        [scrollview].forEach { view in
+        [navigationBar, scrollview].forEach { view in
             self.view.addSubview(view)
         }
         
@@ -246,7 +246,8 @@ class ResultViewController: UIViewController {
             scrollview.addSubview(view)
         }
         
-        [navigationBar, completeGifImage, statusLabel, textLabel, firstUnderLine, addressLabel, addressOutputLabel, backgroundView, formulaLabel, marketPriceOutput, morgagePriceOutput, leasePriceOutput, secondUnderLine, totalOutput, checkButton].forEach { view in
+        
+        [completeGifImage, statusLabel, textLabel, firstUnderLine, addressLabel, addressOutputLabel, backgroundView, formulaLabel, marketPriceOutput, morgagePriceOutput, leasePriceOutput, secondUnderLine, totalOutput, checkButton].forEach { view in
             contentView.addSubview(view)
         }
     }
@@ -309,8 +310,8 @@ class ResultViewController: UIViewController {
     
     // checkButton 누르면 MainViewController() 보여주는 액션
     @objc func didTapButton() {
-        // 마이페이지에서 불러졌으면 뒤로
-        if fromVC == "MyPage" {
+        // 계산내역에서 불러졌으면 뒤로
+        if fromVC == "History" {
             navigationController?.popViewController(animated: true)
         }
         // 아니면 메인으로
@@ -322,99 +323,105 @@ class ResultViewController: UIViewController {
     }
     
     func Constraint() {
+        let top = 44
         navigationBar.snp.makeConstraints { make in
-            make.height.equalTo(30)
-            make.width.equalToSuperview()
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.width.equalTo(view.snp.width)
         }
         
         scrollview.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.width.equalTo(view.snp.width)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
         contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(view.frame.height * 1.15)
+            make.height.equalTo(880)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
         completeGifImage.snp.makeConstraints { make in
             make.height.equalTo(125)
             make.width.equalTo(125)
-            make.bottom.equalTo(statusLabel.snp.top).offset(-32)
+            make.top.equalToSuperview().offset(top)
             make.centerX.equalToSuperview()
         }
         
         statusLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(245)
-            make.leading.equalToSuperview().offset(149)
+            make.top.equalTo(completeGifImage.snp.bottom).offset(10)
+//            make.leading.equalToSuperview().offset(149)
+            make.centerX.equalToSuperview()
         }
         
         textLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(289)
-            make.leading.equalToSuperview().offset(76)
+            make.top.equalTo(statusLabel.snp.bottom).offset(10)
+//            make.leading.equalToSuperview().offset(76)
+            make.centerX.equalToSuperview()
         }
         
         firstUnderLine.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(357)
+            make.top.equalTo(textLabel.snp.bottom).offset(top)
             make.width.equalToSuperview()
             make.height.equalTo(8)
         }
         
         addressLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(409)
+            make.top.equalTo(firstUnderLine.snp.bottom).offset(top)
             make.leading.equalToSuperview().offset(20)
         }
         
         addressOutputLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(409)
-            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalTo(firstUnderLine.snp.bottom).offset(top)
+            make.trailing.equalToSuperview().offset(-20)
         }
+        
         backgroundView.snp.makeConstraints { make in
             make.height.equalTo(86)
-            make.width.equalTo(361)
-            make.top.equalToSuperview().offset(499)
+            make.top.equalTo(addressOutputLabel.snp.bottom).offset(top)
             make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         formulaLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(518)
-            make.leading.equalToSuperview().offset(38)
+//            make.top.equalTo(backgroundView.snp.top).offset(19)
+//            make.leading.equalTo(backgroundView.snp.leading).offset(22)
+            make.centerX.equalTo(backgroundView)
+            make.centerY.equalTo(backgroundView)
         }
         
         marketPriceOutput.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(629)
+            make.top.equalTo(backgroundView.snp.bottom).offset(top)
             make.centerX.equalToSuperview()
         }
         
         morgagePriceOutput.snp.makeConstraints { make in
-            make.top.equalTo(marketPriceOutput.snp.top).offset(55)
+            make.top.equalTo(marketPriceOutput.snp.top).offset(top)
             make.centerX.equalToSuperview()
         }
         
         leasePriceOutput.snp.makeConstraints { make in
-            make.top.equalTo(morgagePriceOutput.snp.top).offset(55)
+            make.top.equalTo(morgagePriceOutput.snp.top).offset(top)
             make.centerX.equalToSuperview()
         }
         
         secondUnderLine.snp.makeConstraints { make in
-            make.top.equalTo(leasePriceOutput.snp.top).offset(55)
+            make.top.equalTo(leasePriceOutput.snp.top).offset(top)
             make.width.equalToSuperview()
             make.height.equalTo(2)
         }
         
         totalOutput.snp.makeConstraints { make in
-            make.top.equalTo(secondUnderLine.snp.top).offset(35)
+            make.top.equalTo(secondUnderLine.snp.top).offset(top)
             make.centerX.equalToSuperview()
         }
         
         checkButton.snp.makeConstraints { make in
-            make.width.equalTo(360)
-            make.height.equalTo(50)
-
-            make.bottom.equalToSuperview().offset(-20)
-            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(53)
+            make.top.equalTo(totalOutput.snp.bottom).offset(60)
         }
         
     }

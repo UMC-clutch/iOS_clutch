@@ -29,7 +29,6 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
-    //스크롤 기능을 탑재한 버튼
     lazy var doneButton:UIButton = {
         let button = UIButton()
         button.setTitle("확인", for: .normal)
@@ -107,7 +106,7 @@ class ReportDoneViewController: UIViewController, UIScrollViewDelegate {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(view.frame.height * 1.4)
+            make.height.equalTo(1100)
         }
         
         cancelButton.snp.makeConstraints { make in

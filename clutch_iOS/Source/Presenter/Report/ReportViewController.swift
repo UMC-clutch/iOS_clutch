@@ -150,13 +150,15 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
     
  
     func addsubview() {
-        [navigationBar, scrollview, nextButton].forEach { view in
+        [navigationBar, scrollview].forEach { view in
             self.view.addSubview(view)
         }
         
-        scrollview.addSubview(contentView)
+        [contentView].forEach { view in
+            scrollview.addSubview(view)
+        }
         
-        [titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, buildingNum, unitNum, sqftInput, buildingTypeLabel, selectCollectionView].forEach { view in
+        [titleLabel, buildingNameLabel, mortgageDateLabel, dateButton, addressLabel, buildingNum, unitNum, sqftInput, buildingTypeLabel, selectCollectionView, nextButton].forEach { view in
             contentView.addSubview(view)
         }
     }
@@ -225,22 +227,21 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         let top = 40
         
         navigationBar.snp.makeConstraints { make in
-            make.width.equalToSuperview()
             make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.leading.equalToSuperview()
+            make.width.equalTo(view.snp.width)
         }
-        //스크롤 뷰 오토레이아웃
+        
         scrollview.snp.makeConstraints { make in
             make.top.equalTo(navigationBar.snp.bottom)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalTo(nextButton.snp.top).offset(-20)
-        }
-        //contentView 오토레이아웃
-        contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(740)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.width.equalTo(view.snp.width)
+            make.height.equalTo(880)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -300,8 +301,8 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         nextButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
+            make.top.equalTo(selectCollectionView.snp.bottom).offset(65)
             make.height.equalTo(53)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
     }

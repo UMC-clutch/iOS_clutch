@@ -218,7 +218,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
     
     //addsubview
     func addsubview() {
-        [navigationBar, scrollview, submitButton].forEach { view in
+        [navigationBar, scrollview].forEach { view in
             self.view.addSubview(view)
         }
         
@@ -226,7 +226,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
             scrollview.addSubview(view)
         }
 
-        [titleLabel, livedLabel, livedCollectionView, transportReportDateLabel, transportReportDateButton, confirmationDateLabel, confirmationDateButton, interveneLabel, interveneCollectionView, dividendLabel, dividendCollectionView, depositLabel, wonLabel, uploadLabel, imageCollectionView].forEach { view in
+        [titleLabel, livedLabel, livedCollectionView, transportReportDateLabel, transportReportDateButton, confirmationDateLabel, confirmationDateButton, interveneLabel, interveneCollectionView, dividendLabel, dividendCollectionView, depositLabel, wonLabel, uploadLabel, imageCollectionView, submitButton].forEach { view in
             contentView.addSubview(view)
         }
     }
@@ -242,6 +242,7 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         confirmationDateLabel.textInputLabel.text = "확정일자"
         confirmationDateLabel.textInputTextField.isUserInteractionEnabled = false
         depositLabel.textInputLabel.text = "보증금 액수"
+        depositLabel.textInputTextField.keyboardType = .numberPad
     }
     
     func textChange() {
@@ -283,22 +284,21 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         let top = 44
         
         navigationBar.snp.makeConstraints { make in
-            make.width.equalToSuperview()
             make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.leading.equalToSuperview()
+            make.width.equalTo(view.snp.width)
         }
-        //스크롤 뷰 오토레이아웃
+        
         scrollview.snp.makeConstraints { make in
             make.top.equalTo(navigationBar.snp.bottom)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalTo(submitButton.snp.top).offset(-20)
-        }
-        //contentView 오토레이아웃
-        contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(1040)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.width.equalTo(view.snp.width)
+            make.height.equalTo(1140)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -389,8 +389,8 @@ class ContractInfoViewController: UIViewController, UIScrollViewDelegate {
         submitButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
+            make.top.equalTo(imageCollectionView.snp.bottom).offset(top)
             make.height.equalTo(53)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
         
