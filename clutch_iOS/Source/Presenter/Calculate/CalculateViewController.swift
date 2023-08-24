@@ -184,7 +184,7 @@ class CalculateViewController: UIViewController, UIScrollViewDelegate {
         let navigationItem = UINavigationItem()
         navigationItem.title = "사기 가능성 계산"
         let iamge = UIImage(systemName: "chevron.backward")
-        let backButton = UIBarButtonItem(image:iamge, style: .plain, target: self, action: #selector(backButtonTapped))
+        let backButton = UIBarButtonItem(image: UIImage(named: "btn_arrow_big"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
         navigationBar.setItems([navigationItem], animated: false)
         navigationBar.barTintColor = .Clutch.mainWhite // 배경색 변경

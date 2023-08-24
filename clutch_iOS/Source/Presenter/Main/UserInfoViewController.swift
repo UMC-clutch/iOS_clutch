@@ -129,11 +129,14 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
     func infoViewSet() {
         namelInfo.textInputLabel.text = "이름"
         emailInfo.textInputTextField.text = userInfo.name
+        emailInfo.textInputTextField.textColor = .black
         
         emailInfo.textInputLabel.text = "이메일 주소"
         emailInfo.textInputTextField.text = userInfo.email
+        emailInfo.textInputTextField.textColor = .black
         
         phoneNumInfo.textInputLabel.text = "휴대폰 번호"
+        phoneNumInfo.textInputTextField.textColor = .black
     }
     
     func Constraint() {
