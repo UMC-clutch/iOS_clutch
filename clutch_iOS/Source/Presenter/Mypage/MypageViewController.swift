@@ -8,12 +8,26 @@
 import UIKit
 import SnapKit
 
-class MypageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MypageViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     //MARK: - Properties
     lazy var logout = false
     
     // MARK: - UI ProPerties
     lazy var navigationBar = UINavigationBar()
+    
+    //스크롤을 위한 스크롤 뷰
+    lazy var scrollview:UIScrollView = {
+        let view = UIScrollView()
+        
+        return view
+    }()
+    
+    //스크롤 뷰 안에 들어갈 내용을 표시할 뷰
+    lazy var contentView: UIView = {
+        let view = UIView()
+        
+        return view
+    }()
     
     // UILabel 선언("조혜원님")
     lazy var nameLabel: UILabel = {
@@ -168,8 +182,16 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     //VC의 view 관련 설정
     func setView() {
-        [navigationBar, nameLabel, infoLabel, rightArrowImageView, underLine, historyLabel, collectionView1, inquiryLabel, collectionView2, accountLabel, collectionView3].forEach { view in
+        [navigationBar, scrollview].forEach { view in
             self.view.addSubview(view)
+        }
+        
+        [contentView].forEach { view in
+            scrollview.addSubview(view)
+        }
+        
+        [nameLabel, infoLabel, rightArrowImageView, underLine, historyLabel, collectionView1, inquiryLabel, collectionView2, accountLabel, collectionView3].forEach { view in
+            contentView.addSubview(view)
         }
         setNavigationBar()
         collectionviewSet()
@@ -191,71 +213,83 @@ class MypageViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     //VC의 오토레이아웃
     func Constraint() {
-        let leading:Int = 16
+        let leading = 16
         
         navigationBar.snp.makeConstraints { make in
-            make.width.equalToSuperview()
             make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.leading.equalToSuperview()
+            make.width.equalTo(view.snp.width)
+        }
+        
+        scrollview.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.width.equalTo(view.snp.width)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.width.equalTo(view.snp.width)
+            make.height.equalTo(750)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
         nameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalToSuperview().offset(127)
+            make.top.equalToSuperview().offset(35)
         }
         
         infoLabel.snp.makeConstraints { make in
             make.trailing.equalTo(rightArrowImageView.snp.leading)
-            make.top.equalToSuperview().offset(130)
+            make.centerY.equalTo(nameLabel)
         }
         
         rightArrowImageView.snp.makeConstraints { make in
             make.leading.equalTo(infoLabel.snp.trailing)
-            make.trailing.equalToSuperview().offset(-16)
+            make.trailing.equalToSuperview().offset(-leading)
             make.centerY.equalTo(infoLabel.snp.centerY)
         }
         
         underLine.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.height.equalTo(8)
-            make.top.equalToSuperview().offset(191)
+            make.top.equalTo(infoLabel.snp.bottom).offset(36)
             make.centerX.equalToSuperview()
         }
         
         historyLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalToSuperview().offset(231)
+            make.top.equalTo(underLine.snp.bottom).offset(32)
         }
         
         collectionView1.snp.makeConstraints { make in
-            make.width.equalTo(361)
-            make.height.equalTo(80)
-            make.leading.equalTo(leading)
-            make.top.equalTo(270)
+            make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
+            make.top.equalTo(historyLabel.snp.bottom).offset(32)
+            make.height.equalTo(70)
         }
         
         inquiryLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalToSuperview().offset(410)
+            make.top.equalTo(collectionView1.snp.bottom).offset(40)
         }
         
         collectionView2.snp.makeConstraints { make in
-            make.width.equalTo(361)
+            make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
+            make.top.equalTo(inquiryLabel.snp.bottom).offset(32)
             make.height.equalTo(120)
-            make.leading.equalTo(leading)
-            make.top.equalTo(449)
         }
         
         accountLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
-            make.top.equalToSuperview().offset(639)
+            make.top.equalTo(collectionView2.snp.bottom).offset(40)
         }
         
         collectionView3.snp.makeConstraints { make in
-            make.width.equalTo(361)
+            make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
+            make.top.equalTo(accountLabel.snp.bottom).offset(32)
             make.height.equalTo(70)
-            make.leading.equalTo(leading)
-            make.top.equalTo(678)
         }
     }
     
