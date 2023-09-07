@@ -106,8 +106,8 @@ class ReportDoneView: UIView {
         
         underLine.snp.makeConstraints { make in
             make.top.equalTo(reportDate.snp.bottom).offset(verticalinterval)
-            make.leading.equalToSuperview().offset(sideInterval)
-            make.trailing.equalToSuperview().offset(-sideInterval)
+            make.width.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.height.equalTo(underlineHeight)
         }
         

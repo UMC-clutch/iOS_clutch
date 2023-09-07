@@ -156,16 +156,19 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
         
         namelInfo.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.top.equalTo(titleLabel.snp.bottom).offset(top)
         }
         
         emailInfo.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.top.equalTo(namelInfo.snp.bottom).offset(top)
         }
         
         phoneNumInfo.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.top.equalTo(emailInfo.snp.bottom).offset(top)
         }
         
@@ -173,7 +176,7 @@ class UserInfoViewController: UIViewController, CustomAlertDelegate {
             make.leading.equalToSuperview().offset(leading)
             make.trailing.equalToSuperview().offset(-leading)
             make.height.equalTo(53)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
         }
         
         exampleButton.snp.makeConstraints { make in

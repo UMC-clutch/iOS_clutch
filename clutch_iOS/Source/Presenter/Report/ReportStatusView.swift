@@ -53,6 +53,7 @@ class ReportStatusView: UIView {
         let imageView = UIImageView()
         let iamge = UIImage(named: "status1_3x")
         imageView.image = iamge
+        imageView.contentMode = .scaleAspectFit
         
         return imageView
     }()
