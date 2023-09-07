@@ -97,7 +97,7 @@ class InquiryViewController: UIViewController {
         APIManger.shared.callGetRequest(baseEndPoint: .user, addPath: "/users") { JSON in
             let email = JSON["information"]["email"].stringValue
             let information = Information(id: "", name: "", email: email, phonenumber: "")
-            
+
             DispatchQueue.main.async {
                 self.nameInput.textLabel.text = information.email
             }
@@ -106,7 +106,7 @@ class InquiryViewController: UIViewController {
     
     func setData() {
         nameInput.titleLabel.text = "이메일"
-        nameInput.textLabel.text = ""
+        nameInput.textLabel.text = "sample@example.com"
         
         categoryInput.titleLabel.text = "문의 유형"
         categoryInput.textLabel.text = "카테고리를 선택해주세요"
@@ -118,7 +118,7 @@ class InquiryViewController: UIViewController {
     func navigationBarSet() {
         let navigationItem = UINavigationItem()
         navigationItem.title = "문의하기"
-        let iamge = UIImage(systemName: "chevron.backward")
+//        let iamge = UIImage(systemName: "chevron.backward")
         let backButton = UIBarButtonItem(image: UIImage(named: "btn_arrow_big"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
         navigationBar.setItems([navigationItem], animated: false)
@@ -142,32 +142,30 @@ class InquiryViewController: UIViewController {
     
     func Constraint() {
         navigationBar.snp.makeConstraints { make in
-            make.height.equalTo(30)
-            make.width.equalToSuperview()
-            make.top.equalToSuperview().offset(65)
-            make.leading.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.width.equalTo(view.snp.width)
         }
         
         nameInput.titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(142)
+            make.top.equalTo(navigationBar.snp.bottom).offset(50)
         }
         
         nameInput.textLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(171)
+            make.top.equalTo(nameInput.titleLabel.snp.bottom).offset(6)
         }
         
         nameInput.underLine.snp.makeConstraints{ make in
-            make.width.equalTo(360)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(2)
-            make.top.equalToSuperview().offset(197)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(nameInput.textLabel.snp.bottom).offset(2)
         }
         
         categoryInput.titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(239)
+            make.top.equalTo(nameInput.underLine.snp.bottom).offset(40)
         }
         
         selectTypeButton.snp.makeConstraints{ make in
@@ -182,22 +180,22 @@ class InquiryViewController: UIViewController {
         }
         
         categoryInput.underLine.snp.makeConstraints{ make in
-            make.width.equalTo(360)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(2)
-            make.top.equalToSuperview().offset(298)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(selectTypeButton.snp.bottom).offset(6)
         }
         
         inquiryInput.titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(340)
+            make.top.equalTo(categoryInput.underLine.snp.bottom).offset(40)
         }
         
         textView.snp.makeConstraints { make in
-            make.width.equalTo(360)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalTo(inquiryInput.titleLabel.snp.bottom).offset(6)
             make.height.equalTo(200)
-            make.top.equalToSuperview().offset(369)
-            make.centerX.equalToSuperview()
         }
         
         inquiryButton.snp.makeConstraints { make in

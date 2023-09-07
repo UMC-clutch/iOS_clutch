@@ -92,10 +92,8 @@ class ProfileViewController: UIViewController {
     
     func Constraint() {
         navigationBar.snp.makeConstraints { make in
-            make.height.equalTo(30)
-            make.width.equalToSuperview()
-            make.top.equalToSuperview().offset(65)
-            make.leading.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.width.equalTo(view.snp.width)
         }
         
         nameInput.titleLabel.snp.makeConstraints { make in

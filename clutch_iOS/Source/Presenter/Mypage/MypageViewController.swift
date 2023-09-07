@@ -228,7 +228,7 @@ class MypageViewController: UIViewController, UIScrollViewDelegate, UICollection
         
         contentView.snp.makeConstraints { make in
             make.width.equalTo(view.snp.width)
-            make.height.equalTo(750)
+            make.height.equalTo(700)
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
         }

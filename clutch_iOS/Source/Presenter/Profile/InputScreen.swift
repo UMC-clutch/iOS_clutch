@@ -39,7 +39,7 @@ class InputScreen: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setView()
-        Constraint()
+//        Constraint()
     }
     
     required init?(coder: NSCoder) {
@@ -52,23 +52,23 @@ class InputScreen: UIView {
         }
     }
     
-    func Constraint() {
-        titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.top.equalToSuperview()
-        }
-        
-        textLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-        }
-        
-        underLine.snp.makeConstraints { make in
-            make.width.equalTo(360)
-            make.height.equalTo(2)
-            make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
-        }
-        
-    }
+//    func Constraint() {
+//        titleLabel.snp.makeConstraints { make in
+//            make.leading.equalToSuperview()
+//            make.top.equalToSuperview()
+//        }
+//        
+//        textLabel.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//        }
+//        
+//        underLine.snp.makeConstraints { make in
+//            make.width.equalTo(360)
+//            make.height.equalTo(2)
+//            make.top.equalToSuperview()
+//            make.centerX.equalToSuperview()
+//        }
+//        
+//    }
     
 }
