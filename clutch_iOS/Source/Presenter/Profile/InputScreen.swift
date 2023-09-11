@@ -15,6 +15,7 @@ class InputScreen: UIView {
     public lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .Clutch.textDarkGrey
+        label.font = .Clutch.smallMedium
         
         return label
     }()
@@ -23,6 +24,7 @@ class InputScreen: UIView {
     public lazy var textLabel: UILabel = {
         let textLabel = UILabel()
         textLabel.textColor = .black
+        textLabel.font = .Clutch.smallRegular
         
         return textLabel
     }()

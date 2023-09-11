@@ -274,11 +274,13 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         
         buildingNameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.top.equalTo(titleLabel.snp.bottom).offset(top)
         }
         
         mortgageDateLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.top.equalTo(buildingNameLabel.snp.bottom).offset(top)
         }
         
@@ -290,6 +292,7 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         
         addressLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.top.equalTo(mortgageDateLabel.snp.bottom).offset(top)
         }
         
@@ -299,12 +302,13 @@ class ReportViewController: UIViewController, UIScrollViewDelegate {
         }
         
         unitNum.snp.makeConstraints { make in
-            make.trailing.equalTo(sqftInput.snp.trailing)
+            make.trailing.equalTo(addressLabel.snp.trailing)
             make.top.equalTo(addressLabel.snp.bottom)
         }
         
         sqftInput.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(leading)
+            make.trailing.equalToSuperview().offset(-leading)
             make.top.equalTo(buildingNum.snp.bottom).offset(top)
         }
         

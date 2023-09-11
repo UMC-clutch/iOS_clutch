@@ -70,7 +70,7 @@ class ProfileViewController: UIViewController {
     func navigationBarSet() {
         let navigationItem = UINavigationItem()
         navigationItem.title = "회원 정보 확인"
-        let iamge = UIImage(systemName: "chevron.backward")
+//        let iamge = UIImage(systemName: "chevron.backward")
         let backButton = UIBarButtonItem(image:UIImage(named: "btn_arrow_big"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
         navigationBar.setItems([navigationItem], animated: false)
@@ -98,53 +98,53 @@ class ProfileViewController: UIViewController {
         
         nameInput.titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(169)
+            make.top.equalTo(navigationBar.snp.bottom).offset(75)
         }
         
         nameInput.textLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(196)
+            make.top.equalTo(nameInput.titleLabel.snp.bottom).offset(4)
         }
         
         nameInput.underLine.snp.makeConstraints{ make in
-            make.width.equalTo(360)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(2)
-            make.top.equalToSuperview().offset(226)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(nameInput.textLabel.snp.bottom).offset(4)
         }
         
         mailInput.titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(268)
+            make.top.equalTo(nameInput.underLine.snp.bottom).offset(40)
         }
         
         mailInput.textLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(297)
+            make.top.equalTo(mailInput.titleLabel.snp.bottom).offset(4)
         }
         
         mailInput.underLine.snp.makeConstraints{ make in
-            make.width.equalTo(360)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(2)
-            make.top.equalToSuperview().offset(327)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(mailInput.textLabel.snp.bottom).offset(4)
         }
         
         phoneNumberInput.titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(369)
+            make.top.equalTo(mailInput.underLine.snp.bottom).offset(40)
         }
         
         phoneNumberInput.textLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(402)
+            make.top.equalTo(phoneNumberInput.titleLabel.snp.bottom).offset(4)
         }
         
         phoneNumberInput.underLine.snp.makeConstraints{ make in
-            make.width.equalTo(360)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(2)
-            make.top.equalToSuperview().offset(432)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(phoneNumberInput.textLabel.snp.bottom).offset(4)
         }
         
     }
