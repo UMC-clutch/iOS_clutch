@@ -38,7 +38,7 @@
 
 > 트러블 슈팅
 > 
-1. 이미지 용량 최적화
+1. **이미지 용량 최적화**
 
 **Issue**
 
@@ -67,7 +67,7 @@ AF.upload(multipartFormData: { (multipart) in
     }, to: url, method: .post, headers: headers).validate().responseJSON { response in ...
 ```
 
-1. ****UserDefaults****를 활용한 **로그인 cache** 관리
+2. **UserDefaults**를 활용한 **로그인 cache** 관리
 
 **Issue**
 
