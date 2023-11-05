@@ -71,13 +71,17 @@ AF.upload(multipartFormData: { (multipart) in
 
 **Issue**
 
-- ****UserDefaults****없이 JWT token을 관리할 경우, **앱을 재실행하면 다시 로그인을 해야하는 문제 발생**
+- UserDefaults를 활용한 **로그인 cache 관리**
+- **cache**없이 JWT token을 관리할 경우,앱을 재실행하면 다시 로그인을 해야하는 문제 발생
 
 **Solution**
 
 - **로그인 cache**를 관리하는 싱글톤 클래스를 생성
+- check, store, logout 매서드로 **사용자 상태에 따라 로그인 cache 대응**
 
 **Result**
+- 유저 로그인 정보에 **간편하게 액세스**
+- 앱이 종료되었을 경우에도, **cache 체크 후 자동 로그인**
 
 ```swift
 class LoginUserCache {
